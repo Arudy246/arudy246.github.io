@@ -1,0 +1,72 @@
+sugarcube-2:
+  macros:
+
+    # My macros
+    relGain:
+      description: "Changes relationships, needs first name (caps matter) and number"
+      container: false
+      parameters:
+        - text &+ number
+    
+    printRelGain:
+      description: "Prints whether or not a relationship increased"
+
+    calcTime:
+      description: "Calculates an increase of time in minutes"
+    
+    calcAttractiveness:
+      description: "Maths out attractiveness"
+
+
+    # simple inventory macros
+    item:
+      container: true
+      children: 
+        - description
+        - tags
+        - unique
+        - permanent
+    
+    consumable:
+      container: true
+      children: 
+        - description
+        - tags
+        - unique
+        - permanent
+    
+    description:
+      parents:
+        -item
+        -consumable
+        
+    tags:
+      parents:
+        -item
+        -consumable
+        
+    unique:
+      parents:
+        -item
+        -consumable
+        
+    permanent:
+      parents:
+        -item
+        -consumable
+    
+    newinv: {}
+    
+    pickup: {}
+    drop: {}
+    dropall: {}
+
+    transfer: {}
+    merge: {}
+    unmerge: {}
+    
+    inv: {}
+    take : {}
+    give : {}
+    
+    # end simple inventory
