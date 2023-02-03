@@ -1,0 +1,39 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "open story html",
+            "command": "firefox",
+            "windows": {
+                "command": "firefox.exe"
+            },
+            "args": ["LAL.html"],
+            "dependsOrder": "sequence",
+            "dependsOn": ["delete story html", "Build Story HTML File"]
+        },
+		{
+			"label": "Build Story HTML file",
+			"type": "shell",
+			"command": "C:/users/arudy/Downloads/tweego-2.1.1-windows-x64/tweego.exe -f sugarcube-2 -o LAL.html ./src",
+			"group": "build",
+            "dependsOn": ["delete story html"],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "new" 
+			}
+		},
+        {
+            "label": "delete story html",
+            "type": "shell",
+            "command": "del LAL.html",
+        }
+	]       
+}

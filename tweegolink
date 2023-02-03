@@ -1,1 +1,0 @@
-%windir%\system32\cmd.exe /k cd /d H:\1Code_Learning\twineprojects\LiveAnotherLife & del LAL.html & tweego -f sugarcube-2 -o LAL.html LiveAnotherLife.tw & "LAL.html" & exit
