@@ -1,0 +1,191 @@
+:: Widgets[widget]
+    /* relGain Amy 10 */
+    <<widget "relGain">>
+        <<set $plrRel[_args[0]] += _args[1] + ($plrBody.dynamic.atttractiveness / 10)>>
+        <<set $relNpcTemp = _args[0]>>
+        <<set $relAmtTemp = _args[1]>>
+    <</widget>>
+
+    <<widget "printRelGain">>
+        <<nobr>>
+            <<if $relAmtTemp>>
+                <<if $relAmtTemp > 0 >>
+                    <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].formal + ' has improved!</span>'>>
+                <<else>>
+                    <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].formal + ' has deteriorated.</span>'>>
+                <</if>>
+                <<unset $relAmtTemp, $relNpcTemp>>
+            <</if>>
+        <</nobr>>
+    <</widget>>
+
+    <<widget "calcAttractiveness">>
+        <<nobr>>
+            <<set $plrBody.dynamic.atttractiveness = 0>>
+            <<if $plrBody.static.sex == "male" && ($plrBody.static.height == "tall" || $plrBody.static.height == "very tall")>>
+                <<set $plrBody.dynamic.atttractiveness += 10>>
+            <<elseif $plrBody.static.sex == "female" && ($plrBody.static.height == "average" || $plrBody.static.height == "short")>>
+                <<set $plrBody.dynamic.atttractiveness += 10>>
+            <</if>>
+
+            <<if $plrBody.static.faceShape == "oblong" || $plrBody.static.faceShape == "square">>
+                <<set $plrBody.dynamic.atttractiveness += 10>>
+            <</if>>
+
+            <<if $plrBody.dynamic.weight >= 20 && $plrBody.dynamic.weight <= 55>>
+                <<set $plrBody.dynamic.atttractiveness += 10>>
+            <</if>>
+
+            <<if $plrBody.static.sex == "female">>
+                <<set $plrBody.dynamic.atttractiveness *= 1.1>>
+        <</if>>
+        <</nobr>>
+    <</widget>>
+
+    /* calcTime 7 */
+    <<nobr>>
+        <<widget "calcTime">>
+                <<if _args[0]>>
+                    <<set $dateTime.min += _args[0]>>
+                <</if>>
+                <<if $dateTime.min >= 60>>
+                    <<set $dateTime.hour += 1>>
+                    <<set $dateTime.min -= 60>>
+                <</if>>
+                <<if $dateTime.hour >= 24>>
+                    <<set $dateTime.date += 1>>
+                    <<set $dateTime.hour -= 24>>
+                    <<set $dateTime.day += 1>>
+                <</if>>
+                <<if $dateTime.day > 7 >>
+                    <<set $dateTime.day = 1>>
+                <</if>>
+                <<if $dateTime.date > 30>>
+                    <<set $dateTime.month += 1>>
+                    <<set $dateTime.date -= 30>>
+                <</if>>
+                <<if $dateTime.month > 12 >>
+                    <<set $dateTime.year += 1>>
+                    <<set $dateTime.month = 1>>
+                <</if>>
+
+                <<replace "#timeplusdate">>
+                    <<if $dateTime.day == 1>>
+                        <<set $dateTime.dayName = "Monday">>
+                    <</if>>
+                    <<if $dateTime.day == 2>>
+                        <<set $dateTime.dayName = "Tuesday">>
+                    <</if>>
+                    <<if $dateTime.day == 3>>
+                        <<set $dateTime.dayName = "Wednesday">>
+                    <</if>>
+                    <<if $dateTime.day == 4>>
+                        <<set $dateTime.dayName = "Thursday">>
+                    <</if>>
+                    <<if $dateTime.day == 5>>
+                        <<set $dateTime.dayName = "Friday">>
+                    <</if>>
+                    <<if $dateTime.day == 6>>
+                        <<set $dateTime.dayName = "Saturday">>
+                    <</if>>
+                    <<if $dateTime.day == 7>>
+                        <<set $dateTime.dayName = "Sunday">>
+                    <</if>>
+                    <<if $dateTime.month == 1>>
+                        <<set $dateTime.monthName = "January">>
+                    <</if>>
+                    <<if $dateTime.month == 2>>
+                        <<set $dateTime.monthName = "February">>
+                    <</if>>
+                    <<if $dateTime.month == 3>>
+                        <<set $dateTime.monthName = "March">>
+                    <</if>>
+                    <<if $dateTime.month == 4>>
+                        <<set $dateTime.monthName = "April">>
+                    <</if>>
+                    <<if $dateTime.month == 5>>
+                        <<set $dateTime.monthName = "May">>
+                    <</if>>
+                    <<if $dateTime.month == 6>>
+                        <<set $dateTime.monthName = "June">>
+                    <</if>>
+                    <<if $dateTime.month == 7>>
+                        <<set $dateTime.monthName = "July">>
+                    <</if>>
+                    <<if $dateTime.month == 8>>
+                        <<set $dateTime.monthName = "August">>
+                    <</if>>
+                    <<if $dateTime.month == 9>>
+                        <<set $dateTime.monthName = "September">>
+                    <</if>>
+                    <<if $dateTime.month == 10>>
+                        <<set $dateTime.monthName = "October">>
+                    <</if>>
+                    <<if $dateTime.month == 11>>
+                        <<set $dateTime.monthName = "November">>
+                    <</if>>
+                    <<if $dateTime.month == 12>>
+                        <<set $dateTime.monthName = "December">>
+                    <</if>>
+                    <<if $dateTime.hour <= 9 && $dateTime.min <= 9>>
+                        <<print '<br>0' + $dateTime.hour + ':0' + $dateTime.min + '<br>'>>
+                    <<elseif $dateTime.hour <= 9>>
+                        <<print '<br>0' + $dateTime.hour + ':' + $dateTime.min + '<br>'>>
+                    <<elseif $dateTime.min <= 9>>
+                        <<print '<br>' + $dateTime.hour + ':0' + $dateTime.min + '<br>'>>
+                    <<else>>
+                        <<print '<br>' + $dateTime.hour + ':' + $dateTime.min + '<br>'>>
+                    <</if>>
+                    <<print $dateTime.dayName + ' ' + $dateTime.monthName + ' ' + $dateTime.date + ', ' + $dateTime.year + '<br>'>>
+                <</replace>>
+        <</widget>>
+    <</nobr>>
+
+    /* readBook $bookMisc mapSchool location/spell/skill */
+    <<nobr>>
+        <<widget "readBook">>
+            <<set _array = _args[0]>>
+            <<set _bookID = _args[1]>>
+            <<set _unlocktype = _args[2]>>
+
+            <<if _array._bookID.pagesRead != _array._bookID.pagesTotal>>
+                <<set _array._bookID.pagesRead += 1>>
+                <<pickup $plrinvbooks _bookID 1>>
+                <<calcTime 20>>
+            <<else>>
+                <<drop $plrinvbooks _bookID>>
+            <</if>>
+        <</widget>>
+    <</nobr>>
+
+    /* foundItem itemtype(book, material, misc, spell) itemID*/
+    <<nobr>>
+        <<widget "foundItem">>
+            <<switch _args[0]>>
+                <<case "book">>
+                    <<set _address = $bookMisc._args[1]>>
+                    <<run 
+                        Dialog.setup("Book Found");
+                        Dialog.wiki("You found a book titled '" + _address.title + "'. The first page reads '" + _address.description + "'.");
+                        Dialog.open();
+                    >>
+                <<case "material">>
+                    <<set _address = $itemMaterial._args[1]>>
+                    <<run 
+                        Dialog.setup("Material Found");
+                        Dialog.wiki("You found some " + _address.title + ".");
+                        Dialog.open();
+                    >>
+                <<case "misc">>
+                    <<set _address = $itemMisc._args[1]>>
+                    <<run 
+                        Dialog.setup("Item Found");
+                        Dialog.wiki("You found a " + _address.title + ".");
+                        Dialog.open();
+                    >>
+                <<case "spell">>
+                    <<set _address = $tbd._args[1]>>
+
+            <</switch>>
+        <</widget>>
+    <</nobr>>

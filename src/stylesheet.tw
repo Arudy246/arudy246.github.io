@@ -1,0 +1,262 @@
+:: CustomStyleSheet[stylesheet]
+    @font-face {
+        font-family: HeaderText;
+        src: url("fonts/BreatheFireIi-2z9W.ttf");
+    }
+    .hidden {
+        visibility: hidden;
+    }
+    #story-title {
+        font-family: HeaderText;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+        text-shadow: 2px 3px black;
+    }
+    #story-author {
+        margin: 0em 1em 0em 0em
+    }
+    #story-banner {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h2 {
+        font-size: 5em;
+        text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
+        letter-spacing: 1px;
+    }
+    .title-image {
+        width: 35%;
+    }
+    .title-text {
+        position: absolute;
+        top: 25%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+    }
+    .wood-text {
+        $random-text: 'live another life';
+        background: url('img/title-texture.jpg');
+        background-size: 75%;
+        position: absolute;
+
+        font-size: $extra-large * 1.5;
+        text-transform: uppercase;
+        font-family: HeaderText;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        top: 4.5em;
+        left: 39em;
+        &:after {
+        $stroke-width: $extra-large * 0.05;
+        content: $random-text;
+        position: absolute;
+        -webkit-text-stroke-width: $stroke-width;
+        -webkit-text-stroke-color: rgba(black, 0.6);
+        left: 2px;
+        top: 2px;
+        }
+    }
+    .macro-button {
+        background: #000d1a;
+        border: 5px groove #00264d;
+        border-radius: 10px;
+    }
+    .macro-button:hover {
+        background: rgba(0, 128, 255, 0.5);
+        border: 5px ridge #00264d;
+    }
+    .text-center {
+        text-align: center;
+    }
+    #ui-bar {
+        background-image: url("img/bg.png");
+        border-right: 10px groove #262626;
+        width: 18.5em;
+    }
+    #ui-bar-history {
+        margin: 0em 4.5em 0em 0em;
+    }
+    #ui-bar-body {
+        padding: 0em 5em 0em 0.5em;
+    }
+    #ui-bar.stowed {
+        left: -13.5em;
+    }
+    #menu {
+        margin-top: 1.5em !important;
+    }
+    #menu ul {
+        border: 3px ridge #666666;
+    }
+    #menu li a {
+        background: rgba(26, 26, 26, 0.6);
+    }
+    #menu li:not(:first-child) {
+        border-top: 2px solid grey;
+    }
+    .passage {
+        font-family: Verdana, sans-serif;
+        border: 15px solid transparent;
+        border-image: url("img/passage-border.png") 80 repeat;
+        padding: 1.5em;
+    }
+    #passage-start {
+        border: none;
+    }
+    #story-caption {
+        margin-top: -1em !important;
+    }
+    .vertbarbkg {  /* default class for all vertical bar backgrounds */
+        position: relative;
+        width: 10px;
+        height: 100%;
+        background-color: #111;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
+        border-radius: 10px;
+        z-index: 10;
+    }
+    .vertbar {  /* default class for all vertical bars */
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 8px;
+        border-radius: 10px;
+        z-index: 20;
+        transition: height ease 1s;
+        visibility: visible;
+    }
+    #verticalstaminabarbkg {  /* custom positioning for specific vertical bar backgrounds */
+        --bkg-top: 45px;  /* set top here */
+        position: absolute;
+        top: 40px;  /* IE workaround */
+        top: var(--bkg-top);
+        left: 225px;
+        height: calc(100vh - 155px);  /* IE workaround */
+        height: calc(100vh - 22px - var(--bkg-top));
+    }
+    #verticallifebarbkg {  /* custom positioning for specific vertical bar backgrounds */
+        --bkg-top: 45px;  /* set top here */
+        position: absolute;
+        top: 40px;  /* IE workaround */
+        top: var(--bkg-top);
+        left: 240px;
+        height: calc(100vh - 155px);  /* IE workaround */
+        height: calc(100vh - 22px - var(--bkg-top));
+    }
+    #verticalhygienebarbkg {  /* custom positioning for specific vertical bar backgrounds */
+        --bkg-top: 45px;  /* set top here */
+        position: absolute;
+        top: 40px;  /* IE workaround */
+        top: var(--bkg-top);
+        left: 255px;
+        height: calc(100vh - 155px);  /* IE workaround */
+        height: calc(100vh - 22px - var(--bkg-top));
+    }
+    #verticalsanitybarbkg {  /* custom positioning for specific vertical bar backgrounds */
+        --bkg-top: 45px;  /* set top here */
+        position: absolute;
+        top: 40px;  /* IE workaround */
+        top: var(--bkg-top);
+        left: 270px;
+        height: calc(100vh - 155px);  /* IE workaround */
+        height: calc(100vh - 22px - var(--bkg-top));
+    }
+    #verticalwakebarbkg {  /* custom positioning for specific vertical bar backgrounds */
+        --bkg-top: 45px;  /* set top here */
+        position: absolute;
+        top: 40px;  /* IE workaround */
+        top: var(--bkg-top);
+        left: 285px;
+        height: calc(100vh - 155px);  /* IE workaround */
+        height: calc(100vh - 22px - var(--bkg-top));
+    }
+    #verticalstaminabar {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), radial-gradient( circle at bottom right, #00ffff, #00ffff 60% );
+    }
+    #verticalsanitybar {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), radial-gradient( circle at bottom right, #9370db, #9370db 60% );
+    }
+    #verticalwakebar {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), radial-gradient( circle at bottom right, #adff2f, #adff2f 60% );
+    }
+    #verticallifebar {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), radial-gradient( circle at bottom right, #eb2d53, #eb2d53 60% );
+    }
+    #verticalhygienebar {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), radial-gradient( circle at bottom right, #228b22, #228b22 60% );
+    } 
+    .green {
+        color: green;
+        font-style: italic;
+    }
+    .red {
+        color: red;
+        font-style: italic;
+    }
+    .crimson {
+        color: #eb2d53;
+    }
+    .cyan {
+        color: cyan;
+    }
+    .purple {
+        color: mediumpurple;
+    }
+    .darkgreen {
+        color: forestgreen;
+    }
+    .greenyellow {
+        color: greenyellow;
+    }
+    tbody {
+        font-size: 80%;
+    } 
+    table {
+        border: 1px solid black;
+        vertical-align: middle;
+        float: left;
+    }
+    tr:nth-child(even) {
+        background-color: grey;
+    }
+    .charinfosubhdr {
+        font-style: italic;
+    }
+    .charinfohdr {
+        font-size: 120%;
+        font-style: bold;
+        text-align: center;
+    }
+    img {
+        display: block;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Simple Inventory, for SugarCube 2, by Chapel
+    v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8 */
+    ul.simple-inventory-list {
+        margin:0 auto;padding:0
+    }
+    .simple-inventory-listing {
+        list-style:none;padding:.3rem .3rem .3rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr
+    }
+    .simple-inventory-listing:nth-child(2n) {
+        background-color:#000
+    }
+    .simple-inventory-listing>a,.simple-inventory-listing>span {
+        display:inline-block
+    }
+    .all-listing.simple-inventory-listing {
+        border-top:1px solid #fafafa;background-color:transparent
+    }
+    .drop-link {
+        color:#e33
+    }
+    .drop-link:active,.drop-link:focus,.drop-link:hover {
+        color:#f88
+    }
+    /* End Simple Inventory */

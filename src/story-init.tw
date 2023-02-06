@@ -1,0 +1,738 @@
+:: StoryInit
+    <<set $dateTime = {
+        hour: 20,
+        min: 30,
+        day: 7,
+        month: 1,
+        date: 8,
+        year: 2023,
+        dayName: "",
+        monthName: ""
+    }>>
+
+    /*-----Player Stats and Info-----*/
+    /*---the dynamic body stats are able to change and the description of the player will change based on a range.---*/
+    /*-weight is on a range of 1-100, 1-15 is skinny, 16-30 is fit, 30-70 is average, 70-86 is husky, 86-100 is fat-*/
+    /*-hair length is on a range of 1-7, 1 bald or shaved, 2 is ear length, 3 is neck length, 4 is shoulder length, 5 is chest length, 6 is waist, 7 is knees-*/
+    /*-atttractiveness is gauged on a combination of height, face shape, hair length, and heavily by weight (equation is different between sexes)*/
+    /*XXXXX Add beard stats XXXXX*/
+    <<set $plrName = {
+        fName: "",
+        lName: "",
+        prefix: "",
+        formal: ""
+    }>>
+
+    <<set $plrBody = {
+        static: {
+            sex: "",
+            hairColor: "",
+            hairStyle: "",
+            eyeColor: "",
+            faceShape: "",
+            height: ""
+        },
+        dynamic: {
+            hairLength: 0,
+            weight: 0,
+            atttractiveness: 0
+        }
+    }>>
+    
+    <<set $plrStats = {
+        life: {
+            max: 0,
+            cur:0
+        }, 
+        stamina: {
+            max: 0,
+            cur: 0
+        }, 
+        sanity: {
+            max: 0,
+            cur: 0
+        }, 
+        hygiene: {
+            max: 0,
+            cur: 0
+        }, 
+        wake: {
+            max: 0,
+            cur: 0
+        }
+    }>>
+
+    <<set $plrRel = {
+        Amy: 0,
+        Janessa: 0,
+        Barden: 0
+    }>>
+
+    <<set $plrRoom = {
+        painting: {
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        lights: {
+            none: true,
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        bed: {
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        table: {
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        chair: {
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        couch: {
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        floor: {
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        bookcase: {
+            capfive: false,
+            capten: false,
+            captwenty: false,
+            capfourty: false
+        },
+        equipment: {
+            alchemykit: false,
+            foci: false,
+            jewlerykit: false,
+            sigilkit: false,
+            gemkit: false
+        }
+    }>>
+
+    <<set $bookSkills = {
+    }>>
+
+    <<set $bookDisciplines = {
+        aburation: {
+            abook: {
+                title: "",
+                description: "",
+                pagesRead: 0,
+                pagesTotal: 0,
+                pageUnlocks: {
+                    1: ""
+                }
+            }
+        },
+        alchemy: {
+            abook: {
+                title: "",
+                description: "",
+                pagesRead: 0,
+                pagesTotal: 0,
+                pageUnlocks: {
+                    1: ""
+                }
+            }
+        },
+        illusion: {
+            bookIllusion1: {
+                title: "Illusion: A Primer",
+                description: "A treatise on the Illusion discipline for the newly of age mage.",
+                pagesRead: 0,
+                pagesTotal: 20,
+                pageUnlocks: {
+                    1: "Floating Flame",
+                    end: true
+                }
+            }
+        }
+    }>>
+
+    <<set $bookMisc = {
+        mapSchool: {
+            title: "A Guide to Magnus Schola",
+            description: "A book of locations, maps, and assorted histories of Magnus Schola.",
+            pagesRead: 0,
+            pagesTotal: 11,
+            pageUnlocks: {
+                1: "Your Room",
+                2: "Librarium",
+                3: "Dining Hall",
+                4: "Conservatorium",
+                5: "The Exchange",
+                6: "Ley Node",
+                7: "Gymnasium",
+                8: "Sigilarium",
+                9: "Artifice Workshop",
+                10: "Ritual Pentadentrix",
+                11: "Headmaster's Office",
+                end: true
+            }
+        },
+        mapArea: {
+            title: "Nome and her Mysteries",
+            description: "A tome of Nome's hidden history.",
+            pagesRead: 0,
+            pagesTotal: 5,
+            pageUnlocks: {
+                1: "Herrington's Trading Post",
+                2: "Bering Cinema",
+                3: "Nome Regional Hospital",
+                4: "Nome City Cemetary",
+                5: "Pan Saloon and Inn",
+                end: true
+            }
+        }  
+    }>>
+
+    /*-----Personality traits range from 1-500 and change via choices-----*/
+    /*---Openness: High equals explorative, broad range of interests, curious---*/
+    /*---Conscientiousness: High equals reliable and goal driven---*/
+    /*---Extraversion: High equals social and talkative, likes company and friends---*/
+    /*---Agreeableness: High equals trustworthy, kind, caring, honest---*/
+    /*---Neuroticism: High equals easily stressed, moody, and irritable---*/
+
+    <<set $plrPersonality = {
+        openn: 250,
+        conscient: 250,
+        extrav: 250,
+        agreeb: 250,
+        neurot: 250
+    }>>
+    /*-----Temporary variables used for personality test-----*/
+    <<set $temP = {
+        o1: 0,
+        o2: 0,
+        c1: 0,
+        c2: 0,
+        n1: 0,
+        n2: 0,
+        e1: 0,
+        e2: 0,
+        a1: 0,
+        a2: 0
+    }>>
+    /*-----Player Skills-----*/
+    <<set $plrSkills = {
+        mundane: {
+            lockpicking: {
+            level: 0,
+            desc: ""
+        }, 
+            pickpocketing: {
+            level: 0,
+            desc: ""
+        }, 
+            running: {
+            level: 0,
+            desc: ""
+        }, 
+            swimming: {
+            level: 0,
+            desc: ""
+        }, 
+            walking: {
+            level: 0,
+            desc: ""
+        }},
+        mental: {
+            confidence: {
+            level: 0,
+            desc: ""
+        }, 
+            leadership: {
+            level: 0,
+            desc: ""
+        }, 
+            patience: {
+            level: 0,
+            desc: ""
+        }, 
+            sitAwareness: {
+            level: 0,
+            desc: ""
+        }},
+        intimate: {
+            oral: {
+            level: 0,
+            desc: ""
+        }, 
+            partnerAtt: {
+            level: 0,
+            desc: ""
+        }, 
+            seduction: {
+            level: 0,
+            desc: ""
+        }, 
+            intercourse: {
+            level: 0,
+            desc: ""
+        }, 
+            touch: {
+            level: 0,
+            desc: ""
+        }},
+        academic: {
+            grammar: {
+            level: 0,
+            desc: ""
+        }, 
+            readingSpeed: {
+            level: 0,
+            desc: ""
+        }, 
+            vocabulary: {
+            level: 0,
+            desc: ""
+        }, 
+            researching: {
+            level: 0,
+            desc: ""
+        }, 
+            attentionSpan: {
+            level: 0,
+            desc: ""
+        }, 
+            englishLang: {
+            level: 0,
+            desc: ""
+        }, 
+            elvenLang: {
+            level: 0,
+            desc: ""
+        }, 
+            russianLang: {
+            level: 0,
+            desc: ""
+        }, 
+            frenchLang: {
+            level: 0,
+            desc: ""
+        }, 
+            latinLang: {
+            level: 0,
+            desc: ""
+        }, 
+            egyptianLang: {
+            level: 0,
+            desc: ""
+        }, 
+            chineseLang: {
+            level: 0,
+            desc: ""
+        }, 
+            demonLang: {
+            level: 0,
+            desc: ""
+        }, 
+            goblinLang: {
+            level: 0,
+            desc: ""
+        }, 
+            giantLang: {
+            level: 0,
+            desc: ""
+        }, 
+            dragonLang: {
+            level: 0,
+            desc: ""
+        }},
+        social: {
+            actListening: {
+            level: 0,
+            desc: ""
+        }, 
+            bodyLanguage: {
+            level: 0,
+            desc: ""
+        }, 
+            clusterRec: {
+            level: 0,
+            desc: ""
+        }, 
+            conflictRes: {
+            level: 0,
+            desc: ""
+        }, 
+            debate: {
+            level: 0,
+            desc: ""
+        }, 
+            effectiveCom: {
+            level: 0,
+            desc: ""
+        }, 
+            empthay: {
+            level: 0,
+            desc: ""
+        }, 
+            lying: {
+            level: 0,
+            desc: ""
+        }, 
+            manipulation: {
+            level: 0,
+            desc: ""
+        }, 
+            relManagement: {
+            level: 0,
+            desc: ""
+        }},
+        nature: {
+            anatomy: {
+            level: 0,
+            desc: ""
+        }, 
+            biology: {
+            level: 0,
+            desc: ""
+        }, 
+            botany: {
+            level: 0,
+            desc: ""
+        }, 
+            fishing: {
+            level: 0,
+            desc: ""
+        }, 
+            hunting: {
+            level: 0,
+            desc: ""
+        }, 
+            mineralRec: {
+            level: 0,
+            desc: ""
+        }, 
+            minerology: {
+            level: 0,
+            desc: ""
+        }, 
+            plantRec: {
+            level: 0,
+            desc: ""
+        }},
+        crafting: {
+            blacksmithing: {
+            level: 0,
+            desc: ""
+        }, 
+            cooking: {
+            level: 0,
+            desc: ""
+        }, 
+            gemCarv: {
+            level: 0,
+            desc: ""
+        }, 
+            jewelCraft: {
+            level: 0,
+            desc: ""
+        }, 
+            leatherworking: {
+            level: 0,
+            desc: ""
+        }, 
+            metallurgy: {
+            level: 0,
+            desc: ""
+        }, 
+            stoneCarv: {
+            level: 0,
+            desc: ""
+        }, 
+            tailoring: {
+            level: 0,
+            desc: ""
+        }, 
+            woodCarv: {
+            level: 0,
+            desc: ""
+        }}
+    }>>
+    /*-----Disciplines range from 1-1000, skill range 1-150 apprentice, 151-250 initiate, 251-350 skilled, 351-500 competent, 501-650 adept, 651-750 master, 751-850 penultimate, 851-1000 predominant-----*/
+    <<set $plrDisciplines = {
+        abjuration: {
+            level: 0,
+            desc: ""
+        },
+        alchemy: {
+            level: 0,
+            desc: ""
+        },
+        animancy: {
+            level: 0,
+            desc: ""
+        },
+        astromancy: {
+            level: 0,
+            desc: ""
+        },
+        biomancy: {
+            level: 0,
+            desc: ""
+        },
+        blood: {
+            level: 0,
+            desc: ""
+        },
+        chloromancy: {
+            level: 0,
+            desc: ""
+        },
+        chronomancy: {
+            level: 0,
+            desc: ""
+        },
+        clockwork: {
+            level: 0,
+            desc: ""
+        },
+        conjuration: {
+            level: 0,
+            desc: ""
+        },
+        divination: {
+            level: 0,
+            desc: ""
+        },
+        eldritch: {
+            level: 0,
+            desc: ""
+        },
+        elemental: {
+            level: 0,
+            desc: ""
+        },
+        enchantment: {
+            level: 0,
+            desc: ""
+        },
+        enochian: {
+            level: 0,
+            desc: ""
+        },
+        gate: {
+            level: 0,
+            desc: ""
+        },
+        illusion: {
+            level: 0,
+            desc: ""
+        },
+        lunar: {
+            level: 0,
+            desc: ""
+        },
+        necromancy: {
+            level: 0,
+            desc: ""
+        },
+        psionic: {
+            level: 0,
+            desc: ""
+        },
+        restoration: {
+            level: 0,
+            desc: ""
+        },
+        sex: {
+            level: 0,
+            desc: ""
+        },
+        soul: {
+            level: 0,
+            desc: ""
+        },
+        summoning: {
+            level: 0,
+            desc: ""
+        },
+        transmutation: {
+            level: 0,
+            desc: ""
+        }
+    }>>
+    /*-----NPC Personalities-----*/
+    <<set $npcPersonalityList = {
+        friendly: {
+            desc: "friendly disposition",
+            placeholderA: 0,
+            placeholderB: 0,
+            greetings: [
+                "Oh, hi!",
+                "Well hello there!",
+                "Gosh its good to see you!",
+                "What a pleasant suprise!"
+            ]
+        },
+        neutral: {
+            desc: "polite disposition",
+            placeholderA: 0,
+            placeholderB: 0,
+            greetings: [
+                "Hello.",
+                "Hi.",
+                "Good day.",
+                "What can I do for you?"
+            ]
+        },
+        unfriendly: {
+            desc: "unfriendly attitude",
+            placeholderA: 0,
+            placeholderB: 0,
+            greetings: [
+                "Yes?",
+                "What?",
+                "I'm busy, what do you want?",
+                "Now what?"
+            ]
+        }
+    }>>
+    /*-----NPC Character Arrays-----*/
+    <<set $npcs = {
+        Amy: {
+            firstName: "Amy", 
+            lastName: "Everett", 
+            title: "Medicus", 
+            sex: "female", 
+            age: 40, 
+            eyes: "amber", 
+            hair: "blonde",
+            personality: "friendly",
+            formal: "Mrs. Everett"
+        },
+
+        Barden: {
+            firstName: "Barden", 
+            lastName: "Donaver", 
+            title: "Headmaster", 
+            sex: "male", 
+            age: 55,
+            eyes: "dark blue", 
+            hair: "black",
+            personality: "neutral",
+            formal: "Headmaster Donaver"
+        },
+
+        Janessa: {
+            firstName: "Janessa",
+            lastName: "Alston",
+            title: "student",
+            sex: "female",
+            age: 20,
+            eyes: "gray",
+            hair: "blonde",
+            personality: "unfriendly",
+            formal: "Ms. Alston"
+        }
+    }>>
+    /*-----UI Story Menu Variables-----*/
+    <<set $tglPlayerStats = 0>>
+    <<set $tglAction = 0>>
+
+    /*-----Choice Arrays and Objects-----*/
+    <<set $hairColors = [
+        "auburn",
+        "blue",
+        "caramel brown",
+        "cherry",
+        "dark brown",
+        "gray",
+        "honey blonde",
+        "pink",
+        "platinum blonde",
+        "purple",
+        "raven black",
+        "red",
+        "white"
+    ]>>
+    <<set $hairStyles = [
+        "bald",
+        "bangs",
+        "bun",
+        "buzz cut",
+        "cornrows",
+        "loose",
+        "messy",
+        "mohawl",
+        "pixie",
+        "ponytail",
+        "shaved",
+        "side braid",
+        "sideswept",
+        "slicked back",
+        "spikes",
+        "stright",
+        "top knot"
+    ]>>
+    <<set $eyeColors = [
+        "amber",
+        "black",
+        "blue",
+        "brown",
+        "green",
+        "hazel",
+        "purple",
+        "red",
+        "white"
+    ]>>
+    <<set $faceShapes = [
+        "diamond",
+        "heart",
+        "oblong",
+        "oval",
+        "pear",
+        "round",
+        "square"
+    ]>>
+    <<set $unlockVar = {
+        locations: {
+            alstonresidence: 0,
+            librarium: 0,
+            dininghall: 0,
+            conservatorium: 0,
+            theexchange: 0,
+            leynode: 0,
+            gymnasium: 0,
+            sigilarium: 0,
+            artifice: 0,
+            pentadentrix: 0,
+            headmasterstudy: 0,
+            medicalwing: 0,
+            professoroffices: 0
+        }
+    }>>

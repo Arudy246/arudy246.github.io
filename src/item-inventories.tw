@@ -1,0 +1,24 @@
+:: Item-Inventories [init]
+
+    /* Inventory Variables */
+    <<newinv $plrinvbooks>>
+    <<newinv $plrinvmaterials>>
+    <<newinv $plrinvspells>>
+    <<newinv $plrinvmisc>>
+
+    /* Items Variables */
+    <<consumable "mapSchool" "A Guide to Magnus Schola">>
+            <<nobr>>
+                <<if $bookMisc.mapSchool.pagesRead != $bookMisc.mapSchool.pagesTotal>>
+                    <<set $bookMisc.mapSchool.pagesRead += 1>>
+                    <<pickup $plrinvbooks "mapSchool" 1>>
+                    <<calcTime 20>>
+                <<else>>
+                    <<drop $plrinvbooks "mapSchool" 1>>
+                    <<run UI.alert("You finished the book.")>>
+                <</if>>
+            <</nobr>>
+        <<description>>\
+            This is a test book...
+        
+    <</consumable>>
