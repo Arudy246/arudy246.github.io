@@ -1,0 +1,21 @@
+:: Unlock-Variables [init]
+
+    /* Location Unlocks */
+    <<set $unlockVar = {
+        locations: {
+            alstonresidence: 0,
+            librarium: 0,
+            dininghall: 0,
+            conservatorium: 0,
+            theexchange: 0,
+            leynode: 0,
+            gymnasium: 0,
+            sigilarium: 0,
+            artifice: 0,
+            pentadentrix: 0,
+            headmasterstudy: 0,
+            medicalwing: 0,
+            professoroffices: 0
+        }
+    }>>
+

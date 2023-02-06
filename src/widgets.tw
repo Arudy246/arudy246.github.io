@@ -152,6 +152,11 @@
                 <<set _array._bookID.pagesRead += 1>>
                 <<pickup $plrinvbooks _bookID 1>>
                 <<calcTime 20>>
+                <<run
+                    Dialog.setup("Chapter Read");
+                    Dialog.wiki("After reading chapter " + _array._bookID.pagesRead + "  in " + _array._bookID.title + "you discovered " + _array._bookID.pageUnlocks.XXXXX)
+                >>
+
             <<else>>
                 <<drop $plrinvbooks _bookID>>
             <</if>>

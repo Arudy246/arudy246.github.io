@@ -6,7 +6,7 @@
     <<newinv $plrinvspells>>
     <<newinv $plrinvmisc>>
 
-    /* Items Variables */
+    /* Item SimpleStorage Variables */
     <<consumable "mapSchool" "A Guide to Magnus Schola">>
             <<nobr>>
                 <<if $bookMisc.mapSchool.pagesRead != $bookMisc.mapSchool.pagesTotal>>
@@ -19,6 +19,83 @@
                 <</if>>
             <</nobr>>
         <<description>>\
-            This is a test book...
-        
+            $bookMisc.mapSchool.description        
     <</consumable>>
+
+    /* Item Detail and Unlock Arrays */
+    <<set $bookMisc = {
+        mapSchool: {
+            title: "A Guide to Magnus Schola",
+            description: "A book of locations, maps, and assorted histories of Magnus Schola.",
+            pagesRead: 0,
+            pagesTotal: 11,
+            pageUnlocks: {
+                1: "Your Room",
+                2: "Librarium",
+                3: "Dining Hall",
+                4: "Conservatorium",
+                5: "The Exchange",
+                6: "Ley Node",
+                7: "Gymnasium",
+                8: "Sigilarium",
+                9: "Artifice Workshop",
+                10: "Ritual Pentadentrix",
+                11: "Headmaster's Office",
+                end: true
+            }
+        },
+        mapArea: {
+            title: "Nome and her Mysteries",
+            description: "A tome of Nome's hidden history.",
+            pagesRead: 0,
+            pagesTotal: 5,
+            pageUnlocks: {
+                1: "Herrington's Trading Post",
+                2: "Bering Cinema",
+                3: "Nome Regional Hospital",
+                4: "Nome City Cemetary",
+                5: "Pan Saloon and Inn",
+                end: true
+            }
+        }  
+    }>>
+
+    <<set $bookSkills = {
+    }>>
+
+    <<set $bookDisciplines = {
+        aburation: {
+            abook: {
+                title: "",
+                description: "",
+                pagesRead: 0,
+                pagesTotal: 0,
+                pageUnlocks: {
+                    1: ""
+                }
+            }
+        },
+        alchemy: {
+            abook: {
+                title: "",
+                description: "",
+                pagesRead: 0,
+                pagesTotal: 0,
+                pageUnlocks: {
+                    1: ""
+                }
+            }
+        },
+        illusion: {
+            bookIllusion1: {
+                title: "Illusion: A Primer",
+                description: "A treatise on the Illusion discipline for the newly of age mage.",
+                pagesRead: 0,
+                pagesTotal: 20,
+                pageUnlocks: {
+                    1: "Floating Flame",
+                    end: true
+                }
+            }
+        }
+    }>>
