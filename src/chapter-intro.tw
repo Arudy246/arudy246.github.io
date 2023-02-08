@@ -549,7 +549,7 @@
     Hell, you realize you have no idea what time is, let alone what today's date is!
 
     <<button "Look around">>
-        <<pickup $plrinvbooks "mapSchool" 1>>
+        <<foundItem "miscbook" "mapSchool">>
     <</button>>
 
     <<button "Try to sleep">>

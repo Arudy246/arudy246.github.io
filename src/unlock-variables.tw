@@ -3,19 +3,78 @@
     /* Location Unlocks */
     <<set $unlockVar = {
         locations: {
-            alstonresidence: 0,
-            librarium: 0,
-            dininghall: 0,
-            conservatorium: 0,
-            theexchange: 0,
-            leynode: 0,
-            gymnasium: 0,
-            sigilarium: 0,
-            artifice: 0,
-            pentadentrix: 0,
-            headmasterstudy: 0,
-            medicalwing: 0,
-            professoroffices: 0
+            alstonresidence: {
+                name: "Alston Residence",
+                unlocked: false
+            },
+            librarium: {
+                name: "Librarium",
+                unlocked: false
+            },
+            dininghall: {
+                name: "Dining Hall",
+                unlocked: false
+            },
+            conservatorium: {
+                name: "Conservatorium",
+                unlocked: false
+            },
+            theexchange: {
+                name: "The Exchange",
+                unlocked: false
+            },
+            leynode: {
+                name: "Ley Node",
+                unlocked: false
+            },
+            gymnasium: {
+                name: "Gymnasium",
+                unlocked: false
+            },
+            sigilarium: {
+                name: "Sigilarium",
+                unlocked: false
+            },
+            artifice: {
+                name: "Artifice Workshop",
+                unlocked: false
+            },
+            pentadentrix: {
+                name: "Ritual Pentadentrix",
+                unlocked: false
+            },
+            headmasterstudy: {
+                name: "Headmaster's Study",
+                unlocked: false
+            },
+            medicalwing: {
+                name: "Medical Wing",
+                unlocked: false
+            },
+            professoroffices: {
+                name: "Professors' Offices",
+                unlocked: false
+            },
+            tradingpost: {
+                name: "Herrington's Trading Post",
+                unlocked: false
+            },
+            cinema: {
+                name: "Bering Cinema",
+                unlocked: false
+            },
+            hospital: {
+                name: "Nome Regional Hospital",
+                unlocked: false
+            },
+            cemetary: {
+                name: "Nome City Cemetary",
+                unlocked: false
+            },
+            salooninn: {
+                name: "Goldpan Saloon and Inn",
+                unlocked: false
+            }
         }
     }>>
 

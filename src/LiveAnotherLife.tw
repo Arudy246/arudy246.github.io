@@ -78,77 +78,87 @@
     [[Exit | previous()]]
 
 :: Locations
+    <h3>School</h3>
     <<nobr>>
-        <<if $unlockVar.locations.alstonresidence == 1>>
+        <<if $unlockVar.locations.alstonresidence.unlocked == true>>
             <<button [[Alston Residence | alstonresidence]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.librarium == 1>>
+        <<if $unlockVar.locations.librarium.unlocked == true>>
             <<button [[Librarium | librarium]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.dininghall == 1>>
+        <<if $unlockVar.locations.dininghall.unlocked == true>>
             <<button [[Dining Hall | dininghall]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
     <</nobr>>
     <<nobr>>
-        <<if $unlockVar.locations.conservatorium == 1>>
+        <<if $unlockVar.locations.conservatorium.unlocked == true>>
             <<button [[Conservatorium | conservatorium]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.theexchange == 1>>
+        <<if $unlockVar.locations.theexchange.unlocked == true>>
             <<button [[The Exchange | theexchange]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.leynode == 1>>
+        <<if $unlockVar.locations.leynode.unlocked == true>>
             <<button [[Ley Node | leynode]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
     <</nobr>>
     <<nobr>>
-        <<if $unlockVar.locations.gymnasium == 1>>
+        <<if $unlockVar.locations.gymnasium.unlocked == true>>
             <<button [[Gymnasium | gymnasium]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.sigilarium == 1>>
+        <<if $unlockVar.locations.sigilarium.unlocked == true>>
             <<button [[Sigilarium | sigilarium]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.artifice == 1>>
+        <<if $unlockVar.locations.artifice.unlocked == true>>
             <<button [[Artifice Workshop | artificeworkshop]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
     <</nobr>>
     <<nobr>>
-        <<if $unlockVar.locations.pentadentrix == 1>>
+        <<if $unlockVar.locations.pentadentrix.unlocked == true>>
             <<button [[Ritual Pentadentrix | pentadentrix]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.headmasterstudy == 1>>
+        <<if $unlockVar.locations.headmasterstudy.unlocked == true>>
             <<button [[Headmaster's Study | headmasterstudy]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-        <<if $unlockVar.locations.medicalwing == 1>>
+        <<if $unlockVar.locations.medicalwing.unlocked == true>>
             <<button [[Medical Wing | medicalwing]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
     <</nobr>>
     <<nobr>>
-        <<if $unlockVar.locations.professoroffices == 1>>
+        <<if $unlockVar.locations.professoroffices.unlocked == true>>
             <<button [[Professor's Offices | professoroffices]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>
+
+    <h3>Town</h3>
+    <<nobr>>
+        <<if $unlockVar.location.tradingpost.unlocked == true>>
+            <<button [[Herrington's Trading Post | tradingpost]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>

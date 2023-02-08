@@ -9,14 +9,7 @@
     /* Item SimpleStorage Variables */
     <<consumable "mapSchool" "A Guide to Magnus Schola">>
             <<nobr>>
-                <<if $bookMisc.mapSchool.pagesRead != $bookMisc.mapSchool.pagesTotal>>
-                    <<set $bookMisc.mapSchool.pagesRead += 1>>
-                    <<pickup $plrinvbooks "mapSchool" 1>>
-                    <<calcTime 20>>
-                <<else>>
-                    <<drop $plrinvbooks "mapSchool" 1>>
-                    <<run UI.alert("You finished the book.")>>
-                <</if>>
+                <<readBook miscbook mapSchool>>
             <</nobr>>
         <<description>>\
             $bookMisc.mapSchool.description        
@@ -28,19 +21,21 @@
             title: "A Guide to Magnus Schola",
             description: "A book of locations, maps, and assorted histories of Magnus Schola.",
             pagesRead: 0,
-            pagesTotal: 11,
+            pagesTotal: 13,
             pageUnlocks: {
-                1: "Your Room",
-                2: "Librarium",
-                3: "Dining Hall",
-                4: "Conservatorium",
-                5: "The Exchange",
-                6: "Ley Node",
-                7: "Gymnasium",
-                8: "Sigilarium",
-                9: "Artifice Workshop",
-                10: "Ritual Pentadentrix",
-                11: "Headmaster's Office",
+                1: "alstonresidence",
+                2: "librarium",
+                3: "dininghall",
+                4: "conservatorium",
+                5: "theexchange",
+                6: "leynode",
+                7: "gymnasium",
+                8: "sigilarium",
+                9: "artifice",
+                10: "pentadentrix",
+                11: "headmasterstudy",
+                12: "medicalwing",
+                13: "professoroffices"
                 end: true
             }
         },
@@ -50,11 +45,11 @@
             pagesRead: 0,
             pagesTotal: 5,
             pageUnlocks: {
-                1: "Herrington's Trading Post",
-                2: "Bering Cinema",
-                3: "Nome Regional Hospital",
-                4: "Nome City Cemetary",
-                5: "Pan Saloon and Inn",
+                1: "tradingpost",
+                2: "cinema",
+                3: "hospital",
+                4: "cemetary",
+                5: "salooninn",
                 end: true
             }
         }  

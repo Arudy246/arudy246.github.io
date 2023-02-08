@@ -141,39 +141,56 @@
         <</widget>>
     <</nobr>>
 
-    /* readBook $bookMisc mapSchool location/spell/skill */
+    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID */
     <<nobr>>
         <<widget "readBook">>
-            <<set _array = _args[0]>>
-            <<set _bookID = _args[1]>>
-            <<set _unlocktype = _args[2]>>
+            <<switch _args[0]>>
+                <<case "miscbook">>
+                    <<if $bookMisc[_args[1]].pagesRead != $bookMisc[_args[1]].pagesTotal>>
+                        <<set $bookMisc[_args[1]].pagesRead += 1>>
+                        <<pickup $plrinvbooks _args[1] 1>>
+                        <<calcTime 20>>
+                        <<set _unlocknum = $bookMisc[_args[1]].pagesRead>>
+                        <<set _unlockname = $bookMisc[_args[1]].pageUnlocks[_unlocknum]>>
+                        <<run
+                            Dialog.setup("Chapter Read");
+                            Dialog.wiki("After reading chapter " + $bookMisc[_args[1]].pagesRead + " of '" + $bookMisc[_args[1]].title + "' you discovered " + $unlockVar.locations[_unlockname].name + ".");
+                            Dialog.open();
+                        >>
+                        <<set $unlockVar.locations[_unlockname].unlocked = true>>
+                    <<else>>
+                        <<drop $plrinvbooks _args[1]>>
+                        <<run UI.alert("You finished the book, there is nothing left to learn from this.")>>
+                    <</if>>
 
-            <<if _array._bookID.pagesRead != _array._bookID.pagesTotal>>
-                <<set _array._bookID.pagesRead += 1>>
-                <<pickup $plrinvbooks _bookID 1>>
-                <<calcTime 20>>
-                <<run
-                    Dialog.setup("Chapter Read");
-                    Dialog.wiki("After reading chapter " + _array._bookID.pagesRead + "  in " + _array._bookID.title + "you discovered " + _array._bookID.pageUnlocks.XXXXX)
-                >>
+                <<case "skillbook">>
 
-            <<else>>
-                <<drop $plrinvbooks _bookID>>
-            <</if>>
+
+                <<case "spellbook">>
+
+
+                <<case "recipebook">>
+
+
+                <<case "lorebook">>
+
+
+            <</switch>>
         <</widget>>
     <</nobr>>
 
-    /* foundItem itemtype(book, material, misc, spell) itemID*/
+    /* foundItem itemtype(miscbook, skillbook, material, misc, spellbook) itemID*/
     <<nobr>>
         <<widget "foundItem">>
             <<switch _args[0]>>
-                <<case "book">>
-                    <<set _address = $bookMisc._args[1]>>
+                <<case "miscbook">>
                     <<run 
                         Dialog.setup("Book Found");
-                        Dialog.wiki("You found a book titled '" + _address.title + "'. The first page reads '" + _address.description + "'.");
+                        Dialog.wiki("You found a book titled '<b>" + $bookMisc[_args[1]].title + "</b>.'" + "<br><br>" + " The first page reads '<i>" + $bookMisc[_args[1]].description + "</i>'.");
                         Dialog.open();
                     >>
+                    <<pickup $plrinvbooks _args[1] 1>>
+
                 <<case "material">>
                     <<set _address = $itemMaterial._args[1]>>
                     <<run 
@@ -181,6 +198,8 @@
                         Dialog.wiki("You found some " + _address.title + ".");
                         Dialog.open();
                     >>
+                    <<pickup $plrinvmaterials _args[1] 1>>
+
                 <<case "misc">>
                     <<set _address = $itemMisc._args[1]>>
                     <<run 
@@ -188,6 +207,8 @@
                         Dialog.wiki("You found a " + _address.title + ".");
                         Dialog.open();
                     >>
+                    <<pickup $plrinvmisc _args[1] 1>>
+
                 <<case "spell">>
                     <<set _address = $tbd._args[1]>>
 

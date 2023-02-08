@@ -505,17 +505,17 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;= charInfoTbl($plrRel, &quot;plrRel&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTblSub($plrDisciplines, &quot;plrDisciplines&quot;)&gt;&gt;\
     \</tw-passagedata><tw-passagedata pid="5" name="Your Status" tags="" position="600,100" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="6" name="Actions" tags="" position="725,100" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="7" name="Locations" tags="" position="850,100" size="100,100">&lt;&lt;nobr&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.alstonresidence == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.alstonresidence.unlocked == true&gt;&gt;
             &lt;&lt;button [[Alston Residence | alstonresidence]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.librarium == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.librarium.unlocked == true&gt;&gt;
             &lt;&lt;button [[Librarium | librarium]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.dininghall == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.dininghall.unlocked == true&gt;&gt;
             &lt;&lt;button [[Dining Hall | dininghall]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
@@ -1155,7 +1155,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     Hell, you realize you have no idea what time is, let alone what today&#39;s date is!
 
     &lt;&lt;button &quot;Look around&quot;&gt;&gt;
-        &lt;&lt;pickup $plrinvbooks &quot;mapSchool&quot; 1&gt;&gt;
+        &lt;&lt;foundItem &quot;miscbook&quot; &quot;mapSchool&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
 
     &lt;&lt;button &quot;Try to sleep&quot;&gt;&gt;
@@ -1166,22 +1166,92 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;newinv $plrinvspells&gt;&gt;
     &lt;&lt;newinv $plrinvmisc&gt;&gt;
 
-    /* Items Variables */
+    /* Item SimpleStorage Variables */
     &lt;&lt;consumable &quot;mapSchool&quot; &quot;A Guide to Magnus Schola&quot;&gt;&gt;
             &lt;&lt;nobr&gt;&gt;
-                &lt;&lt;if $bookMisc.mapSchool.pagesRead != $bookMisc.mapSchool.pagesTotal&gt;&gt;
-                    &lt;&lt;set $bookMisc.mapSchool.pagesRead += 1&gt;&gt;
-                    &lt;&lt;pickup $plrinvbooks &quot;mapSchool&quot; 1&gt;&gt;
-                    &lt;&lt;calcTime 20&gt;&gt;
-                &lt;&lt;else&gt;&gt;
-                    &lt;&lt;drop $plrinvbooks &quot;mapSchool&quot; 1&gt;&gt;
-                    &lt;&lt;run UI.alert(&quot;You finished the book.&quot;)&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;readBook miscbook mapSchool&gt;&gt;
             &lt;&lt;/nobr&gt;&gt;
         &lt;&lt;description&gt;&gt;\
-            This is a test book...
-        
-    &lt;&lt;/consumable&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="alstonresidence" tags="" position="725,475" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="librarium" tags="" position="850,475" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="dininghall" tags="" position="975,475" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="conservatorium" tags="" position="1100,475" size="100,100"></tw-passagedata><tw-passagedata pid="40" name="theexchange" tags="" position="1225,475" size="100,100"></tw-passagedata><tw-passagedata pid="41" name="leynode" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="gymnasium" tags="" position="225,600" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="sigilarium" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="artificeworkshop" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="pentadentrix" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="headmasterstudy" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="medicalwing" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="professoroffices" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="StoryInit" tags="" position="1100,600" size="100,100">&lt;&lt;set $dateTime = {
+            $bookMisc.mapSchool.description        
+    &lt;&lt;/consumable&gt;&gt;
+
+    /* Item Detail and Unlock Arrays */
+    &lt;&lt;set $bookMisc = {
+        mapSchool: {
+            title: &quot;A Guide to Magnus Schola&quot;,
+            description: &quot;A book of locations, maps, and assorted histories of Magnus Schola.&quot;,
+            pagesRead: 0,
+            pagesTotal: 11,
+            pageUnlocks: {
+                1: &quot;alstonresidence&quot;,
+                2: &quot;librarium&quot;,
+                3: &quot;dininghall&quot;,
+                4: &quot;Conservatorium&quot;,
+                5: &quot;The Exchange&quot;,
+                6: &quot;Ley Node&quot;,
+                7: &quot;Gymnasium&quot;,
+                8: &quot;Sigilarium&quot;,
+                9: &quot;Artifice Workshop&quot;,
+                10: &quot;Ritual Pentadentrix&quot;,
+                11: &quot;Headmaster&#39;s Office&quot;,
+                end: true
+            }
+        },
+        mapArea: {
+            title: &quot;Nome and her Mysteries&quot;,
+            description: &quot;A tome of Nome&#39;s hidden history.&quot;,
+            pagesRead: 0,
+            pagesTotal: 5,
+            pageUnlocks: {
+                1: &quot;Herrington&#39;s Trading Post&quot;,
+                2: &quot;Bering Cinema&quot;,
+                3: &quot;Nome Regional Hospital&quot;,
+                4: &quot;Nome City Cemetary&quot;,
+                5: &quot;Pan Saloon and Inn&quot;,
+                end: true
+            }
+        }  
+    }&gt;&gt;
+
+    &lt;&lt;set $bookSkills = {
+    }&gt;&gt;
+
+    &lt;&lt;set $bookDisciplines = {
+        aburation: {
+            abook: {
+                title: &quot;&quot;,
+                description: &quot;&quot;,
+                pagesRead: 0,
+                pagesTotal: 0,
+                pageUnlocks: {
+                    1: &quot;&quot;
+                }
+            }
+        },
+        alchemy: {
+            abook: {
+                title: &quot;&quot;,
+                description: &quot;&quot;,
+                pagesRead: 0,
+                pagesTotal: 0,
+                pageUnlocks: {
+                    1: &quot;&quot;
+                }
+            }
+        },
+        illusion: {
+            bookIllusion1: {
+                title: &quot;Illusion: A Primer&quot;,
+                description: &quot;A treatise on the Illusion discipline for the newly of age mage.&quot;,
+                pagesRead: 0,
+                pagesTotal: 20,
+                pageUnlocks: {
+                    1: &quot;Floating Flame&quot;,
+                    end: true
+                }
+            }
+        }
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="alstonresidence" tags="" position="725,475" size="100,100">Welcome to the Alston Residence!</tw-passagedata><tw-passagedata pid="37" name="librarium" tags="" position="850,475" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="dininghall" tags="" position="975,475" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="conservatorium" tags="" position="1100,475" size="100,100"></tw-passagedata><tw-passagedata pid="40" name="theexchange" tags="" position="1225,475" size="100,100"></tw-passagedata><tw-passagedata pid="41" name="leynode" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="gymnasium" tags="" position="225,600" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="sigilarium" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="artificeworkshop" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="pentadentrix" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="headmasterstudy" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="medicalwing" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="professoroffices" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="StoryInit" tags="" position="1100,600" size="100,100">&lt;&lt;set $dateTime = {
         hour: 20,
         min: 30,
         day: 7,
@@ -1321,83 +1391,6 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
             sigilkit: false,
             gemkit: false
         }
-    }&gt;&gt;
-
-    &lt;&lt;set $bookSkills = {
-    }&gt;&gt;
-
-    &lt;&lt;set $bookDisciplines = {
-        aburation: {
-            abook: {
-                title: &quot;&quot;,
-                description: &quot;&quot;,
-                pagesRead: 0,
-                pagesTotal: 0,
-                pageUnlocks: {
-                    1: &quot;&quot;
-                }
-            }
-        },
-        alchemy: {
-            abook: {
-                title: &quot;&quot;,
-                description: &quot;&quot;,
-                pagesRead: 0,
-                pagesTotal: 0,
-                pageUnlocks: {
-                    1: &quot;&quot;
-                }
-            }
-        },
-        illusion: {
-            bookIllusion1: {
-                title: &quot;Illusion: A Primer&quot;,
-                description: &quot;A treatise on the Illusion discipline for the newly of age mage.&quot;,
-                pagesRead: 0,
-                pagesTotal: 20,
-                pageUnlocks: {
-                    1: &quot;Floating Flame&quot;,
-                    end: true
-                }
-            }
-        }
-    }&gt;&gt;
-
-    &lt;&lt;set $bookMisc = {
-        mapSchool: {
-            title: &quot;A Guide to Magnus Schola&quot;,
-            description: &quot;A book of locations, maps, and assorted histories of Magnus Schola.&quot;,
-            pagesRead: 0,
-            pagesTotal: 11,
-            pageUnlocks: {
-                1: &quot;Your Room&quot;,
-                2: &quot;Librarium&quot;,
-                3: &quot;Dining Hall&quot;,
-                4: &quot;Conservatorium&quot;,
-                5: &quot;The Exchange&quot;,
-                6: &quot;Ley Node&quot;,
-                7: &quot;Gymnasium&quot;,
-                8: &quot;Sigilarium&quot;,
-                9: &quot;Artifice Workshop&quot;,
-                10: &quot;Ritual Pentadentrix&quot;,
-                11: &quot;Headmaster&#39;s Office&quot;,
-                end: true
-            }
-        },
-        mapArea: {
-            title: &quot;Nome and her Mysteries&quot;,
-            description: &quot;A tome of Nome&#39;s hidden history.&quot;,
-            pagesRead: 0,
-            pagesTotal: 5,
-            pageUnlocks: {
-                1: &quot;Herrington&#39;s Trading Post&quot;,
-                2: &quot;Bering Cinema&quot;,
-                3: &quot;Nome Regional Hospital&quot;,
-                4: &quot;Nome City Cemetary&quot;,
-                5: &quot;Pan Saloon and Inn&quot;,
-                end: true
-            }
-        }  
     }&gt;&gt;
 
     /*-----Personality traits range from 1-500 and change via choices-----*/
@@ -1900,12 +1893,21 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &quot;pear&quot;,
         &quot;round&quot;,
         &quot;square&quot;
-    ]&gt;&gt;
+    ]&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="Unlock-Variables" tags="init" position="1225,600" size="100,100">/* Location Unlocks */
     &lt;&lt;set $unlockVar = {
         locations: {
-            alstonresidence: 0,
-            librarium: 0,
-            dininghall: 0,
+            alstonresidence: {
+                name: &quot;Alston Residence&quot;,
+                unlocked: false
+            },
+            librarium: {
+                name: &quot;Librarium&quot;,
+                unlocked: false
+            },
+            dininghall: {
+                name: &quot;Dining Hall&quot;,
+                unlocked: false
+            },
             conservatorium: 0,
             theexchange: 0,
             leynode: 0,
@@ -1915,9 +1917,14 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
             pentadentrix: 0,
             headmasterstudy: 0,
             medicalwing: 0,
-            professoroffices: 0
+            professoroffices: 0,
+            tradingpost: 0,
+            cinema: 0,
+            hospital: 0,
+            cemetary: 0,
+            salooninn: 0
         }
-    }&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="Widgets" tags="widget" position="1225,600" size="100,100">/* relGain Amy 10 */
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="Widgets" tags="widget" position="100,725" size="100,100">/* relGain Amy 10 */
     &lt;&lt;widget &quot;relGain&quot;&gt;&gt;
         &lt;&lt;set $plrRel[_args[0]] += _args[1] + ($plrBody.dynamic.atttractiveness / 10)&gt;&gt;
         &lt;&lt;set $relNpcTemp = _args[0]&gt;&gt;
@@ -2059,23 +2066,78 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
-    /* readBook $bookMisc mapSchool location/spell/skill */
+    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID */
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;readBook&quot;&gt;&gt;
-            &lt;&lt;set _array = _args[0]&gt;&gt;
-            &lt;&lt;set _bookID = _args[1]&gt;&gt;
-            &lt;&lt;set _unlocktype = _args[2]&gt;&gt;
+            &lt;&lt;switch _args[0]&gt;&gt;
+                &lt;&lt;case &quot;miscbook&quot;&gt;&gt;
+                    &lt;&lt;if $bookMisc[_args[1]].pagesRead != $bookMisc[_args[1]].pagesTotal&gt;&gt;
+                        &lt;&lt;set $bookMisc[_args[1]].pagesRead += 1&gt;&gt;
+                        &lt;&lt;pickup $plrinvbooks _args[1] 1&gt;&gt;
+                        &lt;&lt;calcTime 20&gt;&gt;
+                        &lt;&lt;set _unlocknum = $bookMisc[_args[1]].pagesRead&gt;&gt;
+                        &lt;&lt;set _unlockname = $bookMisc[_args[1]].pageUnlocks[_unlocknum]&gt;&gt;
+                        &lt;&lt;run
+                            Dialog.setup(&quot;Chapter Read&quot;);
+                            Dialog.wiki(&quot;After reading chapter &quot; + $bookMisc[_args[1]].pagesRead + &quot; of &#39;&quot; + $bookMisc[_args[1]].title + &quot;&#39; you discovered &quot; + $unlockVar.locations[_unlockname].name + &quot;.&quot;);
+                            Dialog.open();
+                        &gt;&gt;
+                        &lt;&lt;set $unlockVar.locations[_unlockname].unlocked = true&gt;&gt;
+                    &lt;&lt;else&gt;&gt;
+                        &lt;&lt;drop $plrinvbooks _args[1]&gt;&gt;
+                        &lt;&lt;run UI.alert(&quot;You finished the book, there is nothing left to learn from this.&quot;)&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;if _array._bookID.pagesRead != _array._bookID.pagesTotal&gt;&gt;
-                &lt;&lt;set _array._bookID.pagesRead += 1&gt;&gt;
-                &lt;&lt;pickup $plrinvbooks _bookID 1&gt;&gt;
-                &lt;&lt;calcTime 20&gt;&gt;
-            &lt;&lt;else&gt;&gt;
-                &lt;&lt;drop $plrinvbooks _bookID&gt;&gt;
-            &lt;&lt;/if&gt;&gt;
+                &lt;&lt;case &quot;skillbook&quot;&gt;&gt;
 
 
+                &lt;&lt;case &quot;spellbook&quot;&gt;&gt;
 
+
+                &lt;&lt;case &quot;recipebook&quot;&gt;&gt;
+
+
+                &lt;&lt;case &quot;lorebook&quot;&gt;&gt;
+
+
+            &lt;&lt;/switch&gt;&gt;
+        &lt;&lt;/widget&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
+
+    /* foundItem itemtype(miscbook, skillbook, material, misc, spellbook) itemID*/
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;widget &quot;foundItem&quot;&gt;&gt;
+            &lt;&lt;switch _args[0]&gt;&gt;
+                &lt;&lt;case &quot;miscbook&quot;&gt;&gt;
+                    &lt;&lt;run 
+                        Dialog.setup(&quot;Book Found&quot;);
+                        Dialog.wiki(&quot;You found a book titled &#39;&lt;b&gt;&quot; + $bookMisc[_args[1]].title + &quot;&lt;/b&gt;.&#39;&quot; + &quot;&lt;br&gt;&lt;br&gt;&quot; + &quot; The first page reads &#39;&lt;i&gt;&quot; + $bookMisc[_args[1]].description + &quot;&lt;/i&gt;&#39;.&quot;);
+                        Dialog.open();
+                    &gt;&gt;
+                    &lt;&lt;pickup $plrinvbooks _args[1] 1&gt;&gt;
+
+                &lt;&lt;case &quot;material&quot;&gt;&gt;
+                    &lt;&lt;set _address = $itemMaterial._args[1]&gt;&gt;
+                    &lt;&lt;run 
+                        Dialog.setup(&quot;Material Found&quot;);
+                        Dialog.wiki(&quot;You found some &quot; + _address.title + &quot;.&quot;);
+                        Dialog.open();
+                    &gt;&gt;
+                    &lt;&lt;pickup $plrinvmaterials _args[1] 1&gt;&gt;
+
+                &lt;&lt;case &quot;misc&quot;&gt;&gt;
+                    &lt;&lt;set _address = $itemMisc._args[1]&gt;&gt;
+                    &lt;&lt;run 
+                        Dialog.setup(&quot;Item Found&quot;);
+                        Dialog.wiki(&quot;You found a &quot; + _address.title + &quot;.&quot;);
+                        Dialog.open();
+                    &gt;&gt;
+                    &lt;&lt;pickup $plrinvmisc _args[1] 1&gt;&gt;
+
+                &lt;&lt;case &quot;spell&quot;&gt;&gt;
+                    &lt;&lt;set _address = $tbd._args[1]&gt;&gt;
+
+            &lt;&lt;/switch&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">

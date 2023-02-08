@@ -17,6 +17,12 @@ sugarcube-2:
     calcAttractiveness:
       description: "Maths out attractiveness"
 
+    readBook:
+      description: "Increments pages read and unlocks accordingly"
+
+    foundItem:
+      description: "Picks up an item and notifies player"
+
 
     # simple inventory macros
     item:
