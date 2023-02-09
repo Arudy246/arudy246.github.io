@@ -1,0 +1,26 @@
+:: Spell-List [init]
+
+    <<set $spellEffects = {
+        lightRoom: "<<set $plrroom.lights.trash = true>>"
+    }>>
+
+    <<set $spellDetails = {
+
+        abjuration: {
+
+        },
+        alchemy: {
+
+        },
+        illusion: {
+            floatingflame: {
+                name: "Floating Flame",
+                unlocked: false,
+                staminaCost: 3,
+                diffLevel: 1,
+                effect: $spellEffects.lightRoom,
+                onCast: "<<set $plrDisciplines.illusion.level += 1>>",
+                spellLevel: "basic"
+            }
+        }
+    }>>

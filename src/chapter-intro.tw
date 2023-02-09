@@ -523,6 +523,7 @@
     <</button>>\
 
 :: WakingUp14
+    <<set _booksfound = 0>>\
 
     "Now onto tomorrow. For the first week your schedule will be my schedule. Meaning I get to follow you around all week. If you do well, then the leash gets loosened for both of us. Please, don't suck this week. Otherwise you get to listen to me for the entire second week as I tear down any vestige of self-confidence or worth you have left and cause you to question why you even need to exist anymore." 
     
@@ -548,8 +549,22 @@
     
     Hell, you realize you have no idea what time is, let alone what today's date is!
 
-    <<button "Look around">>
-        <<foundItem "miscbook" "mapSchool">>
+    <<button "Poke around for anything interesting">>
+        <<if _booksfound == 0>>
+            <<foundItem "miscbook" "mapSchool">>
+            <<set _booksfound += 1>>
+            <<calcTime 30>>
+        <<elseif _booksfound == 1>>
+            <<foundItem "miscbook" "mapTown">>
+            <<set _booksfound += 1>>
+            <<calcTime 30>>
+        <<elseif _booksfound == 2>>
+            <<foundItem "spellbook" "book1" "illusion">>
+            <<set _booksfound += 1>>
+            <<calcTime 30>>
+        <<else>>
+            <<run UI.alert("Looks like you picked through everything of interest.")>>
+        <</if>>
     <</button>>
 
     <<button "Try to sleep">>

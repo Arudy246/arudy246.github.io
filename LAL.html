@@ -146,7 +146,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         -webkit-background-clip: text;
         color: transparent;
         top: 4.5em;
-        left: 39em;
+        left: 42.5%;
         &:after {
         $stroke-width: $extra-large * 0.05;
         content: $random-text;
@@ -461,20 +461,30 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;link [[Your Status]]&gt;&gt;&lt;&lt;/link&gt;&gt;
     &lt;&lt;/if&gt;&gt;
 
-    &lt;&lt;if $tglAction == 1&gt;&gt;
-        &lt;&lt;link [[Actions]]&gt;&gt;&lt;&lt;/link&gt;&gt;
-    &lt;&lt;/if&gt;&gt;
+
+    &lt;&lt;link &quot;Actions&quot;&gt;&gt;
+        &lt;&lt;run 
+        Dialog.setup(&quot;Actions&quot;, &quot;actions&quot;);
+        Dialog.wiki(Story.get(&quot;Actions&quot;).text);
+        Dialog.open();
+        &gt;&gt;
+    &lt;&lt;/link&gt;&gt;
+
 
     &lt;&lt;link &quot;Locations&quot;&gt;&gt;
-        &lt;&lt;run Dialog.setup(&quot;Locations&quot;, &quot;locations&quot;);
+        &lt;&lt;run 
+        Dialog.setup(&quot;Locations&quot;, &quot;locations&quot;);
         Dialog.wiki(Story.get(&quot;Locations&quot;).text);
-        Dialog.open()&gt;&gt;
+        Dialog.open();
+        &gt;&gt;
     &lt;&lt;/link&gt;&gt;
 
     &lt;&lt;link &quot;Inventory&quot;&gt;&gt;
-        &lt;&lt;run Dialog.setup(&quot;Inventory&quot;, &quot;inventory&quot;); 
+        &lt;&lt;run 
+        Dialog.setup(&quot;Inventory&quot;, &quot;inventory&quot;); 
         Dialog.wiki(Story.get(&quot;Inventory&quot;).text); 
-        Dialog.open()&gt;&gt;
+        Dialog.open();
+        &gt;&gt;
     &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryCaption" tags="" position="350,100" size="100,100">@@#timeplusdate;&lt;&lt;calcTime&gt;&gt;@@
     &lt;&lt;if $plrName.fName != &quot;&quot; &amp;&amp; $plrName.fName != &quot;First&quot;&gt;&gt;\
         &lt;u&gt;Name: $plrName.fName $plrName.lName&lt;/u&gt;\
@@ -504,7 +514,8 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;= charInfoTbl($plrPersonality, &quot;plrPersonality&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTbl($plrRel, &quot;plrRel&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTblSub($plrDisciplines, &quot;plrDisciplines&quot;)&gt;&gt;\
-    \</tw-passagedata><tw-passagedata pid="5" name="Your Status" tags="" position="600,100" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="6" name="Actions" tags="" position="725,100" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="7" name="Locations" tags="" position="850,100" size="100,100">&lt;&lt;nobr&gt;&gt;
+    \</tw-passagedata><tw-passagedata pid="5" name="Your Status" tags="" position="600,100" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="6" name="Actions" tags="" position="725,100" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="7" name="Locations" tags="" position="850,100" size="100,100">&lt;h3&gt;School&lt;/h3&gt;
+    &lt;&lt;nobr&gt;&gt;\
         &lt;&lt;if $unlockVar.locations.alstonresidence.unlocked == true&gt;&gt;
             &lt;&lt;button [[Alston Residence | alstonresidence]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
@@ -520,65 +531,101 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;
-    &lt;&lt;nobr&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.conservatorium == 1&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;br&gt;
+    &lt;&lt;nobr&gt;&gt;\
+        &lt;&lt;if $unlockVar.locations.conservatorium.unlocked == true&gt;&gt;
             &lt;&lt;button [[Conservatorium | conservatorium]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.theexchange == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.theexchange.unlocked == true&gt;&gt;
             &lt;&lt;button [[The Exchange | theexchange]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.leynode == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.leynode.unlocked == true&gt;&gt;
             &lt;&lt;button [[Ley Node | leynode]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;
-    &lt;&lt;nobr&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.gymnasium == 1&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;br&gt;
+    &lt;&lt;nobr&gt;&gt;\
+        &lt;&lt;if $unlockVar.locations.gymnasium.unlocked == true&gt;&gt;
             &lt;&lt;button [[Gymnasium | gymnasium]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.sigilarium == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.sigilarium.unlocked == true&gt;&gt;
             &lt;&lt;button [[Sigilarium | sigilarium]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.artifice == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.artifice.unlocked == true&gt;&gt;
             &lt;&lt;button [[Artifice Workshop | artificeworkshop]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;
-    &lt;&lt;nobr&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.pentadentrix == 1&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;br&gt;
+    &lt;&lt;nobr&gt;&gt;\
+        &lt;&lt;if $unlockVar.locations.pentadentrix.unlocked == true&gt;&gt;
             &lt;&lt;button [[Ritual Pentadentrix | pentadentrix]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.headmasterstudy == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.headmasterstudy.unlocked == true&gt;&gt;
             &lt;&lt;button [[Headmaster&#39;s Study | headmasterstudy]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.medicalwing == 1&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.medicalwing.unlocked == true&gt;&gt;
             &lt;&lt;button [[Medical Wing | medicalwing]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;
-    &lt;&lt;nobr&gt;&gt;
-        &lt;&lt;if $unlockVar.locations.professoroffices == 1&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;br&gt;
+    &lt;&lt;nobr&gt;&gt;\
+        &lt;&lt;if $unlockVar.locations.professoroffices.unlocked == true&gt;&gt;
             &lt;&lt;button [[Professor&#39;s Offices | professoroffices]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+
+    &lt;h3&gt;Town&lt;/h3&gt;
+    &lt;&lt;nobr&gt;&gt;\
+        &lt;&lt;if $unlockVar.locations.tradingpost.unlocked == true&gt;&gt;
+            &lt;&lt;button [[Herrington&#39;s Trading Post | tradingpost]]&gt;&gt;
+                &lt;&lt;run Dialog.close()&gt;&gt;
+            &lt;&lt;/button&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.cinema.unlocked == true&gt;&gt;
+            &lt;&lt;button [[Bering Cinema | cinema]]&gt;&gt;
+                &lt;&lt;run Dialog.close()&gt;&gt;
+            &lt;&lt;/button&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.hospital.unlocked == true&gt;&gt;
+            &lt;&lt;button [[Nome Regional Hospital | hospital]]&gt;&gt;
+                &lt;&lt;run Dialog.close()&gt;&gt;
+            &lt;&lt;/button&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;br&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.cemetary.unlocked == true&gt;&gt;
+            &lt;&lt;button [[Nome City Cemetary | cemetary]]&gt;&gt;
+                &lt;&lt;run Dialog.close()&gt;&gt;
+            &lt;&lt;/button&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+        &lt;&lt;if $unlockVar.locations.salooninn.unlocked == true&gt;&gt;
+            &lt;&lt;button [[Goldpan Saloon and Inn | salooninn]]&gt;&gt;
+                &lt;&lt;run Dialog.close()&gt;&gt;
+            &lt;&lt;/button&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
 
     &lt;&lt;link &quot;Exit&quot;&gt;&gt;
         &lt;&lt;run Dialog.close()&gt;&gt;
@@ -618,7 +665,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     [[WakingUp11]]
     [[WakingUp12]]
     [[WakingUp13]]
-    [[WakingUp14]]</tw-passagedata><tw-passagedata pid="11" name="Todo" tags="" position="100,225" size="100,100">Inventory system
+    [[WakingUp14]]</tw-passagedata><tw-passagedata pid="11" name="Todo" tags="" position="100,225" size="100,100">Inventory system - done
     Library
     First five professors
     Make player stats populate on UI
@@ -649,11 +696,11 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;set $plrStats.wake.cur = 5&gt;&gt;
     &lt;&lt;/button&gt;&gt;
 
-    &lt;&lt;button &quot;Increase Minutes 55&quot;&gt;&gt;
-        &lt;&lt;calcTime 55&gt;&gt;
+    &lt;&lt;button &quot;Increase Minutes 30&quot;&gt;&gt;
+        &lt;&lt;calcTime 30&gt;&gt;
     &lt;&lt;/button&gt;&gt;\
-    &lt;&lt;button &quot;Increase Minutes 5&quot;&gt;&gt;
-        &lt;&lt;calcTime 5&gt;&gt;
+    &lt;&lt;button &quot;Increase Minutes 5 +/- 5&quot;&gt;&gt;
+        &lt;&lt;calcTime 5 5&gt;&gt;
     &lt;&lt;/button&gt;&gt;
 
     &lt;&lt;button &quot;Decrease Life -1&quot;&gt;&gt;
@@ -666,13 +713,8 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;/button&gt;&gt;
 
     &lt;&lt;button &quot;Give Test Book&quot;&gt;&gt;
-        &lt;&lt;pickup $plrinvbooks &quot;mapSchool&quot; 1&gt;&gt;
-        &lt;&lt;run 
-            Dialog.setup(&quot;Book Found&quot;);
-            Dialog.wiki(&quot;The book is titled &#39;&quot; + $bookMisc.mapSchool.title + &quot;&#39;. The first page reads &#39;&quot; + $bookMisc.mapSchool.description + &quot;&#39;.&quot;);
-            Dialog.open();
-        &gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="GameIntro" tags="" position="350,225" size="100,100">&lt;span class=&#39;red&#39;&gt;CAUTION!&lt;/span&gt;
+
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="FirstWeek1" tags="" position="350,225" size="100,100"></tw-passagedata><tw-passagedata pid="14" name="FirstWeek2" tags="" position="475,225" size="100,100"></tw-passagedata><tw-passagedata pid="15" name="FirstWeek3" tags="" position="600,225" size="100,100"></tw-passagedata><tw-passagedata pid="16" name="FirstWeek4" tags="" position="725,225" size="100,100"></tw-passagedata><tw-passagedata pid="17" name="GameIntro" tags="" position="850,225" size="100,100">&lt;span class=&#39;red&#39;&gt;CAUTION!&lt;/span&gt;
     &lt;em&gt;There can be some dark moments in this game, especially with regards to your backstory. If you are uncomfortable with imagining a severe emotional and physical loss, then I kindly ask you find something else to play. But if you feel like being bold and accepting a difficult rebirth, then I would love for you to continue.&lt;/em&gt;
     
     &lt;hr&gt;
@@ -689,7 +731,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
     So go forth and Live Another Life!
 
-    &lt;&lt;button [[Awesome | PersonalityTest]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="PersonalityTest" tags="" position="475,225" size="100,100">Before you begin, please answer these questions to establish your alter ego&#39;s personality. This will likely change as you make choices throughout your new life, but a baseline is needed! Please choose the most applicable answers:
+    &lt;&lt;button [[Awesome | PersonalityTest]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="PersonalityTest" tags="" position="975,225" size="100,100">Before you begin, please answer these questions to establish your alter ego&#39;s personality. This will likely change as you make choices throughout your new life, but a baseline is needed! Please choose the most applicable answers:
 
     /*openn*/\
     Do you enjoy routines?
@@ -751,9 +793,9 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;label&gt;&lt;&lt;radiobutton &quot;$temP.c2&quot; 0&gt;&gt; I give into temptation sometimes&lt;/label&gt;
     &lt;label&gt;&lt;&lt;radiobutton &quot;$temP.c2&quot; -50&gt;&gt; Oh, I cannot stop myself&lt;/label&gt;
 
-    &lt;&lt;button [[Ready! | Dream1]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="Dream1" tags="" position="600,225" size="100,100">This will use the base mechanics of the game to give a taste of what&#39;s to come.
+    &lt;&lt;button [[Ready! | Dream1]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="Dream1" tags="" position="1100,225" size="100,100">This will use the base mechanics of the game to give a taste of what&#39;s to come.
 
-    &lt;&lt;button [[Skip...for now. | WakingUp1]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="WakingUp1" tags="" position="725,225" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;button [[Skip...for now. | WakingUp1]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="WakingUp1" tags="" position="1225,225" size="100,100">&lt;&lt;nobr&gt;&gt;
     &lt;&lt;set $plrPersonality.openn = $plrPersonality.openn + $temP.o1 + $temP.o2&gt;&gt;
     &lt;&lt;set $plrPersonality.conscient = $plrPersonality.conscient + $temP.c1 + $temP.c2&gt;&gt;
     &lt;&lt;set $plrPersonality.neurot = $plrPersonality.neurot + $temP.n1 + $temP.n2&gt;&gt;
@@ -774,7 +816,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
     She notices you are awake and says &quot;Oh, I am so sorry!&quot;
 
-    &lt;&lt;button [[Continue | WakingUp2]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="WakingUp2" tags="" position="850,225" size="100,100">&lt;img src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
+    &lt;&lt;button [[Continue | WakingUp2]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="WakingUp2" tags="" position="100,350" size="100,100">&lt;img src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
 
     &quot;My name is $npcs.Amy.formal, I am the Medicus for this school.&quot;
 
@@ -786,7 +828,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
     And like so much else since you woke up, what happens next is supposed to only be possible in your imagination. A slight orange glow seems to eminate from the space between your chest and her hands.
 
-    &lt;&lt;button [[Continue | WakingUp3]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="WakingUp3" tags="" position="975,225" size="100,100">&lt;img src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
+    &lt;&lt;button [[Continue | WakingUp3]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="WakingUp3" tags="" position="225,350" size="100,100">&lt;img src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
 
     $npcs.Amy.formal notices your wide eyed stare.
 
@@ -796,7 +838,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
     &lt;&lt;button [[Lost and confused sums it up | WakingUp4]]&gt;&gt;&lt;&lt;relGain Amy 5&gt;&gt;&lt;&lt;/button&gt;&gt;
     &lt;&lt;button [[Just tell me something! | WakingUp4]]&gt;&gt;&lt;&lt;relGain Amy -5&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[I am fine. Thank you. | WakingUp4]]&gt;&gt;&lt;&lt;relGain Amy 10&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="WakingUp4" tags="" position="1100,225" size="100,100">&lt;img src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;\
+    &lt;&lt;button [[I am fine. Thank you. | WakingUp4]]&gt;&gt;&lt;&lt;relGain Amy 10&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="WakingUp4" tags="" position="350,350" size="100,100">&lt;img src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;\
     &lt;&lt;printRelGain&gt;&gt;\
 
     $npcs.Amy.formal says comfortingly, &quot;Oh there there, I wouldn&#39;t worry. We all have our parts to play.&quot; With a wink and a smile she says &quot;Give me a moment and I will have someone take you to the headmaster.&quot;
@@ -884,7 +926,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
     &lt;&lt;button [[Umm, I am sorry, but where are my clothes? | WakingUp5]]&gt;&gt;&lt;&lt;relGain Amy 10&gt;&gt;&lt;&lt;/button&gt;&gt;
     &lt;&lt;button [[What the hell am I wearing?! | WakingUp5]]&gt;&gt;&lt;&lt;relGain Amy -5&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[I am so confused... | WakingUp5]]&gt;&gt;&lt;&lt;relGain Amy 5&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="WakingUp5" tags="" position="1225,225" size="100,100">&lt;&lt;silently&gt;&gt;
+    &lt;&lt;button [[I am so confused... | WakingUp5]]&gt;&gt;&lt;&lt;relGain Amy 5&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="WakingUp5" tags="" position="475,350" size="100,100">&lt;&lt;silently&gt;&gt;
         &lt;&lt;if $plrBody.static.sex == &quot;female&quot;&gt;&gt;
             &lt;&lt;set $plrName.prefix = &quot;Ms.&quot;&gt;&gt;
         &lt;&lt;elseif $plrBody.static.sex == &quot;male&quot;&gt;&gt;
@@ -916,7 +958,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;button [[Alright, seriously now. What is your problem? | WakingUp6]]&gt;&gt;
         &lt;&lt;relGain Janessa -5&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[(You ignore her and start walking again, glancing behind yourself several times) | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="WakingUp6" tags="" position="100,350" size="100,100">&lt;img src=&quot;img/headmasterstudy.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;\
+    &lt;&lt;button [[(You ignore her and start walking again, glancing behind yourself several times) | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="WakingUp6" tags="" position="600,350" size="100,100">&lt;img src=&quot;img/headmasterstudy.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;\
     &lt;&lt;printRelGain&gt;&gt;\
 
     $npcs.Janessa.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself &quot;What is going on here?&quot;
@@ -939,7 +981,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;button [[Taken Hostage and Murder | PlrBackground2]]&gt;&gt;&lt;&lt;/button&gt;&gt;
     &lt;&lt;button [[Celebration Fire | PlrBackground3]]&gt;&gt;&lt;&lt;/button&gt;&gt;
     &lt;&lt;button [[Spouse Insanity | PlrBackground4]]&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Naked and Afraid | PlrBackground5]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="PlrBackground1" tags="" position="225,350" size="100,100">You remember it was sunny afternnon and you were on your way to the beach with your spouse and your children. The kids had been looking forward to this trip for weeks. The amount of happy screams and yells when you first told them was a joy to behold. The drive was pretty eventful, a lot of car games and a stop for lunch broke up the long drive along narrow highways that bordered the coast line.
+    &lt;&lt;button [[Naked and Afraid | PlrBackground5]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="PlrBackground1" tags="" position="725,350" size="100,100">You remember it was sunny afternnon and you were on your way to the beach with your spouse and your children. The kids had been looking forward to this trip for weeks. The amount of happy screams and yells when you first told them was a joy to behold. The drive was pretty eventful, a lot of car games and a stop for lunch broke up the long drive along narrow highways that bordered the coast line.
 
     Your spouse was full of smiles since they knew the kids would be tired enough later that the two of you could relax together without being interupted. Your little ones started playing another game of &quot;I spy.&quot; Since it was a coastal road, you knew there weren&#39;t very many options to pick from so this would be an easy one.
 
@@ -961,7 +1003,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;set $plrDisciplines.elemental.level += 15&gt;&gt;
         &lt;&lt;set $plrDisciplines.abjuration.level += 15&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="PlrBackground2" tags="" position="350,350" size="100,100">You remember cooking dinner with your better half, the plan had been to have a quiet night at home. A movie or two, some popcorn, and the pasta the two of you had been working on together. The two of you had only been married for one year, but things could not have been going better. Almost as if lady luck had picked the two of you as her incarnations on Earth. You had been promoted at work. Twice in the same year. Your loved one had just been hired for their dream job. 
+    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="PlrBackground2" tags="" position="850,350" size="100,100">You remember cooking dinner with your better half, the plan had been to have a quiet night at home. A movie or two, some popcorn, and the pasta the two of you had been working on together. The two of you had only been married for one year, but things could not have been going better. Almost as if lady luck had picked the two of you as her incarnations on Earth. You had been promoted at work. Twice in the same year. Your loved one had just been hired for their dream job. 
 
     Could. Not. Be. Better, you constantly thought to yourself.
 
@@ -995,7 +1037,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;set $plrDisciplines.illusion.level += 15&gt;&gt;
         &lt;&lt;set $plrDisciplines.restoration.level += 15&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="PlrBackground3" tags="" position="475,350" size="100,100">Your remember that your friends and you had been planning this party for over two months. After recently graduating from school, there was much to celebrate and the stuff you had all bought showed it. Beer, vodka, weed, cocaine, everything was on the table. Literally and figurtively. No seriously, it was all on a table. You had all planned to make sure there was a little something for everyone and you didn&#39;t want anyone to not have what they needed to have a good time.
+    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="PlrBackground3" tags="" position="975,350" size="100,100">Your remember that your friends and you had been planning this party for over two months. After recently graduating from school, there was much to celebrate and the stuff you had all bought showed it. Beer, vodka, weed, cocaine, everything was on the table. Literally and figurtively. No seriously, it was all on a table. You had all planned to make sure there was a little something for everyone and you didn&#39;t want anyone to not have what they needed to have a good time.
 
     The last minute shopping you and your closest friend were doing was for things like salsa, chips, dips, etc. You both talked about the future and what your plans were. Your friend said they planned on sticking around your hometown, there were still lots of good and varied jobs available. And who wouldn&#39;t want to stay close to their best friend?
 
@@ -1019,13 +1061,13 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;set $plrDisciplines.divination.level += 15&gt;&gt;
         &lt;&lt;set $plrDisciplines.summoning.level += 15&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="PlrBackground4" tags="" position="600,350" size="100,100">(summoning / conjuration)
+    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="PlrBackground4" tags="" position="1100,350" size="100,100">(summoning / conjuration)
     Spouse lost their mind and attacked everyone
 
-    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="PlrBackground5" tags="" position="725,350" size="100,100">(chloromancy / animancy)
+    &lt;&lt;button [[Back | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="PlrBackground5" tags="" position="1225,350" size="100,100">(chloromancy / animancy)
     Small plane crash, friends died, left alone for weeks.
 
-    &lt;&lt;button [[Back | WakingUp7]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="WakingUp7" tags="" position="850,350" size="100,100">&lt;img src=&quot;img/headmasterstudy.jpg&quot;/&gt;\
+    &lt;&lt;button [[Back | WakingUp7]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="WakingUp7" tags="" position="100,475" size="100,100">&lt;img src=&quot;img/headmasterstudy.jpg&quot;/&gt;\
 
     With a heavy sigh, $npcs.Barden.formal says, &quot;Again. You have my sincerest condolences.&quot;
 
@@ -1047,13 +1089,13 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
     &quot;Let&#39;s go.&quot; says $npcs.Janessa.firstName.
 
-    &lt;&lt;button [[Follow her | WakingUp8]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="WakingUp8" tags="" position="975,350" size="100,100">&lt;img src=&quot;img/street.jpg&quot;/&gt;\
+    &lt;&lt;button [[Follow her | WakingUp8]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="WakingUp8" tags="" position="225,475" size="100,100">&lt;img src=&quot;img/street.jpg&quot;/&gt;\
 
     $npcs.Janessa.firstName leads you out of the headmaster&#39;s study. The two of you walk down another set of hallways, make turns here and there. This leaves you completely lost. But then a large door, easily four times your height and wide enough to fit at least a dozen people through at the same time comes into view. The two of you walk out of it and enter small courtyard with several streets leading into it. Floating white orbs giving off a ghostly light illuminate the area. The streets too have their own dim orbs. $npcs.Janessa.firstName turns right through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounding on both sides by small brick and wood houses, reminiscent of a medieval city. The farther you walk, the larger the houses get. Some even have small courtyards of their own.
 
     After walking for several minutes, $npcs.Janessa.firstName stops at one of the houses. It looks like it is at least three stories high with a large arched front door. A large rusted wrought iron fence complete with spikes and small iron thorns surrounds the entire front of the home along with a large iron gate adorned with swirls, vines, and what you could only describe as strange glyphs or symbols. The house is...a bit rundown. The front has obviously not seen a gardners touch in many years. Piles of leaves and mulching debris are scattered everywhere. The vines that climb over the iron fence also appear to be actively strangling the side of the house.
 
-    &lt;&lt;button [[Continue | WakingUp9]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="WakingUp9" tags="" position="1100,350" size="100,100">&lt;img src=&quot;img/janessaresidence.jpg&quot;/&gt;\
+    &lt;&lt;button [[Continue | WakingUp9]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="WakingUp9" tags="" position="350,475" size="100,100">&lt;img src=&quot;img/janessaresidence.jpg&quot;/&gt;\
 
     &quot;This is my residence. It&#39;s been in my family for several generations. I will give you a short tour and then we are done for the night. Classes are tomorrow morning.&quot; $npcs.Janessa.firstName says as she places her hand on the front gate. She whispers a few of those gibberish words and the gate opens. 
 
@@ -1075,7 +1117,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;button [[(Start crying) | WakingUp10]]&gt;&gt;
         &lt;&lt;relGain Janessa -5&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="WakingUp10" tags="" position="1225,350" size="100,100">&lt;img src=&quot;img/JanResidEntry.jpg&quot;/&gt;\
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="WakingUp10" tags="" position="475,475" size="100,100">&lt;img src=&quot;img/JanResidEntry.jpg&quot;/&gt;\
     &lt;&lt;printRelGain&gt;&gt;\
 
     $npcs.Janessa.firstName sternly says, &quot;Knock it off. You&#39;ve been a given a gift. You know how often mundanes get introduced to the arcane, let alone gain the ability to use it? Try never. The possibilities open to you are nearly limitless. Few on this world are ever given the chance to truly change. Do you want to talk with deceased ancestors? Done. Throw gigantic balls of searing flame? You can. Shield yourself from harm and become nearly invulnerable? Pretty easy. Hell, you could even ignore every edict our government has issued and open gates to other worlds and dimensions unleashing uncontrollable armies of nightmarish creatures. The only true limit is how much time and effort you put into mastering your abilities. &quot;
@@ -1085,7 +1127,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;button [[Keep listening | WakingUp11]]&gt;&gt;
         &lt;&lt;set $plrStats.stamina.max = 10&gt;&gt;
         &lt;&lt;set $plrStats.stamina.cur = 10&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="WakingUp11" tags="" position="100,475" size="100,100">&lt;img src=&#39;img/JanResidKitchen.jpg&#39;/&gt;\
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="WakingUp11" tags="" position="600,475" size="100,100">&lt;img src=&#39;img/JanResidKitchen.jpg&#39;/&gt;\
 
     $npcs.Janessa.firstName walks to the left from the entrance hall and down a short hallway that ends at the kitchen.
 
@@ -1098,7 +1140,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;button [[Keep listening | WakingUp12]]&gt;&gt;
         &lt;&lt;set $plrStats.life.max = 10&gt;&gt;
         &lt;&lt;set $plrStats.life.cur = 10&gt;&gt;
-    &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="32" name="WakingUp12" tags="" position="225,475" size="100,100">&lt;img src=&#39;img/plrroomdoor.jpg&#39;/&gt;\
+    &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="36" name="WakingUp12" tags="" position="725,475" size="100,100">&lt;img src=&#39;img/plrroomdoor.jpg&#39;/&gt;\
 
     You follow $npcs.Janessa.firstName out of the kitchen. As you pass by two doors on your left, she says, &quot;This room is empty and that one is mine. Fair warning, if you ever try to go in there, I will turn you into a chicken and donate you to the dining hall chefs. I&#39;m not kidding.&quot; The emphasis she placed on that last part actually sounded legitimate. You should probably stay out.
 
@@ -1111,7 +1153,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     &lt;&lt;button [[Keep listening | WakingUp13]]&gt;&gt;
         &lt;&lt;set $plrStats.hygiene.max = 10&gt;&gt;
         &lt;&lt;set $plrStats.hygiene.cur = 10&gt;&gt;
-    &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="33" name="WakingUp13" tags="" position="350,475" size="100,100">&lt;img src=&#39;img/plrroom.jpg&#39;&gt;\
+    &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="37" name="WakingUp13" tags="" position="850,475" size="100,100">&lt;img src=&#39;img/plrroom.jpg&#39;&gt;\
 
     You follow $npcs.Janessa.firstName into your room. She wasn&#39;t kidding, you&#39;ll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a similiar chair in a corner. And that&#39;s it. The room also looks like it had some form of green wallpaper on the walls, but so much of it is missing it&#39;s hard to tell. The only think that lights the interior is coming from the hallway.
 
@@ -1130,7 +1172,9 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;set $plrStats.sanity.cur = 3&gt;&gt;
         &lt;&lt;set $plrStats.wake.max = 5&gt;&gt;
         &lt;&lt;set $plrStats.wake.cur = 5&gt;&gt;
-    &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="34" name="WakingUp14" tags="" position="475,475" size="100,100">&quot;Now onto tomorrow. For the first week your schedule will be my schedule. Meaning I get to follow you around all week. If you do well, then the leash gets loosened for both of us. Please, don&#39;t suck this week. Otherwise you get to listen to me for the entire second week as I tear down any vestige of self-confidence or worth you have left and cause you to question why you even need to exist anymore.&quot; 
+    &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="38" name="WakingUp14" tags="" position="975,475" size="100,100">&lt;&lt;set _booksfound = 0&gt;&gt;\
+
+    &quot;Now onto tomorrow. For the first week your schedule will be my schedule. Meaning I get to follow you around all week. If you do well, then the leash gets loosened for both of us. Please, don&#39;t suck this week. Otherwise you get to listen to me for the entire second week as I tear down any vestige of self-confidence or worth you have left and cause you to question why you even need to exist anymore.&quot; 
     
     The cold glare she gives you makes the situation clear, you might want to avoid slacking off for at least one week.
 
@@ -1154,25 +1198,66 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     
     Hell, you realize you have no idea what time is, let alone what today&#39;s date is!
 
-    &lt;&lt;button &quot;Look around&quot;&gt;&gt;
-        &lt;&lt;foundItem &quot;miscbook&quot; &quot;mapSchool&quot;&gt;&gt;
+    &lt;&lt;button &quot;Poke around for anything interesting&quot;&gt;&gt;
+        &lt;&lt;if _booksfound == 0&gt;&gt;
+            &lt;&lt;foundItem &quot;miscbook&quot; &quot;mapSchool&quot;&gt;&gt;
+            &lt;&lt;set _booksfound += 1&gt;&gt;
+            &lt;&lt;calcTime 30&gt;&gt;
+        &lt;&lt;elseif _booksfound == 1&gt;&gt;
+            &lt;&lt;foundItem &quot;miscbook&quot; &quot;mapTown&quot;&gt;&gt;
+            &lt;&lt;set _booksfound += 1&gt;&gt;
+            &lt;&lt;calcTime 30&gt;&gt;
+        &lt;&lt;elseif _booksfound == 2&gt;&gt;
+            &lt;&lt;foundItem &quot;spellbook&quot; &quot;book1&quot; &quot;illusion&quot;&gt;&gt;
+            &lt;&lt;set _booksfound += 1&gt;&gt;
+            &lt;&lt;calcTime 30&gt;&gt;
+        &lt;&lt;else&gt;&gt;
+            &lt;&lt;run UI.alert(&quot;Looks like you picked through everything of interest.&quot;)&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
     &lt;&lt;/button&gt;&gt;
 
     &lt;&lt;button &quot;Try to sleep&quot;&gt;&gt;
 
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="Item-Inventories" tags="init" position="600,475" size="100,100">/* Inventory Variables */
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Item-Inventories" tags="init" position="1100,475" size="100,100">/* Inventory Variables */
     &lt;&lt;newinv $plrinvbooks&gt;&gt;
     &lt;&lt;newinv $plrinvmaterials&gt;&gt;
     &lt;&lt;newinv $plrinvspells&gt;&gt;
     &lt;&lt;newinv $plrinvmisc&gt;&gt;
 
     /* Item SimpleStorage Variables */
+
+    /*
+    &lt;&lt;consumable&gt;&gt;
+        &lt;&lt;nobr&gt;&gt;
+
+        &lt;&lt;/nobr&gt;&gt;
+        &lt;&lt;description&gt;&gt;\
+
+    &lt;&lt;/consumable&gt;&gt;
+    */
+
     &lt;&lt;consumable &quot;mapSchool&quot; &quot;A Guide to Magnus Schola&quot;&gt;&gt;
-            &lt;&lt;nobr&gt;&gt;
-                &lt;&lt;readBook miscbook mapSchool&gt;&gt;
-            &lt;&lt;/nobr&gt;&gt;
+        &lt;&lt;nobr&gt;&gt;
+            &lt;&lt;readBook miscbook mapSchool&gt;&gt;
+        &lt;&lt;/nobr&gt;&gt;
         &lt;&lt;description&gt;&gt;\
             $bookMisc.mapSchool.description        
+    &lt;&lt;/consumable&gt;&gt;
+
+    &lt;&lt;consumable &quot;mapTown&quot; &quot;Nome and her Mysteries&quot;&gt;&gt;
+        &lt;&lt;nobr&gt;&gt;
+            &lt;&lt;readBook miscbook mapTown&gt;&gt;
+        &lt;&lt;/nobr&gt;&gt;
+        &lt;&lt;description&gt;&gt;\
+            $bookMisc.mapTown.description
+    &lt;&lt;/consumable&gt;&gt;
+
+    &lt;&lt;consumable &quot;illusion1&quot; &quot;Illusion: A Child&#39;s Primer&quot;&gt;&gt;
+        &lt;&lt;nobr&gt;&gt;
+            &lt;&lt;readBook spellbook illusion1 illusion&gt;&gt;
+        &lt;&lt;/nobr&gt;&gt;
+        &lt;&lt;description&gt;&gt;\
+            $bookDisciplines.illusion.illusion1.description
     &lt;&lt;/consumable&gt;&gt;
 
     /* Item Detail and Unlock Arrays */
@@ -1181,34 +1266,34 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
             title: &quot;A Guide to Magnus Schola&quot;,
             description: &quot;A book of locations, maps, and assorted histories of Magnus Schola.&quot;,
             pagesRead: 0,
-            pagesTotal: 11,
+            pagesTotal: 13,
             pageUnlocks: {
                 1: &quot;alstonresidence&quot;,
                 2: &quot;librarium&quot;,
                 3: &quot;dininghall&quot;,
-                4: &quot;Conservatorium&quot;,
-                5: &quot;The Exchange&quot;,
-                6: &quot;Ley Node&quot;,
-                7: &quot;Gymnasium&quot;,
-                8: &quot;Sigilarium&quot;,
-                9: &quot;Artifice Workshop&quot;,
-                10: &quot;Ritual Pentadentrix&quot;,
-                11: &quot;Headmaster&#39;s Office&quot;,
-                end: true
+                4: &quot;conservatorium&quot;,
+                5: &quot;theexchange&quot;,
+                6: &quot;leynode&quot;,
+                7: &quot;gymnasium&quot;,
+                8: &quot;sigilarium&quot;,
+                9: &quot;artifice&quot;,
+                10: &quot;pentadentrix&quot;,
+                11: &quot;headmasterstudy&quot;,
+                12: &quot;medicalwing&quot;,
+                13: &quot;professoroffices&quot;
             }
         },
-        mapArea: {
+        mapTown: {
             title: &quot;Nome and her Mysteries&quot;,
-            description: &quot;A tome of Nome&#39;s hidden history.&quot;,
+            description: &quot;A tome of Nome&#39;s hidden histories.&quot;,
             pagesRead: 0,
             pagesTotal: 5,
             pageUnlocks: {
-                1: &quot;Herrington&#39;s Trading Post&quot;,
-                2: &quot;Bering Cinema&quot;,
-                3: &quot;Nome Regional Hospital&quot;,
-                4: &quot;Nome City Cemetary&quot;,
-                5: &quot;Pan Saloon and Inn&quot;,
-                end: true
+                1: &quot;tradingpost&quot;,
+                2: &quot;cinema&quot;,
+                3: &quot;hospital&quot;,
+                4: &quot;cemetary&quot;,
+                5: &quot;salooninn&quot;
             }
         }  
     }&gt;&gt;
@@ -1240,18 +1325,44 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
             }
         },
         illusion: {
-            bookIllusion1: {
-                title: &quot;Illusion: A Primer&quot;,
-                description: &quot;A treatise on the Illusion discipline for the newly of age mage.&quot;,
+            illusion1: {
+                title: &quot;Illusion: A Child&#39;s Primer&quot;,
+                description: &quot;An introduction to the Illusion discipline for the newly come of age mage.&quot;,
                 pagesRead: 0,
                 pagesTotal: 20,
                 pageUnlocks: {
-                    1: &quot;Floating Flame&quot;,
-                    end: true
+                    1: &quot;floatingflame&quot;,
+                    3: &quot;some unlock&quot;,
+                    9: &quot;some unlock&quot;,
+                    13: &quot;some unlock&quot;,
+                    20: &quot;some unlock&quot;
                 }
             }
         }
-    }&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="alstonresidence" tags="" position="725,475" size="100,100">Welcome to the Alston Residence!</tw-passagedata><tw-passagedata pid="37" name="librarium" tags="" position="850,475" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="dininghall" tags="" position="975,475" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="conservatorium" tags="" position="1100,475" size="100,100"></tw-passagedata><tw-passagedata pid="40" name="theexchange" tags="" position="1225,475" size="100,100"></tw-passagedata><tw-passagedata pid="41" name="leynode" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="gymnasium" tags="" position="225,600" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="sigilarium" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="artificeworkshop" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="pentadentrix" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="headmasterstudy" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="medicalwing" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="professoroffices" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="StoryInit" tags="" position="1100,600" size="100,100">&lt;&lt;set $dateTime = {
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="alstonresidence" tags="" position="1225,475" size="100,100">Welcome to the Alston Residence!</tw-passagedata><tw-passagedata pid="41" name="librarium" tags="" position="100,600" size="100,100">Welcome to the librarium. Here be books...</tw-passagedata><tw-passagedata pid="42" name="dininghall" tags="" position="225,600" size="100,100">This is the dining hall. If it doesn&#39;t get all over the place, it doesn&#39;t belong in your face.</tw-passagedata><tw-passagedata pid="43" name="conservatorium" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="theexchange" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="leynode" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="gymnasium" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="sigilarium" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="artificeworkshop" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="pentadentrix" tags="" position="1100,600" size="100,100"></tw-passagedata><tw-passagedata pid="50" name="headmasterstudy" tags="" position="1225,600" size="100,100"></tw-passagedata><tw-passagedata pid="51" name="medicalwing" tags="" position="100,725" size="100,100"></tw-passagedata><tw-passagedata pid="52" name="professoroffices" tags="" position="225,725" size="100,100"></tw-passagedata><tw-passagedata pid="53" name="tradingpost" tags="" position="350,725" size="100,100"></tw-passagedata><tw-passagedata pid="54" name="cinema" tags="" position="475,725" size="100,100"></tw-passagedata><tw-passagedata pid="55" name="hospital" tags="" position="600,725" size="100,100"></tw-passagedata><tw-passagedata pid="56" name="cemetary" tags="" position="725,725" size="100,100"></tw-passagedata><tw-passagedata pid="57" name="salooninn" tags="" position="850,725" size="100,100"></tw-passagedata><tw-passagedata pid="58" name="Spell-List" tags="init" position="975,725" size="100,100">&lt;&lt;set $spellEffects = {
+        lightRoom: &quot;&lt;&lt;set $plrroom.lights.trash = true&gt;&gt;&quot;
+    }&gt;&gt;
+
+    &lt;&lt;set $spellDetails = {
+        spellsBasic: {
+            abjuration: {
+
+            },
+            alchemy: {
+
+            },
+            illusion: {
+                floatingflame: {
+                    name: &quot;Floating Flame&quot;,
+                    unlocked: false,
+                    staminaCost: 3,
+                    diffLevel: 1,
+                    effect: $spellEffects.lightRoom,
+                    onCast: &quot;&lt;&lt;set $plrDisciplines.illusion.level += 1&gt;&gt;&quot;
+                }
+            }
+        }
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="StoryInit" tags="" position="1100,725" size="100,100">&lt;&lt;set $dateTime = {
         hour: 20,
         min: 30,
         day: 7,
@@ -1893,7 +2004,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &quot;pear&quot;,
         &quot;round&quot;,
         &quot;square&quot;
-    ]&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="Unlock-Variables" tags="init" position="1225,600" size="100,100">/* Location Unlocks */
+    ]&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="Unlock-Variables" tags="init" position="1225,725" size="100,100">/* Location Unlocks */
     &lt;&lt;set $unlockVar = {
         locations: {
             alstonresidence: {
@@ -1908,23 +2019,68 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
                 name: &quot;Dining Hall&quot;,
                 unlocked: false
             },
-            conservatorium: 0,
-            theexchange: 0,
-            leynode: 0,
-            gymnasium: 0,
-            sigilarium: 0,
-            artifice: 0,
-            pentadentrix: 0,
-            headmasterstudy: 0,
-            medicalwing: 0,
-            professoroffices: 0,
-            tradingpost: 0,
-            cinema: 0,
-            hospital: 0,
-            cemetary: 0,
-            salooninn: 0
+            conservatorium: {
+                name: &quot;Conservatorium&quot;,
+                unlocked: false
+            },
+            theexchange: {
+                name: &quot;The Exchange&quot;,
+                unlocked: false
+            },
+            leynode: {
+                name: &quot;Ley Node&quot;,
+                unlocked: false
+            },
+            gymnasium: {
+                name: &quot;Gymnasium&quot;,
+                unlocked: false
+            },
+            sigilarium: {
+                name: &quot;Sigilarium&quot;,
+                unlocked: false
+            },
+            artifice: {
+                name: &quot;Artifice Workshop&quot;,
+                unlocked: false
+            },
+            pentadentrix: {
+                name: &quot;Ritual Pentadentrix&quot;,
+                unlocked: false
+            },
+            headmasterstudy: {
+                name: &quot;Headmaster&#39;s Study&quot;,
+                unlocked: false
+            },
+            medicalwing: {
+                name: &quot;Medical Wing&quot;,
+                unlocked: false
+            },
+            professoroffices: {
+                name: &quot;Professors&#39; Offices&quot;,
+                unlocked: false
+            },
+            tradingpost: {
+                name: &quot;Herrington&#39;s Trading Post&quot;,
+                unlocked: false
+            },
+            cinema: {
+                name: &quot;Bering Cinema&quot;,
+                unlocked: false
+            },
+            hospital: {
+                name: &quot;Nome Regional Hospital&quot;,
+                unlocked: false
+            },
+            cemetary: {
+                name: &quot;Nome City Cemetary&quot;,
+                unlocked: false
+            },
+            salooninn: {
+                name: &quot;Goldpan Saloon and Inn&quot;,
+                unlocked: false
+            }
         }
-    }&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="Widgets" tags="widget" position="100,725" size="100,100">/* relGain Amy 10 */
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="Widgets" tags="widget" position="100,850" size="100,100">/* relGain Amy 10 */
     &lt;&lt;widget &quot;relGain&quot;&gt;&gt;
         &lt;&lt;set $plrRel[_args[0]] += _args[1] + ($plrBody.dynamic.atttractiveness / 10)&gt;&gt;
         &lt;&lt;set $relNpcTemp = _args[0]&gt;&gt;
@@ -1967,10 +2123,12 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;/widget&gt;&gt;
 
-    /* calcTime 7 */
+    /* calcTime 20(increase in minutes) 5(random extra minutes) */
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;calcTime&quot;&gt;&gt;
-                &lt;&lt;if _args[0]&gt;&gt;
+                &lt;&lt;if _args[1]&gt;&gt;
+                    &lt;&lt;set $dateTime.min += _args[0] + random(_args[1])&gt;&gt;
+                &lt;&lt;elseif _args[0]&gt;&gt;
                     &lt;&lt;set $dateTime.min += _args[0]&gt;&gt;
                 &lt;&lt;/if&gt;&gt;
                 &lt;&lt;if $dateTime.min &gt;= 60&gt;&gt;
@@ -2066,25 +2224,32 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
-    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID */
+    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID spellschool(abjuration, illusion, etc.) */
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;readBook&quot;&gt;&gt;
             &lt;&lt;switch _args[0]&gt;&gt;
                 &lt;&lt;case &quot;miscbook&quot;&gt;&gt;
                     &lt;&lt;if $bookMisc[_args[1]].pagesRead != $bookMisc[_args[1]].pagesTotal&gt;&gt;
                         &lt;&lt;set $bookMisc[_args[1]].pagesRead += 1&gt;&gt;
+
                         &lt;&lt;pickup $plrinvbooks _args[1] 1&gt;&gt;
-                        &lt;&lt;calcTime 20&gt;&gt;
+                        &lt;&lt;calcTime 20 15&gt;&gt;
+
                         &lt;&lt;set _unlocknum = $bookMisc[_args[1]].pagesRead&gt;&gt;
                         &lt;&lt;set _unlockname = $bookMisc[_args[1]].pageUnlocks[_unlocknum]&gt;&gt;
+                        &lt;&lt;set _unlockmessage = $unlockVar.locations[_unlockname].name&gt;&gt;
+
+                        &lt;&lt;if _unlockname == undefined&gt;&gt;
+                            &lt;&lt;set _unlockmessage = &quot;nothing, but there are more chapters to read&quot;&gt;&gt;
+                        &lt;&lt;/if&gt;&gt;
                         &lt;&lt;run
                             Dialog.setup(&quot;Chapter Read&quot;);
-                            Dialog.wiki(&quot;After reading chapter &quot; + $bookMisc[_args[1]].pagesRead + &quot; of &#39;&quot; + $bookMisc[_args[1]].title + &quot;&#39; you discovered &quot; + $unlockVar.locations[_unlockname].name + &quot;.&quot;);
+                            Dialog.wiki(&quot;After reading chapter &quot; + _unlocknum + &quot;/&quot; + $bookMisc[_args[1]].pagesTotal + &quot; of &quot; + &quot;&#39;&quot; + $bookMisc[_args[1]].title + &quot;&#39;&quot; + &quot; you discovered &quot; + _unlockmessage + &quot;.&quot;);
                             Dialog.open();
                         &gt;&gt;
                         &lt;&lt;set $unlockVar.locations[_unlockname].unlocked = true&gt;&gt;
                     &lt;&lt;else&gt;&gt;
-                        &lt;&lt;drop $plrinvbooks _args[1]&gt;&gt;
+                        &lt;&lt;drop $plrinvbooks _args[1] 1&gt;&gt;
                         &lt;&lt;run UI.alert(&quot;You finished the book, there is nothing left to learn from this.&quot;)&gt;&gt;
                     &lt;&lt;/if&gt;&gt;
 
@@ -2092,7 +2257,32 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
 
                 &lt;&lt;case &quot;spellbook&quot;&gt;&gt;
+                    &lt;&lt;set _address = $bookDisciplines[_args[3]][_args[1]]&gt;&gt;
+                    &lt;&lt;if [_address].pagesRead != [_address].pagesTotal&gt;&gt;
+                        &lt;&lt;set [_address].pagesRead += 1&gt;&gt;
 
+                        &lt;&lt;pickup $plrinvbooks _args[1]&gt;&gt;
+                        &lt;&lt;calcTime 30 30&gt;&gt;
+
+                        &lt;&lt;set _unlocknum = [_address].pagesRead&gt;&gt;
+                        &lt;&lt;set _unlockname = [.address].pageUnlocks[_unlocknum]&gt;&gt;
+                        &lt;&lt;set _unlockmessage = $unlockVar.spellsBasic[_unlockname].name&gt;&gt;
+
+                        &lt;&lt;if _unlockname == undefined&gt;&gt;
+                            &lt;&lt;set _unlockmessage = &quot;nothing, but there is more in this to study&quot;&gt;&gt;
+                        &lt;&lt;/if&gt;&gt;
+
+                        &lt;&lt;run
+                            Dialog.setup(&quot;Spell Tome Studied&quot;);
+                            Dialog.wiki(&quot;After reading chapter &quot; + _unlocknum + &quot;/&quot; + [_address].pagesTotal + &quot; of &quot; + &quot;&#39;&quot; + [_address].title + &quot;&#39;&quot; + &quot; you learned how to cast the &quot; + _unlockmessage + &quot; spell!&quot;);
+                            Dialog.open();
+                        &gt;&gt;
+                        &lt;&lt;set $spellDetails.spellsBasic.illusion[_unlockname].unlocked = true&gt;&gt;
+                    &lt;&lt;else&gt;&gt;
+
+                        &lt;&lt;drop $plrinvbooks _args[1]&gt;&gt;
+                        &lt;&lt;run UI.alert(&quot;You have already gleamed all you can from this tome.&quot;)&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
 
                 &lt;&lt;case &quot;recipebook&quot;&gt;&gt;
 

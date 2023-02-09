@@ -42,10 +42,12 @@
         <</nobr>>
     <</widget>>
 
-    /* calcTime 7 */
+    /* calcTime 20(increase in minutes) 5(random extra minutes) */
     <<nobr>>
         <<widget "calcTime">>
-                <<if _args[0]>>
+                <<if _args[1]>>
+                    <<set $dateTime.min += _args[0] + random(_args[1])>>
+                <<elseif _args[0]>>
                     <<set $dateTime.min += _args[0]>>
                 <</if>>
                 <<if $dateTime.min >= 60>>
@@ -141,25 +143,32 @@
         <</widget>>
     <</nobr>>
 
-    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID */
+    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID spellschool(abjuration, illusion, etc.) */
     <<nobr>>
         <<widget "readBook">>
             <<switch _args[0]>>
                 <<case "miscbook">>
                     <<if $bookMisc[_args[1]].pagesRead != $bookMisc[_args[1]].pagesTotal>>
                         <<set $bookMisc[_args[1]].pagesRead += 1>>
+
                         <<pickup $plrinvbooks _args[1] 1>>
-                        <<calcTime 20>>
+                        <<calcTime 20 15>>
+
                         <<set _unlocknum = $bookMisc[_args[1]].pagesRead>>
                         <<set _unlockname = $bookMisc[_args[1]].pageUnlocks[_unlocknum]>>
+                        <<set _unlockmessage = $unlockVar.locations[_unlockname].name>>
+
+                        <<if _unlockname == undefined>>
+                            <<set _unlockmessage = "nothing, but there are more chapters to read">>
+                        <</if>>
                         <<run
                             Dialog.setup("Chapter Read");
-                            Dialog.wiki("After reading chapter " + $bookMisc[_args[1]].pagesRead + " of '" + $bookMisc[_args[1]].title + "' you discovered " + $unlockVar.locations[_unlockname].name + ".");
+                            Dialog.wiki("After reading chapter " + _unlocknum + "/" + $bookMisc[_args[1]].pagesTotal + " of " + "'" + $bookMisc[_args[1]].title + "'" + " you discovered " + _unlockmessage + ".");
                             Dialog.open();
                         >>
                         <<set $unlockVar.locations[_unlockname].unlocked = true>>
                     <<else>>
-                        <<drop $plrinvbooks _args[1]>>
+                        <<drop $plrinvbooks _args[1] 1>>
                         <<run UI.alert("You finished the book, there is nothing left to learn from this.")>>
                     <</if>>
 
@@ -167,7 +176,32 @@
 
 
                 <<case "spellbook">>
+                    <<set _address = $bookDisciplines[_args[3]][_args[1]]>>
+                    <<if [_address].pagesRead != [_address].pagesTotal>>
+                        <<set [_address].pagesRead += 1>>
 
+                        <<pickup $plrinvbooks _args[1]>>
+                        <<calcTime 30 30>>
+
+                        <<set _unlocknum = [_address].pagesRead>>
+                        <<set _unlockname = [.address].pageUnlocks[_unlocknum]>>
+                        <<set _unlockmessage = $unlockVar.spellsBasic[_unlockname].name>>
+
+                        <<if _unlockname == undefined>>
+                            <<set _unlockmessage = "nothing, but there is more in this to study">>
+                        <</if>>
+
+                        <<run
+                            Dialog.setup("Spell Tome Studied");
+                            Dialog.wiki("After reading chapter " + _unlocknum + "/" + [_address].pagesTotal + " of " + "'" + [_address].title + "'" + " you learned how to cast the " + _unlockmessage + " spell!");
+                            Dialog.open();
+                        >>
+                        <<set $spellDetails.spellsBasic.illusion[_unlockname].unlocked = true>>
+                    <<else>>
+
+                        <<drop $plrinvbooks _args[1]>>
+                        <<run UI.alert("You have already gleamed all you can from this tome.")>>
+                    <</if>>
 
                 <<case "recipebook">>
 

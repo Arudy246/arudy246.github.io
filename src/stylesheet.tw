@@ -47,7 +47,7 @@
         -webkit-background-clip: text;
         color: transparent;
         top: 4.5em;
-        left: 39em;
+        left: 42.5%;
         &:after {
         $stroke-width: $extra-large * 0.05;
         content: $random-text;

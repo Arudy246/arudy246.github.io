@@ -20,20 +20,30 @@
         <<link [[Your Status]]>><</link>>
     <</if>>
 
-    <<if $tglAction == 1>>
-        <<link [[Actions]]>><</link>>
-    <</if>>
+
+    <<link "Actions">>
+        <<run 
+        Dialog.setup("Actions", "actions");
+        Dialog.wiki(Story.get("Actions").text);
+        Dialog.open();
+        >>
+    <</link>>
+
 
     <<link "Locations">>
-        <<run Dialog.setup("Locations", "locations");
+        <<run 
+        Dialog.setup("Locations", "locations");
         Dialog.wiki(Story.get("Locations").text);
-        Dialog.open()>>
+        Dialog.open();
+        >>
     <</link>>
 
     <<link "Inventory">>
-        <<run Dialog.setup("Inventory", "inventory"); 
+        <<run 
+        Dialog.setup("Inventory", "inventory"); 
         Dialog.wiki(Story.get("Inventory").text); 
-        Dialog.open()>>
+        Dialog.open();
+        >>
     <</link>>
 
 :: StoryCaption
@@ -75,11 +85,11 @@
 
 :: Actions
 
-    [[Exit | previous()]]
+    Coming soon
 
 :: Locations
     <h3>School</h3>
-    <<nobr>>
+    <<nobr>>\
         <<if $unlockVar.locations.alstonresidence.unlocked == true>>
             <<button [[Alston Residence | alstonresidence]]>>
                 <<run Dialog.close()>>
@@ -95,8 +105,9 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>
-    <<nobr>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
         <<if $unlockVar.locations.conservatorium.unlocked == true>>
             <<button [[Conservatorium | conservatorium]]>>
                 <<run Dialog.close()>>
@@ -112,8 +123,9 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>
-    <<nobr>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
         <<if $unlockVar.locations.gymnasium.unlocked == true>>
             <<button [[Gymnasium | gymnasium]]>>
                 <<run Dialog.close()>>
@@ -129,8 +141,9 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>
-    <<nobr>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
         <<if $unlockVar.locations.pentadentrix.unlocked == true>>
             <<button [[Ritual Pentadentrix | pentadentrix]]>>
                 <<run Dialog.close()>>
@@ -146,23 +159,47 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>
-    <<nobr>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
         <<if $unlockVar.locations.professoroffices.unlocked == true>>
             <<button [[Professor's Offices | professoroffices]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>
+    <</nobr>>\
 
     <h3>Town</h3>
-    <<nobr>>
-        <<if $unlockVar.location.tradingpost.unlocked == true>>
+    <<nobr>>\
+        <<if $unlockVar.locations.tradingpost.unlocked == true>>
             <<button [[Herrington's Trading Post | tradingpost]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>
+        <<if $unlockVar.locations.cinema.unlocked == true>>
+            <<button [[Bering Cinema | cinema]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.hospital.unlocked == true>>
+            <<button [[Nome Regional Hospital | hospital]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+    <br>
+    <<nobr>>
+        <<if $unlockVar.locations.cemetary.unlocked == true>>
+            <<button [[Nome City Cemetary | cemetary]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.salooninn.unlocked == true>>
+            <<button [[Goldpan Saloon and Inn | salooninn]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
 
     <<link "Exit">>
         <<run Dialog.close()>>
@@ -216,7 +253,7 @@
 
 :: Todo
 
-    Inventory system
+    Inventory system - done
     Library
     First five professors
     Make player stats populate on UI
@@ -251,11 +288,11 @@
         <<set $plrStats.wake.cur = 5>>
     <</button>>
 
-    <<button "Increase Minutes 55">>
-        <<calcTime 55>>
+    <<button "Increase Minutes 30">>
+        <<calcTime 30>>
     <</button>>\
-    <<button "Increase Minutes 5">>
-        <<calcTime 5>>
+    <<button "Increase Minutes 5 +/- 5">>
+        <<calcTime 5 5>>
     <</button>>
 
     <<button "Decrease Life -1">>
@@ -268,10 +305,5 @@
     <</button>>
 
     <<button "Give Test Book">>
-        <<pickup $plrinvbooks "mapSchool" 1>>
-        <<run 
-            Dialog.setup("Book Found");
-            Dialog.wiki("The book is titled '" + $bookMisc.mapSchool.title + "'. The first page reads '" + $bookMisc.mapSchool.description + "'.");
-            Dialog.open();
-        >>
+
     <</button>>

@@ -7,12 +7,39 @@
     <<newinv $plrinvmisc>>
 
     /* Item SimpleStorage Variables */
+
+    /*
+    <<consumable>>
+        <<nobr>>
+
+        <</nobr>>
+        <<description>>\
+
+    <</consumable>>
+    */
+
     <<consumable "mapSchool" "A Guide to Magnus Schola">>
-            <<nobr>>
-                <<readBook miscbook mapSchool>>
-            <</nobr>>
+        <<nobr>>
+            <<readBook miscbook mapSchool>>
+        <</nobr>>
         <<description>>\
             $bookMisc.mapSchool.description        
+    <</consumable>>
+
+    <<consumable "mapTown" "Nome and her Mysteries">>
+        <<nobr>>
+            <<readBook miscbook mapTown>>
+        <</nobr>>
+        <<description>>\
+            $bookMisc.mapTown.description
+    <</consumable>>
+
+    <<consumable "illusion1" "Illusion: A Child's Primer">>
+        <<nobr>>
+            <<readBook spellbook illusion1 illusion>>
+        <</nobr>>
+        <<description>>\
+            $bookDisciplines.illusion.illusion1.description
     <</consumable>>
 
     /* Item Detail and Unlock Arrays */
@@ -36,12 +63,11 @@
                 11: "headmasterstudy",
                 12: "medicalwing",
                 13: "professoroffices"
-                end: true
             }
         },
-        mapArea: {
+        mapTown: {
             title: "Nome and her Mysteries",
-            description: "A tome of Nome's hidden history.",
+            description: "A tome of Nome's hidden histories.",
             pagesRead: 0,
             pagesTotal: 5,
             pageUnlocks: {
@@ -49,8 +75,7 @@
                 2: "cinema",
                 3: "hospital",
                 4: "cemetary",
-                5: "salooninn",
-                end: true
+                5: "salooninn"
             }
         }  
     }>>
@@ -82,14 +107,17 @@
             }
         },
         illusion: {
-            bookIllusion1: {
-                title: "Illusion: A Primer",
-                description: "A treatise on the Illusion discipline for the newly of age mage.",
+            illusion1: {
+                title: "Illusion: A Child's Primer",
+                description: "An introduction to the Illusion discipline for the newly come of age mage.",
                 pagesRead: 0,
                 pagesTotal: 20,
                 pageUnlocks: {
-                    1: "Floating Flame",
-                    end: true
+                    1: "floatingflame",
+                    3: "some unlock",
+                    9: "some unlock",
+                    13: "some unlock",
+                    20: "some unlock"
                 }
             }
         }
