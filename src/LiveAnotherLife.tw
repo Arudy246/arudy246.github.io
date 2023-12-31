@@ -10,300 +10,40 @@
     Live Another Life
 
 :: StoryBanner
-    <img src='img/symbol.png'/>
-
-:: StoryMenu
-    [[Dev Dimension]]
-    [[Character Info]]
-
-    <<if $tglPlayerStats == 1>>
-        <<link [[Your Status]]>><</link>>
-    <</if>>
-
-
-    <<link "Actions">>
-        <<run 
-        Dialog.setup("Actions", "actions");
-        Dialog.wiki(Story.get("Actions").text);
-        Dialog.open();
-        >>
-    <</link>>
-
-
-    <<link "Locations">>
-        <<run 
-        Dialog.setup("Locations", "locations");
-        Dialog.wiki(Story.get("Locations").text);
-        Dialog.open();
-        >>
-    <</link>>
-
-    <<link "Inventory">>
-        <<run 
-        Dialog.setup("Inventory", "inventory"); 
-        Dialog.wiki(Story.get("Inventory").text); 
-        Dialog.open();
-        >>
-    <</link>>
-
-:: StoryCaption
-    @@#timeplusdate;<<calcTime>>@@
-    <<if $plrName.fName != "" && $plrName.fName != "First">>\
-        <u>Name: $plrName.fName $plrName.lName</u>\
-    <</if>>\
-    <<if $plrStats.stamina.max != 0>>
-        <div id="verticalstaminabarbkg" class="vertbarbkg"><div id="verticalstaminabar" class="vertbar"></div></div><<run Stamina($plrStats.stamina.cur, $plrStats.stamina.max, "verticalstaminabar", false)>>\
-        <span id='ui-stamina' class='cyan'>Stamina: </span>$plrStats.stamina.cur / $plrStats.stamina.max \
-    <</if>>\
-    <<if $plrStats.life.max != 0>>
-        <div id="verticallifebarbkg" class="vertbarbkg"><div id="verticallifebar" class="vertbar"></div></div><<run Life($plrStats.life.cur, $plrStats.life.max, "verticallifebar", false)>>\
-        <span class='crimson'>Lifeforce: </span><span id='ui-life'>$plrStats.life.cur / $plrStats.life.max</span> \
-    <</if>>\
-    <<if $plrStats.hygiene.max != 0>>
-        <div id="verticalhygienebarbkg" class="vertbarbkg"><div id="verticalhygienebar" class="vertbar"></div></div><<run Hygiene($plrStats.hygiene.cur, $plrStats.hygiene.max, "verticalhygienebar", false)>>\
-        <span id='ui-hygiene' class='darkgreen'>Hygiene: </span>$plrStats.hygiene.cur / $plrStats.hygiene.max \
-    <</if>>\
-    <<if $plrStats.sanity.max != 0>>
-        <div id="verticalsanitybarbkg" class="vertbarbkg"><div id="verticalsanitybar" class="vertbar"></div></div><<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "verticalsanitybar", false)>>\
-        <span id='ui-sanity' class='purple'>Sanity: </span>$plrStats.sanity.cur / $plrStats.sanity.max \
-    <</if>>\
-    <<if $plrStats.wake.max != 0>>
-        <div id="verticalwakebarbkg" class="vertbarbkg"><div id="verticalwakebar" class="vertbar"></div></div><<run Wakefullness($plrStats.wake.cur, $plrStats.wake.max, "verticalwakebar", false)>>\
-        <span id='ui-wake' class='greenyellow'>Wakefullness: </span>$plrStats.wake.cur / $plrStats.wake.max \
-    <</if>>\
-:: Character Info
-    <<= charInfoTbl($plrName, "plrName")>>\
-    <<= charInfoTbl($plrBody.static, "plrBody.static")>>\
-    <<= charInfoTbl($plrBody.dynamic, "plrBody.dynamic")>>\
-    <<= charInfoTbl($plrPersonality, "plrPersonality")>>\
-    <<= charInfoTbl($plrRel, "plrRel")>>\
-    <<= charInfoTblSub($plrDisciplines, "plrDisciplines")>>\
-    \
-:: Your Status
-
-    [[Exit | previous()]]
-
-:: Actions
-
-    Coming soon
-
-:: Locations
-    <h3>School</h3>
-    <<nobr>>\
-        <<if $unlockVar.locations.alstonresidence.unlocked == true>>
-            <<button [[Alston Residence | alstonresidence]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.librarium.unlocked == true>>
-            <<button [[Librarium | librarium]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.dininghall.unlocked == true>>
-            <<button [[Dining Hall | dininghall]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>\
-        <<if $unlockVar.locations.conservatorium.unlocked == true>>
-            <<button [[Conservatorium | conservatorium]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.theexchange.unlocked == true>>
-            <<button [[The Exchange | theexchange]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.leynode.unlocked == true>>
-            <<button [[Ley Node | leynode]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>\
-        <<if $unlockVar.locations.gymnasium.unlocked == true>>
-            <<button [[Gymnasium | gymnasium]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.sigilarium.unlocked == true>>
-            <<button [[Sigilarium | sigilarium]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.artifice.unlocked == true>>
-            <<button [[Artifice Workshop | artificeworkshop]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>\
-        <<if $unlockVar.locations.pentadentrix.unlocked == true>>
-            <<button [[Ritual Pentadentrix | pentadentrix]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.headmasterstudy.unlocked == true>>
-            <<button [[Headmaster's Study | headmasterstudy]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.medicalwing.unlocked == true>>
-            <<button [[Medical Wing | medicalwing]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>\
-        <<if $unlockVar.locations.professoroffices.unlocked == true>>
-            <<button [[Professor's Offices | professoroffices]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-    <</nobr>>\
-
-    <h3>Town</h3>
-    <<nobr>>\
-        <<if $unlockVar.locations.tradingpost.unlocked == true>>
-            <<button [[Herrington's Trading Post | tradingpost]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.cinema.unlocked == true>>
-            <<button [[Bering Cinema | cinema]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.hospital.unlocked == true>>
-            <<button [[Nome Regional Hospital | hospital]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>
-        <<if $unlockVar.locations.cemetary.unlocked == true>>
-            <<button [[Nome City Cemetary | cemetary]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-        <<if $unlockVar.locations.salooninn.unlocked == true>>
-            <<button [[Goldpan Saloon and Inn | salooninn]]>>
-                <<run Dialog.close()>>
-            <</button>>
-        <</if>>
-    <</nobr>>\
-
-    <<link "Exit">>
-        <<run Dialog.close()>>
-    <</link>>
-
-:: Inventory [nobr]
-    <h3>Books</h3>
-    <<inv $plrinvbooks use inspect>>
-
-    <hr>
-
-    <h3>Materials</h3>
-    <<inv $plrinvmaterials use inspect>>
-
-    <hr>
-
-    <h3>Miscellanious</h3>
-    <<inv $plrinvmisc use inspect>>
+    <img class="scene" src='img/symbol.png'/>
 
 :: Start
+    <div class='text-center'>\
+        <img class='title-image' src="img/title-border.png">\
+        <div class='wood-text'><h2>Live Another Life</h2></div>\
+    </div>\
+    Welcome to Live Another Life! This quick page will introduce you to a few keys things before getting into the game.
+
+    This is a game of choices, developement, advancement, and consequences set in modern day America. But most of all it is freedom. You have the freedom to choose who and what your character is.
+
+    There is nothing physically stopping you from being a poisonious, decietful, and vindictive person. While you might not be able to make use of your friends to help you accomplish your goals, with enough studying and exploring you will still be able to succeed at whatever it is you seek.
+
+    If you decide to focus soley on your relationships with others, they will be able to help you advance your abilities and offer you assistance quickly, but only up to the extent of their knowledge and experiences.
+
+    There will be no immersion breaking explanations of mechanics or characters. You will learn as you go. Asking questions, reading books, studying tomes, and casting spells will all help you give you more complete understanding of how the world works and what you can do with.
+
+    So go forth and Live Another Life!
     <div class='text-center'>
-        <img class='title-image' src="img/title-border.png">
-        <div class='wood-text'><h2>Live Another Life</h2></div>
+        <<button[[New Game | gameWarning]]>><</button>>
     </div>
+
+:: gameWarning
+
+    <span class='red'>CAUTION!</span>
+    <em>There can be some dark moments in this game, especially with regards to your backstory. If you are uncomfortable with imagining a severe emotional and physical loss, then I kindly ask you find something else to play. But if you feel like being bold and accepting a difficult rebirth, then I would love for you to continue.</em>
+    
+    <hr>
+
+    <span class='red'>LAST OTHER WARNING!!!</span>
+    <em>There are NSFW elements in this game, both visually and textually. If you are not of legal age to view or read sexually explicit or violent materials in your country, please click the "More Wholesome" button below to enjoy a more appropriate experience.</em>
     <div class='text-center'>
-    <<button[[New Game | GameIntro]]>><</button>>
+        <a href="https://www.dreamworks.com/">
+        <<button "More Wholesome">><</button>>\
+        </a>\
+        <<button [[More Fun | Dream1]]>><</button>>
     </div>
-
-:: Dev Dimension
-
-    [[Todo]]
-    [[TestingGrounds]]
-
-    [[Start]]
-    [[GameIntro]]
-    [[PersonalityTest]]
-    [[WakingUp1]]
-    [[WakingUp2]]
-    [[WakingUp3]]
-    [[WakingUp4]]
-    [[WakingUp5]]
-    [[WakingUp6]]
-    [[WakingUp7]]
-    [[WakingUp8]]
-    [[WakingUp9]]
-    [[WakingUp10]]
-    [[WakingUp11]]
-    [[WakingUp12]]
-    [[WakingUp13]]
-    [[WakingUp14]]
-
-:: Todo
-
-    Inventory system - done
-    Library
-    First five professors
-    Make player stats populate on UI
-    MAGIC SYSTEM!
-
-:: TestingGrounds
-
-    <<button "Generate Identity">>
-        <<set $plrName.fName = "Azure">>
-        <<set $plrName.lName = "Paine">>
-        <<set $plrName.prefix = "Mr.">>
-        <<set $plrBody.static.sex = "male">>
-        <<set $plrBody.static.hairColor = "blue">>
-        <<set $plrBody.static.hairStyle = "mohawk">>
-        <<set $plrBody.static.eyeColor = "amber">>
-        <<set $plrBody.static.faceShape = "square">>
-        <<set $plrBody.static.height = "tall">>
-        <<set $plrBody.dynamic.hairLength = 1>>
-        <<set $plrBody.dynamic.weight = 35>>
-        <<calcAttractiveness>>
-    <</button>>\
-    <<button "Setup Stats">>
-        <<set $plrStats.stamina.max = 10>>
-        <<set $plrStats.stamina.cur = 10>>
-        <<set $plrStats.life.max = 10>>
-        <<set $plrStats.life.cur = 10>>
-        <<set $plrStats.hygiene.max = 10>>
-        <<set $plrStats.hygiene.cur = 10>>
-        <<set $plrStats.sanity.max = 3>>
-        <<set $plrStats.sanity.cur = 3>>
-        <<set $plrStats.wake.max = 5>>
-        <<set $plrStats.wake.cur = 5>>
-    <</button>>
-
-    <<button "Increase Minutes 30">>
-        <<calcTime 30>>
-    <</button>>\
-    <<button "Increase Minutes 5 +/- 5">>
-        <<calcTime 5 5>>
-    <</button>>
-
-    <<button "Decrease Life -1">>
-        <<set $plrStats.life.cur -= 1>>
-        <<run Life($plrStats.life.cur, $plrStats.life.max, "verticallifebar", false)>>
-    <</button>>\
-    <<button "Decrease Sanity -0.1">>
-        <<set $plrStats.sanity.cur -= 0.1>>
-        <<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "verticalsanitybar", false)>>
-    <</button>>
-
-    <<button "Give Test Book">>
-
-    <</button>>

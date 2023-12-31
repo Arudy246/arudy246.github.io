@@ -1,0 +1,228 @@
+    @font-face {
+        font-family: HeaderText;
+        src: url("fonts/BreatheFireIi-2z9W.ttf");
+    }
+    .hidden {
+        visibility: hidden;
+    }
+    #story a.link-external:after {
+        content:"";
+    }
+    #story-title {
+        font-family: HeaderText;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+        text-shadow: 2px 3px black;
+    }
+    #story-author {
+        margin: 0em 1em 0em 0em
+    }
+    #story-banner {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h2 {
+        font-size: 5em;
+        text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
+        letter-spacing: 1px;
+    }
+    .title-image {
+        width: 35%;
+    }
+    .title-text {
+        position: absolute;
+        top: 25%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+    }
+    .wood-text {
+    background: url('img/title-texture.jpg');
+    background-size: 35%;
+    position: absolute;
+    font-size: extra-large * 1.6;
+    text-transform: uppercase;
+    font-family: HeaderText;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    top: 5.5%;
+    left: 42.5%;
+    -webkit-text-stroke-color: rgba(black, 0.6);
+    }
+    .macro-button {
+        background: #000d1a;
+        border: 5px groove #00264d;
+        border-radius: 10px;
+    }
+    .macro-button:hover {
+        background: rgba(0, 128, 255, 0.5);
+        border: 5px ridge #00264d;
+    }
+    .text-center {
+        text-align: center;
+    }
+    #ui-bar {
+        background-image: url("img/bg.png");
+        border-right: 10px groove #262626;
+    }
+    #ui-bar-history {
+        margin: 0em 4.5em 0em 0em;
+    }
+    #ui-bar-body {
+        padding: 0em 1em 0em 0.5em;
+    }
+    #menu {
+        margin-top: 1.5em !important;
+    }
+    #menu ul {
+        border: 3px ridge #666666;
+    }
+    #menu li a {
+        background: rgba(26, 26, 26, 0.6);
+    }
+    #menu li:not(:first-child) {
+        border-top: 2px solid grey;
+    }
+    .passage {
+        font-family: Verdana, sans-serif;
+        border: 15px solid transparent;
+        border-image: url("img/passage-border.png") 80 repeat;
+        padding: 1.5em;
+    }
+    #passage-start {
+        border: none;
+    }
+    #story-caption {
+        margin-top: -1em !important;
+    }
+    .green {
+        color: green;
+        font-style: italic;
+    }
+    .red {
+        color: red;
+        font-style: italic;
+    }
+    .crimson {
+        color: #eb2d53;
+    }
+    .inflection {
+        color: yellow;
+        font-style: italic;
+        
+    }
+    .cyan {
+        color: cyan;
+    }
+    .purple {
+        color: mediumpurple;
+    }
+    .darkgreen {
+        color: forestgreen;
+    }
+    .greenyellow {
+        color: greenyellow;
+    }
+    tbody {
+        font-size: 80%;
+    } 
+    table {
+        border: 1px solid black;
+        vertical-align: middle;
+        float: left;
+    }
+    tr:nth-child(even) {
+        background-color: grey;
+    }
+    .charinfosubhdr {
+        font-style: italic;
+    }
+    .charinfohdr {
+        font-size: 120%;
+        font-style: bold;
+        text-align: center;
+    }
+    img.scene {
+        display: block;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    img.mcselect {
+        display: block;
+        height: 9rem;
+        width: 9rem;
+        border: 5px solid gray;
+        border-radius: 7px;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto ;
+        grid-template-rows: auto auto auto auto;
+        justify-content: space-evenly;
+    }
+
+    /* Simple Inventory, for SugarCube 2, by Chapel
+    v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8 */
+    ul.simple-inventory-list {
+        margin:0 auto;padding:0
+    }
+    .simple-inventory-listing {
+        list-style:none;padding:.3rem .3rem .3rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr
+    }
+    .simple-inventory-listing:nth-child(2n) {
+        background-color:#000
+    }
+    .simple-inventory-listing>a,.simple-inventory-listing>span {
+        display:inline-block
+    }
+    .all-listing.simple-inventory-listing {
+        border-top:1px solid #fafafa;background-color:transparent
+    }
+    .drop-link {
+        color:#e33
+    }
+    .drop-link:active,.drop-link:focus,.drop-link:hover {
+        color:#f88
+    }
+    /* End Simple Inventory */
+
+    /* Speech Box System - Start */
+    .speech {
+        color: white;
+        border: 2px solid #363636;
+        border-radius: 10px;
+        padding: 5px 5px 5px 5px;
+        box-shadow: 5px 5px 3px Black;
+    }
+    .avatar {
+        display: block;
+        padding: 1px;
+        height: 84px;
+        width: 84px;
+        float: left;
+        margin: 0px 10px 0px 0px;
+        border: 2px solid white;
+        border-radius: 5px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .plr {
+        background-color: #414141;
+    }
+
+    .janessa {
+        background-color: #1d003f;
+    }
+    .janessa .avatar {
+        background-image: URL("img/characters/thumb_janessa.jpg");
+    }
+    .amy {
+        background-color: #741225;
+    }
+    .amy .avatar {
+        background-image: URL("img/characters/thumb_amy.jpg");
+    }
+    /* Speech Box System - End */

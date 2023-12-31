@@ -1,4 +1,5 @@
 :: Widgets[widget]
+
     /* relGain Amy 10 */
     <<widget "relGain">>
         <<set $plrRel[_args[0]] += _args[1] + ($plrBody.dynamic.atttractiveness / 10)>>

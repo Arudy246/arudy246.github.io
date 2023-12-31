@@ -4,36 +4,47 @@
 	"version": "2.0.0",
 	"tasks": [
         {
-            "label": "open story html",
+            "label": "openStoryHtml",
             "command": "firefox",
             "windows": {
-                "command": "firefox.exe"
+                "command": "C:/Program Files/Mozilla Firefox/firefox.exe"
             },
-            "args": ["LAL.html"],
+            "args": ["C:/Users/arudy/OneDrive/Live-Another-Life/LAL.html"],
             "dependsOrder": "sequence",
-            "dependsOn": ["delete story html", "Build Story HTML File"]
+            "dependsOn": ["delOldStory", "buildStoryHtml"]
         },
 		{
-			"label": "Build Story HTML file",
+			"label": "buildStoryHtml",
 			"type": "shell",
-			"command": "C:/users/arudy/Downloads/tweego-2.1.1-windows-x64/tweego.exe -f sugarcube-2 -o LAL.html ./src",
-			"group": "build",
-            "dependsOn": ["delete story html"],
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-			"problemMatcher": [],
 			"presentation": {
-				"echo": true,
-				"reveal": "always",
-				"focus": true,
-				"panel": "new" 
-			}
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"close": true
+			},
+			"group": "build",
+			"command": "C:/users/arudy/OneDrive/tweego-2.1.1-windows-x64/tweego.exe -f sugarcube-2 -o LAL.html ./src",
+            "dependsOn": ["delOldStory"]	
 		},
         {
-            "label": "delete story html",
+            "label": "delOldStory",
             "type": "shell",
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"close": true
+			},
             "command": "del LAL.html",
-        }
+        },
+		{
+			"label": "autoTweego",
+			"type": "shell",
+			"command" : "C:/users/arudy/OneDrive/tweego-2.1.1-windows-x64/tweego.exe -w src -o LAL.html"
+		}
 	]       
 }

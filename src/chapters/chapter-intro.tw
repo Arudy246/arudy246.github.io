@@ -1,170 +1,163 @@
-:: GameIntro
-
-    <span class='red'>CAUTION!</span>
-    <em>There can be some dark moments in this game, especially with regards to your backstory. If you are uncomfortable with imagining a severe emotional and physical loss, then I kindly ask you find something else to play. But if you feel like being bold and accepting a difficult rebirth, then I would love for you to continue.</em>
-    
-    <hr>
-
-    Welcome to Live Another Life! This quick page will introduce you to a few keys things before getting into the game.
-
-    This is a game of choices, developement, advancement, and consequences set in modern day America. But most of all it is freedom. You have the freedom to choose who and what your character is.
-
-    There is nothing physically stopping you from being a poisonious, decietful, and vindictive person. While you might not be able to make use of your friends to help you accomplish your goals, with enough studying and exploring you will still be able to succeed at whatever it is you seek.
-
-    If you decide to focus soley on your relationships with others, they will be able to help you advance your abilities and offer you assistance quickly, but only up to the extent of their knowledge and experiences.
-
-    There will be no immersion breaking explanations of mechanics or characters. You will learn as you go. Asking questions, reading books, studying tomes, and casting spells will all help you give you more complete understanding of how the world works and what you can do with.
-
-    So go forth and Live Another Life!
-
-    <<button [[Awesome | PersonalityTest]]>><</button>>
-
-:: PersonalityTest
-    Before you begin, please answer these questions to establish your alter ego's personality. This will likely change as you make choices throughout your new life, but a baseline is needed! Please choose the most applicable answers:
-
-    /*openn*/\
-    Do you enjoy routines?
-    <label><<radiobutton "$temP.o1" -50 checked>> Yes</label>
-    <label><<radiobutton "$temP.o1" 0>> Eh, they're fine</label>
-    <label><<radiobutton "$temP.o1" 50>> No</label>
-
-    /*conscient*/\
-    How organized are you?
-    <label><<radiobutton "$temP.c1" 50 checked>> I'm pretty organized</label>
-    <label><<radiobutton "$temP.c1" 0>> Average, I guess?</label>
-    <label><<radiobutton "$temP.c1" -50>> Not at all</label>
-
-    /*neurot*/\
-    Do you bounce between different emotions?
-    <label><<radiobutton "$temP.n1" 50 checked>> All the time!</label>
-    <label><<radiobutton "$temP.n1" 0>> Sometimes?</label>
-    <label><<radiobutton "$temP.n1" -50>> Not often at all</label>
-
-    /*extrav*/\
-    How much of your time is spent with friends?
-    <label><<radiobutton "$temP.e1" 50 checked>> I love hanging with friends!</label>
-    <label><<radiobutton "$temP.e1" 0>> Pretty often</label>
-    <label><<radiobutton "$temP.e1" -50>> Friends? I don't know that word</label>
-
-    /*openn*/\
-    How much do you like to try new things?
-    <label><<radiobutton "$temP.o2" 50 checked>> I love new things!</label>
-    <label><<radiobutton "$temP.o2" 0>> More or less</label>
-    <label><<radiobutton "$temP.o2" -50>> Not really</label>
-
-    /*agreeb*/\
-    Do you put your needs before others in life?
-    <label><<radiobutton "$temP.a1" -50 checked>> Almost all the time</label>
-    <label><<radiobutton "$temP.a1" 0>> Sometimes yes, sometimes no</label>
-    <label><<radiobutton "$temP.a1" 50>> Rarely, if ever</label>
-
-    /*extrav*/\
-    How much energy do you regain when spending time with people?
-    <label><<radiobutton "$temP.e2" 50 checked>> I feel like a new person!</label>
-    <label><<radiobutton "$temP.e2" 0>> Not much</label>
-    <label><<radiobutton "$temP.e2" -50>> Gain? I lose energy</label>
-
-    /*agreeb*/\
-    Do you like to debate with others?
-    <label><<radiobutton "$temP.a2" -50 checked>> Whenever I can</label>
-    <label><<radiobutton "$temP.a2" 0>> When I need to</label>
-    <label><<radiobutton "$temP.a2" 50>> I hate it</label>
-
-    /*neurot*/\
-    How often do you get stressed out?
-    <label><<radiobutton "$temP.n2" 50 checked>> Egh, pretty often</label>
-    <label><<radiobutton "$temP.n2" 0>> No more than the next person</label>
-    <label><<radiobutton "$temP.n2" -50>> Psh, almost never</label>
-
-    /*conscient*/\
-    How much willpower do you have?
-    <label><<radiobutton "$temP.c2" 50 checked>> I can definitely control myself</label>
-    <label><<radiobutton "$temP.c2" 0>> I give into temptation sometimes</label>
-    <label><<radiobutton "$temP.c2" -50>> Oh, I cannot stop myself</label>
-
-    <<button [[Ready! | Dream1]]>><</button>>
 :: Dream1
     This will use the base mechanics of the game to give a taste of what's to come.
 
     <<button [[Skip...for now. | WakingUp1]]>><</button>>
 
 :: WakingUp1
-    <<nobr>>
-    <<set $plrPersonality.openn = $plrPersonality.openn + $temP.o1 + $temP.o2>>
-    <<set $plrPersonality.conscient = $plrPersonality.conscient + $temP.c1 + $temP.c2>>
-    <<set $plrPersonality.neurot = $plrPersonality.neurot + $temP.n1 + $temP.n2>>
-    <<set $plrPersonality.extrav = $plrPersonality.extrav + $temP.e1 + $temP.e2>>
-    <<set $plrPersonality.agreeb = $plrPersonality.agreeb + $temP.a1 + $temP.a2>>
-    <</nobr>>\
-    <img src="img/medicalwing.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
 
-    You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren't anywhere you remember ever being before. The smell is unfamiliar. The bed you realize you are laying in, is different. Even the air feels different, thicker, maybe.
+    You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren't anywhere you remember ever being before. The smell is unfamiliar. The bed you are laying in, is different. Even the air feels different. Thicker, maybe?
 
-    You slowly open your eyes, feeling quite groggy and disoriented,
+    You slowly open your eyes, feeling quite groggy and disoriented.
 
     The room is dimly lit, yet richly decorated. Full of reds and stained wood. And it's cavernous with high ceilings. The light is provided by numerous candles arranged on shelves and bedside tables. Come to think of it, there are a lot of beds here.
 
     And the candles... Well the candles look normal, but the flames are... Wrong. They are floating above the wicks!
 
-    Before you're able to make sense of any of thing you are seeing, the large wooden doors to the room open. A woman wearing a white robe and hood is walking across the black marble floor and snacking on a bread roll. This is all so strange.
+    Before you're able to make sense of anything you are seeing, the large wooden doors to the room open. A woman wearing a white robe and hood is walking across the black marble floor and snacking on a bread roll. This is all so strange.
 
-    She notices you are awake and says "Oh, I am so sorry!"
+    She notices you are awake and says,
+
+    <<speech "amy">>Oh good, you are awake!<</speech>>
 
     <<button [[Continue | WakingUp2]]>><</button>>
 
 :: WakingUp2
-    <img src="img/medicalwing.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
 
-    "My name is $npcs.Amy.formal, I am the Medicus for this school."
+    <<speech "amy">>
+        My name is $npcs.Amy.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn't here when you woke, no doubt you are rather confused.
+    <</speech>>
 
-    "Again I am so sorry I wasn't here when you woke up. I am sure you are confused with your situation."
+    <<speech "amy">>
+        And while you surely has questions, I'm afraid it is not my place to answer them. For that you'll need to speak with Dean Sullivan. He will be quite pleased you are back in the world of the living.
+    <</speech>>
 
-    "Unfortunately, its not my place to explain what's going on, you'll have to speak with Headmaster Donaver. As soon as I'm done making sure you are in decent shape, I will have someone take you to him. So I don't mean to be rude, but please hold onto your questions for just a little while."
+    She proceeds to stand over you and holds her hands above your chest. She says words. But what she says makes zero sense to you, almost as if she is speaking gibberish or a foreign language. Latin maybe? Sounds a little familiar.
 
-    She proceeds to stand over you and holds her hands above your chest. She says words. But what she says makes zero sense to you, almost as if she is speaking gibberish.
-
-    And like so much else since you woke up, what happens next is supposed to only be possible in your imagination. A slight orange glow seems to eminate from the space between your chest and her hands.
+    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npc.Amy.formal is right, you are just confused. Very, very confused.
 
     <<button [[Continue | WakingUp3]]>><</button>>
 
 :: WakingUp3
-    <img src="img/medicalwing.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
 
-    $npcs.Amy.formal notices your wide eyed stare.
+    $npcs.Amy.formal sees you staring at the candles.
 
-    "I know, more questions. And truely, I would love to answer them all! I really do. But like I said, not my place."
+    <<speech "amy">>
+        I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on forehead and maybe some grogginess, you will be just fine. ?
+    <</speech>>
 
-    With a wide smile, she says "The good news is you are as healthy and whole as when you first arrived here. Tell me, how are you feeling, aside from lost and confused?"
-
-    <<button [[Lost and confused sums it up | WakingUp4]]>><<relGain Amy 5>><</button>>
-    <<button [[Just tell me something! | WakingUp4]]>><<relGain Amy -5>><</button>>
-    <<button [[I am fine. Thank you. | WakingUp4]]>><<relGain Amy 10>><</button>>
+    <<button [[Someone enters the room | WakingUp4]]>><</button>>
 
 :: WakingUp4
-    <img src="img/medicalwing.jpg" alt="medical wing photo"/>\
-    <<printRelGain>>\
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>\
 
-    $npcs.Amy.formal says comfortingly, "Oh there there, I wouldn't worry. We all have our parts to play." With a wink and a smile she says "Give me a moment and I will have someone take you to the headmaster."
+    You see $npcs.Amy.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
 
-    You see her wave her hands around in a series of small circular motions while speaking gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
+    <<speech "amy">>
+        Someone will be along shortly to show you the way to the dean's office.
+    <</speech>>
 
-    With you brain fog still in full force, you are as perplexed as ever. A few seconds later a woman opens the large wooden doors to to the room. She briefly looks at you before speaking with $npcs.Amy.formal.
+    With you brain fog still in full force, you are as perplexed as ever. A few seconds later a young woman opens the large wooden doors to the room. She briefly looks at you before speaking to $npcs.Amy.formal.
 
-    "You called for me $npcs.Amy.title? I assume this one is ready to meet with the headmaster?"
+    <<speech "janessa">>
+        You called for me $npcs.Amy.title? I assume the dean is expecting him?
+    <</speech>>
+    <<speech "amy">>
+        Good evening $npcs.Janessa.formal. And yes, you and this one are expected in the dean's office.
+    <</speech>>
 
-    $npcs.Amy.formal replies, "Good evening, $npcs.Janessa.formal. And yes, all set."
+    $npcs.Amy.formal looks at you.
 
-    $npcs.Amy.formal looks at you and says, "This is $npcs.Janessa.firstName, she will show you the way to the headmaster's study. Let me know if your daze sticks with you for more than a day or two. And if you have any other medical needs, just come see me here in the Medical Wing."
+    <<speech "amy">>
+        This is $npcs.Janessa.firstName, she will escort you to the dean. Please have someone bring you back here if your grogginess sticks around for than a day or two. And if you have any other medical needs, I will be right here for you.
+    <</speech>>
 
-    With a hint of concern and something akin to sadness or pity, she says, "Please, take care of yourself."
+    With a hint of concern or something akin to sadness and pity, $npcs.Amy.formal ends your conversation with,
 
-    $npcs.Amy.formal walks over to $npcs.Janessa.firstName and speaks with her quietely. You cannot hear what either one is saying, but $npcs.Janessa.firstName appears annoyed by whatever it is.
+    <<speech "amy">>
+        Please, do take care of yourself.
+    <</speech>>
 
-    $npcs.Janessa.firstName looks at you and says, "Come on."
+    $npcs.Amy.formal walks over to $npcs.Janessa.firstName and speaks with her quietly. You cannot hear what either one is saying, but $npcs.Janessa.firstName appears annoyed by whatever it is.
 
-    For the first time since you woke up, you roll onto your side and place your bare feet on the cold slate floor. You notice that the thin, bright red gown you are wearing is definitely not yours. At least it covers all the important bits.
+    <<speech "janessa">>
+        Lets go.
+    <</speech>>
 
-    When stop looking at the strange outfit you are wearing (and pushing aside the question of who undressed and redressed you), you notice a mirror next to the headboard of the bed. Your first glance suprises you. You look...different.
+    For the first time since you woke up, you roll onto your side and place your bare feet on the cold slate floor.
+
+    After noticing the strange red gown you are wearing (and pushing aside the question of who undressed and redressed you or why are wearing this crazy outfit), you notice a mirror next to the headboard of the bed. Your first glance suprises you. You look...different. 
+    
+    And you might even like it:
+
+    <div class='grid-container text-center'>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_asian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_asian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_blk.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_blk.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_indian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_indian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blonde_white.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blonde_white.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_bro_white.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_bro_white.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_bro_hisp.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_bro_hisp.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_blk2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_blk2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_asian2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_asian2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_asian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_asian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_blk.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_blk.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_indian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_indian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_whi.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_whi.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_blk2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_blk2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_bln_whi.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_bln_whi.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_bln_white2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_bln_white2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_bro_hisp.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_bro_hisp.jpg">>
+        </div>\
+    </div>
 
     At least you still remember your name,
     <<textbox "$plrName.fName" "First">> \
@@ -181,7 +174,7 @@
         <<optionsfrom $hairColors>>
     <</listbox>>
 
-    is considered to be \
+    and appears to be \
     <<listbox "$plrBody.dynamic.hairLength" autoselect>>
         <<option "shaved" 1>>
         <<option "ear length" 2>>
@@ -192,7 +185,7 @@
         <<option "knee length" 7>>
     <</listbox>>
 
-    and is styled as \
+    Your hair is styled as \
     <<listbox "$plrBody.static.hairStyle" autoselect>>
         <<optionsfrom $hairStyles>>
     <</listbox>>
@@ -216,7 +209,7 @@
         <<option "fat" 90>>
     <</listbox>>
 
-    and consider yourself to be \
+    and you are \
     <<listbox "$plrBody.static.height" autoselect>>
         <<option "very tall">>
         <<option "tall">>
@@ -229,7 +222,7 @@
 
     <<button [[Umm, I am sorry, but where are my clothes? | WakingUp5]]>><<relGain Amy 10>><</button>>
     <<button [[What the hell am I wearing?! | WakingUp5]]>><<relGain Amy -5>><</button>>
-    <<button [[I am so confused... | WakingUp5]]>><<relGain Amy 5>><</button>>
+    <<button [[I am so confused... What am I wearing? | WakingUp5]]>><<relGain Amy 5>><</button>> 
 
 :: WakingUp5
     <<silently>>
@@ -244,19 +237,23 @@
     <img src="img/hallway.jpg" alt="medical wing photo"/>\
     <<printRelGain>>\
 
-    $npcs.Janessa.firstName rolls her eyes and walks towards the door. $npcs.Amy.formal says, "The clothes you arrived in were, well... a little worse for wear. So I cleaned you up and dressed you in the normal medicus patient robe. I am sure $npcs.Janessa.firstName will show you where you can get into something more comfortable after you meet with the headmaster."
+    $npcs.Janessa.firstName rolls her eyes and walks towards the door.
+    <<speech "amy">>The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you're wearing is normal patient attire. I am sure $npcs.Janessa.firstName will show you where to get something more comfortable after you meet with the dean.<</speech>>
 
-    "Lets go already." You hear $npcs.Janessa.firstName say while she stands at the threshold to the the medical wing. Her tone and stance couldn't speak louder. She is quite unhappy for some reason. Maybe she just really doesn't like being a tour guide?
+    <<speech "janessa">>Let's go.<</speech>>
 
-    You follow her out of the medical wing and into a long hallway that gently curves off into the distance. She is walking almost 30 feet ahead of you and is obviously not interested in talking to you, so you follow in silence. The hall is lit with the same disconnected flames, their candles attached to sconces intermittenly adorning the brown marble walls.
+    $npcs.Janessa.firstName is standing in the doorway, appearing rather impatient.
+
+    You follow her out of the medical wing and into a long hallway that gently curves off into the distance. She is walking almost 30 feet ahead of you and is obviously not interested in talking to you, so you follow in silence. The hall is lit with the same floating candles lining the walls.
 
     You pass by many doors as you walk the hall. Some are large wooden doors not dissimiliar to the medical wing and others have massive iron locks on them. A few doors appear barely large enough to allow a young child to fit through them.
 
-    The hallway is eerily silent, a silence only broken by the sound of your footsteps. While trying to think through what is happening and how you got here, you hear a set of disjointed footsteps lightly echo through the hall. Its hard to tell where the sound is coming from, but looking ahead of you you see nothing except $npcs.Janessa.firstName. Suddenly, the volume of the footsteps grows and sppeds up as if someone is running. The sound is loud enough, you know the sound is coming from behind you. You stop and spin around. The hall behind you is completely empty, only lit by candleless flames. But several of the flames flicker, the calm air disturbed by some unseen force.
+    The hallway is eerily silent, a silence only broken by the sound of your footsteps. While trying to think through what is happening and how you got here, you hear a set of disjointed footsteps lightly echo through the hall. Its hard to tell where the sound is coming from, but looking ahead of you you see nothing except $npcs.Janessa.firstName. Suddenly, the volume of the footsteps grows and speeds up as if someone is running. The sound is loud enough, you know the sound is coming from behind you. You stop and spin around. The hall behind you is completely empty, only lit by candleless flames. But several of the flames flicker, the calm air disturbed by some unseen force.
 
-    "For all the leylines, what are you doing now?"
+    <<speech "janessa">> For all the leylines, what are you doing now?<</speech>>
+    <span class="inflection">[$npcs.Janessa.firstName is obviously annoyed at something]</span>
 
-    You turn back towards $npcs.Janessa.firstName as she questions you in an annoyed tone.
+    You turn back towards $npcs.Janessa.firstName.
 
     You reply:
 
@@ -267,7 +264,7 @@
     <<button [[(You ignore her and start walking again, glancing behind yourself several times) | WakingUp6]]>><</button>>
 
 :: WakingUp6
-    <img src="img/headmasterstudy.jpg" alt="medical wing photo"/>\
+    <img class="scene" src="img/headmasterstudy.jpg" alt="medical wing photo"/>\
     <<printRelGain>>\
 
     $npcs.Janessa.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself "What is going on here?"
@@ -397,7 +394,7 @@
     <<button [[Back | WakingUp7]]>><</button>>
 
 :: WakingUp7
-    <img src="img/headmasterstudy.jpg"/>\
+    <img class="scene" src="img/headmasterstudy.jpg"/>\
 
     With a heavy sigh, $npcs.Barden.formal says, "Again. You have my sincerest condolences."
 
@@ -422,7 +419,7 @@
     <<button [[Follow her | WakingUp8]]>><</button>>
 
 :: WakingUp8
-    <img src="img/street.jpg"/>\
+    <img class="scene" src="img/street.jpg"/>\
 
     $npcs.Janessa.firstName leads you out of the headmaster's study. The two of you walk down another set of hallways, make turns here and there. This leaves you completely lost. But then a large door, easily four times your height and wide enough to fit at least a dozen people through at the same time comes into view. The two of you walk out of it and enter small courtyard with several streets leading into it. Floating white orbs giving off a ghostly light illuminate the area. The streets too have their own dim orbs. $npcs.Janessa.firstName turns right through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounding on both sides by small brick and wood houses, reminiscent of a medieval city. The farther you walk, the larger the houses get. Some even have small courtyards of their own.
 
@@ -431,7 +428,7 @@
     <<button [[Continue | WakingUp9]]>><</button>>
 
 :: WakingUp9
-    <img src="img/janessaresidence.jpg"/>\
+    <img class="scene" src="img/janessaresidence.jpg"/>\
 
     "This is my residence. It's been in my family for several generations. I will give you a short tour and then we are done for the night. Classes are tomorrow morning." $npcs.Janessa.firstName says as she places her hand on the front gate. She whispers a few of those gibberish words and the gate opens. 
 
@@ -456,7 +453,7 @@
     <</button>>
 
 :: WakingUp10
-    <img src="img/JanResidEntry.jpg"/>\
+    <img class="scene" src="img/JanResidEntry.jpg"/>\
     <<printRelGain>>\
 
     $npcs.Janessa.firstName sternly says, "Knock it off. You've been a given a gift. You know how often mundanes get introduced to the arcane, let alone gain the ability to use it? Try never. The possibilities open to you are nearly limitless. Few on this world are ever given the chance to truly change. Do you want to talk with deceased ancestors? Done. Throw gigantic balls of searing flame? You can. Shield yourself from harm and become nearly invulnerable? Pretty easy. Hell, you could even ignore every edict our government has issued and open gates to other worlds and dimensions unleashing uncontrollable armies of nightmarish creatures. The only true limit is how much time and effort you put into mastering your abilities. "
@@ -469,7 +466,7 @@
     <</button>>
 
 :: WakingUp11
-    <img src='img/JanResidKitchen.jpg'/>\
+    <img class="scene" src='img/JanResidKitchen.jpg'/>\
 
     $npcs.Janessa.firstName walks to the left from the entrance hall and down a short hallway that ends at the kitchen.
 
@@ -485,7 +482,7 @@
     <</button>>\
 
 :: WakingUp12
-    <img src='img/plrroomdoor.jpg'/>\
+    <img class="scene" src='img/plrroomdoor.jpg'/>\
 
     You follow $npcs.Janessa.firstName out of the kitchen. As you pass by two doors on your left, she says, "This room is empty and that one is mine. Fair warning, if you ever try to go in there, I will turn you into a chicken and donate you to the dining hall chefs. I'm not kidding." The emphasis she placed on that last part actually sounded legitimate. You should probably stay out.
 
@@ -501,7 +498,7 @@
     <</button>>\
 
 :: WakingUp13
-    <img src='img/plrroom.jpg'>\
+    <img class="scene" src='img/plrroom.jpg'>\
 
     You follow $npcs.Janessa.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a similiar chair in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it is missing it's hard to tell. The only think that lights the interior is coming from the hallway.
 

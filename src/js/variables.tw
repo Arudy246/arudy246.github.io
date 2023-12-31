@@ -16,12 +16,17 @@
     /*-hair length is on a range of 1-7, 1 bald or shaved, 2 is ear length, 3 is neck length, 4 is shoulder length, 5 is chest length, 6 is waist, 7 is knees-*/
     /*-atttractiveness is gauged on a combination of height, face shape, hair length, and heavily by weight (equation is different between sexes)*/
     /*XXXXX Add beard stats XXXXX*/
+
+    <<set $plrImg = ""
+    >>
     <<set $plrName = {
         fName: "",
         lName: "",
         prefix: "",
         formal: ""
     }>>
+
+    <<set $testName = "Muah">>
 
     <<set $plrBody = {
         static: {
@@ -155,19 +160,7 @@
         agreeb: 250,
         neurot: 250
     }>>
-    /*-----Temporary variables used for personality test-----*/
-    <<set $temP = {
-        o1: 0,
-        o2: 0,
-        c1: 0,
-        c2: 0,
-        n1: 0,
-        n2: 0,
-        e1: 0,
-        e2: 0,
-        a1: 0,
-        a2: 0
-    }>>
+
     /*-----Player Skills-----*/
     <<set $plrSkills = {
         mundane: {

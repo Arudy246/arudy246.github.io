@@ -1,0 +1,64 @@
+:: PersonalityTest
+    Before you begin, please answer these questions to establish your alter ego's personality. This will likely change as you make choices throughout your new life, but a baseline is needed! Please choose the most applicable answers:
+
+    /*openn*/\
+    Do you enjoy routines?
+    <label><<radiobutton "$temP.o1" -50 checked>> Yes</label>
+    <label><<radiobutton "$temP.o1" 0>> Eh, they're fine</label>
+    <label><<radiobutton "$temP.o1" 50>> No</label>
+
+    /*conscient*/\
+    How organized are you?
+    <label><<radiobutton "$temP.c1" 50 checked>> I'm pretty organized</label>
+    <label><<radiobutton "$temP.c1" 0>> Average, I guess?</label>
+    <label><<radiobutton "$temP.c1" -50>> Not at all</label>
+
+    /*neurot*/\
+    Do you bounce between different emotions?
+    <label><<radiobutton "$temP.n1" 50 checked>> All the time!</label>
+    <label><<radiobutton "$temP.n1" 0>> Sometimes?</label>
+    <label><<radiobutton "$temP.n1" -50>> Not often at all</label>
+
+    /*extrav*/\
+    How much of your time is spent with friends?
+    <label><<radiobutton "$temP.e1" 50 checked>> I love hanging with friends!</label>
+    <label><<radiobutton "$temP.e1" 0>> Pretty often</label>
+    <label><<radiobutton "$temP.e1" -50>> Friends? I don't know that word</label>
+
+    /*openn*/\
+    How much do you like to try new things?
+    <label><<radiobutton "$temP.o2" 50 checked>> I love new things!</label>
+    <label><<radiobutton "$temP.o2" 0>> More or less</label>
+    <label><<radiobutton "$temP.o2" -50>> Not really</label>
+
+    /*agreeb*/\
+    Do you put your needs before others in life?
+    <label><<radiobutton "$temP.a1" -50 checked>> Almost all the time</label>
+    <label><<radiobutton "$temP.a1" 0>> Sometimes yes, sometimes no</label>
+    <label><<radiobutton "$temP.a1" 50>> Rarely, if ever</label>
+
+    /*extrav*/\
+    How much energy do you regain when spending time with people?
+    <label><<radiobutton "$temP.e2" 50 checked>> I feel like a new person!</label>
+    <label><<radiobutton "$temP.e2" 0>> Not much</label>
+    <label><<radiobutton "$temP.e2" -50>> Gain? I lose energy</label>
+
+    /*agreeb*/\
+    Do you like to debate with others?
+    <label><<radiobutton "$temP.a2" -50 checked>> Whenever I can</label>
+    <label><<radiobutton "$temP.a2" 0>> When I need to</label>
+    <label><<radiobutton "$temP.a2" 50>> I hate it</label>
+
+    /*neurot*/\
+    How often do you get stressed out?
+    <label><<radiobutton "$temP.n2" 50 checked>> Egh, pretty often</label>
+    <label><<radiobutton "$temP.n2" 0>> No more than the next person</label>
+    <label><<radiobutton "$temP.n2" -50>> Psh, almost never</label>
+
+    /*conscient*/\
+    How much willpower do you have?
+    <label><<radiobutton "$temP.c2" 50 checked>> I can definitely control myself</label>
+    <label><<radiobutton "$temP.c2" 0>> I give into temptation sometimes</label>
+    <label><<radiobutton "$temP.c2" -50>> Oh, I cannot stop myself</label>
+
+    <<button [[Ready! | Dream1]]>><</button>>

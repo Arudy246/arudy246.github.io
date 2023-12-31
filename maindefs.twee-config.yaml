@@ -23,6 +23,12 @@ sugarcube-2:
     foundItem:
       description: "Picks up an item and notifies player"
 
+    speech:
+      description: "Makes speech boxes."
+      container: true
+      parameters:
+       - text |+ text
+
 
     # simple inventory macros
     item:

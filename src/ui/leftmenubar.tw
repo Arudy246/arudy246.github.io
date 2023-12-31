@@ -1,0 +1,208 @@
+:: StoryCaption
+    @@#timeplusdate;<<calcTime>>@@
+    <<if $plrName.fName != "" && $plrName.fName != "First">>\
+        <u>Name: $plrName.fName $plrName.lName</u>\
+    <</if>>\
+    <<if $plrStats.stamina.max != 0>>
+        <div id="verticalstaminabarbkg" class="vertbarbkg"><div id="verticalstaminabar" class="vertbar"></div></div><<run Stamina($plrStats.stamina.cur, $plrStats.stamina.max, "verticalstaminabar", false)>>\
+        <span id='ui-stamina' class='cyan'>Stamina: </span>$plrStats.stamina.cur / $plrStats.stamina.max \
+    <</if>>\
+    <<if $plrStats.life.max != 0>>
+        <div id="verticallifebarbkg" class="vertbarbkg"><div id="verticallifebar" class="vertbar"></div></div><<run Life($plrStats.life.cur, $plrStats.life.max, "verticallifebar", false)>>\
+        <span class='crimson'>Lifeforce: </span><span id='ui-life'>$plrStats.life.cur / $plrStats.life.max</span> \
+    <</if>>\
+    <<if $plrStats.hygiene.max != 0>>
+        <div id="verticalhygienebarbkg" class="vertbarbkg"><div id="verticalhygienebar" class="vertbar"></div></div><<run Hygiene($plrStats.hygiene.cur, $plrStats.hygiene.max, "verticalhygienebar", false)>>\
+        <span id='ui-hygiene' class='darkgreen'>Hygiene: </span>$plrStats.hygiene.cur / $plrStats.hygiene.max \
+    <</if>>\
+    <<if $plrStats.sanity.max != 0>>
+        <div id="verticalsanitybarbkg" class="vertbarbkg"><div id="verticalsanitybar" class="vertbar"></div></div><<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "verticalsanitybar", false)>>\
+        <span id='ui-sanity' class='purple'>Sanity: </span>$plrStats.sanity.cur / $plrStats.sanity.max \
+    <</if>>\
+    <<if $plrStats.wake.max != 0>>
+        <div id="verticalwakebarbkg" class="vertbarbkg"><div id="verticalwakebar" class="vertbar"></div></div><<run Wakefullness($plrStats.wake.cur, $plrStats.wake.max, "verticalwakebar", false)>>\
+        <span id='ui-wake' class='greenyellow'>Wakefullness: </span>$plrStats.wake.cur / $plrStats.wake.max \
+    <</if>>\
+
+:: StoryMenu
+    [[Dev Dimension]]
+    [[Character Info]]
+
+    <<if $tglPlayerStats == 1>>
+        <<link [[Your Status]]>><</link>>
+    <</if>>
+
+
+    <<link "Actions">>
+        <<run 
+        Dialog.setup("Actions", "actions");
+        Dialog.wiki(Story.get("Actions").text);
+        Dialog.open();
+        >>
+    <</link>>
+
+
+    <<link "Locations">>
+        <<run 
+        Dialog.setup("Locations", "locations");
+        Dialog.wiki(Story.get("Locations").text);
+        Dialog.open();
+        >>
+    <</link>>
+
+    <<link "Inventory">>
+        <<run 
+        Dialog.setup("Inventory", "inventory"); 
+        Dialog.wiki(Story.get("Inventory").text); 
+        Dialog.open();
+        >>
+    <</link>>
+
+
+:: Character Info
+    <<= charInfoTbl($plrName, "plrName")>>\
+    <<= charInfoTbl($plrBody.static, "plrBody.static")>>\
+    <<= charInfoTbl($plrBody.dynamic, "plrBody.dynamic")>>\
+    <<= charInfoTbl($plrPersonality, "plrPersonality")>>\
+    <<= charInfoTbl($plrRel, "plrRel")>>\
+    <<= charInfoTblSub($plrDisciplines, "plrDisciplines")>>\
+:: Your Status
+
+    [[Exit | previous()]]
+
+:: Actions
+
+    Coming soon
+
+:: Locations
+    <h3>School</h3>
+    <<nobr>>\
+        <<if $unlockVar.locations.alstonresidence.unlocked == true>>
+            <<button [[Alston Residence | alstonresidence]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.librarium.unlocked == true>>
+            <<button [[Librarium | librarium]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.dininghall.unlocked == true>>
+            <<button [[Dining Hall | dininghall]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
+        <<if $unlockVar.locations.conservatorium.unlocked == true>>
+            <<button [[Conservatorium | conservatorium]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.theexchange.unlocked == true>>
+            <<button [[The Exchange | theexchange]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.leynode.unlocked == true>>
+            <<button [[Ley Node | leynode]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
+        <<if $unlockVar.locations.gymnasium.unlocked == true>>
+            <<button [[Gymnasium | gymnasium]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.sigilarium.unlocked == true>>
+            <<button [[Sigilarium | sigilarium]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.artifice.unlocked == true>>
+            <<button [[Artifice Workshop | artificeworkshop]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
+        <<if $unlockVar.locations.pentadentrix.unlocked == true>>
+            <<button [[Ritual Pentadentrix | pentadentrix]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.headmasterstudy.unlocked == true>>
+            <<button [[Headmaster's Study | headmasterstudy]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.medicalwing.unlocked == true>>
+            <<button [[Medical Wing | medicalwing]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+    <br>
+    <<nobr>>\
+        <<if $unlockVar.locations.professoroffices.unlocked == true>>
+            <<button [[Professor's Offices | professoroffices]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+
+    <h3>Town</h3>
+    <<nobr>>\
+        <<if $unlockVar.locations.tradingpost.unlocked == true>>
+            <<button [[Herrington's Trading Post | tradingpost]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.cinema.unlocked == true>>
+            <<button [[Bering Cinema | cinema]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.hospital.unlocked == true>>
+            <<button [[Nome Regional Hospital | hospital]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+    <br>
+    <<nobr>>
+        <<if $unlockVar.locations.cemetary.unlocked == true>>
+            <<button [[Nome City Cemetary | cemetary]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+        <<if $unlockVar.locations.salooninn.unlocked == true>>
+            <<button [[Goldpan Saloon and Inn | salooninn]]>>
+                <<run Dialog.close()>>
+            <</button>>
+        <</if>>
+    <</nobr>>\
+
+    <<link "Exit">>
+        <<run Dialog.close()>>
+    <</link>>
+
+:: Inventory [nobr]
+    <h3>Books</h3>
+    <<inv $plrinvbooks use inspect>>
+
+    <hr>
+
+    <h3>Materials</h3>
+    <<inv $plrinvmaterials use inspect>>
+
+    <hr>
+
+    <h3>Miscellanious</h3>
+    <<inv $plrinvmisc use inspect>>
+
