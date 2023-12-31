@@ -9,8 +9,6 @@
 :: StoryTitle
     Live Another Life
 
-:: StoryBanner
-    <img class="scene" src='img/symbol.png'/>
 
 :: Start
     <div class='text-center'>\

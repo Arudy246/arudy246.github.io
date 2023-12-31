@@ -1,0 +1,489 @@
+:: Dream1
+    This will use the base mechanics of the game to give a taste of what's to come.
+
+    <<button [[Skip...for now. | WakingUp1]]>><</button>>
+
+:: WakingUp1
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
+
+    You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren't anywhere you remember ever being before. The smell is unfamiliar. The bed you are laying in, is different. Even the air feels different. Thicker, maybe?
+
+    You slowly open your eyes, feeling quite groggy and disoriented.
+
+    The room is dimly lit, yet richly decorated. Full of reds and stained wood. And it's cavernous with high ceilings. The light is provided by numerous candles arranged on shelves and bedside tables. Come to think of it, there are a lot of beds here.
+
+    And the candles... Well the candles look normal, but the flames are... Wrong. They are floating above the wicks!
+
+    Before you're able to make sense of anything you are seeing, the large wooden doors to the room open. A woman wearing a white robe and hood is walking across the black marble floor and snacking on a bread roll. This is all so strange.
+
+    She notices you are awake.
+
+    <<speech "amy">>Oh good, you are awake!<</speech>>\
+
+    <<button [[Continue | WakingUp2]]>><</button>>
+
+:: WakingUp2
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
+
+    <<speech "amy">>
+        My name is $npcs.amy.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn't here when you woke, no doubt you are rather confused.
+    <</speech>>\
+
+    <<speech "amy">>
+        And while you surely has questions, I'm afraid it is not my place to answer them. For that you'll need to speak with Dean Sullivan. He will be quite pleased you are back in the world of the living.
+    <</speech>>\
+
+    She proceeds to stand over you and holds her hands above your chest. She says words. But what she says makes zero sense to you, almost as if she is speaking gibberish or a foreign language. Latin maybe? Sounds a little familiar.
+
+    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npc.amy.formal is right, you are just confused. Very, very confused.
+
+    <<button [[Continue | WakingUp3]]>><</button>>
+
+:: WakingUp3
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
+
+    $npcs.amy.formal sees you staring at the candles.
+
+    <<speech "amy">>I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on forehead and maybe some grogginess, you will be just fine.<</speech>>\
+
+    <<button [[Someone enters the room | WakingUp4]]>><</button>>
+
+:: WakingUp4
+    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>\
+
+    You see $npcs.amy.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
+
+    <<speech "amy">>
+        Someone will be along shortly to show you the way to the dean's office.
+    <</speech>>\
+
+    With you brain fog still in full force, you are as perplexed as ever. A few seconds later a young woman opens the large wooden doors to the room. She briefly looks at you before speaking to $npcs.amy.formal.
+
+    <<speech "janessa">>
+        You called for me $npcs.amy.title? I assume the dean is expecting him?
+    <</speech>>
+    <<speech "amy">>
+        Good evening $npcs.janessa.formal. And yes, you and this one are expected in the dean's office.
+    <</speech>>\
+
+    $npcs.amy.formal looks at you.
+
+    <<speech "amy">>This is $npcs.janessa.firstName, she will escort you to the dean. Please have someone bring you back here if your grogginess sticks around for than a day or two. And if you have any other medical needs, I will be right here for you.<</speech>>\
+
+    <<speech "amy">>Please, do take care of yourself.<</speech>>\
+    <<tone "pos">>There is more than a hint of pity in her voice.<</tone>>
+
+    $npcs.amy.formal walks over to $npcs.janessa.firstName and speaks with her quietly. You cannot hear what either one is saying, but $npcs.janessa.firstName appears annoyed by whatever it is.
+
+    <<speech "janessa">>Lets go.<</speech>>\
+
+    For the first time since you woke up, you roll onto your side and place your bare feet on the cold slate floor.
+
+    After noticing the strange red gown you are wearing (and pushing aside the question of who undressed and redressed you or why are wearing this crazy outfit), you notice a mirror next to the headboard of the bed. Your first glance suprises you. You look...different. 
+    
+    And you might even like it:
+
+    <div class='grid-container text-center'>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_asian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_asian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_blk.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_blk.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_indian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_indian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blonde_white.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blonde_white.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_bro_white.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_bro_white.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_bro_hisp.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_bro_hisp.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_blk2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_blk2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img/characters/thumb_male_blk_asian2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_asian2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_asian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_asian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_blk.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_blk.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_indian.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_indian.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_whi.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_whi.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_blk_blk2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_blk2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_bln_whi.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_bln_whi.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_bln_white2.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_bln_white2.jpg">>
+        </div>\
+        <div>
+            <img class="mcselect" src="img\characters\thumb_fem_bro_hisp.jpg" alt="test"/>\
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_bro_hisp.jpg">>
+        </div>\
+    </div>
+
+    At least you still remember your name,
+    <<textbox "$plrName.fName" "First">> \
+    <<textbox "$plrName.lName" "Last">>
+
+    Obviously, you are \
+    <<listbox "$plrBody.static.sex" autoselect>> \
+        <<option "female">>
+        <<option "male">>
+    <</listbox>>
+
+    Your hair is a shade of \
+    <<listbox "$plrBody.static.hairColor" autoselect>>
+        <<optionsfrom $hairColors>>
+    <</listbox>>
+
+    and appears to be \
+    <<listbox "$plrBody.dynamic.hairLength" autoselect>>
+        <<option "shaved" 1>>
+        <<option "ear length" 2>>
+        <<option "neck length" 3>>
+        <<option "shoulder length" 4>>
+        <<option "chest length" 5>>
+        <<option "waist length" 6>>
+        <<option "knee length" 7>>
+    <</listbox>>
+
+    Your hair is styled as \
+    <<listbox "$plrBody.static.hairStyle" autoselect>>
+        <<optionsfrom $hairStyles>>
+    <</listbox>>
+
+    Your eyes now look \
+    <<listbox "$plrBody.static.eyeColor" autoselect>>
+        <<optionsfrom $eyeColors>>
+    <</listbox>>
+
+    and your face is \
+    <<listbox "$plrBody.static.faceShape" autoselect>>
+        <<optionsfrom $faceShapes>>
+    <</listbox>>
+
+    Finally, you notice you are \
+    <<listbox "$plrBody.dynamic.weight" autoselect>>
+        <<option "quite skinny" 10>>
+        <<option "fit" 30>>
+        <<option "average" 50>>
+        <<option "thick" 75>>
+        <<option "fat" 90>>
+    <</listbox>>
+
+    and you are \
+    <<listbox "$plrBody.static.height" autoselect>>
+        <<option "very tall">>
+        <<option "tall">>
+        <<option "average">>
+        <<option "short">>
+        <<option "fun sized">>
+    <</listbox>>
+
+    After reacquainting yourself with well, yourself, you remember the unusual outfit you are wearing. You look at the two women and say:
+
+    <<button [[Umm, I am sorry, but where are my clothes? | WakingUp5]]>><<relGain amy 10>><</button>>
+    <<button [[What the hell am I wearing?! | WakingUp5]]>><<relGain amy -5>><</button>>
+    <<button [[I am so confused... What am I wearing? | WakingUp5]]>><<relGain amy 5>><</button>> 
+
+:: WakingUp5
+    <<silently>>
+        <<if $plrBody.static.sex == "female">>
+            <<set $plrName.prefix = "Ms.">>
+        <<elseif $plrBody.static.sex == "male">>
+            <<set $plrName.prefix = "Mr.">>
+        <</if>>
+        <<set $plrName.formal = $plrName.prefix + " " + $plrName.lName>>
+        <<calcAttractiveness>>
+    <</silently>>\
+
+    <img class="scene" src="img/hallway.jpg" alt="medical wing photo"/>
+    <<printRelGain>>
+
+    $npcs.janessa.firstName rolls her eyes and walks towards the door.
+
+    <<speech "amy">>The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you're wearing is normal patient attire. I am sure $npcs.janessa.firstName will show you where to get something more comfortable after you meet with the dean.<</speech>>
+    <<speech "janessa">>Let's go.<</speech>>\
+
+    $npcs.janessa.firstName is standing in the doorway, appearing rather impatient.
+
+    You follow her out of the medical wing and into a long hallway that gently curves off into the distance. She is walking almost 30 feet ahead of you and is obviously not interested in talking to you, so you follow in silence. The hall is lit with the same floating candles lining the walls.
+
+    You pass by many doors as you walk the hall. Some are large wooden doors not dissimiliar to the medical wing and others have massive iron locks on them. A few doors appear barely large enough to allow a young child to fit through them.
+
+    The hallway is eerily silent, a silence only broken by the sound of your footsteps. While trying to think through what is happening and how you got here, you hear a set of disjointed footsteps lightly echo through the hall. Its hard to tell where the sound is coming from, but looking ahead of you you see nothing except $npcs.janessa.firstName. Suddenly, the volume of the footsteps grows and speeds up as if someone is running. The sound is loud enough, you know the sound is coming from behind you. You stop and spin around. The hall behind you is completely empty, only lit by candleless flames. But several of the flames flicker, the calm air disturbed by some unseen force.
+
+    <<speech "janessa">> For all the leylines, what are you doing now?<</speech>>\
+    <<tone "neg">>$npcs.janessa.firstName is obviously annoyed at something<</tone>>
+
+    You turn back towards $npcs.janessa.firstName and say:
+
+    <<button [[Did you not hear that? | WakingUp6]]>>
+        <<set $plrSpkChoice = "Did you not hear that?">>
+    <</button>>
+    <<button [[Alright, seriously now. What is your problem? | WakingUp6]]>>
+        <<relGain janessa -5>>
+        <<set $plrSpkChoice = "Alright, seriously now. What is your problem?">>
+    <</button>>
+    <<button [[Nothing. I'm just...looking. | WakingUp6]]>>
+        <<set $plrSpkChoice = "Nothing. I'm just...looking.">>
+    <</button>>
+
+:: WakingUp6
+    <img class="scene" src="img/headmasterstudy.jpg" alt="dean's study"/>\
+
+    <<speech "plr">><<print $plrSpkChoice>><</speech>>
+    <<printRelGain>>\
+    $npcs.janessa.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself "What is going on here?"
+
+    The two of you approach a heavily reinforced door. The ancient thick oak planks encased in a heavy layer of iron and, gilded with some kind of lapis, maybe? Whatever it is, it has a blue iridescent sheen to it. The center of the door is adorned with a small iron bird figurine. $npcs.janessa.firstName looks at the metal bird and knocks on the door while whispering something.
+
+    The eyes of the bird glow bright blue and the door quietly swings open. Ahead of you is a room decorated with well organized shelves, all the books appear to be arranged in decreasing height and thickness. The walls are covered in plaques with runic symbols etched on them.
+
+    Sitting at a desk near the back of the room, surrounded by the bookcases, is a man. His weathered face bears evidence of a long, hard life. The lines creased beneath his eyes and the aged wrinkles give his skin the appearance of sun tanned leather. He is wearing a thick, brown robe interwoven with a silvery thread. The hard stare he sends in your direction as you walk across the room, gives you the distinct feeling you are being judged. And it doesn't look like it is going well for you.
+
+    <<speech "barden">> $plrName.formal, welcome to Magna Schola. We are one of North America's most...thorough... arcane educational institutions. I am $npcs.barden.formal. I am sure you have questions so I will try to make this as quick as possible. <</speech>>\
+
+    <<speech "barden">>I will keep the sugarcoating to a minimum here. You are what we call Inferni. Translated from Latin, literally it means <strong><em>of hell</em></strong>. While I admit it is a bit of an archaic term, it is apt for reasons I cannot share with you. Most knowledge of inferni is either lost or highly privileged.<</speech>>\
+
+    <<speech "barden">> And although I cannot answer specific questions you may have, I can tell you that your kind is a rare breed. A once every few hundred years sort of rare breed.<</speech>>\
+
+    <<speech "barden">> And because it would be cruel not to explain something about your new reality, know this. Inferni are created when a human outside of the magical world experiences a... most grim and unenviable trauma. For this rebirth of yours, you have my sincerest condolences. It is a fate I would wish on noone.<</speech>>\
+
+    <<speech "barden">> I apologize for asking, but it is common for those like you to completely forget the event that changes them so completely. You don't happen to remember what happened to you, do you?<</speech>>\
+    <<tone "neg">>$npcs.barden.formal almost seems...afraid?<</tone>>
+
+    <<speech "plr">>I remember...<</speech>>\
+
+    <<button [[driving a car with someone you cared about. | BackgroundCar1]]>>
+
+    <</button>>
+    <<button [[the smell of dinner. | BackgroundHostage1]]>>
+
+    <</button>>
+    <<button [[celebrating something. | BackgroundFire1]]>>
+
+    <</button>>
+    <<button [[someone I loved. | BackgroundInsanity1]]>>
+
+    <</button>>
+    <<button [[camping in the woods. | BackgroundChase1]]>>
+
+    <</button>>
+
+:: WakingUp7
+    <img class="scene" src="img/headmasterstudy.jpg"/>\
+
+    <<speech "plr">><<print $plrSpkChoice>><</speech>>
+
+    <<speech "barden">>Well, sometimes it is better to leave one's past in the past<</speech>>\
+    <<tone "pos">>$npcs.barden.formal looks visibly relieved before moving on<</tone>>
+
+    <<speech "barden">>The safety and excellence of this institution is my responsibility and I care for it deeply. I expect you to learn how to live in our world. Quickly. To help you acclimate and to make sure you don't get yourself or anyone else hurt, $npcs.janessa.formal will be your Secutor. She will familiarize you with this institution, our rules, and how to survive on this side of reality.<</speech>>\
+
+    $npcs.barden.formal looks at $npcs.janessa.firstName but says to you:
+
+    <<speech "barden">>You will be staying her family residence until other arrangements can be made.<</speech>>\
+    <<tone "neg">>$npcs.barden.formal appears regretul<</tone>>
+
+    $npcs.janessa.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn't like, it's the invasion of her private space you represent.
+
+    <<speech "barden">>Something to keep in mind $plrName.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.<</speech>>\
+
+    <<speech "barden">>I do not know your life's background nor whether you were considered a moral person, but just know that becoming violent with anyone, or almost anything, in our world will probably earn you a death sentence given your current level of comprehension and ability. If I were you, I would behave myself, get to know as many people as possible, and embrace the knowledge available to you at my university.<</speech>>\
+
+    <<speech "barden">>Our world is one built on reputations, connections, and ability. Neglect any of these core concepts at your own peril. And never forget, you are being watched. Be very careful with your choices. Good luck, $plrName.formal.<</speech>>\
+
+    Before you can reply in any way, $npcs.barden.formal stands up and walks towards the back of his study without a parting glance.
+
+    <<speech "janessa">>Let's go.<</speech>>\
+
+    <<button [[Follow her | WakingUp8]]>><</button>>
+
+:: WakingUp8
+    <img class="scene" src="img/street.jpg"/>\
+
+    $npcs.janessa.firstName leads you out of the headmaster's study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
+    
+    $npcs.janessa.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
+
+    After walking for several minutes, $npcs.janessa.firstName stops at one of the houses. It looks like it is at least three stories high with a large arched front door. A large rusted wrought iron fence complete with spikes and small iron thorns surrounds the entire front of the home along with a large iron gate adorned with swirls, vines, and what you could only describe as strange glyphs or symbols. 
+    
+    The outside of the residence is...a bit rundown. The front has obviously not seen a gardner's touch in many years. Piles of leaves and debris are scattered everywhere. The vines that climb over the iron fence also appear to be actively trying to strangle the side of the house.
+
+    <<button [[Continue | WakingUp9]]>><</button>>
+
+:: WakingUp9
+    <img class="scene" src="img/janessaresidence.jpg"/>\
+
+    <<speech "janessa">>This is my residence. It's been in my family for many generations. I'll give you a short tour and then we are done for the night. Classes will start Monday morning.<</speech>>\
+
+    $npcs.janessa.firstName whispers something to the front gate and it swings open.
+
+    $npcs.janessa.firstName walks upto the front door and repeats the process, touching the door and whispering to it. The door creaks open, revealing a massive entrance hall. While still standing outside, you look up towards the roof. The height of the residence is nowwhere near tall enough to fit the height of the ceiling you see inside of the residence.
+
+    <<speech "janessa">>It is a form of spatial magic. This residence was one of the last at Magna to have had the spells cast. So yes, it is larger on the inside than on the outside.<</speech>>\
+
+    Dismissively, she waves you inside. The entrance hall is huge. Further ahead of you is a huge dining room with a pair of fireplaces that stand at least twice your height. The dining hall more long than it is tall with the dim lights of the entrance hall barely lighting anything in it. From what you can see the room is barren, no tables, no chairs, and the fireplaces are cold and unlit. There are a few large tapestries hanging from the top of the dirt and grime stained walls, but its obvious from the random placement that many are missing.
+
+    The only pieces of furniture in the area are a few well cushioned, red colored seats with a simple, bare wood dining table sitting between them.
+
+    <<speech "janessa">>This is the banquet hall. As you can see, it hasn't been used in awhile. Before you go asking, yes it is a bit dirty. And yes, there is much missing. Unfortunately, my family's status has diminished somewhat in the last several years. That's why I am you Secutor and someone else is not. No one else would have had to say yes.<</speech>>\
+
+    <<button [[Stop being a bitch! | WakingUp10]]>>
+        <<relGain Janessa -5>>
+        <<set $plrSpkChoice = "Will you knock off the bitch attitude. I have done nothing to you. If it wasn't clear to you, I didn't ask for any of this.">>
+    <</button>>
+    <<button [[Sorry. I just want to understand. | WakingUp10]]>>
+        <<relGain Janessa 10>>
+        <<set $plrSpkChoice = "I am sorry you're in this position. I don't know what most of it means, but I am sorry.">>
+    <</button>>
+    <<button [[(Start crying) | WakingUp10]]>>
+        <<relGain Janessa -5>>
+        <<set $plrSpkChoice = "[you cry]">>
+    <</button>>
+
+:: WakingUp10
+    <img class="scene" src="img/JanResidEntry.jpg"/>\
+    <<printRelGain>>\
+
+    $npcs.Janessa.firstName sternly says, "Whatever. You've been a given a gift. You know how often the ungifted get introduced to the arcane, let alone gain the ability to use it? Try never. The possibilities open to you are nearly limitless. Few on this world are ever given the chance to truly change. Do you want to talk with deceased ancestors? Done. Throw gigantic balls of searing plasma? You can. Shield yourself from harm and become nearly invulnerable? Pretty easy. Hell, you could even ignore every edict our government has issued and open gates to other worlds and dimensions unleashing uncontrollable nightmarish creatures. The only true limit is how much time and effort you put into mastering your abilities. "
+    
+    "However, before you go and get power hungry and bite off more than you chew, know that there is always a cost. No one can have something for nothing. There are a few ways to fuel your abilities, but only one is normally used. The rest are all pretty esoteric. I know sex can be used to power spells and supposedly there are others. Almost everyone just uses basic <span class='cyan'><em>Stamina</em></span>. You get physically exhausted after running, carrying things, or lifting objects right? Well, magic uses the same thing. If you can only run for a minute or two, you'll only be able to cast a couple of weak little spells. Working out and using more magic, will all improve your <span class='cyan'><em>Stamina</em></span>. Eating and sleeping will help you get your energy back. I can't tell you how many times I was up late practicing and had to raid the dining hall for some food."
+
+    <<button [[Keep listening | WakingUp11]]>>
+        <<set $plrStats.stamina.max = 10>>
+        <<set $plrStats.stamina.cur = 10>>
+    <</button>>
+
+:: WakingUp11
+    <img class="scene" src='img/JanResidKitchen.jpg'/>\
+
+    $npcs.Janessa.firstName walks to the left from the entrance hall and down a short hallway that ends at the kitchen.
+
+    "This is, obviously, the kitchen." $npcs.Janessa.firstName says. You see that it hasn't been used a very long time. Dust covers everything, the pot rack is empty, and the shelves are bare. Even the candless flames seem to be dying, shedding only a small amount of light on the room.
+
+    $npcs.Janessa.firstName says, "I don't use it. Most of us eat at in the dining hall at Magna."
+
+    She then says, "But anyways, another key thing to pay attention to is your <span class='crimson'><em>Lifeforce</em></span>. It's just health in another name. Getting punched too hard, taking a lightining strike to the head, or falling off a building, well obviously you're gonna get hurt. Getting stabbed or beheaded is also not good for you. <span class='crimson'><em>Lifeforce</em></span> is finite, lose enough of it and there is very high chance you'll die. Simple right? Injuries can be healed by using restoration magic, having someone else use it, or by going to the medical wing where $npcs.Amy.formal will be more than happy to heal you. By the way, she is probably the nicest person at this school. Don't be an ass to her."
+
+    <<button [[Keep listening | WakingUp12]]>>
+        <<set $plrStats.life.max = 10>>
+        <<set $plrStats.life.cur = 10>>
+    <</button>>\
+
+:: WakingUp12
+    <img class="scene" src='img/plrroomdoor.jpg'/>\
+
+    You follow $npcs.Janessa.firstName out of the kitchen. As you pass by two doors on your left, she says, "This room is empty and that one is mine. Fair warning, if you ever try to go in there, I will turn you into a chicken and donate you to the dining hall chefs. I'm not kidding." The emphasis she placed on that last part actually sounded legitimate. You should probably stay out.
+
+    You walk down the hallway, pass by the entrance and banquet areas, and down another hallway. She stops at the last door on the left.
+
+    "This will be your room. If you want your own stuff or even a proper bed, you can figure it out for yourself. It's not like I have anything to spare anyways."
+
+    "There is a bathroom. Please use it. There are few better ways to annoy everyone around you than by creating a miasma that follows you around. There are spells that can help with that, but until you learn some biomancy, stick to soap and water. <span class='darkgreen'><em>Hygiene</em></span> should be obvious. Do things that get your dirty or sweaty, and it will decrease. The lower your <span class='darkgreen'><em>Hygiene</em></span>, the more you will look dirty and smell like it. A quick wash of the hands, some biomancy magic, and taking a bath will take care of that problem. You're here for free, everyone else has to pay for it. At least do the bare minimum and don't be the local nasty freeloader."
+
+    <<button [[Keep listening | WakingUp13]]>>
+        <<set $plrStats.hygiene.max = 10>>
+        <<set $plrStats.hygiene.cur = 10>>
+    <</button>>\
+
+:: WakingUp13
+    <img class="scene" src='img/plrroom.jpg'>\
+
+    You follow $npcs.Janessa.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a similiar chair in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it is missing it's hard to tell. The only think that lights the interior is coming from the hallway.
+
+    $npcs.Janessa.firstName says, "Ya, so you have some work to do. I recommend you tidy it up and find some money to make it work for you. But it's your space, so you do you." She turns towards the door.
+
+    "Two final points you should be aware of. The first is <span class='purple'><em>Sanity</em></span>, studying and using magic can be confusing. The more you learn and the more skilled your are at using magic, the less confusing it will be. If you start feeling like your <span class='purple'><em>Sanity</em></span> is too low, there is a rapidly increasing chance the next spell you use will backfire in someway. I cannot stress enough, this is extremely dangerous. You might have been trying to coax a plant into growing, but if the spell backfires enough, you may suddenly find yourself being consumed by the plant or your limbs might grow to the point of exploding. Seriously, don't underestimate how important it is to be mentally stable when practicing spellwork."
+
+    "The last thing to know, is <span class='greenyellow'><em>Wakefullness</em></span>. Think of this as how much rest you've had and how awake you are. Trying to sleep, but keep getting woken up by a crappy bed?" She says as she eyes your current sleeping arrangements.
+
+    "Or have you been awake for 24 hours? Obviously, you're going to be tired. Eventually, you'll be so tired you can't function anymore. <span class='greenyellow'><em>Wakefullness</em></span> decreases steadily throughout the day and will take a big hit if you have no <span class='cyan'><em>Stamina</em></span> left and try to cast spells or run around."
+
+    "That's about it for your personal needs."
+
+    <<button [[Keep listening | WakingUp14]]>>
+        <<set $plrStats.sanity.max = 3>>
+        <<set $plrStats.sanity.cur = 3>>
+        <<set $plrStats.wake.max = 5>>
+        <<set $plrStats.wake.cur = 5>>
+    <</button>>\
+
+:: WakingUp14
+    <<set _booksfound = 0>>\
+
+    "Now onto tomorrow. For the first week your schedule will be my schedule. Meaning I get to follow you around all week. If you do well, then the leash gets loosened for both of us. Please, don't suck this week. Otherwise you get to listen to me for the entire second week as I tear down any vestige of self-confidence or worth you have left and cause you to question why you even need to exist anymore." 
+    
+    The cold glare she gives you makes the situation clear, you might want to avoid slacking off for at least one week.
+
+    $npcs.Janessa.firstName continues, "The courses you will be taking are all basic freshman classes, all essentially designed so you don't kill yourself or get someone else sucked into a void portal or something. Or incarcerated for breaking our laws."
+
+    "The first course is "Arcane Arts 101", the professor will go over the dangers of magic and teach you a few small spells to get started with. At this point, most of the students in that class will have already been taught these basics by their families so you'll be at quite the disadvantage. Like $npcs.Barden.formal told you, learn quickly."
+    
+    "The second course is "Conservation of Magic 101", there you'll be introduced to the various methods magic can be used. The basic methods are cantrips, spells, rituals, and sigils. There are others, but they're rare and specific to specific discplines."
+
+    "The third will be "Arcane Disciplines 101" which will introduce you to the 20 or so arcane discplines that exist. There are more, but they are either forbidden or almost never used."
+
+    "The fourth course is "Arcane Law 101." Pay close attention to this course because the professor will lay out in clear terms how, when, and what magics you are allowed to use. They'll also go over some more mundane laws, like don't steal from or stab people. Some laws are a little more, I guess you could call them grey, while at Magna. But breaking any of them and getting caught in the wider world will cost you either in fines or an execution. The government takes the laws seriously. Long term prison sentences are rare...rehabilitation isn't exactly a focus."
+
+    "And the fifth course you, or I guess we, will be taking is "Mundane Skills 101" basically just stupid things like human anatomy, plant recognition, swimming, and how to study effectively. Boring, but some of it can be useful."
+
+    $npcs.Janessa.firstName finishes with "And that is about it for your first set of courses. You will be tested once each week and when you show you've properly understood the material by passing several tests, you'll be given a final project. If your work meets the professor's standards, you can move onto the next course, further expand your knowledge, and I can go back to my course schedule."
+
+    "That's it for tonight, I'm going to bed. We will pick up your books on the way to your first class." $npcs.Janessa.firstName walks out and closes the door. You also hear the door lock on her way out.
+
+    Still feeling wired, whether from the amount of sleep that you had before tonight's events or from the excitement of learning this entirely unknown world exists, is anyone's guess. But sleep is not in your immediate future. You decide to do something to pass the time. 
+    
+    Hell, you realize you have no idea what time is, let alone what today's date is!
+
+    <<button "Poke around for anything interesting">>
+        <<if _booksfound == 0>>
+            <<foundItem "miscbook" "mapSchool">>
+            <<set _booksfound += 1>>
+            <<calcTime 30>>
+        <<elseif _booksfound == 1>>
+            <<foundItem "miscbook" "mapTown">>
+            <<set _booksfound += 1>>
+            <<calcTime 30>>
+        <<elseif _booksfound == 2>>
+            <<foundItem "spellbook" "book1" "illusion">>
+            <<set _booksfound += 1>>
+            <<calcTime 30>>
+        <<else>>
+            <<run UI.alert("Looks like you picked through everything of interest.")>>
+        <</if>>
+    <</button>>
+
+    <<button "Try to sleep">>
+
+    <</button>>

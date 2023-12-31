@@ -1,0 +1,20 @@
+:: BackgroundChase1
+
+    You take a second and think. You can remember a few things, but its almost like the rest of the memories are out of reach.
+
+    You recall a forest, a campfire, and tents in a clearing. You were sitting at the campfire holding a cup of something. Coffee! It was coffee.
+
+    You remember feeling cold, but renewed, sort of refreshed in the cold morning air.
+
+    Beyond actual memories, that's all you could find. And then it hits you like a freight train and leaves you unable to think, or even to breath. Horror. Pure, unadulerated horror. For a moment all you can think about is fleeing or hiding, but instead all you can do is stand frozen in place.
+
+    Just as quickly as it came over you, you are freed from your unreasonable horror. You tell $npcs.barden.formal:
+
+    <<button[[I was camping in the woods | WakingUp7]]>>
+        <<set $plrSpkChoice = "I was in the woods, camping. There might have been others there, but I don't remember anything else.">>
+    <</button>>
+    <<button [[Actually, I remember something completely different | WakingUp6]]>><</button>>
+
+:: BackgroundChase2
+
+:: BackgroundChase3

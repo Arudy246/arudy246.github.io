@@ -24,6 +24,9 @@
         <span id='ui-wake' class='greenyellow'>Wakefullness: </span>$plrStats.wake.cur / $plrStats.wake.max \
     <</if>>\
 
+:: StoryBanner
+    <img class="banner" src='img/symbol.png'/>
+
 :: StoryMenu
     [[Dev Dimension]]
     [[Character Info]]

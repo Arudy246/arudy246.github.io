@@ -24,11 +24,16 @@ sugarcube-2:
       description: "Picks up an item and notifies player"
 
     speech:
-      description: "Makes speech boxes."
+      description: "Makes speech boxes. Takes one arg, either lowercase name of speaker or 'plr'"
       container: true
       parameters:
        - text |+ text
 
+    tone:
+      description: "Adds a color and italics as a tone for speech. Takes one arg, either 'neg' or 'pos'"
+      container: true
+      parameters:
+       - text
 
     # simple inventory macros
     item:

@@ -7,8 +7,8 @@
         <<set $relAmtTemp = _args[1]>>
     <</widget>>
 
+    <<nobr>>
     <<widget "printRelGain">>
-        <<nobr>>
             <<if $relAmtTemp>>
                 <<if $relAmtTemp > 0 >>
                     <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].formal + ' has improved!</span>'>>
@@ -17,8 +17,8 @@
                 <</if>>
                 <<unset $relAmtTemp, $relNpcTemp>>
             <</if>>
-        <</nobr>>
     <</widget>>
+    <</nobr>>
 
     <<widget "calcAttractiveness">>
         <<nobr>>
@@ -248,5 +248,19 @@
                     <<set _address = $tbd._args[1]>>
 
             <</switch>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "tone" container>>
+                <<if _args[0] == "neg">>
+                    <span class="negTone">
+                        [_contents]
+                    </span>
+                <<elseif _args[0] == "pos">>
+                    <span class="posTone">
+                        [_contents]
+                    </span>
+                <</if>>
         <</widget>>
     <</nobr>>

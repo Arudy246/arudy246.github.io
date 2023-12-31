@@ -1,0 +1,18 @@
+:: BackgroundHostage1
+
+    You can barely recall anything, the memories are so faded. You remember being at a house that seems familiar to you.
+
+    And smelling something delicious in the air. The only other thing you can pick-out is seeing a figure, not stranger, but someone you loved.
+
+    Everything else is lost to you, all except for an unnatural hatred that rises into your mind. 
+    
+    For a few moments, you can't help but want to break everything, burn everything. And then as quickly as it came, the hatred passes. As the red disappears from your vision, you tell $npcs.barden.formal:
+
+    <<button[[I think I was at home | WakingUp7]]>>
+    <<set $plrSpkChoice = "I can barely remember, but I think I was at home with my spouse. Beyond that, I don't know.">>
+    <</button>>
+    <<button [[Actually, I remember something completely different | WakingUp6]]>><</button>>
+
+:: BackgroundHostage2
+
+:: BackgroundHostage3

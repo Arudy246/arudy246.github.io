@@ -441,6 +441,10 @@
             level: 0,
             desc: ""
         },
+        demonology: {
+            level: 0,
+            desc: ""
+        },
         divination: {
             level: 0,
             desc: ""
@@ -540,10 +544,10 @@
     }>>
     /*-----NPC Character Arrays-----*/
     <<set $npcs = {
-        Amy: {
+        amy: {
             firstName: "Amy", 
             lastName: "Everett", 
-            title: "Medicus", 
+            title: "Mendicant", 
             sex: "female", 
             age: 40, 
             eyes: "amber", 
@@ -552,28 +556,28 @@
             formal: "Mrs. Everett"
         },
 
-        Barden: {
+        barden: {
             firstName: "Barden", 
-            lastName: "Donaver", 
-            title: "Headmaster", 
+            lastName: "Sullivan", 
+            title: "Dean", 
             sex: "male", 
             age: 55,
-            eyes: "dark blue", 
-            hair: "black",
+            eyes: "dark blue",
+            hair: "white",
             personality: "neutral",
-            formal: "Headmaster Donaver"
+            formal: "Dean Sullivan"
         },
 
-        Janessa: {
+        janessa: {
             firstName: "Janessa",
-            lastName: "Alston",
+            lastName: "Starr",
             title: "student",
             sex: "female",
             age: 20,
             eyes: "gray",
             hair: "blonde",
             personality: "unfriendly",
-            formal: "Ms. Alston"
+            formal: "Ms. Starr"
         }
     }>>
     /*-----UI Story Menu Variables-----*/
@@ -635,3 +639,6 @@
         "round",
         "square"
     ]>>
+
+    /*-----Speech Selection-----*/
+    <<set $plrSpkChoice = "">>

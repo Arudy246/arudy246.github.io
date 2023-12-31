@@ -1,0 +1,20 @@
+:: BackgroundCar1
+
+    A few images find their way into your mind, but they are blurry. Almost like they're old memories mostly faded with time.
+
+    You can remember a car, a windy road, and the bright sun in the sky. 
+    
+    You remember singing songs with people. Maybe three people. Two of them were younger, one was about your age.
+
+    The rest of the memories seem too faded to reclaim. But you do have a strong feeling about it, you feel sorrow. Deep, deep sorrow.
+
+    Tears well in your eyes, but you have no idea why. You dry your eyes and tell $npcs.barden.formal:
+
+    <<button[[I was driving with my family | WakingUp7]]>>
+        <<set $plrSpkChoice = "All I remember was driving with three other people. I think they were my family. But that's it.">>
+    <</button>>
+    <<button [[Actually, I remember something completely different | WakingUp6]]>><</button>>
+
+:: BackgroundCar2
+
+:: BackgroundCar3
