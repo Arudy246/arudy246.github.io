@@ -264,3 +264,42 @@
                 <</if>>
         <</widget>>
     <</nobr>>
+
+    <<nobr>>
+        <<widget "setStamina">>
+            <<set $plrStats.stamina.cur = _args[0]>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "setLife">>
+            <<set $plrStats.life.cur = _args[0]>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "setFocus">>
+            <<set $plrStats.focus.cur = _args[0]>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "setSanity">>
+            <<set $plrStats.sanity.cur = _args[0]>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "staminaUpdatePrint">>
+            <<set _stamDec = $plrStats.stamina.pre - $plrStats.stamina.cur>>
+            <<set _stamInc = $plrStats.stamina.cur - $plrStats.stamina.pre>>
+            <<if $plrStats.stamina.cur < $plrStats.stamina.pre>>
+                <span class="staminaDec">Your stamina decreased by _stamDec.</span>
+
+            <<else if $plrStats.stamina.cur > $plrStats.stamina.pre>>
+                <span class="staminaInc">Your stamina increased by _stamInc.</span>
+
+            <</if>>
+            <<set $plrStats.stamina.pre = $plrStats.stamina.cur>>
+        <</widget>>
+    <</nobr>>

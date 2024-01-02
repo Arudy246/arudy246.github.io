@@ -9,23 +9,22 @@
 :: StoryTitle
     Live Another Life
 
-
 :: Start
-    <div class='text-center'>\
-        <img class='title-image' src="img/title-border.png">\
-        <div class='wood-text'><h2>Live Another Life</h2></div>\
-    </div>\
-    Welcome to Live Another Life! This quick page will introduce you to a few keys things before getting into the game.
+    <div class='text-center main-title'>\
+
+        <h2 class='wood-text'>Live Another Life</h2>
+    </div>
+    Welcome to Live Another Life!
 
     This is a game of choices, developement, advancement, and consequences set in modern day America. But most of all it is freedom. You have the freedom to choose who and what your character is.
 
-    There is nothing physically stopping you from being a poisonious, decietful, and vindictive person. While you might not be able to make use of your friends to help you accomplish your goals, with enough studying and exploring you will still be able to succeed at whatever it is you seek.
+    There is nothing physically stopping you from being a poisonious, deceitful, or vindictive person. While you might not be able to make use of your friends to help you accomplish your goals, with enough studying and exploring you will still be able to succeed at whatever it is you seek.
 
     If you decide to focus soley on your relationships with others, they will be able to help you advance your abilities and offer you assistance quickly, but only up to the extent of their knowledge and experiences.
 
-    There will be no immersion breaking explanations of mechanics or characters. You will learn as you go. Asking questions, reading books, studying tomes, and casting spells will all help you give you more complete understanding of how the world works and what you can do with.
+    There will be no immersion breaking explanations of mechanics or characters. You will learn as you go. Asking questions your fellow students, reading books, studying tomes, exploring the area, and casting spells will all help you give you more complete understanding of how the world works and what you can do with.
 
-    So go forth and Live Another Life!
+    So go forth and Live Another Life!\
     <div class='text-center'>
         <<button[[New Game | gameWarning]]>><</button>>
     </div>
@@ -43,5 +42,5 @@
         <a href="https://www.dreamworks.com/">
         <<button "More Wholesome">><</button>>\
         </a>\
-        <<button [[More Fun | Dream1]]>><</button>>
+        <<button [[More Better? | Dream1]]>><</button>>
     </div>

@@ -3,29 +3,9 @@
     <<if $plrName.fName != "" && $plrName.fName != "First">>\
         <u>Name: $plrName.fName $plrName.lName</u>\
     <</if>>\
-    <<if $plrStats.stamina.max != 0>>
-        <div id="verticalstaminabarbkg" class="vertbarbkg"><div id="verticalstaminabar" class="vertbar"></div></div><<run Stamina($plrStats.stamina.cur, $plrStats.stamina.max, "verticalstaminabar", false)>>\
-        <span id='ui-stamina' class='cyan'>Stamina: </span>$plrStats.stamina.cur / $plrStats.stamina.max \
-    <</if>>\
-    <<if $plrStats.life.max != 0>>
-        <div id="verticallifebarbkg" class="vertbarbkg"><div id="verticallifebar" class="vertbar"></div></div><<run Life($plrStats.life.cur, $plrStats.life.max, "verticallifebar", false)>>\
-        <span class='crimson'>Lifeforce: </span><span id='ui-life'>$plrStats.life.cur / $plrStats.life.max</span> \
-    <</if>>\
-    <<if $plrStats.hygiene.max != 0>>
-        <div id="verticalhygienebarbkg" class="vertbarbkg"><div id="verticalhygienebar" class="vertbar"></div></div><<run Hygiene($plrStats.hygiene.cur, $plrStats.hygiene.max, "verticalhygienebar", false)>>\
-        <span id='ui-hygiene' class='darkgreen'>Hygiene: </span>$plrStats.hygiene.cur / $plrStats.hygiene.max \
-    <</if>>\
-    <<if $plrStats.sanity.max != 0>>
-        <div id="verticalsanitybarbkg" class="vertbarbkg"><div id="verticalsanitybar" class="vertbar"></div></div><<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "verticalsanitybar", false)>>\
-        <span id='ui-sanity' class='purple'>Sanity: </span>$plrStats.sanity.cur / $plrStats.sanity.max \
-    <</if>>\
-    <<if $plrStats.wake.max != 0>>
-        <div id="verticalwakebarbkg" class="vertbarbkg"><div id="verticalwakebar" class="vertbar"></div></div><<run Wakefullness($plrStats.wake.cur, $plrStats.wake.max, "verticalwakebar", false)>>\
-        <span id='ui-wake' class='greenyellow'>Wakefullness: </span>$plrStats.wake.cur / $plrStats.wake.max \
-    <</if>>\
 
 :: StoryBanner
-    <img class="banner" src='img/symbol.png'/>
+    <img class="banner" src='img/logo.png'/>
 
 :: StoryMenu
     [[Dev Dimension]]

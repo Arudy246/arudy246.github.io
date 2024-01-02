@@ -27,29 +27,34 @@
         text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
         letter-spacing: 1px;
     }
-    .title-image {
-        width: 35%;
+
+    .main-title {
+        background-image: url("img/title-border.png");
+        background-size: 70% 70%;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-top: -5em;
+        margin-bottom: -5em;
     }
-    .title-text {
-        position: absolute;
-        top: 25%;
-        left: 60%;
-        transform: translate(-50%, -50%);
-    }
+
     .wood-text {
     background: url('img/title-texture.jpg');
     background-size: 35%;
-    position: absolute;
     font-size: extra-large * 1.6;
     text-transform: uppercase;
     font-family: HeaderText;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    top: 5.5%;
-    left: 42.5%;
     -webkit-text-stroke-color: rgba(black, 0.6);
     }
+
+    body {
+        background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bgtest2.jpg);
+        background-size: 20%;
+        background-repeat: repeat;
+    }
+
     .macro-button {
         background: #000d1a;
         border: 5px groove #00264d;
@@ -63,14 +68,9 @@
         text-align: center;
     }
     #ui-bar {
-        background-image: url("img/bg.png");
+        background-image: url("img/bg_uibars.jpg");
+        background-size: cover;
         border-right: 10px groove #262626;
-    }
-    #ui-bar-history {
-        margin: 0em 4.5em 0em 0em;
-    }
-    #ui-bar-body {
-        padding: 0em 1em 0em 0.5em;
     }
     #menu {
         margin-top: 1.5em !important;
@@ -89,6 +89,9 @@
         border: 15px solid transparent;
         border-image: url("img/passage-border.png") 80 repeat;
         padding: 1.5em;
+        background-color: rgba(20, 20, 20, 0.8);
+        margin-left: -5em;
+        margin-right: -5em
     }
     #passage-start {
         border: none;
@@ -117,6 +120,18 @@
         font-style: italic;
         margin-left: 5px;
     }
+    .staminaInfo {
+        color: cyan
+    }
+
+    .staminaDec {
+        color: rgba(0, 255, 255, 0.25);
+    }
+
+    .staminaInc {
+        color: rgba(0, 255, 255, 0.75);
+    }
+
     .cyan {
         color: cyan;
     }
@@ -243,3 +258,181 @@
         background-image: URL("img/characters/thumb_sullivan.jpg");
     }
     /* Speech Box System - End */
+
+    /* hovertip v2.0 - Start */
+    .hoverTip {
+        display: inline-block;
+        top: 4px;
+        border-width: 0px;
+        border-bottom: 2px dotted white;  /* If you want dots under the hoverable text */
+    }
+    .hoverTipTxt {
+        position: relative;
+        vertical-align: text-bottom;
+        line-height: initial;
+    }
+    .hoverTipTxt .hoverBox {
+        position: absolute;
+        visibility: hidden;
+    }
+    .hoverTipTxt:hover .hoverBox, .hoverTipTxt:focus .hoverBox {
+        visibility: visible;
+    }
+    .hoverBox {
+        padding: 3px 10px;
+        width: intrinsic;  /* Safari/WebKit uses a non-standard name */
+        width: -webkit-max-content;  /* Chrome */
+        width: -moz-max-content;  /* Firefox/Gecko */
+        width: max-content;
+        max-width: 330px;
+        line-height: initial;
+        text-align: left;
+        color: white;
+        background-color: black;
+        border: #7f7f7f solid 2px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+                border-radius: 6px;
+        -webkit-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+                box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+        z-index: 100;
+    }
+    .hoverTail::after {
+        content: "";
+        position: absolute;
+        top: 100%;  /* At the bottom of the tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: #7f7f7f transparent transparent transparent;
+        z-index: 100;
+    }
+    .hoverBox a {
+        -webkit-transition-duration: unset;
+        -moz-transition-duration: unset;
+            -o-transition-duration: unset;
+                transition-duration: unset;
+    }
+    #ui-bar .hoverBox {
+        max-width: 230px;
+    }
+    /* hovertip v2.0 - End */
+
+    /* Styling and Colours of the Right UI Bar. */
+#right-ui-bar {
+    background-image: url("img/bg_uibars.jpg");
+    background-size: cover;
+    border-left: 10px groove #262626;
+	text-align: center;
+}
+#right-ui-bar-toggle {
+	font-size: 1.2em;
+	line-height: inherit;
+	color: #eee;
+	background-color: transparent;
+	border: 1px solid #444;
+}
+#right-ui-bar-toggle:before {
+	font-family: tme-fa-icons;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+}
+
+/* Layout and Positioning of the Right UI Bar. */
+#right-ui-bar {
+	position: fixed;
+	z-index: 50;
+	top: 0;
+	right: 0;
+	width: 17.5em;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-transition: right .3s ease-in;
+	-o-transition: right .3s ease-in;
+	transition: right .3s ease-in;
+}
+#right-ui-bar-tray {
+	position: absolute;
+	top: .2em;
+	left: 0;
+	right: 0;
+}
+#right-ui-bar-toggle {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-left: none;
+	padding: .3em .45em .25em;
+	-webkit-user-select: none;
+    user-select: none;
+}
+#right-ui-bar-toggle:before {
+	content: "\e81e";
+}
+#right-ui-bar-body {
+	height: 90%;
+	height: calc(100% - 2.5em);
+	margin: 2.5em 0;
+	padding: 0 1.5em;
+}
+#right-ui-bar-body {
+	line-height: 1.5;
+	overflow: auto;
+}
+
+#story {
+	margin-right: 20em;
+}
+
+/* Stowing of the Right UI Bar. */
+#right-ui-bar.stowed {
+	right: -15em;
+}
+#right-ui-bar.stowed #right-ui-bar-toggle {
+	padding: .3em .55em .25em .35em;
+}
+#right-ui-bar.stowed #right-ui-bar-toggle:before {
+	content: "\e81d";
+}
+#right-ui-bar.stowed #right-ui-bar-body {
+	visibility: hidden;
+	-webkit-transition: visibility .2s step-end;
+	-o-transition: visibility .2s step-end;
+	transition: visibility .2s step-end;
+}
+
+#right-ui-bar.stowed~#story {
+	margin-right: 4.5em;
+}
+
+/* Horizontal Stat Bar - Start */
+.hzbarbkg {  /* default class for all horizontal bar backgrounds */
+	position: relative;
+	height: 15px;
+	width: 100%;
+	background-color: #808080;
+	background-image: linear-gradient(to right, rgba(68, 68, 68, 0.5), rgba(34, 34, 34, 0.5) 5px), linear-gradient(to bottom, rgba(68, 68, 68, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
+	border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+	z-index: 56;
+	visibility: visible;
+}
+.hzbar {  /* default class for all horizontal bars */
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 15px;
+	background-color: transparent;
+	background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
+	border-radius: 10px;
+	z-index: 57;
+	transition: width ease 1s, background-color ease 1s;
+}
+/* Horizontal Stat Bar - End */

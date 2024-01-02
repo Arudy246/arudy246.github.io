@@ -35,7 +35,7 @@
 
     She proceeds to stand over you and holds her hands above your chest. She says words. But what she says makes zero sense to you, almost as if she is speaking gibberish or a foreign language. Latin maybe? Sounds a little familiar.
 
-    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npc.amy.formal is right, you are just confused. Very, very confused.
+    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.formal is right, you are just confused. Very, very confused.
 
     <<button [[Continue | WakingUp3]]>><</button>>
 
@@ -146,7 +146,7 @@
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_bro_hisp.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_bro_hisp.jpg">>
+            <<radiobutton "$plrImg" "img/characters/thumb_fem_bro_hisp.jpg" checked>>
         </div>\
     </div>
 
@@ -211,9 +211,20 @@
 
     After reacquainting yourself with well, yourself, you remember the unusual outfit you are wearing. You look at the two women and say:
 
-    <<button [[Umm, I am sorry, but where are my clothes? | WakingUp5]]>><<relGain amy 10>><</button>>
-    <<button [[What the hell am I wearing?! | WakingUp5]]>><<relGain amy -5>><</button>>
-    <<button [[I am so confused... What am I wearing? | WakingUp5]]>><<relGain amy 5>><</button>> 
+    <<button [[Umm, where are my clothes? | WakingUp5]]>>
+        <<relGain amy 10>>
+        <<set $plrSpkChoice = "Umm, sorry to ask, but where are my clothes?">>
+    <</button>>
+    <<button [[What the hell am I wearing?! | WakingUp5]]>>
+        <<relGain amy -5>>
+        <<set $plrSpkChoice = "What the hell am I wearing and where are my cloths?!">>
+
+    <</button>>
+    <<button [[I am so confused... What am I wearing? | WakingUp5]]>>
+        <<relGain amy 5>>
+        <<set $plrSpkChoice = "I am so confused... What am I wearing and what is going on?">>
+
+    <</button>> 
 
 :: WakingUp5
     <<silently>>
@@ -225,8 +236,8 @@
         <<set $plrName.formal = $plrName.prefix + " " + $plrName.lName>>
         <<calcAttractiveness>>
     <</silently>>\
-
     <img class="scene" src="img/hallway.jpg" alt="medical wing photo"/>
+    <<speech plr>><<print $plrSpkChoice>><</speech>>\
     <<printRelGain>>
 
     $npcs.janessa.firstName rolls her eyes and walks towards the door.
@@ -248,14 +259,14 @@
     You turn back towards $npcs.janessa.firstName and say:
 
     <<button [[Did you not hear that? | WakingUp6]]>>
-        <<set $plrSpkChoice = "Did you not hear that?">>
+        <<set $plrSpkChoice = "Did you not hear that? It sounded like, something?">>
     <</button>>
-    <<button [[Alright, seriously now. What is your problem? | WakingUp6]]>>
+    <<button [[Alright! What is your problem? | WakingUp6]]>>
         <<relGain janessa -5>>
         <<set $plrSpkChoice = "Alright, seriously now. What is your problem?">>
     <</button>>
-    <<button [[Nothing. I'm just...looking. | WakingUp6]]>>
-        <<set $plrSpkChoice = "Nothing. I'm just...looking.">>
+    <<button [[Nothing. | WakingUp6]]>>
+        <<set $plrSpkChoice = "Nothing. I'm just... Nevermind.">>
     <</button>>
 
 :: WakingUp6
@@ -305,7 +316,7 @@
 
     <<speech "plr">><<print $plrSpkChoice>><</speech>>
 
-    <<speech "barden">>Well, sometimes it is better to leave one's past in the past<</speech>>\
+    <<speech "barden">>Well, sometimes it is better to leave one's past in the past.<</speech>>\
     <<tone "pos">>$npcs.barden.formal looks visibly relieved before moving on<</tone>>
 
     <<speech "barden">>The safety and excellence of this institution is my responsibility and I care for it deeply. I expect you to learn how to live in our world. Quickly. To help you acclimate and to make sure you don't get yourself or anyone else hurt, $npcs.janessa.formal will be your Secutor. She will familiarize you with this institution, our rules, and how to survive on this side of reality.<</speech>>\
@@ -313,7 +324,7 @@
     $npcs.barden.formal looks at $npcs.janessa.firstName but says to you:
 
     <<speech "barden">>You will be staying her family residence until other arrangements can be made.<</speech>>\
-    <<tone "neg">>$npcs.barden.formal appears regretul<</tone>>
+    <<tone "neg">>$npcs.barden.formal appears regretful<</tone>>
 
     $npcs.janessa.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn't like, it's the invasion of her private space you represent.
 
@@ -360,93 +371,112 @@
     <<speech "janessa">>This is the banquet hall. As you can see, it hasn't been used in awhile. Before you go asking, yes it is a bit dirty. And yes, there is much missing. Unfortunately, my family's status has diminished somewhat in the last several years. That's why I am you Secutor and someone else is not. No one else would have had to say yes.<</speech>>\
 
     <<button [[Stop being a bitch! | WakingUp10]]>>
-        <<relGain Janessa -5>>
+        <<relGain janessa -5>>
         <<set $plrSpkChoice = "Will you knock off the bitch attitude. I have done nothing to you. If it wasn't clear to you, I didn't ask for any of this.">>
     <</button>>
     <<button [[Sorry. I just want to understand. | WakingUp10]]>>
-        <<relGain Janessa 10>>
-        <<set $plrSpkChoice = "I am sorry you're in this position. I don't know what most of it means, but I am sorry.">>
+        <<relGain janessa 10>>
+        <<set $plrSpkChoice = "I'm sorry I'm your problem. I just don't understand what is going on. And seriously, I'm trying.">>
     <</button>>
     <<button [[(Start crying) | WakingUp10]]>>
-        <<relGain Janessa -5>>
+        <<relGain janessa -5>>
         <<set $plrSpkChoice = "[you cry]">>
     <</button>>
 
 :: WakingUp10
     <img class="scene" src="img/JanResidEntry.jpg"/>\
+
+    <<speech plr>><<print $plrSpkChoice>><</speech>>\
     <<printRelGain>>\
 
-    $npcs.Janessa.firstName sternly says, "Whatever. You've been a given a gift. You know how often the ungifted get introduced to the arcane, let alone gain the ability to use it? Try never. The possibilities open to you are nearly limitless. Few on this world are ever given the chance to truly change. Do you want to talk with deceased ancestors? Done. Throw gigantic balls of searing plasma? You can. Shield yourself from harm and become nearly invulnerable? Pretty easy. Hell, you could even ignore every edict our government has issued and open gates to other worlds and dimensions unleashing uncontrollable nightmarish creatures. The only true limit is how much time and effort you put into mastering your abilities. "
-    
-    "However, before you go and get power hungry and bite off more than you chew, know that there is always a cost. No one can have something for nothing. There are a few ways to fuel your abilities, but only one is normally used. The rest are all pretty esoteric. I know sex can be used to power spells and supposedly there are others. Almost everyone just uses basic <span class='cyan'><em>Stamina</em></span>. You get physically exhausted after running, carrying things, or lifting objects right? Well, magic uses the same thing. If you can only run for a minute or two, you'll only be able to cast a couple of weak little spells. Working out and using more magic, will all improve your <span class='cyan'><em>Stamina</em></span>. Eating and sleeping will help you get your energy back. I can't tell you how many times I was up late practicing and had to raid the dining hall for some food."
+    <<if $relAmtTemp < 0>>
+        <<speech janessa>>Get grip. Being pathetic or weak will not help you. And seriously, I don't care. Go talk to $npcs.amy.formal if you need to "talk" to someone. But leave me out of it.<</speech>>\
+    <<else>>
+        <<speech janessa>>I'm sorry you are too. But thanks, I suppose, for seeing that. Just don't use me as your emotional outlet, find someone else, please.<</speech>>\
+    <</if>>\
+
+    <<speech janessa>>Try to keep this in mind, whether it seems like it or not you've been given a gift. Either you'll figure that out or you won't. I mean, do you know how often an unitiated is made aware of the arcane, let alone gets to embrace it? Ya, never. The possibilities that are now open to you are nearly limitless. Seriously, you now have the chance to shoot lightning from your fingertips. Hell, if you decided to forsake our laws you could even commune with the dead, or make yourself as close to immortal as natural law allows. You can shield yourself from harm, use the power of the stars to foresee events, and throw balls of searing plasma at... well at whatever you want. I know you don't know it yet, but the things you are capable of now dwarf anything you could have possibly done before tonight.<</speech>>\
+
+    <<speech janessa>>The only real limit is the time and effort you put into learning. But, before you let any of this go to your head, you must know there is always a cost, to anything we do. This includes magic.<</speech>>\
+
+    <<speech janessa>>Consider this your first lesson. <b>The Words</b>. Which is the language we use to build and to cast spells need to be fueled by energy. Some call it mana, some call it arcana, at the end of the day, it all means the same thing; energy. There are several ways to fuel your spells, like sex, blood, focus crystals, etc. Pretty much anything that contains or releases a large enough concentration of energy will do. There are even some very illegal ways to do it, but skipping over that for now, most people simply use <span class='staminaInfo'><em>Stamina</em></span>. <</speech>>\
+
+    <<speech janessa>><span class='staminaInfo'><em>Stamina</em></span> is just an easy way to describe your general energy level. It's really no different than when you go for a long run, or after working out. Basically, you use your body's energy reserves to fuel everything you do on daily basis and so it is with magic. And most use their body's energy because it is pretty easy to improve on. Today, you might be able to run less than a mile, or cast only a few simple spells each day. But in time and with practice and training, you'll be able to compete in triathlons, or cast massively complex spells, many times a day.<</speech>>\
+
+    <<speech janessa>>So to sum up, training your body and practicing magic will both improve your stamina. Eating and sleeping will also help you regain your energy. I can't tell you how many times I was up late casting with friends and needed to raid the cafeteria for a full day's worth of food.<</speech>>\
 
     <<button [[Keep listening | WakingUp11]]>>
         <<set $plrStats.stamina.max = 10>>
-        <<set $plrStats.stamina.cur = 10>>
+        <<setStamina 6>>
     <</button>>
 
 :: WakingUp11
     <img class="scene" src='img/JanResidKitchen.jpg'/>\
 
-    $npcs.Janessa.firstName walks to the left from the entrance hall and down a short hallway that ends at the kitchen.
+    <<speech janessa>>I'm sure I don't need to describe the kitchen. Obviously, it isn't well used. I don't know anyone who eats at their residence, everyone eats at the cafetaria.<</speech>>
 
-    "This is, obviously, the kitchen." $npcs.Janessa.firstName says. You see that it hasn't been used a very long time. Dust covers everything, the pot rack is empty, and the shelves are bare. Even the candless flames seem to be dying, shedding only a small amount of light on the room.
+    You see that it hasn't been used a very long time. Dust covers everything, the pot rack is empty, and the shelves are bare. Even the floating candles seem to be dying, shedding only a small amount of light on the room.
 
-    $npcs.Janessa.firstName says, "I don't use it. Most of us eat at in the dining hall at Magna."
-
-    She then says, "But anyways, another key thing to pay attention to is your <span class='crimson'><em>Lifeforce</em></span>. It's just health in another name. Getting punched too hard, taking a lightining strike to the head, or falling off a building, well obviously you're gonna get hurt. Getting stabbed or beheaded is also not good for you. <span class='crimson'><em>Lifeforce</em></span> is finite, lose enough of it and there is very high chance you'll die. Simple right? Injuries can be healed by using restoration magic, having someone else use it, or by going to the medical wing where $npcs.Amy.formal will be more than happy to heal you. By the way, she is probably the nicest person at this school. Don't be an ass to her."
+    <<speech janessa>>But anyways, next lesson. You will need to be aware of injuries, most refer to this as <span class='crimson'><em>Lifeforce</em></span>. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you're gonna get hurt. You can only take so many injuries before you lose the ability to survive. <span class='crimson'><em>Lifeforce</em></span> is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.formal at the Clinic. If you're unlucky, well don't be suprised if there are some lasting consequences, if you even survive. To regain your <span class='crimson'><em>Lifeforce</em></span>, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.<</speech>>\
 
     <<button [[Keep listening | WakingUp12]]>>
         <<set $plrStats.life.max = 10>>
-        <<set $plrStats.life.cur = 10>>
+        <<setLife 10>>
+        <<run Life($plrStats.life.cur, $plrStats.life.max, "lifeBar", true)>>
     <</button>>\
 
 :: WakingUp12
     <img class="scene" src='img/plrroomdoor.jpg'/>\
 
-    You follow $npcs.Janessa.firstName out of the kitchen. As you pass by two doors on your left, she says, "This room is empty and that one is mine. Fair warning, if you ever try to go in there, I will turn you into a chicken and donate you to the dining hall chefs. I'm not kidding." The emphasis she placed on that last part actually sounded legitimate. You should probably stay out.
+    You are led out of the kitchen and towards a short hallway with several closed doors. $npcs.janessa.firstName points towards one of them.
 
-    You walk down the hallway, pass by the entrance and banquet areas, and down another hallway. She stops at the last door on the left.
+    <<speech janessa>>This room is is mine. Do. Not. Ever. Try to enter my room without permission. You'll learn over the next few days that no still living practitioner tolerates trespassing or unsanctioned violence. I swear, I will turn you into poultry and donate you to the cafeteria cooks.<</speech>>\
+    <<tone neg>>$npcs.janessa.firstName is not smiling and appears quite serious about her threat<</tone>>
 
-    "This will be your room. If you want your own stuff or even a proper bed, you can figure it out for yourself. It's not like I have anything to spare anyways."
+    $npcs.janessa.firstName walks further down the hallway as you follow her. She opens one of the doors.
 
-    "There is a bathroom. Please use it. There are few better ways to annoy everyone around you than by creating a miasma that follows you around. There are spells that can help with that, but until you learn some biomancy, stick to soap and water. <span class='darkgreen'><em>Hygiene</em></span> should be obvious. Do things that get your dirty or sweaty, and it will decrease. The lower your <span class='darkgreen'><em>Hygiene</em></span>, the more you will look dirty and smell like it. A quick wash of the hands, some biomancy magic, and taking a bath will take care of that problem. You're here for free, everyone else has to pay for it. At least do the bare minimum and don't be the local nasty freeloader."
+    <<speech janessa>>This will be your room. I know it is not much. Actually, it really isn't anything. But if have the time or money, you can put whatever you want in it. A proper bed might be a good idea. Don't ask, I have nothing to spare.<</speech>>\
 
-    <<button [[Keep listening | WakingUp13]]>>
-        <<set $plrStats.hygiene.max = 10>>
-        <<set $plrStats.hygiene.cur = 10>>
+    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast be newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this <span class='greenyellow'><em>focus</em></span>. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on your casting.<</speech>>\
+
+    $npcs.janessa.firstName leads you into "your" room.
+
+    <<button [[Follow | WakingUp13]]>>
+        <<set $plrStats.focus.max = 3>>
+        <<setFocus 2>>
+        <<run FocusStat($plrStats.focus.cur, $plrStats.focus.max, "focusBar", true)>>
     <</button>>\
 
 :: WakingUp13
     <img class="scene" src='img/plrroom.jpg'>\
 
-    You follow $npcs.Janessa.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a similiar chair in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it is missing it's hard to tell. The only think that lights the interior is coming from the hallway.
 
-    $npcs.Janessa.firstName says, "Ya, so you have some work to do. I recommend you tidy it up and find some money to make it work for you. But it's your space, so you do you." She turns towards the door.
+    You follow $npcs.janessa.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it's hard to tell. The only light comes from the candles in the hallway.
 
-    "Two final points you should be aware of. The first is <span class='purple'><em>Sanity</em></span>, studying and using magic can be confusing. The more you learn and the more skilled your are at using magic, the less confusing it will be. If you start feeling like your <span class='purple'><em>Sanity</em></span> is too low, there is a rapidly increasing chance the next spell you use will backfire in someway. I cannot stress enough, this is extremely dangerous. You might have been trying to coax a plant into growing, but if the spell backfires enough, you may suddenly find yourself being consumed by the plant or your limbs might grow to the point of exploding. Seriously, don't underestimate how important it is to be mentally stable when practicing spellwork."
+    $npcs.janessa.firstName notices your concern.
 
-    "The last thing to know, is <span class='greenyellow'><em>Wakefullness</em></span>. Think of this as how much rest you've had and how awake you are. Trying to sleep, but keep getting woken up by a crappy bed?" She says as she eyes your current sleeping arrangements.
+    <<speech janessa>>Ya, so you have some work to do. I recommend you tidy up and figure out how to make some money to at least get the bed and maybe a desk. Reading books on the floor seems like a great way to get a crink in your neck. But hey, it's your space for now. So you do you I guess.<</speech>>\
 
-    "Or have you been awake for 24 hours? Obviously, you're going to be tired. Eventually, you'll be so tired you can't function anymore. <span class='greenyellow'><em>Wakefullness</em></span> decreases steadily throughout the day and will take a big hit if you have no <span class='cyan'><em>Stamina</em></span> left and try to cast spells or run around."
-
-    "That's about it for your personal needs."
+    <<speech janessa>>Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It's called <span class='purple'><em>Sanity</em></span>. Studying magic is confusing. Reading old, half-rotted tombs in agitating. Trying to cast spells you can't focus on. All these things will slowly eat away at you <span class='purple'><em>Sanity</em></span>. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I've been in the room when some kid got his hands on a spell written on a napkin and left in the library. He tried to cast it in class...It cost him his life and several other students their own <span class='purple'><em>Sanity</em></span>.<</speech>>\
+    <<tone neg>>$npcs.janessa.firstName trails off and glances towards some dark corner in your room for a moment<</tone>>
+        
+    <<speech janessa>>Think of it this way, if you try to cast something you simply don't understand, it may horribly backfire on you. You could have been trying to coax a plan into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.<</speech>>\
 
     <<button [[Keep listening | WakingUp14]]>>
         <<set $plrStats.sanity.max = 3>>
-        <<set $plrStats.sanity.cur = 3>>
-        <<set $plrStats.wake.max = 5>>
-        <<set $plrStats.wake.cur = 5>>
+        <<setSanity 2>>
     <</button>>\
 
 :: WakingUp14
     <<set _booksfound = 0>>\
 
+    <<speech janessa>><</speech>>
+
     "Now onto tomorrow. For the first week your schedule will be my schedule. Meaning I get to follow you around all week. If you do well, then the leash gets loosened for both of us. Please, don't suck this week. Otherwise you get to listen to me for the entire second week as I tear down any vestige of self-confidence or worth you have left and cause you to question why you even need to exist anymore." 
     
     The cold glare she gives you makes the situation clear, you might want to avoid slacking off for at least one week.
 
-    $npcs.Janessa.firstName continues, "The courses you will be taking are all basic freshman classes, all essentially designed so you don't kill yourself or get someone else sucked into a void portal or something. Or incarcerated for breaking our laws."
+    $npcs.janessa.firstName continues, "The courses you will be taking are all basic freshman classes, all essentially designed so you don't kill yourself or get someone else sucked into a void portal or something. Or incarcerated for breaking our laws."
 
     "The first course is "Arcane Arts 101", the professor will go over the dangers of magic and teach you a few small spells to get started with. At this point, most of the students in that class will have already been taught these basics by their families so you'll be at quite the disadvantage. Like $npcs.Barden.formal told you, learn quickly."
     

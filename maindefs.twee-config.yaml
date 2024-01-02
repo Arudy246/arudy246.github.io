@@ -34,6 +34,35 @@ sugarcube-2:
       container: true
       parameters:
        - text
+      
+    hovertip:
+      description: "Makes a tooltip over whatever the tags contain. Add the tooltip arg as 'here is a tip'"
+      container: true
+      parameters:
+       - text
+      
+    setStamina:
+      description: "Sets the current stamina variable to args[0]"
+      parameters:
+        - number
+
+    setLife:
+      description: "Sets the current life variable to args[0]"
+      parameters:
+        - number
+
+    setFocus:
+      description: "Sets the current focus variable to args[0]"
+      parameters:
+        - number
+
+    setSanity:
+      description: "Sets the current sanity variable to args[0]"
+      parameters:
+        - number
+
+    staminaUpdatePrint:
+      description: "Prints out whether stamina is increased or decreased and by what amount. Then updates stamina pre to equal stamina cur. No args."
 
     # simple inventory macros
     item:

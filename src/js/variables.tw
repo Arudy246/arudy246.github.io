@@ -47,22 +47,27 @@
     <<set $plrStats = {
         life: {
             max: 0,
+            pre: 0,
             cur:0
         }, 
         stamina: {
             max: 0,
+            pre: 0,
             cur: 0
         }, 
         sanity: {
             max: 0,
+            pre: 0,
             cur: 0
         }, 
         hygiene: {
             max: 0,
+            pre: 0,
             cur: 0
         }, 
-        wake: {
+        focus: {
             max: 0,
+            pre: 0,
             cur: 0
         }
     }>>

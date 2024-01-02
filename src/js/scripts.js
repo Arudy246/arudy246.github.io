@@ -1,5 +1,5 @@
 /*-----Favicon-----*/
-$(document.head).append("<link rel='icon' href='img/symbol.png'>")
+$(document.head).append("<link rel='icon' href='img/logo.png'>")
 
 window.charInfoTbl = function(obj, header) {
     let html = "<table><tbody><tr><th class='charinfohdr'>"+ header +"</th></tr>";
@@ -20,78 +20,87 @@ window.charInfoTblSub = function(obj, header) {
 }
 
 window.Stamina = function (CurST, MaxST, BarID, Horizontal, Container) {
-    if (Container == undefined) {
-        Container = document;
-    }
-    var HP = parseInt((CurST / MaxST) * 100).clamp(0, 100);
-    var BarElement = $(Container).find("#" + BarID);
-    if (Horizontal) {
-        BarElement.css({ width: HP + "%" });
-    } else {
-        BarElement.css({ height: HP + "%" });
-    }
-    BarElement.attr("title", CurST + "/" + MaxST + " Stamina");
-    $(Container).find("#" + BarID + "bkg").attr("title", CurST + "/" + MaxST + " Stamina");
-};
+	if (Container == undefined) {
+		Container = document;
+	}
+	var ST = parseInt((CurST / MaxST) * 100).clamp(0, 100);
+	var BarElement = $(Container).find("#" + BarID);
+	if (Horizontal) {
+		BarElement.css({ width: ST + "%" });
+	} else {
+		BarElement.css({ height: ST + "%" });
+	}
 
-window.Sanity = function (CurSAN, MaxSAN, BarID, Horizontal, Container) {
-    if (Container == undefined) {
-        Container = document;
-    }
-    var HP = parseInt((CurSAN / MaxSAN) * 100).clamp(0, 100);
-    var BarElement = $(Container).find("#" + BarID);
-    if (Horizontal) {
-        BarElement.css({ width: HP + "%" });
-    } else {
-        BarElement.css({ height: HP + "%" });
-    }
-    BarElement.attr("title", CurSAN + "/" + MaxSAN + " Sanity");
-    $(Container).find("#" + BarID + "bkg").attr("title", CurSAN + "/" + MaxSAN + " Sanity");
-};
+    var lit = 50 * ((CurST / MaxST) * 1.2);
+    var col = "hsl(180, 100%, " + lit + "%)"
+	BarElement.css("background-color", col);
 
-window.Wakefullness = function (CurWAK, MaxWAK, BarID, Horizontal, Container) {
-    if (Container == undefined) {
-        Container = document;
-    }
-    var HP = parseInt((CurWAK / MaxWAK) * 100).clamp(0, 100);
-    var BarElement = $(Container).find("#" + BarID);
-    if (Horizontal) {
-        BarElement.css({ width: HP + "%" });
-    } else {
-        BarElement.css({ height: HP + "%" });
-    }
-    BarElement.attr("title", CurWAK + "/" + MaxWAK + " Wakefullness");
-    $(Container).find("#" + BarID + "bkg").attr("title", CurWAK + "/" + MaxWAK + " Wakefullness");
+	BarElement.attr("title", CurST + "/" + MaxST + " Stamina");
+    $(Container).find("#ui-stamina").text(CurST + "/" + MaxST)
+	$(Container).find("#" + BarID + "bkg").attr("title", CurST + "/" + MaxST + " ST");
 };
 
 window.Life = function (CurHP, MaxHP, BarID, Horizontal, Container) {
-    if (Container == undefined) {
-        Container = document;
-    }
-    var HP = parseInt((CurHP / MaxHP) * 100).clamp(0, 100);
-    var BarElement = $(Container).find("#" + BarID);
-    if (Horizontal) {
-        BarElement.css({ width: HP + "%" });
-    } else {
-        BarElement.css({ height: HP + "%" });
-    }
-    BarElement.attr("title", CurHP + "/" + MaxHP + " LP");
-    $(Container).find("#" + BarID + "bkg").attr("title", CurHP + "/" + MaxHP + " LP");
+	if (Container == undefined) {
+		Container = document;
+	}
+	var HP = parseInt((CurHP / MaxHP) * 100).clamp(0, 100);
+	var BarElement = $(Container).find("#" + BarID);
+	if (Horizontal) {
+		BarElement.css({ width: HP + "%" });
+	} else {
+		BarElement.css({ height: HP + "%" });
+	}
+
+    var lit = 47 * ((CurHP / MaxHP) * 1.2);
+    var col = "hsl(348, 83%, " + lit + "%)";
+	BarElement.css("background-color", col);
+
+	BarElement.attr("title", CurHP + "/" + MaxHP + " Lifeforce");
+    $(Container).find("#ui-life").text(CurHP + "/" + MaxHP);
+	$(Container).find("#" + BarID + "bkg").attr("title", CurHP + "/" + MaxHP + " Lifeforce");
 };
 
-window.Hygiene = function (CurHY, MaxHY, BarID, Horizontal, Container) {
-    if (Container == undefined) {
-        Container = document;
-    }
-    var HP = parseInt((CurHY / MaxHY) * 100).clamp(0, 100);
-    var BarElement = $(Container).find("#" + BarID);
-    if (Horizontal) {
-        BarElement.css({ width: HP + "%" });
-    } else {
-        BarElement.css({ height: HP + "%" });
-    }
-    BarElement.attr("title", CurHY + "/" + MaxHY + " Hygiene");
-    $(Container).find("#" + BarID + "bkg").attr("title", CurHY + "/" + MaxHY + " Hygiene");
+window.Sanity = function (CurSan, MaxSan, BarID, Horizontal, Container) {
+	if (Container == undefined) {
+		Container = document;
+	}
+	var SAN = parseInt((CurSan / MaxSan) * 100).clamp(0, 100);
+	var BarElement = $(Container).find("#" + BarID);
+	if (Horizontal) {
+		BarElement.css({ width: SAN + "%" });
+	} else {
+		BarElement.css({ height: SAN + "%" });
+	}
+
+    var lit = 65 * ((CurSan / MaxSan) * 1.3);
+    var col = "hsl(260, 60%, " + lit + "%)";
+	BarElement.css("background-color", col);
+
+	BarElement.attr("title", CurSan + "/" + MaxSan + " Sanity");
+    $(Container).find("#ui-sanity").text(CurSan + "/" + MaxSan);
+	$(Container).find("#" + BarID + "bkg").attr("title", CurSan + "/" + MaxSan + " Sanity");
+};
+
+window.FocusStat = function (CurCon, MaxCon, BarID, Horizontal, Container) {
+	if (Container == undefined) {
+		Container = document;
+	}
+	var CON = parseInt((CurCon / MaxCon) * 100).clamp(0, 100);
+	var BarElement = $(Container).find("#" + BarID);
+	if (Horizontal) {
+		BarElement.css({ width: CON + "%" });
+	} else {
+		BarElement.css({ height: CON + "%" });
+	}
+
+    var lit = 59 * ((CurCon / MaxCon) * 1.3);
+    var col = "hsl(84, 100%, " + lit + "%)";
+	BarElement.css("background-color", col);
+
+	BarElement.attr("title", CurCon + "/" + MaxCon + " Focus");
+    $(Container).find("#ui-focus").text(CurCon + "/" + MaxCon);
+	$(Container).find("#" + BarID + "bkg").attr("title", CurCon + "/" + MaxCon + " Focus");
 };
 
 // Simple Inventory, for SugarCube 2, by Chapel
@@ -122,3 +131,146 @@ window.Hygiene = function (CurHY, MaxHY, BarID, Horizontal, Container) {
         }
     });
 // Speech Box System - End
+
+/* hovertip v2.0 - Start */
+window.UpdateHoverTipTxt = function (container) {
+	if (Engine.isIdle()) {
+		clearInterval(HTTIntervalID);
+		if (container === undefined) {
+			container = $(document);
+		} else {
+			container = $(container);
+		}
+		var i, id, top, left, parent, elementList, element, hoverPos, boxPos, zindex;
+		elementList = container.find('span[id^="hoverTipTxt"]');
+		for (i = 0; i < elementList.length; i++) {
+			element = $(elementList[i]);
+			id = elementList[i].id.substring(11);
+			/* Find parent hoverTip item on the page. */
+			parent = $(container).find("#hoverTip" + (id));
+			/* Position bottom of hoverTipTxt just above the parent. */
+			top = Math.round(-element.outerHeight() - 6);
+			/* Center hoverTipTxt horizontally over parent. */
+			left = Math.round((parent.outerWidth() - element.outerWidth()) / 2);
+			/* See if the hoverTip is contained by something with a higher z-index. */
+			zindex = element.css("z-index");
+			if (zindex === "auto") {
+				zindex = 0;
+			} else {
+				zindex = parseInt(zindex, 10);
+			}
+			while (parent.parent()[0] !== document) {
+				if ((parent.parent().css("z-index") !== "auto") && (parseInt(parent.parent().css("z-index"), 10) > zindex)) {
+					/* Get container rect. */
+					boxPos = parent[0].getBoundingClientRect();
+					break;
+				}
+				parent = parent.parent();
+			}
+			/* Update position. */
+			element.css({ top: top, left: left });
+			hoverPos = element[0].getBoundingClientRect();
+			/* Make sure the text isn't outside the bottom of the screen. */
+			if (hoverPos.top > window.innerHeight - hoverPos.height - 10) {
+				top -= hoverPos.top - (window.innerHeight - hoverPos.height - 10);
+			}
+			/* Make sure the text isn't outside the top of the screen. */
+			if (hoverPos.top < 4) {
+				top -= hoverPos.top - 4;
+			}
+			/* Make sure the text isn't outside the right of the screen. */
+			if (hoverPos.left > window.innerWidth - hoverPos.width - 26) {
+				left -= hoverPos.left - (window.innerWidth - hoverPos.width - 26);
+			}
+			/* Make sure the text isn't outside the left of the screen. */
+			if (hoverPos.left < 4) {
+				left -= hoverPos.left - 4;
+			}
+			/* Update position. */
+			element.css({ top: Math.round(top), left: Math.round(left) });
+			hoverPos = element[0].getBoundingClientRect();
+			if (boxPos) {  /* Fit within dialog boxes and the like. */
+				/* Make sure the text isn't outside the bottom of the box. */
+				if (hoverPos.top > boxPos.bottom - hoverPos.height - 10) {
+					top -= hoverPos.top - (boxPos.bottom - hoverPos.height - 10);
+				}
+				/* Make sure the text isn't outside the top of the box. */
+				if (hoverPos.top < boxPos.top + 4) {
+					top -= hoverPos.top - (boxPos.top + 4);
+				}
+				/* Make sure the text isn't outside the right of the box. */
+				if (hoverPos.left > boxPos.right - hoverPos.width - 26) {
+					left -= hoverPos.left - (boxPos.right - hoverPos.width - 26);
+				}
+				/* Make sure the text isn't outside the left of the box. */
+				if (hoverPos.left < boxPos.left + 4) {
+					left -= hoverPos.left - boxPos.left - 4;
+				}
+				/* Update position. */
+				element.css({ top: Math.round(top), left: Math.round(left) });
+			}
+		}
+	} else {
+		clearInterval(HTTIntervalID);
+		HTTIntervalID = setInterval(UpdateHoverTipTxt, 300);
+	}
+};
+/*  Waits for passage to be fully rendered before doing anything.  */
+var HTTIntervalID = 0;
+$(document).on(":passageend", function (ev) {
+	UpdateHoverTipTxt();
+});
+$(window).on("resize scroll", function (ev) {
+	clearInterval(HTTIntervalID);
+	HTTIntervalID = setInterval(UpdateHoverTipTxt, 300);
+});
+$("#ui-bar-toggle").on("click", function (ev) {
+	clearInterval(HTTIntervalID);
+	HTTIntervalID = setInterval(UpdateHoverTipTxt, 300);
+});
+/* <<hovertip>> macro */
+    Macro.add("hovertip", {
+        tags	 : null,
+        handler  : function () {
+            if (this.args.length > 0) {
+                var mw = "";
+                if ((this.args.length > 1) && (!isNaN(parseInt(this.args[1], 10)))) {
+                    mw = ' style="max-width: ' + parseInt(this.args[1], 10) + 'px;"';
+                }
+                if (State.temporary.HoverTipCount == undefined) {
+                    State.temporary.HoverTipCount = 1;
+                } else {
+                    State.temporary.HoverTipCount++;
+                }
+                while ($("#hoverTip" + State.temporary.HoverTipCount).length) {
+                    /* Found an existing hoverTip. */
+                    State.temporary.HoverTipCount++;
+                }
+                var output = '<span id="hoverTip' + State.temporary.HoverTipCount +
+                        '" class="hoverTipTxt hoverTip" tabindex="0" ' +
+                        'onmouseenter="UpdateHoverTipTxt();">' +
+                        this.payload[0].contents + '<span id="hoverTipTxt' +
+                        State.temporary.HoverTipCount + '" class="hoverBox hoverTail"' +
+                        mw + '>' + this.args[0] + '</span></span>';
+                $(this.output).wiki(output);
+            } else {
+                $(this.output).wiki(this.payload[0].contents);
+            }
+        }
+    });
+/* hovertip v2.0 - End */
+
+/* Create the Right UI Bar. */
+var $rightUiBar = $('<div id="right-ui-bar"></div>').insertAfter("#ui-bar");
+
+var rightTray = $rightUiBar.append('<div id="right-ui-bar-tray"><button id="right-ui-bar-toggle" tabindex="0" title="Toggle the Right UI bar" aria-label="Toggle the Right UI bar" type="button"></button></div>');
+
+var rightBody = $rightUiBar.append('<div id="right-ui-bar-body"></div>');
+
+/* Attach the toggle button click. */
+$rightUiBar.find('#right-ui-bar-toggle').ariaClick({label : "Toggle the Right UI bar"}, () => $rightUiBar.toggleClass('stowed'));
+
+/* Automatically show the contents of the StoryRightSidebar passage in the right-ui-bar-body element. */
+postrender["Display Right Sidebar Contents"] = function (content, taskName) {
+	setPageElement('right-ui-bar-body', 'StoryRightSidebar');
+};
