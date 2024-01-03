@@ -1,0 +1,84 @@
+:: StarrResidence-EntryHall
+
+:: StarrResidence-Kitchen
+
+:: StarrResidence-BanquetHall
+
+:: StarrResidence-Bathroom
+
+:: StarrResidence-JanessaRoom
+
+:: StarrResidence-PlayerRoom
+    <img class="scene" src='img/plrroom.jpg'>\
+
+    <<speech plr>>
+        I'm in my room. Glancing at the state of the place, it's <<commentClean>> clean. The floor is of <<commentFloor>> quality. I see my <<commentChair>> chair and <<commentDesk>> desk in the corner. On the far wall is my <<commentBed>> bed. The room is <<commentLight>> lit.
+    <</speech>>
+    <<button [[Look for anything interesting in the clutter | StarrResidence-PlayerRoom-Searching]]>><</button>>
+    <<button [[Try to clean up a bit | StarrResidence-PlayerRoom-Cleaning]]>>
+        <<if $plrRoom.cleanliness <= 2>>
+            <<set $plrRoom.cleanliness += 1>>
+            <<calcTime 30>>
+        <</if>>    
+    <</button>>
+    <<nobr>>
+        <<if not hasVisited("StarrResidence-PlayerRoom-Sleeping")>>
+            <<button [[Try to sleep | StarrResidence-PlayerRoom-Sleeping]]>>
+                <<calcTime 30 5>>
+            <</button>>
+            <<else>>
+            <<button "Try to sleep">>
+                <<run
+                    Dialog.setup("Pointless Endeavor");
+                    Dialog.append("You already know you can't sleep, trying again would just be a waste of time.");
+                    Dialog.open();
+                >>
+            <</button>>
+        <</if>>
+    <</nobr>>
+
+:: StarrResidence-PlayerRoom-Cleaning
+    <img class="scene" src='img/plrroom.jpg'>\
+    <<nobr>>
+        <<if $plrRoom.cleanliness < 1>>
+            <<speech plr>>It's slow progress, but it's definitely looking cleaner. Still disgusting though...<</speech>>
+        <<elseif $plrRoom.cleanliness < 3>>
+            <<speech plr>>It's certainly cleaner, spending a little more time should get it looking pretty good.<</speech>>
+        <<else>>
+            <<speech plr>>It's as good as it can get for now.<</speech>>
+        <</if>>
+    <</nobr>>\
+
+    <<button [[Continue | StarrResidence-PlayerRoom]]>><</button>>
+
+:: StarrResidence-PlayerRoom-Searching
+    <img class="scene" src='img/searchclutter.jpg'>
+    <<nobr>>
+        <<if $plrRoom.booksFound == 0>>
+                <<searchForItem $plrRoom booksFound 3 "miscbook" "mapSchool">>
+                <<speech plr>>There is more clutter to look through.<</speech>>
+                <<set $unlockVar.userInterface.inventory = true>>
+
+            <<elseif $plrRoom.booksFound == 1>>
+                <<searchForItem $plrRoom booksFound 3 "miscbook" "mapTown">>
+                <<speech plr>>There is a little more clutter to look through.<</speech>>
+
+            <<elseif $plrRoom.booksFound == 2>>
+                <<searchForItem $plrRoom booksFound 3 "spellbook" "illusion1">>
+                <<speech plr>>There's nothing more to find here.<</speech>>
+
+            <<else>>
+                <<speech plr>>This place is picked clean.<</speech>>
+        <</if>>
+    <</nobr>>
+    <<button [[Look back at your room | StarrResidence-PlayerRoom]]>>
+    
+    <</button>>
+
+:: StarrResidence-PlayerRoom-Sleeping
+    <img class="scene" src='img/nastybed.jpg'>\
+    <<speech plr>>You lay down on your <<commentBed>> bed. After trying for what felt like half an hour, you realize sleep is far from a possibility.<</speech>>\
+
+    <<button [[Stand up | StarrResidence-PlayerRoom]]>>
+    <</button>>
+

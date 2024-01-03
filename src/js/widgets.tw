@@ -1,5 +1,11 @@
 :: Widgets[widget]
 
+    /* base widget template */
+    <<nobr>>
+        <<widget "templ">>
+        <</widget>>
+    <</nobr>>
+
     /* relGain Amy 10 */
     <<widget "relGain">>
         <<set $plrRel[_args[0]] += _args[1] + ($plrBody.dynamic.atttractiveness / 10)>>
@@ -144,7 +150,7 @@
         <</widget>>
     <</nobr>>
 
-    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID spellschool(abjuration, illusion, etc.) */
+    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID */
     <<nobr>>
         <<widget "readBook">>
             <<switch _args[0]>>
@@ -160,7 +166,7 @@
                         <<set _unlockmessage = $unlockVar.locations[_unlockname].name>>
 
                         <<if _unlockname == undefined>>
-                            <<set _unlockmessage = "nothing, but there are more chapters to read">>
+                            <<set _unlockmessage = "nothing, but there are more chapters to read.">>
                         <</if>>
                         <<run
                             Dialog.setup("Chapter Read");
@@ -177,30 +183,41 @@
 
 
                 <<case "spellbook">>
-                    <<set _address = $bookDisciplines[_args[3]][_args[1]]>>
-                    <<if [_address].pagesRead != [_address].pagesTotal>>
-                        <<set [_address].pagesRead += 1>>
+                    <<if $unlockVar.userInterface.spells == false>>
+                        <<set $unlockVar.userInterface.spells = true>>
+                    <</if>>
 
-                        <<pickup $plrinvbooks _args[1]>>
+                    <<if $unlockVar.events.firstSpellLearned == false>>
+                        <<set $unlockVar.events.firstSpellLearned = true>>
+                        <<goto "Event-FirstSpellLearned">>
+                    <</if>>
+
+                    <<set _address = $bookSpell[_args[1]]>>
+                    <<if _address.pagesRead != _address.pagesTotal>>
+                        <<set _address.pagesRead += 1>>
+
+                        <<pickup $plrinvbooks _args[1] 1>>
                         <<calcTime 30 30>>
-
-                        <<set _unlocknum = [_address].pagesRead>>
-                        <<set _unlockname = [.address].pageUnlocks[_unlocknum]>>
-                        <<set _unlockmessage = $unlockVar.spellsBasic[_unlockname].name>>
+                        <<set _school = _address.school >>
+                        <<set _unlocknum = _address.pagesRead>>
+                        <<set _unlockname = _address.pageUnlocks[_unlocknum]>>
+                        <<set _unlockmessage ="how to cast the " + $spellDetails[_school][_unlockname].name + " spell!">>
 
                         <<if _unlockname == undefined>>
-                            <<set _unlockmessage = "nothing, but there is more in this to study">>
+                            <<set _unlockmessage = "nothing, but there is more in this to study.">>
                         <</if>>
 
                         <<run
                             Dialog.setup("Spell Tome Studied");
-                            Dialog.wiki("After reading chapter " + _unlocknum + "/" + [_address].pagesTotal + " of " + "'" + [_address].title + "'" + " you learned how to cast the " + _unlockmessage + " spell!");
+                            Dialog.wiki("After reading chapter " + _unlocknum + "/" + _address.pagesTotal + " of " + "'" + _address.title + "'" + " you learned " + _unlockmessage);
                             Dialog.open();
                         >>
-                        <<set $spellDetails.spellsBasic.illusion[_unlockname].unlocked = true>>
+                        <<if _unlocknum != "">>
+                            <<set $spellDetails.illusion[_unlockname].unlocked = true>>
+                        <</if>>
                     <<else>>
 
-                        <<drop $plrinvbooks _args[1]>>
+                        <<drop $plrinvbooks _args[1] 1>>
                         <<run UI.alert("You have already gleamed all you can from this tome.")>>
                     <</if>>
 
@@ -244,9 +261,13 @@
                     >>
                     <<pickup $plrinvmisc _args[1] 1>>
 
-                <<case "spell">>
-                    <<set _address = $tbd._args[1]>>
-
+                <<case "spellbook">>
+                    <<run 
+                        Dialog.setup("Spell Tome Found");
+                        Dialog.wiki("You found a tome titled '<b>" + $bookSpell[_args[1]].title + "</b>.'" + "<br><br>" + " The first page reads '<i>" + $bookSpell[_args[1]].description + "</i>'.");
+                        Dialog.open();
+                    >>
+                    <<pickup $plrinvbooks _args[1] 1>>
             <</switch>>
         <</widget>>
     <</nobr>>
@@ -301,5 +322,231 @@
 
             <</if>>
             <<set $plrStats.stamina.pre = $plrStats.stamina.cur>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "commentClean">>
+            <<set _word = "">>
+            <<set _class = "">>
+            <<if $plrRoom.cleanliness <= 0 >>
+                <<set _word = "miles from">>
+                <<set _class = "trash">>
+
+            <<elseif $plrRoom.cleanliness > 0 && $plrRoom.cleanliness < 3>>
+                <<set _word = "mostly">>
+                <<set _class = "rare">>
+
+            <<elseif $plrRoom.cleanliness > 2>>
+                <<set _word = "immaculately">>
+                <<set _class = "legendary">>
+            <</if>>
+            <<print '<span class="' + _class + '">' + 
+                '<<hovertip "The cleaner the room, the more sanity and stamina you will gain from spending time in here.">>' + 
+                _word + '<</hovertip>></span>'
+            >>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "commentBed">>
+            <<set _word = "">>
+            <<set _class = "">>
+
+            <<if $plrRoom.bed.trash == true>>
+                <<set _word = "truly uninviting">>
+                <<set _class = "trash">>
+
+            <<elseif $plrRoom.bed.common == true>>
+                <<set _word = "average">>
+                <<set _class = "common">>
+
+            <<elseif $plrRoom.bed.uncommon == true>>
+                <<set _word = "comfortable">>
+                <<set _class = "uncommon">>
+
+            <<elseif $plrRoom.bed.rare == true>>
+                <<set _word = "premium">>
+                <<set _class = "rare">>
+
+            <<elseif $plrRoom.bed.legendary == true>>
+                <<set _word = "luxurious">>
+                <<set _class = "legendary">>
+
+            <<elseif $plrRoom.bed.unique == true>>
+                <<set _word = "regal and ostentatious">>
+                <<set _class = "unique">>
+
+            <</if>>
+
+            <<print '<span class="' + _class + '">' + 
+                '<<hovertip "The better the bed, the more stamina and lifeforce you regain per hour of rest.">>' + 
+                _word + '<</hovertip>></span>'
+            >>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "commentDesk">>
+            <<set _word = "">>
+            <<set _class = "">>
+
+            <<if $plrRoom.desk.trash == true>>
+                <<set _word = "barely usable">>
+                <<set _class = "trash">>
+
+            <<elseif $plrRoom.desk.common == true>>
+                <<set _word = "regular">>
+                <<set _class = "common">>
+
+            <<elseif $plrRoom.desk.uncommon == true>>
+                <<set _word = "attractive">>
+                <<set _class = "uncommon">>
+
+            <<elseif $plrRoom.desk.rare == true>>
+                <<set _word = "impressive">>
+                <<set _class = "rare">>
+
+            <<elseif $plrRoom.desk.legendary == true>>
+                <<set _word = "intricately">>
+                <<set _class = "legendary">>
+                
+            <<elseif $plrRoom.desk.unique == true>>
+                <<set _word = "gold and lapis adorned">>
+                <<set _class = "unique">>
+            <</if>>
+
+            <<print '<span class="' + _class + '">' + 
+                '<<hovertip "The nicer your desk the more effectively and sanely you can study books, tomes, and manuals.">>' + 
+                _word + '<</hovertip>></span>'
+            >>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "commentChair">>
+            <<set _word = "">>
+            <<set _class = "">>
+
+            <<if $plrRoom.chair.trash == true>>
+                <<set _word = "broken down">>
+                <<set _class = "trash">>
+
+            <<elseif $plrRoom.chair.common == true>>
+                <<set _word = "normal">>
+                <<set _class = "common">>
+
+            <<elseif $plrRoom.chair.uncommon == true>>
+                <<set _word = "nice">>
+                <<set _class = "uncommon">>
+
+            <<elseif $plrRoom.chair.rare == true>>
+                <<set _word = "very nice">>
+                <<set _class = "rare">>
+
+            <<elseif $plrRoom.chair.legendary == true>>
+                <<set _word = "really impressive">>
+                <<set _class = "legendary">>
+
+            <<elseif $plrRoom.chair.unique == true>>
+                <<set _word = "magically mastercrafted">>
+                <<set _class = "unique">>
+            <</if>>
+
+            <<print '<span class="' + _class + '">' + 
+                '<<hovertip "The better the build of your chair, the less sanity you lose from studying, and the more stamina you regain from just relaxing.">>' + 
+                _word + '<</hovertip>></span>'
+            >>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "commentFloor">>
+            <<set _word = "">>
+            <<set _class = "">>
+
+            <<if $plrRoom.floor.trash == true>>
+                <<set _word = "trash-like">>
+                <<set _class = "trash">>
+
+            <<elseif $plrRoom.floor.common == true>>
+                <<set _word = "semi-decent">>
+                <<set _class = "common">>
+
+            <<elseif $plrRoom.floor.uncommon == true>>
+                <<set _word = "good">>
+                <<set _class = "uncommon">>
+
+            <<elseif $plrRoom.floor.rare == true>>
+                <<set _word = "really nice">>
+                <<set _class = "rare">>
+
+            <<elseif $plrRoom.floor.legendary == true>>
+                <<set _word = "impressive">>
+                <<set _class = "legendary">>
+
+            <<elseif $plrRoom.floor.unique == true>>
+                <<set _word = "royal">>
+                <<set _class = "unique">>
+
+            <</if>>
+
+            <<print '<span class="' + _class + '">' + 
+                '<<hovertip "The better your floor, the more sanity you regain from relaxing or performing activities other than studying">>' + 
+                _word + '<</hovertip>></span>'
+            >>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "commentLight">>
+            <<set _word = "">>
+            <<set _class = "">>
+
+            <<if $plrRoom.lights.none == true>>
+                <<set _word = "not at all">>
+                <<set _class = "trash">>
+
+            <<elseif $plrRoom.lights.trash == true>>
+                <<set _word = "dimly">>
+                <<set _class = "trash">>
+
+            <<elseif $plrRoom.lights.common == true>>
+                <<set _word = "warmly">>
+                <<set _class = "common">>
+
+            <<elseif $plrRoom.lights.uncommon == true>>
+                <<set _word = "well">>
+                <<set _class = "uncommon">>
+
+            <<elseif $plrRoom.lights.rare == true>>
+                <<set _word = "brightly">>
+                <<set _class = "rare">>
+
+            <<elseif $plrRoom.lights.legendary == true>>
+                <<set _word = "impressively">>
+                <<set _class = "legendary">>
+
+            <<elseif $plrRoom.lights.unique == true>>
+                <<set _word = "star">>
+                <<set _class = "unique">>
+
+            <</if>>
+
+            <<print '<span class="' + _class + '">' + 
+                '<<hovertip "The more well-lit your room, the less sanity lost while studying.">>' + 
+                _word + '<</hovertip>></span>'
+            >>
+        <</widget>>
+    <</nobr>>
+
+    /* searchForItem locationvar searchvar searchvar_max itemType itemID ---- ie searchForItem $plrRoom booksFound 3 miscBook mapSchool*/
+    <<nobr>>
+        <<widget "searchForItem">>
+            <<if _args[0][_args[1]] < _args[2]>>
+                <<foundItem _args[3] _args[4]>>
+                <<set _args[0][_args[1]] += 1>>
+                <<calcTime 20 15>>
+            <</if>>
         <</widget>>
     <</nobr>>

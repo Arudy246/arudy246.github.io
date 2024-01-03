@@ -1,0 +1,68 @@
+:: StoryCaption
+    @@#timeplusdate;<<calcTime>>@@
+    <<if $plrName.fName != "" && $plrName.fName != "First">>\
+        <u>Your Name: $plrName.fName $plrName.lName</u>\
+    <</if>>\
+
+:: StoryBanner
+    <img class="banner" src='img/logo.png'/>
+
+:: StoryMenu
+
+    <<if $unlockVar.userInterface.dev == true>>
+        <<link "Dev Wand">>
+            <<run
+                Dialog.setup("Dev Wand", "dev wand");
+                Dialog.wiki(Story.get("DevWand").processText());
+                Dialog.open();
+            >>
+        <</link>>
+        [[Character Info]]
+    <</if>>
+
+    <<if $unlockVar.userInterface.stats == true>>
+        <<link [[Your Status]]>><</link>>
+    <</if>>
+
+    <<if $unlockVar.userInterface.actions == true>>
+        <<link "Actions">>
+            <<run 
+                Dialog.setup("Actions", "actions");
+                Dialog.wiki(Story.get("Actions").text);
+                Dialog.open();
+            >>
+        <</link>>
+    <</if>>
+
+    <<if $unlockVar.userInterface.locations == true>>
+        <<link "Locations">>
+            <<run 
+                Dialog.setup("Locations", "locations");
+                Dialog.wiki(Story.get("Locations").text);
+                Dialog.open();
+            >>
+        <</link>>
+    <</if>>
+
+    <<if $unlockVar.userInterface.inventory == true>>
+        <<link "Inventory">>
+            <<run 
+                Dialog.setup("Inventory", "inventory"); 
+                Dialog.wiki(Story.get("Inventory").text); 
+                Dialog.open();
+            >>
+        <</link>>
+    <</if>>
+
+:: Character Info
+    <<= charInfoTbl($plrName, "plrName")>>\
+    <<= charInfoTbl($plrBody.static, "plrBody.static")>>\
+    <<= charInfoTbl($plrBody.dynamic, "plrBody.dynamic")>>\
+    <<= charInfoTbl($plrPersonality, "plrPersonality")>>\
+    <<= charInfoTbl($plrRel, "plrRel")>>\
+    <<= charInfoTblSub($plrDisciplines, "plrDisciplines")>>\
+
+:: Your Status
+
+    [[Exit | previous()]]
+

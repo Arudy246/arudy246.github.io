@@ -1,11 +1,10 @@
 :: Spell-List [init]
 
     <<set $spellEffects = {
-        lightRoom: "<<set $plrroom.lights.trash = true>>"
+        lightRoom: "<<set $plrRoom.lights.none = false>> <<set $plrRoom.light.trash = true>>"
     }>>
 
     <<set $spellDetails = {
-
         abjuration: {
 
         },
@@ -15,6 +14,7 @@
         illusion: {
             floatingflame: {
                 name: "Floating Flame",
+                description: "Creates a warm, but kind of dim floating flame. Good for light up a room.",
                 unlocked: false,
                 staminaCost: 3,
                 diffLevel: 1,

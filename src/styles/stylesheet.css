@@ -55,6 +55,10 @@
         background-repeat: repeat;
     }
 
+    .emphasis {
+        font-style: italic
+    }
+
     .macro-button {
         background: #000d1a;
         border: 5px groove #00264d;
@@ -99,13 +103,15 @@
     #story-caption {
         margin-top: -1em !important;
     }
+
+    #ui-dialog-title {
+        text-align: left;
+    }
     .green {
-        color: green;
-        font-style: italic;
+        color: rgb(0, 173, 0);
     }
     .red {
         color: red;
-        font-style: italic;
     }
     .crimson {
         color: #eb2d53;
@@ -237,7 +243,7 @@
         background-position: center;
     }
     .plr {
-        background-color: #414141;
+        background-color: #252525;
     }
     .janessa {
         background-color: #1d003f;
@@ -262,9 +268,9 @@
     /* hovertip v2.0 - Start */
     .hoverTip {
         display: inline-block;
-        top: 4px;
+        top: 1px;
         border-width: 0px;
-        border-bottom: 2px dotted white;  /* If you want dots under the hoverable text */
+        border-bottom: 2px solid rgb(94, 94, 94);  /* If you want dots under the hoverable text */
     }
     .hoverTipTxt {
         position: relative;
@@ -279,16 +285,16 @@
         visibility: visible;
     }
     .hoverBox {
-        padding: 3px 10px;
+        padding: 5px 10px;
         width: intrinsic;  /* Safari/WebKit uses a non-standard name */
         width: -webkit-max-content;  /* Chrome */
         width: -moz-max-content;  /* Firefox/Gecko */
         width: max-content;
-        max-width: 330px;
+        max-width: 350px;
         line-height: initial;
         text-align: left;
         color: white;
-        background-color: black;
+        background-color: rgb(17, 17, 17);
         border: #7f7f7f solid 2px;
         -webkit-border-radius: 6px;
         -moz-border-radius: 6px;
@@ -412,6 +418,21 @@
 	margin-right: 4.5em;
 }
 
+#right-ui-bar-body a {
+    border: 3px ridge #666666;
+    background: rgba(26, 26, 26, 0.6);
+    padding: .25em .75em;
+    display: block;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+#right-ui-bar-body a:hover {
+    background-color: #444;
+	border-color: #eee;
+    text-decoration: none;
+}
+
 /* Horizontal Stat Bar - Start */
 .hzbarbkg {  /* default class for all horizontal bar backgrounds */
 	position: relative;
@@ -436,3 +457,45 @@
 	transition: width ease 1s, background-color ease 1s;
 }
 /* Horizontal Stat Bar - End */
+
+/* Quality Colors */
+.trash {
+    color: #a3a3a3;
+    font-style: italic;
+}
+
+.common {
+    color: #ffffff;
+    font-style: italic;
+}
+
+.uncommon {
+    color: #00ff00;
+    font-style: italic;
+}
+
+.rare {
+    color: #3399ff;
+    font-style: italic;
+}
+
+.legendary {
+    color: #ffff00;
+    font-style: italic;
+}
+
+.unique {
+    color: #ff9900;
+    font-style: italic;
+}
+/* Quality Colors - End */
+
+#ui-dialog {
+    min-width: 40% !important;
+}
+
+#ui-dialog-body {
+    overflow: hidden;
+    min-height: 20em;
+    padding: 2.5em;
+}

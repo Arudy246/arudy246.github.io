@@ -1,7 +1,5 @@
 :: StoryRightSidebar
 
-    Hello!
-
 <<nobr>>
     <<if $plrStats.stamina.max != 0>>
             <div id="staminaBarbkg" class="hzbarbkg"><div id="staminaBar" class="hzbar"></div></div>
@@ -19,20 +17,13 @@
     <</if>>
 <</nobr>>\
 <<nobr>>
-    /* <<if $plrStats.hygiene.max != 0>>
-        <div id="hygieneBar" class="hzbarbkg"><div id="hygieneBar" class="hzbar"></div></div><<run Hygiene($plrStats.hygiene.cur, $plrStats.hygiene.max, "hygieneBar", true)>>
-        <span id='ui-hygiene' class='darkgreen'>Hygiene: </span>$plrStats.hygiene.cur / $plrStats.hygiene.max</span>
-    <</if>> */
-<</nobr>>\
-\
-<<nobr>>
     <<if $plrStats.focus.max != 0>>
         <div id="focusBarbkg" class="hzbarbkg"><div id="focusBar" class="hzbar"></div></div>
-        <span class="greenyellow">Focus: </span><span id='ui-focus'></span><<run focus($plrStats.focus.cur, $plrStats.focus.max, "focusBar", true)>>
+        <span class="greenyellow">Focus: </span><span id='ui-focus'></span>
         <<run FocusStat($plrStats.focus.cur, $plrStats.focus.max, "focusBar", true)>>
         <hr>
     <</if>>
-<</nobr>>
+<</nobr>>\
 <<nobr>>
     <<if $plrStats.sanity.max != 0>>
         <div id="sanityBarbkg" class="hzbarbkg"><div id="sanityBar" class="hzbar"></div></div><<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "sanityBar", true)>>
@@ -41,3 +32,14 @@
         <hr>
     <</if>>
 <</nobr>>\
+<<nobr>>
+    <<if $unlockVar.userInterface.spells == true>>
+        <<link "Spells">>
+            <<run
+                Dialog.setup("Spells", "spellModal");
+                Dialog.wiki(Story.get("Spells").processText());
+                Dialog.open();
+            >>
+        <</link>>
+    <</if>>
+<</nobr>>

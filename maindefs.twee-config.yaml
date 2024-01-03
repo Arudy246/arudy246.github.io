@@ -116,3 +116,26 @@ sugarcube-2:
     give : {}
     
     # end simple inventory
+
+    commentClean:
+      description: "Prints a description of how clean, or not, your room is."
+
+    commentFloor:
+      description: "Prints a description of your floor."
+
+    commentDesk:
+      description: "Prints a description of your desk."
+
+    commentChair:
+      description: "Prints a description of your chair."
+
+    commentBed:
+      description: "Prints a description of your bed."
+
+    commentLight:
+      description: "Prints a description of your room's lighting situation."
+
+    searchForItem:
+      description: "Searches the location for items, updates location item variable, increments time, adds item if found."
+      parameters:
+        - address &+ number &+ text &+ text

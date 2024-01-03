@@ -1,0 +1,7 @@
+:: Event-FirstSpellLearned
+
+    <<speech plr>>I think I just learned a spell!!!<</speech>>
+
+    <<button [[Continue | previous()]]>>
+    
+    <</button>>

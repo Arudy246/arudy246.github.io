@@ -17,6 +17,7 @@
     /*-atttractiveness is gauged on a combination of height, face shape, hair length, and heavily by weight (equation is different between sexes)*/
     /*XXXXX Add beard stats XXXXX*/
 
+    /*-----Player Variables-----*/
     <<set $plrImg = ""
     >>
     <<set $plrName = {
@@ -25,9 +26,6 @@
         prefix: "",
         formal: ""
     }>>
-
-    <<set $testName = "Muah">>
-
     <<set $plrBody = {
         static: {
             sex: "",
@@ -43,7 +41,6 @@
             atttractiveness: 0
         }
     }>>
-    
     <<set $plrStats = {
         life: {
             max: 0,
@@ -71,102 +68,117 @@
             cur: 0
         }
     }>>
-
     <<set $plrRel = {
         Amy: 0,
         Janessa: 0,
         Barden: 0
     }>>
-
-    <<set $plrRoom = {
-        painting: {
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+    <<set $plrDisciplines = {
+        abjuration: {
+            level: 0,
+            desc: ""
         },
-        lights: {
-            none: true,
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        alchemy: {
+            level: 0,
+            desc: ""
         },
-        bed: {
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        animancy: {
+            level: 0,
+            desc: ""
         },
-        table: {
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        astromancy: {
+            level: 0,
+            desc: ""
         },
-        chair: {
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        biomancy: {
+            level: 0,
+            desc: ""
         },
-        couch: {
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        blood: {
+            level: 0,
+            desc: ""
         },
-        floor: {
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        chloromancy: {
+            level: 0,
+            desc: ""
         },
-        bookcase: {
-            capfive: false,
-            capten: false,
-            captwenty: false,
-            capfourty: false
+        chronomancy: {
+            level: 0,
+            desc: ""
         },
-        equipment: {
-            alchemykit: false,
-            foci: false,
-            jewlerykit: false,
-            sigilkit: false,
-            gemkit: false
+        clockwork: {
+            level: 0,
+            desc: ""
+        },
+        conjuration: {
+            level: 0,
+            desc: ""
+        },
+        demonology: {
+            level: 0,
+            desc: ""
+        },
+        divination: {
+            level: 0,
+            desc: ""
+        },
+        eldritch: {
+            level: 0,
+            desc: ""
+        },
+        elemental: {
+            level: 0,
+            desc: ""
+        },
+        enchantment: {
+            level: 0,
+            desc: ""
+        },
+        enochian: {
+            level: 0,
+            desc: ""
+        },
+        gate: {
+            level: 0,
+            desc: ""
+        },
+        illusion: {
+            level: 0,
+            desc: ""
+        },
+        lunar: {
+            level: 0,
+            desc: ""
+        },
+        necromancy: {
+            level: 0,
+            desc: ""
+        },
+        psionic: {
+            level: 0,
+            desc: ""
+        },
+        restoration: {
+            level: 0,
+            desc: ""
+        },
+        sex: {
+            level: 0,
+            desc: ""
+        },
+        soul: {
+            level: 0,
+            desc: ""
+        },
+        summoning: {
+            level: 0,
+            desc: ""
+        },
+        transmutation: {
+            level: 0,
+            desc: ""
         }
     }>>
-
-    /*-----Personality traits range from 1-500 and change via choices-----*/
-    /*---Openness: High equals explorative, broad range of interests, curious---*/
-    /*---Conscientiousness: High equals reliable and goal driven---*/
-    /*---Extraversion: High equals social and talkative, likes company and friends---*/
-    /*---Agreeableness: High equals trustworthy, kind, caring, honest---*/
-    /*---Neuroticism: High equals easily stressed, moody, and irritable---*/
-
-    <<set $plrPersonality = {
-        openn: 250,
-        conscient: 250,
-        extrav: 250,
-        agreeb: 250,
-        neurot: 250
-    }>>
-
-    /*-----Player Skills-----*/
     <<set $plrSkills = {
         mundane: {
             lockpicking: {
@@ -404,150 +416,8 @@
             desc: ""
         }}
     }>>
-    /*-----Disciplines range from 1-1000, skill range 1-150 apprentice, 151-250 initiate, 251-350 skilled, 351-500 competent, 501-650 adept, 651-750 master, 751-850 penultimate, 851-1000 predominant-----*/
-    <<set $plrDisciplines = {
-        abjuration: {
-            level: 0,
-            desc: ""
-        },
-        alchemy: {
-            level: 0,
-            desc: ""
-        },
-        animancy: {
-            level: 0,
-            desc: ""
-        },
-        astromancy: {
-            level: 0,
-            desc: ""
-        },
-        biomancy: {
-            level: 0,
-            desc: ""
-        },
-        blood: {
-            level: 0,
-            desc: ""
-        },
-        chloromancy: {
-            level: 0,
-            desc: ""
-        },
-        chronomancy: {
-            level: 0,
-            desc: ""
-        },
-        clockwork: {
-            level: 0,
-            desc: ""
-        },
-        conjuration: {
-            level: 0,
-            desc: ""
-        },
-        demonology: {
-            level: 0,
-            desc: ""
-        },
-        divination: {
-            level: 0,
-            desc: ""
-        },
-        eldritch: {
-            level: 0,
-            desc: ""
-        },
-        elemental: {
-            level: 0,
-            desc: ""
-        },
-        enchantment: {
-            level: 0,
-            desc: ""
-        },
-        enochian: {
-            level: 0,
-            desc: ""
-        },
-        gate: {
-            level: 0,
-            desc: ""
-        },
-        illusion: {
-            level: 0,
-            desc: ""
-        },
-        lunar: {
-            level: 0,
-            desc: ""
-        },
-        necromancy: {
-            level: 0,
-            desc: ""
-        },
-        psionic: {
-            level: 0,
-            desc: ""
-        },
-        restoration: {
-            level: 0,
-            desc: ""
-        },
-        sex: {
-            level: 0,
-            desc: ""
-        },
-        soul: {
-            level: 0,
-            desc: ""
-        },
-        summoning: {
-            level: 0,
-            desc: ""
-        },
-        transmutation: {
-            level: 0,
-            desc: ""
-        }
-    }>>
-    /*-----NPC Personalities-----*/
-    <<set $npcPersonalityList = {
-        friendly: {
-            desc: "friendly disposition",
-            placeholderA: 0,
-            placeholderB: 0,
-            greetings: [
-                "Oh, hi!",
-                "Well hello there!",
-                "Gosh its good to see you!",
-                "What a pleasant suprise!"
-            ]
-        },
-        neutral: {
-            desc: "polite disposition",
-            placeholderA: 0,
-            placeholderB: 0,
-            greetings: [
-                "Hello.",
-                "Hi.",
-                "Good day.",
-                "What can I do for you?"
-            ]
-        },
-        unfriendly: {
-            desc: "unfriendly attitude",
-            placeholderA: 0,
-            placeholderB: 0,
-            greetings: [
-                "Yes?",
-                "What?",
-                "I'm busy, what do you want?",
-                "Now what?"
-            ]
-        }
-    }>>
-    /*-----NPC Character Arrays-----*/
+
+    /*-----NPC Variables-----*/
     <<set $npcs = {
         amy: {
             firstName: "Amy", 
@@ -585,11 +455,43 @@
             formal: "Ms. Starr"
         }
     }>>
-    /*-----UI Story Menu Variables-----*/
-    <<set $tglPlayerStats = 0>>
-    <<set $tglAction = 0>>
+    <<set $npcPersonalityList = {
+        friendly: {
+            desc: "friendly disposition",
+            placeholderA: 0,
+            placeholderB: 0,
+            greetings: [
+                "Oh, hi!",
+                "Well hello there!",
+                "Gosh its good to see you!",
+                "What a pleasant suprise!"
+            ]
+        },
+        neutral: {
+            desc: "polite disposition",
+            placeholderA: 0,
+            placeholderB: 0,
+            greetings: [
+                "Hello.",
+                "Hi.",
+                "Good day.",
+                "What can I do for you?"
+            ]
+        },
+        unfriendly: {
+            desc: "unfriendly attitude",
+            placeholderA: 0,
+            placeholderB: 0,
+            greetings: [
+                "Yes?",
+                "What?",
+                "I'm busy, what do you want?",
+                "Now what?"
+            ]
+        }
+    }>>
 
-    /*-----Choice Arrays and Objects-----*/
+    /*-----Player Description Arrays-----*/
     <<set $hairColors = [
         "auburn",
         "blue",
@@ -647,3 +549,92 @@
 
     /*-----Speech Selection-----*/
     <<set $plrSpkChoice = "">>
+
+    /*-----Locations Variables----- */
+    <<set $plrRoom = {
+        painting: {
+            none: true,
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        lights: {
+            none: true,
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        bed: {
+            trash: true,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        table: {
+            none: true,
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        chair: {
+            trash: true,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        desk: {
+            trash: true,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        couch: {
+            none: true,
+            trash: false,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        floor: {
+            trash: true,
+            common: false,
+            uncommon: false,
+            rare: false,
+            legendary: false,
+            unique: false
+        },
+        bookcase: {
+            none: true,
+            capfive: false,
+            capten: false,
+            captwenty: false,
+            capfourty: false
+        },
+        equipment: {
+            alchemykit: false,
+            foci: false,
+            jewlerykit: false,
+            sigilkit: false,
+            gemkit: false
+        },
+        cleanliness: -2,
+        booksFound: 0,
+        tomesFound: 0,
+    }>>

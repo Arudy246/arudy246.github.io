@@ -8,11 +8,9 @@
 
     You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren't anywhere you remember ever being before. The smell is unfamiliar. The bed you are laying in, is different. Even the air feels different. Thicker, maybe?
 
-    You slowly open your eyes, feeling quite groggy and disoriented.
+    You slowly open your eyes, feeling groggy and disoriented.
 
     The room is dimly lit, yet richly decorated. Full of reds and stained wood. And it's cavernous with high ceilings. The light is provided by numerous candles arranged on shelves and bedside tables. Come to think of it, there are a lot of beds here.
-
-    And the candles... Well the candles look normal, but the flames are... Wrong. They are floating above the wicks!
 
     Before you're able to make sense of anything you are seeing, the large wooden doors to the room open. A woman wearing a white robe and hood is walking across the black marble floor and snacking on a bread roll. This is all so strange.
 
@@ -392,18 +390,18 @@
     <<if $relAmtTemp < 0>>
         <<speech janessa>>Get grip. Being pathetic or weak will not help you. And seriously, I don't care. Go talk to $npcs.amy.formal if you need to "talk" to someone. But leave me out of it.<</speech>>\
     <<else>>
-        <<speech janessa>>I'm sorry you are too. But thanks, I suppose, for seeing that. Just don't use me as your emotional outlet, find someone else, please.<</speech>>\
+        <<speech janessa>>I'm sorry you are too. But thanks for seeing that. Just don't use me as your emotional outlet, find someone else, please.<</speech>>\
     <</if>>\
 
     <<speech janessa>>Try to keep this in mind, whether it seems like it or not you've been given a gift. Either you'll figure that out or you won't. I mean, do you know how often an unitiated is made aware of the arcane, let alone gets to embrace it? Ya, never. The possibilities that are now open to you are nearly limitless. Seriously, you now have the chance to shoot lightning from your fingertips. Hell, if you decided to forsake our laws you could even commune with the dead, or make yourself as close to immortal as natural law allows. You can shield yourself from harm, use the power of the stars to foresee events, and throw balls of searing plasma at... well at whatever you want. I know you don't know it yet, but the things you are capable of now dwarf anything you could have possibly done before tonight.<</speech>>\
 
     <<speech janessa>>The only real limit is the time and effort you put into learning. But, before you let any of this go to your head, you must know there is always a cost, to anything we do. This includes magic.<</speech>>\
 
-    <<speech janessa>>Consider this your first lesson. <b>The Words</b>. Which is the language we use to build and to cast spells need to be fueled by energy. Some call it mana, some call it arcana, at the end of the day, it all means the same thing; energy. There are several ways to fuel your spells, like sex, blood, focus crystals, etc. Pretty much anything that contains or releases a large enough concentration of energy will do. There are even some very illegal ways to do it, but skipping over that for now, most people simply use <span class='staminaInfo'><em>Stamina</em></span>. <</speech>>\
+    <<speech janessa>>Consider this your first lesson. <b>The Words</b>. Which is the language we use to build and to cast spells need to be fueled by energy. Some call it mana, some call it arcana, at the end of the day, it all means the same thing; energy. There are several ways to fuel your spells, like sex, blood, focus crystals, etc. Pretty much anything that contains or releases a large enough concentration of energy will do. There are even some very illegal ways to do it, but skipping over that for now, most people simply use <span class='emphasis cyan'><em>Stamina</em></span>. <</speech>>\
 
-    <<speech janessa>><span class='staminaInfo'><em>Stamina</em></span> is just an easy way to describe your general energy level. It's really no different than when you go for a long run, or after working out. Basically, you use your body's energy reserves to fuel everything you do on daily basis and so it is with magic. And most use their body's energy because it is pretty easy to improve on. Today, you might be able to run less than a mile, or cast only a few simple spells each day. But in time and with practice and training, you'll be able to compete in triathlons, or cast massively complex spells, many times a day.<</speech>>\
+    <<speech janessa>><span class='emphasis cyan'><em>Stamina</em></span> is just an easy way to describe your general energy level. It's really no different than when you go for a long run, or after working out. Basically, you use your body's energy reserves to fuel everything you do on daily basis and so it is with magic. And most use their body's energy because it is pretty easy to improve on. Today, you might be able to run less than a mile, or cast only a few simple spells each day. But in time and with practice and training, you'll be able to compete in triathlons, or cast massively complex spells, many times a day.<</speech>>\
 
-    <<speech janessa>>So to sum up, training your body and practicing magic will both improve your stamina. Eating and sleeping will also help you regain your energy. I can't tell you how many times I was up late casting with friends and needed to raid the cafeteria for a full day's worth of food.<</speech>>\
+    <<speech janessa>>So to sum up, training your body and practicing magic will both improve your <span class='emphasis cyan'><em>Stamina</em></span>. Eating and sleeping will also help you replenish it. I can't tell you how many times I was up late casting with friends and needed to raid the cafeteria for a a huge meal.<</speech>>\
 
     <<button [[Keep listening | WakingUp11]]>>
         <<set $plrStats.stamina.max = 10>>
@@ -413,11 +411,11 @@
 :: WakingUp11
     <img class="scene" src='img/JanResidKitchen.jpg'/>\
 
-    <<speech janessa>>I'm sure I don't need to describe the kitchen. Obviously, it isn't well used. I don't know anyone who eats at their residence, everyone eats at the cafetaria.<</speech>>
+    <<speech janessa>>I'm sure I don't need to describe the kitchen. Obviously, it isn't well used. I don't know anyone who eats at their residence, everyone eats at the cafetaria.<</speech>>\
 
     You see that it hasn't been used a very long time. Dust covers everything, the pot rack is empty, and the shelves are bare. Even the floating candles seem to be dying, shedding only a small amount of light on the room.
 
-    <<speech janessa>>But anyways, next lesson. You will need to be aware of injuries, most refer to this as <span class='crimson'><em>Lifeforce</em></span>. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you're gonna get hurt. You can only take so many injuries before you lose the ability to survive. <span class='crimson'><em>Lifeforce</em></span> is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.formal at the Clinic. If you're unlucky, well don't be suprised if there are some lasting consequences, if you even survive. To regain your <span class='crimson'><em>Lifeforce</em></span>, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.<</speech>>\
+    <<speech janessa>>But anyways, next lesson. You will need to be aware of injuries, most refer to this as <span class='emphasis crimson'><em>Lifeforce</em></span>. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you're gonna get hurt. You can only take so many injuries before you lose the ability to survive. <span class='emphasis crimson'><em>Lifeforce</em></span> is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.formal at the Clinic. If you're unlucky, well don't be suprised if there are some lasting consequences, if you even survive. To regain your <span class='emphasis crimson'><em>Lifeforce</em></span>, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.<</speech>>\
 
     <<button [[Keep listening | WakingUp12]]>>
         <<set $plrStats.life.max = 10>>
@@ -437,7 +435,7 @@
 
     <<speech janessa>>This will be your room. I know it is not much. Actually, it really isn't anything. But if have the time or money, you can put whatever you want in it. A proper bed might be a good idea. Don't ask, I have nothing to spare.<</speech>>\
 
-    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast be newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this <span class='greenyellow'><em>focus</em></span>. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on your casting.<</speech>>\
+    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast be newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this <span class='emphasis greenyellow'><em>Focus</em></span>. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='emphasis greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on your casting.<</speech>>\
 
     $npcs.janessa.firstName leads you into "your" room.
 
@@ -450,14 +448,13 @@
 :: WakingUp13
     <img class="scene" src='img/plrroom.jpg'>\
 
-
     You follow $npcs.janessa.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it's hard to tell. The only light comes from the candles in the hallway.
 
     $npcs.janessa.firstName notices your concern.
 
     <<speech janessa>>Ya, so you have some work to do. I recommend you tidy up and figure out how to make some money to at least get the bed and maybe a desk. Reading books on the floor seems like a great way to get a crink in your neck. But hey, it's your space for now. So you do you I guess.<</speech>>\
 
-    <<speech janessa>>Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It's called <span class='purple'><em>Sanity</em></span>. Studying magic is confusing. Reading old, half-rotted tombs in agitating. Trying to cast spells you can't focus on. All these things will slowly eat away at you <span class='purple'><em>Sanity</em></span>. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I've been in the room when some kid got his hands on a spell written on a napkin and left in the library. He tried to cast it in class...It cost him his life and several other students their own <span class='purple'><em>Sanity</em></span>.<</speech>>\
+    <<speech janessa>>Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It's called <span class='emphasis purple'><em>Sanity</em></span>. Studying magic is confusing. Reading old, half-rotted tombs is agitating. Trying to cast spells you can't focus on is frustrating. All these things will slowly eat away at you <span class='emphasis purple'><em>Sanity</em></span>. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I've been in the room when some kid got his hands on a spell written on a napkin and left in the library. He tried to cast it in class...It cost him his life and several other students their own <span class='emphasis purple'><em>Sanity</em></span>.<</speech>>\
     <<tone neg>>$npcs.janessa.firstName trails off and glances towards some dark corner in your room for a moment<</tone>>
         
     <<speech janessa>>Think of it this way, if you try to cast something you simply don't understand, it may horribly backfire on you. You could have been trying to coax a plan into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.<</speech>>\
@@ -465,55 +462,25 @@
     <<button [[Keep listening | WakingUp14]]>>
         <<set $plrStats.sanity.max = 3>>
         <<setSanity 2>>
+        <<set $plrRoom.cleanliness = -3>>
     <</button>>\
 
 :: WakingUp14
-    <<set _booksfound = 0>>\
+    <img class="scene" src='img/plrroom.jpg'>\
 
-    <<speech janessa>><</speech>>
+    <<speech janessa>>Now in regards Monday and your first week. Your schedule is now my schedule, which means I will be following you around for a few days. If it seems like you will survive on your own without causing any trouble. If you manage that, we aren't attached at the hip anymore and I can go back to my lessons. Keep in mind, I am losing valuable instruction time to stick around with you, so please try not to do anything stupid that might extend this unfortunate arrangement.<</speech>>\
 
-    "Now onto tomorrow. For the first week your schedule will be my schedule. Meaning I get to follow you around all week. If you do well, then the leash gets loosened for both of us. Please, don't suck this week. Otherwise you get to listen to me for the entire second week as I tear down any vestige of self-confidence or worth you have left and cause you to question why you even need to exist anymore." 
-    
-    The cold glare she gives you makes the situation clear, you might want to avoid slacking off for at least one week.
+    <<speech janessa>>The courses you will be taking are all basic 101 level courses, meaning there will be a lot of children. This should actually be motivating for you, children will be more educated and competent than you are now.<</speech>>\
+    <<tone pos>>This is the first time you see $npcs.janessa.firstName smile and give a short chuckle<</tone>>
 
-    $npcs.janessa.firstName continues, "The courses you will be taking are all basic freshman classes, all essentially designed so you don't kill yourself or get someone else sucked into a void portal or something. Or incarcerated for breaking our laws."
+    <<speech janessa>>I will explain your courses tomorrow, but for now I'm going to bed.<</speech>>\
 
-    "The first course is "Arcane Arts 101", the professor will go over the dangers of magic and teach you a few small spells to get started with. At this point, most of the students in that class will have already been taught these basics by their families so you'll be at quite the disadvantage. Like $npcs.Barden.formal told you, learn quickly."
-    
-    "The second course is "Conservation of Magic 101", there you'll be introduced to the various methods magic can be used. The basic methods are cantrips, spells, rituals, and sigils. There are others, but they're rare and specific to specific discplines."
+    With that, $npcs.janessa.firstName turns around and walks out, leaving you alone in your decrepit room.
 
-    "The third will be "Arcane Disciplines 101" which will introduce you to the 20 or so arcane discplines that exist. There are more, but they are either forbidden or almost never used."
-
-    "The fourth course is "Arcane Law 101." Pay close attention to this course because the professor will lay out in clear terms how, when, and what magics you are allowed to use. They'll also go over some more mundane laws, like don't steal from or stab people. Some laws are a little more, I guess you could call them grey, while at Magna. But breaking any of them and getting caught in the wider world will cost you either in fines or an execution. The government takes the laws seriously. Long term prison sentences are rare...rehabilitation isn't exactly a focus."
-
-    "And the fifth course you, or I guess we, will be taking is "Mundane Skills 101" basically just stupid things like human anatomy, plant recognition, swimming, and how to study effectively. Boring, but some of it can be useful."
-
-    $npcs.Janessa.firstName finishes with "And that is about it for your first set of courses. You will be tested once each week and when you show you've properly understood the material by passing several tests, you'll be given a final project. If your work meets the professor's standards, you can move onto the next course, further expand your knowledge, and I can go back to my course schedule."
-
-    "That's it for tonight, I'm going to bed. We will pick up your books on the way to your first class." $npcs.Janessa.firstName walks out and closes the door. You also hear the door lock on her way out.
-
-    Still feeling wired, whether from the amount of sleep that you had before tonight's events or from the excitement of learning this entirely unknown world exists, is anyone's guess. But sleep is not in your immediate future. You decide to do something to pass the time. 
-    
-    Hell, you realize you have no idea what time is, let alone what today's date is!
-
-    <<button "Poke around for anything interesting">>
-        <<if _booksfound == 0>>
-            <<foundItem "miscbook" "mapSchool">>
-            <<set _booksfound += 1>>
-            <<calcTime 30>>
-        <<elseif _booksfound == 1>>
-            <<foundItem "miscbook" "mapTown">>
-            <<set _booksfound += 1>>
-            <<calcTime 30>>
-        <<elseif _booksfound == 2>>
-            <<foundItem "spellbook" "book1" "illusion">>
-            <<set _booksfound += 1>>
-            <<calcTime 30>>
-        <<else>>
-            <<run UI.alert("Looks like you picked through everything of interest.")>>
-        <</if>>
+    <<button [[Look around | StarrResidence-PlayerRoom]]>>
+        <<set $unlockVar.userInterface.locations = true>>
     <</button>>
 
-    <<button "Try to sleep">>
 
-    <</button>>
+
+    

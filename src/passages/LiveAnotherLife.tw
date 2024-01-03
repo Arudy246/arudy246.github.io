@@ -37,10 +37,17 @@
     <hr>
 
     <span class='red'>LAST OTHER WARNING!!!</span>
-    <em>There are NSFW elements in this game, both visually and textually. If you are not of legal age to view or read sexually explicit or violent materials in your country, please click the "More Wholesome" button below to enjoy a more appropriate experience.</em>
+    <em>There are NSFW elements in this game, both visually and textually. If you are not of legal age to view or read sexually explicit or violent materials in your country, please click the "More Wholesome?" button below to enjoy a more appropriate experience.</em>
+    
+    <<nobr>>
     <div class='text-center'>
-        <a href="https://www.dreamworks.com/">
-        <<button "More Wholesome">><</button>>\
-        </a>\
-        <<button [[More Better? | Dream1]]>><</button>>
+        <div style="display: inline-block; margin-right: 7em">
+            <a href="https://www.dreamworks.com/">
+                <<button "More Wholesome?">><</button>>
+            </a>
+        </div>
+        <div style="display: inline-block; margin-left: 7em">
+            <<button [[More Better? | Dream1]]>><</button>>
+        </div>
     </div>
+    <</nobr>>

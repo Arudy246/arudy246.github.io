@@ -1,11 +1,43 @@
-:: Dev Dimension
+:: DevWand
+
+    <<button [[Quick Start | WakingUp14]]>>
+        <<set $plrName.fName = "Azure">>
+        <<set $plrName.lName = "Paine">>
+        <<set $plrName.prefix = "Mr.">>
+        <<set $plrBody.static.sex = "male">>
+        <<set $plrBody.static.hairColor = "blue">>
+        <<set $plrBody.static.hairStyle = "mohawk">>
+        <<set $plrBody.static.eyeColor = "amber">>
+        <<set $plrBody.static.faceShape = "square">>
+        <<set $plrBody.static.height = "tall">>
+        <<set $plrBody.dynamic.hairLength = 1>>
+        <<set $plrBody.dynamic.weight = 35>>
+        <<calcAttractiveness>>
+
+        <<set $plrStats.stamina.max = 10>>
+        <<set $plrStats.stamina.cur = 10>>
+        <<set $plrStats.life.max = 10>>
+        <<set $plrStats.life.cur = 10>>
+        <<set $plrStats.sanity.max = 3>>
+        <<set $plrStats.sanity.cur = 3>>
+        <<set $plrStats.focus.max = 5>>
+        <<set $plrStats.focus.cur = 5>>
+        <<set $plrImg = "img/characters/thumb_male_bro_white.jpg">>
+
+        <<run Dialog.close()>>
+    <</button>>
+
+    <<link "TestingGrounds">>
+        <<run
+            Dialog.setup("TestingGrounds");
+            Dialog.wiki(Story.get("TestingGrounds").processText());
+            Dialog.open();
+        >>
+    <</link>>
 
     [[Todo]]
-    [[TestingGrounds]]
 
     [[Start]]
-    [[GameIntro]]
-    [[PersonalityTest]]
     [[WakingUp1]]
     [[WakingUp2]]
     [[WakingUp3]]
@@ -50,12 +82,11 @@
         <<set $plrStats.stamina.cur = 10>>
         <<set $plrStats.life.max = 10>>
         <<set $plrStats.life.cur = 10>>
-        <<set $plrStats.hygiene.max = 10>>
-        <<set $plrStats.hygiene.cur = 10>>
         <<set $plrStats.sanity.max = 3>>
         <<set $plrStats.sanity.cur = 3>>
-        <<set $plrStats.wake.max = 5>>
-        <<set $plrStats.wake.cur = 5>>
+        <<set $plrStats.focus.max = 5>>
+        <<set $plrStats.focus.cur = 5>>
+        <<set $plrImg = "img/characters/thumb_male_bro_white.jpg">>
     <</button>>
 
     <<button "Increase Minutes 30">>
@@ -72,8 +103,4 @@
     <<button "Decrease Sanity -0.1">>
         <<set $plrStats.sanity.cur -= 0.1>>
         <<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "verticalsanitybar", false)>>
-    <</button>>
-
-    <<button "Give Test Book">>
-
     <</button>>

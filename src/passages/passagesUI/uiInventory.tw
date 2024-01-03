@@ -1,0 +1,14 @@
+:: Inventory [nobr]
+    <h3>Books</h3>
+    <<inv $plrinvbooks use inspect>>
+
+    <hr>
+
+    <h3>Materials</h3>
+    <<inv $plrinvmaterials use inspect>>
+
+    <hr>
+
+    <h3>Miscellanious</h3>
+    <<inv $plrinvmisc use inspect>>
+

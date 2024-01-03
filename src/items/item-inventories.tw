@@ -23,7 +23,7 @@
             <<readBook miscbook mapSchool>>
         <</nobr>>
         <<description>>\
-            $bookMisc.mapSchool.description        
+            $bookMisc.mapSchool.description You have read $bookMisc.mapSchool.pagesRead out of $bookMisc.mapSchool.pagesTotal chapters.
     <</consumable>>
 
     <<consumable "mapTown" "Nome and her Mysteries">>
@@ -31,15 +31,15 @@
             <<readBook miscbook mapTown>>
         <</nobr>>
         <<description>>\
-            $bookMisc.mapTown.description
+            $bookMisc.mapTown.description You have read $bookMisc.mapTown.pagesRead out of $bookMisc.mapTown.pagesTotal chapters.
     <</consumable>>
 
     <<consumable "illusion1" "Illusion: A Child's Primer">>
         <<nobr>>
-            <<readBook spellbook illusion1 illusion>>
+            <<readBook spellbook illusion1>>
         <</nobr>>
         <<description>>\
-            $bookDisciplines.illusion.illusion1.description
+            $bookSpell.illusion1.description You have read $bookSpell.illusion1.pagesRead out of $bookSpell.illusion1.pagesTotal chapters.
     <</consumable>>
 
     /* Item Detail and Unlock Arrays */
@@ -50,9 +50,9 @@
             pagesRead: 0,
             pagesTotal: 13,
             pageUnlocks: {
-                1: "alstonresidence",
+                1: "starrresidence",
                 2: "librarium",
-                3: "dininghall",
+                3: "cafeteria",
                 4: "conservatorium",
                 5: "theexchange",
                 6: "leynode",
@@ -60,8 +60,8 @@
                 8: "sigilarium",
                 9: "artifice",
                 10: "pentadentrix",
-                11: "headmasterstudy",
-                12: "medicalwing",
+                11: "deanstudy",
+                12: "clinic",
                 13: "professoroffices"
             }
         },
@@ -83,42 +83,20 @@
     <<set $bookSkills = {
     }>>
 
-    <<set $bookDisciplines = {
-        aburation: {
-            abook: {
-                title: "",
-                description: "",
-                pagesRead: 0,
-                pagesTotal: 0,
-                pageUnlocks: {
-                    1: ""
-                }
-            }
-        },
-        alchemy: {
-            abook: {
-                title: "",
-                description: "",
-                pagesRead: 0,
-                pagesTotal: 0,
-                pageUnlocks: {
-                    1: ""
-                }
-            }
-        },
-        illusion: {
-            illusion1: {
-                title: "Illusion: A Child's Primer",
-                description: "An introduction to the Illusion discipline for the newly come of age mage.",
-                pagesRead: 0,
-                pagesTotal: 20,
-                pageUnlocks: {
-                    1: "floatingflame",
-                    3: "some unlock",
-                    9: "some unlock",
-                    13: "some unlock",
-                    20: "some unlock"
-                }
+    <<set $bookSpell = {
+        illusion1: {
+            title: "Illusion: A Child's Primer",
+            school: "illusion",
+            description: "An introduction to the Illusion discipline for the young practitioner.",
+            pagesRead: 0,
+            pagesTotal: 20,
+            pageUnlocks: {
+                1: "floatingflame",
+                2: "",
+                3: "",
+                9: "",
+                13: "",
+                20: ""
             }
         }
     }>>

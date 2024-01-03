@@ -3,16 +3,16 @@
     /* Location Unlocks */
     <<set $unlockVar = {
         locations: {
-            alstonresidence: {
-                name: "Alston Residence",
+            starrresidence: {
+                name: "Starr Residence",
                 unlocked: false
             },
             librarium: {
                 name: "Librarium",
                 unlocked: false
             },
-            dininghall: {
-                name: "Dining Hall",
+            cafeteria: {
+                name: "Cafeteria",
                 unlocked: false
             },
             conservatorium: {
@@ -43,16 +43,16 @@
                 name: "Ritual Pentadentrix",
                 unlocked: false
             },
-            headmasterstudy: {
-                name: "Headmaster's Study",
+            deanstudy: {
+                name: "Dean's Study",
                 unlocked: false
             },
-            medicalwing: {
-                name: "Medical Wing",
+            clinic: {
+                name: "Clinic",
                 unlocked: false
             },
             professoroffices: {
-                name: "Professors' Offices",
+                name: "Professors' Hall",
                 unlocked: false
             },
             tradingpost: {
@@ -75,6 +75,19 @@
                 name: "Goldpan Saloon and Inn",
                 unlocked: false
             }
+        },
+        userInterface: {
+            dev: true,
+            actions: false,
+            locations: false,
+            inventory: false,
+            stats: false,
+            relations: false,
+            spells: false
+        },
+        events: {
+            firstSpellLearned: false,
+            firstSpellCast: false
         }
     }>>
 

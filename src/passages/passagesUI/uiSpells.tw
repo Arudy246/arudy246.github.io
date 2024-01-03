@@ -1,0 +1,16 @@
+:: Spells
+
+    <<nobr>>
+        <<if $spellDetails.illusion.floatingflame.unlocked == true>>
+            <<hovertip $spellDetails.illusion.floatingflame.description>>
+                <<link "Floating Flame">>
+                    <<run 
+                        var a = State.getVar("$spellDetails.illusion.floatingflame.effect");
+                        console.log(a);
+                    
+                    >>
+                    <<run $spellDetails.illusion.floatingflame.onCast>>
+                <</link>>
+            <</hovertip>>
+        <</if>>
+    <</nobr>>
