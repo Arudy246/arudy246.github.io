@@ -1,6 +1,7 @@
 :: Locations
     <h3>School</h3>
-    <<nobr>>\
+    <<nobr>>
+    <<nobr>>
         <<if $unlockVar.locations.starrresidence.unlocked == true>>
             <<button [[Starr Residence | StarrResidence-EntryHall]]>>
                 <<run Dialog.close()>>
@@ -16,9 +17,9 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>\
+    <</nobr>>
     <br>
-    <<nobr>>\
+    <<nobr>>
         <<if $unlockVar.locations.conservatorium.unlocked == true>>
             <<button [[Conservatorium | conservatorium]]>>
                 <<run Dialog.close()>>
@@ -34,9 +35,8 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>\
+    <</nobr>>
+    <<nobr>>
         <<if $unlockVar.locations.gymnasium.unlocked == true>>
             <<button [[Gymnasium | gymnasium]]>>
                 <<run Dialog.close()>>
@@ -52,9 +52,8 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>\
+    <</nobr>>
+    <<nobr>>
         <<if $unlockVar.locations.pentadentrix.unlocked == true>>
             <<button [[Ritual Pentadentrix | pentadentrix]]>>
                 <<run Dialog.close()>>
@@ -70,18 +69,17 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>\
-    <br>
-    <<nobr>>\
+    <</nobr>>
+    <<nobr>>
         <<if $unlockVar.locations.professoroffices.unlocked == true>>
             <<button [[Professor's Offices | professoroffices]]>>
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>\
-
+    <</nobr>>
+    <hr>
     <h3>Town</h3>
-    <<nobr>>\
+    <<nobr>>
         <<if $unlockVar.locations.tradingpost.unlocked == true>>
             <<button [[Herrington's Trading Post | tradingpost]]>>
                 <<run Dialog.close()>>
@@ -97,8 +95,7 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
-    <</nobr>>\
-    <br>
+    <</nobr>>
     <<nobr>>
         <<if $unlockVar.locations.cemetary.unlocked == true>>
             <<button [[Nome City Cemetary | cemetary]]>>
@@ -110,8 +107,5 @@
                 <<run Dialog.close()>>
             <</button>>
         <</if>>
+    <</nobr>>
     <</nobr>>\
-
-    <<link "Exit">>
-        <<run Dialog.close()>>
-    <</link>>

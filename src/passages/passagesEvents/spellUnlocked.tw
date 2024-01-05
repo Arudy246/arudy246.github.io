@@ -1,0 +1,14 @@
+:: Event_Unlock_Spell
+    <<if lastVisited("Event_Unlock_Spell") < 2>>
+        <div class="achievebg">
+            <h1 class='achieve text-center'>Huge Advancement!</h1>
+        </div>
+        <<speech plr>>I think I just learned my first spell!!!<</speech>>
+        <<speech plr>>It came from the tome <i>$eventVar.spell.book</i> and has taught me the <i>$eventVar.spell.name</i> spell!<</speech>>\
+
+        <<elseif hasVisited("Event_Unlock_Spell")>>
+            <<speech plr>>I learned the <i>$eventVar.spell.name</i> spell from the tome, <i>$eventVar.spell.book</i>!<</speech>>\
+    <</if>>\
+
+    <<button [[Continue | previous()]]>>
+    <</button>>

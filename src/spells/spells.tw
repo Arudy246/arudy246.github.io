@@ -1,9 +1,5 @@
 :: Spell-List [init]
 
-    <<set $spellEffects = {
-        lightRoom: "<<set $plrRoom.lights.none = false>> <<set $plrRoom.light.trash = true>>"
-    }>>
-
     <<set $spellDetails = {
         abjuration: {
 
@@ -14,13 +10,12 @@
         illusion: {
             floatingflame: {
                 name: "Floating Flame",
-                description: "Creates a warm, but kind of dim floating flame. Good for light up a room.",
+                description: "Creates a warm, but kind of dim floating flame. Good for first lighting up a room.",
                 unlocked: false,
                 staminaCost: 3,
                 diffLevel: 1,
-                effect: $spellEffects.lightRoom,
-                onCast: "<<set $plrDisciplines.illusion.level += 1>>",
-                spellLevel: "basic"
+                spellLevel: "basic",
+                timesCast: 0
             }
         }
     }>>

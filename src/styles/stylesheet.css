@@ -1,43 +1,46 @@
-    @font-face {
-        font-family: HeaderText;
-        src: url("fonts/BreatheFireIi-2z9W.ttf");
-    }
-    .hidden {
-        visibility: hidden;
-    }
-    #story a.link-external:after {
-        content:"";
-    }
-    #story-title {
-        font-family: HeaderText;
-        font-size: 1.5em;
-        letter-spacing: 1px;
-        text-shadow: 2px 3px black;
-    }
-    #story-author {
-        margin: 0em 1em 0em 0em
-    }
-    #story-banner {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    h2 {
-        font-size: 5em;
-        text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
-        letter-spacing: 1px;
-    }
+@font-face {
+    font-family: HeaderText;
+    src: url("fonts/BreatheFireIi-2z9W.ttf");
+}
 
-    .main-title {
-        background-image: url("img/title-border.png");
-        background-size: 70% 70%;
-        background-repeat: no-repeat;
-        background-position: center;
-        margin-top: -5em;
-        margin-bottom: -5em;
-    }
-
-    .wood-text {
+@font-face {
+    font-family: Achieve;
+    src: url("fonts/WarPriestRegular-PanE.ttf")
+}
+.hidden {
+    visibility: hidden;
+}
+#story a.link-external:after {
+    content:"";
+}
+#story-title {
+    font-family: HeaderText;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    text-shadow: 2px 3px black;
+}
+#story-author {
+    margin: 0em 1em 0em 0em
+}
+#story-banner {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+h2 {
+    font-size: 5em;
+    text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
+    letter-spacing: 1px;
+}
+.main-title {
+    background-image: url("img/title-border.png");
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: -5em;
+    margin-bottom: -5em;
+}
+.wood-text {
     background: url('img/title-texture.jpg');
     background-size: 35%;
     font-size: extra-large * 1.6;
@@ -47,375 +50,365 @@
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-stroke-color: rgba(black, 0.6);
-    }
+}
+body {
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bgtest2.jpg);
+    background-size: 20%;
+    background-repeat: repeat;
+}
+.emphasis {
+    font-style: italic
+}
+.macro-button {
+    background: #000d1a;
+    border: 5px groove #00264d;
+    border-radius: 10px;
+}
+.macro-button:hover {
+    background: rgba(0, 128, 255, 0.5);
+    border: 5px ridge #00264d;
+}
+.text-center {
+    text-align: center;
+}
+#ui-bar {
+    background-image: url("img/bg_uibars.jpg");
+    background-size: cover;
+    border-right: 10px groove #262626;
+}
+#menu {
+    margin-top: 1.5em !important;
+}
+#menu ul {
+    border: 3px ridge #666666;
+}
+#menu li a {
+    background: rgba(26, 26, 26, 0.6);
+}
+#menu li:not(:first-child) {
+    border-top: 2px solid grey;
+}
+.passage {
+    font-family: Verdana, sans-serif;
+    border: 15px solid transparent;
+    border-image: url("img/passage-border.png") 80 repeat;
+    padding: 1.5em;
+    background-color: rgba(20, 20, 20, 0.8);
+    margin-left: -5em;
+    margin-right: -5em
+}
+#passage-start {
+    border: none;
+}
+#story-caption {
+    margin-top: -1em !important;
+}
+.green {
+    color: rgb(0, 173, 0);
+}
+.red {
+    color: red;
+}
+.crimson {
+    color: #eb2d53;
+}
+.negTone {
+    color: orangered;
+    font-style: italic;
+    margin-left: 5px;
+}
+.posTone {
+    color: yellowgreen;
+    font-style: italic;
+    margin-left: 5px;
+}
+.staminaInfo {
+    color: cyan
+}
+.staminaDec {
+    color: rgba(0, 255, 255, 0.25);
+}
+.staminaInc {
+    color: rgba(0, 255, 255, 0.75);
+}
+.cyan {
+    color: cyan;
+}
+.purple {
+    color: mediumpurple;
+}
+.darkgreen {
+    color: forestgreen;
+}
+.greenyellow {
+    color: greenyellow;
+}
+tbody {
+    font-size: 80%;
+} 
+table {
+    border: 1px solid black;
+    vertical-align: middle;
+    float: left;
+}
+tr:nth-child(even) {
+    background-color: rgb(68, 68, 68);
+}
+.charinfosubhdr {
+    font-style: italic;
+}
+.charinfohdr {
+    font-size: 120%;
+    font-style: bold;
+    text-align: center;
+}
+img.scene {
+    display: block;
+    max-width: 70%;
+    max-height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+img.banner {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+img.mcselect {
+    display: block;
+    height: 9rem;
+    width: 9rem;
+    border: 5px solid gray;
+    border-radius: 7px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto ;
+    grid-template-rows: auto auto auto auto;
+    justify-content: space-evenly;
+}
 
-    body {
-        background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bgtest2.jpg);
-        background-size: 20%;
-        background-repeat: repeat;
-    }
+/* Simple Inventory, for SugarCube 2, by Chapel
+v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8 */
+ul.simple-inventory-list {
+    margin:0 auto;padding:0
+}
+.simple-inventory-listing {
+    list-style:none;padding:.3rem .3rem .3rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr
+}
+.simple-inventory-listing:nth-child(2n) {
+    background-color:#000
+}
+.simple-inventory-listing>a,.simple-inventory-listing>span {
+    display:inline-block
+}
+.all-listing.simple-inventory-listing {
+    border-top:1px solid #fafafa;background-color:transparent
+}
+.drop-link {
+    color:#e33
+}
+.drop-link:active,.drop-link:focus,.drop-link:hover {
+    color:#f88
+}
+/* End Simple Inventory */
 
-    .emphasis {
-        font-style: italic
-    }
+/* Speech Box System - Start */
+.speech {
+    color: white;
+    border: 2px solid #363636;
+    border-radius: 10px;
+    padding: 5px 7px 5px 7px;
+    box-shadow: 5px 5px 3px Black;
+}
+.avatar {
+    display: block;
+    padding: 1px;
+    height: 84px;
+    width: 84px;
+    float: left;
+    margin: 0px 10px 0px 0px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.plr {
+    background-color: #252525;
+}
+.janessa {
+    background-color: #1d003f;
+}
+.janessa .avatar {
+    background-image: URL("img/characters/thumb_janessa.jpg");
+}
+.amy {
+    background-color: #741225;
+}
+.amy .avatar {
+    background-image: URL("img/characters/thumb_amy.jpg");
+}
+.barden {
+    background-color: #000d1a;
+}
+.barden .avatar {
+    background-image: URL("img/characters/thumb_sullivan.jpg");
+}
+/* Speech Box System - End */
 
-    .macro-button {
-        background: #000d1a;
-        border: 5px groove #00264d;
-        border-radius: 10px;
-    }
-    .macro-button:hover {
-        background: rgba(0, 128, 255, 0.5);
-        border: 5px ridge #00264d;
-    }
-    .text-center {
-        text-align: center;
-    }
-    #ui-bar {
-        background-image: url("img/bg_uibars.jpg");
-        background-size: cover;
-        border-right: 10px groove #262626;
-    }
-    #menu {
-        margin-top: 1.5em !important;
-    }
-    #menu ul {
-        border: 3px ridge #666666;
-    }
-    #menu li a {
-        background: rgba(26, 26, 26, 0.6);
-    }
-    #menu li:not(:first-child) {
-        border-top: 2px solid grey;
-    }
-    .passage {
-        font-family: Verdana, sans-serif;
-        border: 15px solid transparent;
-        border-image: url("img/passage-border.png") 80 repeat;
-        padding: 1.5em;
-        background-color: rgba(20, 20, 20, 0.8);
-        margin-left: -5em;
-        margin-right: -5em
-    }
-    #passage-start {
-        border: none;
-    }
-    #story-caption {
-        margin-top: -1em !important;
-    }
+/* hovertip v2.0 - Start */
+.hoverTip {
+    display: inline-block;
+    top: 1px;
+    border-width: 0px;
+    border-bottom: 2px solid rgb(94, 94, 94);  /* If you want dots under the hoverable text */
+}
+.hoverTipTxt {
+    position: relative;
+    vertical-align: text-bottom;
+    line-height: initial;
+}
+.hoverTipTxt .hoverBox {
+    position: absolute;
+    visibility: hidden;
+}
+.hoverTipTxt:hover .hoverBox, .hoverTipTxt:focus .hoverBox {
+    visibility: visible;
+}
+.hoverBox {
+    padding: 5px 10px;
+    width: intrinsic;  /* Safari/WebKit uses a non-standard name */
+    width: -webkit-max-content;  /* Chrome */
+    width: -moz-max-content;  /* Firefox/Gecko */
+    width: max-content;
+    max-width: 350px;
+    line-height: initial;
+    text-align: left;
+    color: white;
+    background-color: rgb(17, 17, 17);
+    border: #7f7f7f solid 2px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+            border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+    z-index: 100;
+}
+.hoverTail::after {
+    content: "";
+    position: absolute;
+    top: 100%;  /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #7f7f7f transparent transparent transparent;
+    z-index: 100;
+}
+.hoverBox a {
+    -webkit-transition-duration: unset;
+    -moz-transition-duration: unset;
+        -o-transition-duration: unset;
+            transition-duration: unset;
+}
+#ui-bar .hoverBox {
+    max-width: 230px;
+}
+/* hovertip v2.0 - End */
 
-    #ui-dialog-title {
-        text-align: left;
-    }
-    .green {
-        color: rgb(0, 173, 0);
-    }
-    .red {
-        color: red;
-    }
-    .crimson {
-        color: #eb2d53;
-    }
-    .negTone {
-        color: orangered;
-        font-style: italic;
-        margin-left: 5px;
-    }
-    .posTone {
-        color: yellowgreen;
-        font-style: italic;
-        margin-left: 5px;
-    }
-    .staminaInfo {
-        color: cyan
-    }
-
-    .staminaDec {
-        color: rgba(0, 255, 255, 0.25);
-    }
-
-    .staminaInc {
-        color: rgba(0, 255, 255, 0.75);
-    }
-
-    .cyan {
-        color: cyan;
-    }
-    .purple {
-        color: mediumpurple;
-    }
-    .darkgreen {
-        color: forestgreen;
-    }
-    .greenyellow {
-        color: greenyellow;
-    }
-    tbody {
-        font-size: 80%;
-    } 
-    table {
-        border: 1px solid black;
-        vertical-align: middle;
-        float: left;
-    }
-    tr:nth-child(even) {
-        background-color: grey;
-    }
-    .charinfosubhdr {
-        font-style: italic;
-    }
-    .charinfohdr {
-        font-size: 120%;
-        font-style: bold;
-        text-align: center;
-    }
-    img.scene {
-        display: block;
-        max-width: 70%;
-        max-height: 70%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    img.banner {
-        display: block;
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    img.mcselect {
-        display: block;
-        height: 9rem;
-        width: 9rem;
-        border: 5px solid gray;
-        border-radius: 7px;
-    }
-    .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto auto ;
-        grid-template-rows: auto auto auto auto;
-        justify-content: space-evenly;
-    }
-
-    /* Simple Inventory, for SugarCube 2, by Chapel
-    v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8 */
-    ul.simple-inventory-list {
-        margin:0 auto;padding:0
-    }
-    .simple-inventory-listing {
-        list-style:none;padding:.3rem .3rem .3rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr
-    }
-    .simple-inventory-listing:nth-child(2n) {
-        background-color:#000
-    }
-    .simple-inventory-listing>a,.simple-inventory-listing>span {
-        display:inline-block
-    }
-    .all-listing.simple-inventory-listing {
-        border-top:1px solid #fafafa;background-color:transparent
-    }
-    .drop-link {
-        color:#e33
-    }
-    .drop-link:active,.drop-link:focus,.drop-link:hover {
-        color:#f88
-    }
-    /* End Simple Inventory */
-
-    /* Speech Box System - Start */
-    .speech {
-        color: white;
-        border: 2px solid #363636;
-        border-radius: 10px;
-        padding: 5px 7px 5px 7px;
-        box-shadow: 5px 5px 3px Black;
-    }
-    .avatar {
-        display: block;
-        padding: 1px;
-        height: 84px;
-        width: 84px;
-        float: left;
-        margin: 0px 10px 0px 0px;
-        border: 2px solid white;
-        border-radius: 5px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .plr {
-        background-color: #252525;
-    }
-    .janessa {
-        background-color: #1d003f;
-    }
-    .janessa .avatar {
-        background-image: URL("img/characters/thumb_janessa.jpg");
-    }
-    .amy {
-        background-color: #741225;
-    }
-    .amy .avatar {
-        background-image: URL("img/characters/thumb_amy.jpg");
-    }
-    .barden {
-        background-color: #000d1a;
-    }
-    .barden .avatar {
-        background-image: URL("img/characters/thumb_sullivan.jpg");
-    }
-    /* Speech Box System - End */
-
-    /* hovertip v2.0 - Start */
-    .hoverTip {
-        display: inline-block;
-        top: 1px;
-        border-width: 0px;
-        border-bottom: 2px solid rgb(94, 94, 94);  /* If you want dots under the hoverable text */
-    }
-    .hoverTipTxt {
-        position: relative;
-        vertical-align: text-bottom;
-        line-height: initial;
-    }
-    .hoverTipTxt .hoverBox {
-        position: absolute;
-        visibility: hidden;
-    }
-    .hoverTipTxt:hover .hoverBox, .hoverTipTxt:focus .hoverBox {
-        visibility: visible;
-    }
-    .hoverBox {
-        padding: 5px 10px;
-        width: intrinsic;  /* Safari/WebKit uses a non-standard name */
-        width: -webkit-max-content;  /* Chrome */
-        width: -moz-max-content;  /* Firefox/Gecko */
-        width: max-content;
-        max-width: 350px;
-        line-height: initial;
-        text-align: left;
-        color: white;
-        background-color: rgb(17, 17, 17);
-        border: #7f7f7f solid 2px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-                border-radius: 6px;
-        -webkit-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
-                box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
-        z-index: 100;
-    }
-    .hoverTail::after {
-        content: "";
-        position: absolute;
-        top: 100%;  /* At the bottom of the tooltip */
-        left: 50%;
-        margin-left: -5px;
-        border-width: 8px;
-        border-style: solid;
-        border-color: #7f7f7f transparent transparent transparent;
-        z-index: 100;
-    }
-    .hoverBox a {
-        -webkit-transition-duration: unset;
-        -moz-transition-duration: unset;
-            -o-transition-duration: unset;
-                transition-duration: unset;
-    }
-    #ui-bar .hoverBox {
-        max-width: 230px;
-    }
-    /* hovertip v2.0 - End */
-
-    /* Styling and Colours of the Right UI Bar. */
+/* Styling and Colours of the Right UI Bar. */
 #right-ui-bar {
     background-image: url("img/bg_uibars.jpg");
     background-size: cover;
     border-left: 10px groove #262626;
-	text-align: center;
+    text-align: center;
 }
 #right-ui-bar-toggle {
-	font-size: 1.2em;
-	line-height: inherit;
-	color: #eee;
-	background-color: transparent;
-	border: 1px solid #444;
+    font-size: 1.2em;
+    line-height: inherit;
+    color: #eee;
+    background-color: transparent;
+    border: 1px solid #444;
 }
 #right-ui-bar-toggle:before {
-	font-family: tme-fa-icons;
-	font-style: normal;
-	font-weight: 400;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
+    font-family: tme-fa-icons;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 }
 
 /* Layout and Positioning of the Right UI Bar. */
 #right-ui-bar {
-	position: fixed;
-	z-index: 50;
-	top: 0;
-	right: 0;
-	width: 17.5em;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	-webkit-transition: right .3s ease-in;
-	-o-transition: right .3s ease-in;
-	transition: right .3s ease-in;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    width: 17.5em;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: right .3s ease-in;
+    -o-transition: right .3s ease-in;
+    transition: right .3s ease-in;
 }
 #right-ui-bar-tray {
-	position: absolute;
-	top: .2em;
-	left: 0;
-	right: 0;
+    position: absolute;
+    top: .2em;
+    left: 0;
+    right: 0;
 }
 #right-ui-bar-toggle {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	border-left: none;
-	padding: .3em .45em .25em;
-	-webkit-user-select: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: none;
+    padding: .3em .45em .25em;
+    -webkit-user-select: none;
     user-select: none;
 }
 #right-ui-bar-toggle:before {
-	content: "\e81e";
+    content: "\e81e";
 }
 #right-ui-bar-body {
-	height: 90%;
-	height: calc(100% - 2.5em);
-	margin: 2.5em 0;
-	padding: 0 1.5em;
+    height: 90%;
+    height: calc(100% - 2.5em);
+    margin: 2.5em 0;
+    padding: 0 1.5em;
 }
 #right-ui-bar-body {
-	line-height: 1.5;
-	overflow: auto;
+    line-height: 1.5;
+    overflow: auto;
 }
 
 #story {
-	margin-right: 20em;
+    margin-right: 20em;
 }
 
 /* Stowing of the Right UI Bar. */
 #right-ui-bar.stowed {
-	right: -15em;
+    right: -15em;
 }
 #right-ui-bar.stowed #right-ui-bar-toggle {
-	padding: .3em .55em .25em .35em;
+    padding: .3em .55em .25em .35em;
 }
 #right-ui-bar.stowed #right-ui-bar-toggle:before {
-	content: "\e81d";
+    content: "\e81d";
 }
 #right-ui-bar.stowed #right-ui-bar-body {
-	visibility: hidden;
-	-webkit-transition: visibility .2s step-end;
-	-o-transition: visibility .2s step-end;
-	transition: visibility .2s step-end;
+    visibility: hidden;
+    -webkit-transition: visibility .2s step-end;
+    -o-transition: visibility .2s step-end;
+    transition: visibility .2s step-end;
 }
 
 #right-ui-bar.stowed~#story {
-	margin-right: 4.5em;
+    margin-right: 4.5em;
 }
 
 #right-ui-bar-body a {
@@ -429,32 +422,32 @@
 
 #right-ui-bar-body a:hover {
     background-color: #444;
-	border-color: #eee;
+    border-color: #eee;
     text-decoration: none;
 }
 
 /* Horizontal Stat Bar - Start */
 .hzbarbkg {  /* default class for all horizontal bar backgrounds */
-	position: relative;
-	height: 15px;
-	width: 100%;
-	background-color: #808080;
-	background-image: linear-gradient(to right, rgba(68, 68, 68, 0.5), rgba(34, 34, 34, 0.5) 5px), linear-gradient(to bottom, rgba(68, 68, 68, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
-	border-radius: 10px;
+    position: relative;
+    height: 15px;
+    width: 100%;
+    background-color: #808080;
+    background-image: linear-gradient(to right, rgba(68, 68, 68, 0.5), rgba(34, 34, 34, 0.5) 5px), linear-gradient(to bottom, rgba(68, 68, 68, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
+    border-radius: 10px;
     border: 1px solid rgb(255, 255, 255);
-	z-index: 56;
-	visibility: visible;
+    z-index: 56;
+    visibility: visible;
 }
 .hzbar {  /* default class for all horizontal bars */
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	height: 15px;
-	background-color: transparent;
-	background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
-	border-radius: 10px;
-	z-index: 57;
-	transition: width ease 1s, background-color ease 1s;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 15px;
+    background-color: transparent;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
+    border-radius: 10px;
+    z-index: 57;
+    transition: width ease 1s, background-color ease 1s;
 }
 /* Horizontal Stat Bar - End */
 
@@ -489,13 +482,42 @@
     font-style: italic;
 }
 /* Quality Colors - End */
+#ui-dialog-title {
+    text-align: left;
+}
 
 #ui-dialog {
-    min-width: 40% !important;
+    min-width: 30% !important;
 }
 
 #ui-dialog-body {
     overflow: hidden;
-    min-height: 20em;
-    padding: 2.5em;
+    min-height: 25em;
+    padding: 3.5em 2.5em 2.5em 2.5em;
+}
+
+.achieve {
+    background: url('img/bg_achieve.jpg');
+    background-size: 30%;
+    font-size: 4.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: Achieve;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-stroke-color: rgba(black, 0.6);
+    text-shadow: 5px 5px rgba(229, 255, 0, 0.103);
+}
+
+.achievebg {
+    background-image: url("img/bg_smoke_achieve.jpg");
+    background-size: 100% 100%;
+    margin: auto -0.5em;
+    line-height: 1.2;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100em;
 }

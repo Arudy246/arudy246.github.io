@@ -10,14 +10,21 @@
 :: StoryMenu
 
     <<if $unlockVar.userInterface.dev == true>>
-        <<link "Dev Wand">>
+        <<link "!Dev Wand">>
             <<run
                 Dialog.setup("Dev Wand", "dev wand");
                 Dialog.wiki(Story.get("DevWand").processText());
                 Dialog.open();
             >>
         <</link>>
-        [[Character Info]]
+        <<link "!Dev Char Info">>
+            <<run
+                Dialog.setup("Character Info");
+                Dialog.wiki(Story.get("Character Info").processText());
+                Dialog.open();
+            >>
+        <</link>>
+        [[!Dev Spell Testing | Testing_Spells]]
     <</if>>
 
     <<if $unlockVar.userInterface.stats == true>>

@@ -638,3 +638,16 @@
         booksFound: 0,
         tomesFound: 0,
     }>>
+
+    <<set $eventVar = {
+        spell: {
+            name: '',
+            description: '',
+            book: ''
+        },
+        location: {
+            name: '',
+            description: '',
+            book: ''
+        }
+    }>>

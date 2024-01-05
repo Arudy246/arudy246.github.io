@@ -1,29 +1,29 @@
-:: StarrResidence-EntryHall
+:: Residence_Starr_EntryHall
 
-:: StarrResidence-Kitchen
+:: Residence_Starr_Kitchen
 
-:: StarrResidence-BanquetHall
+:: Residence_Starr_BanquetHall
 
-:: StarrResidence-Bathroom
+:: Residence_Starr_Bathroom
 
-:: StarrResidence-JanessaRoom
+:: Residence_Starr_JanessaRoom
 
-:: StarrResidence-PlayerRoom
+:: Residence_Starr_PlayerRoom
     <img class="scene" src='img/plrroom.jpg'>\
 
     <<speech plr>>
         I'm in my room. Glancing at the state of the place, it's <<commentClean>> clean. The floor is of <<commentFloor>> quality. I see my <<commentChair>> chair and <<commentDesk>> desk in the corner. On the far wall is my <<commentBed>> bed. The room is <<commentLight>> lit.
     <</speech>>
-    <<button [[Look for anything interesting in the clutter | StarrResidence-PlayerRoom-Searching]]>><</button>>
-    <<button [[Try to clean up a bit | StarrResidence-PlayerRoom-Cleaning]]>>
+    <<button [[Look for anything interesting in the clutter | Residence_Starr_PlayerRoom_Searching]]>><</button>>
+    <<button [[Try to clean up a bit | Residence_Starr_PlayerRoom_Cleaning]]>>
         <<if $plrRoom.cleanliness <= 2>>
             <<set $plrRoom.cleanliness += 1>>
             <<calcTime 30>>
         <</if>>    
     <</button>>
     <<nobr>>
-        <<if not hasVisited("StarrResidence-PlayerRoom-Sleeping")>>
-            <<button [[Try to sleep | StarrResidence-PlayerRoom-Sleeping]]>>
+        <<if not hasVisited("Residence_Starr_PlayerRoom_Sleeping")>>
+            <<button [[Try to sleep | Residence_Starr_PlayerRoom_Sleeping]]>>
                 <<calcTime 30 5>>
             <</button>>
             <<else>>
@@ -37,7 +37,7 @@
         <</if>>
     <</nobr>>
 
-:: StarrResidence-PlayerRoom-Cleaning
+:: Residence_Starr_PlayerRoom_Cleaning
     <img class="scene" src='img/plrroom.jpg'>\
     <<nobr>>
         <<if $plrRoom.cleanliness < 1>>
@@ -49,9 +49,9 @@
         <</if>>
     <</nobr>>\
 
-    <<button [[Continue | StarrResidence-PlayerRoom]]>><</button>>
+    <<button [[Continue | Residence_Starr_PlayerRoom]]>><</button>>
 
-:: StarrResidence-PlayerRoom-Searching
+:: Residence_Starr_PlayerRoom_Searching
     <img class="scene" src='img/searchclutter.jpg'>
     <<nobr>>
         <<if $plrRoom.booksFound == 0>>
@@ -71,14 +71,14 @@
                 <<speech plr>>This place is picked clean.<</speech>>
         <</if>>
     <</nobr>>
-    <<button [[Look back at your room | StarrResidence-PlayerRoom]]>>
+    <<button [[Look back at your room | Residence_Starr_PlayerRoom]]>>
     
     <</button>>
 
-:: StarrResidence-PlayerRoom-Sleeping
+:: Residence_Starr_PlayerRoom_Sleeping
     <img class="scene" src='img/nastybed.jpg'>\
     <<speech plr>>You lay down on your <<commentBed>> bed. After trying for what felt like half an hour, you realize sleep is far from a possibility.<</speech>>\
 
-    <<button [[Stand up | StarrResidence-PlayerRoom]]>>
+    <<button [[Stand up | Residence_Starr_PlayerRoom]]>>
     <</button>>
 

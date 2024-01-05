@@ -1,9 +1,9 @@
 :: DevWand
-
-    <<button [[Quick Start | WakingUp14]]>>
+    <<button [[Quick Start | Residence_Starr_PlayerRoom]]>>
         <<set $plrName.fName = "Azure">>
         <<set $plrName.lName = "Paine">>
         <<set $plrName.prefix = "Mr.">>
+        <<set $plrName.formal = $plrName.prefix + " " + $plrName.lName>>
         <<set $plrBody.static.sex = "male">>
         <<set $plrBody.static.hairColor = "blue">>
         <<set $plrBody.static.hairStyle = "mohawk">>
@@ -24,8 +24,17 @@
         <<set $plrStats.focus.cur = 5>>
         <<set $plrImg = "img/characters/thumb_male_bro_white.jpg">>
 
+        <<set $unlockVar.userInterface.inventory = true>>
+
+        <<pickup $plrinvbooks "mapSchool" 1>>
+        <<pickup $plrinvbooks "mapTown" 1>>
+        <<pickup $plrinvbooks "illusion1" 1>>
+
         <<run Dialog.close()>>
     <</button>>
+
+
+    [[Testing_Spells]]
 
     <<link "TestingGrounds">>
         <<run

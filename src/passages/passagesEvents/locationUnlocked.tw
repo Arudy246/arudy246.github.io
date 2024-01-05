@@ -1,0 +1,9 @@
+:: Event_Unlock_Location
+
+    <<speech plr>>
+        After reading <i>$eventVar.location.book</i> you learned how to find the <i>$eventVar.location.name</i>!
+    <</speech>>\
+
+    <<button [[Continue | previous()]]>>
+
+    <</button>>

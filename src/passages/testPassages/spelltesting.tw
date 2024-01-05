@@ -1,0 +1,118 @@
+:: Testing_Spells
+    <<speech plr>>This is the spell testing grounds. Good luck dude...<</speech>>
+    
+    targetCost:     <<numberbox '$targetCost' $targetCost>>
+    typeCost:       <<numberbox '$typeCost' $typeCost>>
+    durationCost:   <<numberbox '$durationCost' $durationCost>>
+    effectCost:     <<numberbox '$effectCost' $effectCost>>
+    strCost:        <<numberbox '$strCost' $strCost>>
+    discLvl:        <<numberbox '$discLvl' $discLvl>>
+
+    Equation Result: <<print $eqResult.toFixed(2)>>
+    <<run console.log($eqResult)>>
+
+    <<button [[Process | Testing_Spells]]>>
+        <<set $eqResult = $targetCost * $typeCost * $durationCost * $strCost * ($effectCost / ($discLvl * 0.4))>>
+    <</button>>
+
+:: Spells_Words_List [init]
+    <<set $spellWords = {
+        target: {
+            self: {
+                latin: 'Ego',
+                description: 'Selects you as the focus of the spell.',
+                unlocked: false
+            },
+            other: {
+                latin: 'Alius',
+                description: 'Selects a nearby person or creature as the focus of the spell.',
+                unlocked: false
+            },
+            room: {
+                latin: 'Praesto',
+                description: 'Selects the room you are in as the focus of the spell.',
+                unlocked: false
+            },
+            wide: {
+                latin: 'Circa',
+                description: 'Selects a wide area (i.e. a residence or courtyard) as the focus of the spell.',
+                unlocked: false
+            },
+            item: {
+                latin: 'Item',
+                description: 'Selects an item as the focus of the spell.',
+                unlocked: false
+            }
+        },
+        type: {
+            direct: {
+                latin: 'Focus',
+                description: 'The spell only directly affects the initial target.',
+                unlocked: false
+            },
+            aura: {
+                latin: 'Aura',
+                description: 'The spell surrounds the initial target, but affects it and the surrounding area.',
+                unlocked: false
+            },
+            enchant: {
+                latin: 'Admagicae',
+                description: 'Mostly used to add an effect to an item.',
+                unlocked: false
+            }
+        },
+        duration: {
+            immediate: {
+                latin: 'Nunc',
+                description: 'The spell effect is applied immediately.',
+                unlocked: false
+            },
+            minute: {
+                latin: 'Mox',
+                description: 'The spell applies the affect now and for a few minutes.',
+                unlocked: false
+            },
+            hour: {
+                latin: 'Postea',
+                description: 'The spell applies the effect now and for about an hour.',
+                unlocked: false
+            },
+            day: {
+                latin: 'Hodie',
+                description: 'The spell applies the effect now and for about a day.',
+                unlocked: false
+            },
+            week: {
+                latin: 'Septimana',
+                description: 'The spell applies the effect now and for around one week',
+                unlocked: false
+            },
+            month: {
+                latin: 'Mensis',
+                description: 'The spell applies the effect now and for a whole month.',
+                unlocked: false
+            }
+        },
+        effect: {
+            damage: {
+                latin: 'asd',
+                description: 'asd',
+                unlocked: false
+            },
+        }
+    }>>
+        <<set $eqResult = 0>>
+        <<set $targetCost = 1>>
+        <<set $typeCost = 1>>
+        <<set $durationCost = 0.5>>
+        <<set $effectCost = 1>>
+        <<set $discLvl = 15>>
+        <<set $strCost = 3>>
+
+        strength: {
+            1: 3
+            2: 4
+            3: 9
+            4: 16
+            5: 25
+        }

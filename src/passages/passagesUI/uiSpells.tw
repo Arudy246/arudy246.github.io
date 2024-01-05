@@ -4,12 +4,14 @@
         <<if $spellDetails.illusion.floatingflame.unlocked == true>>
             <<hovertip $spellDetails.illusion.floatingflame.description>>
                 <<link "Floating Flame">>
-                    <<run 
-                        var a = State.getVar("$spellDetails.illusion.floatingflame.effect");
-                        console.log(a);
-                    
+                    <<set $plrRoom.lights.none = false>>
+                    <<set $plrRoom.lights.trash = true>>
+                    <<set $plrDisciplines.illusion.level += 1>>
+                    <<run
+                        Dialog.setup("Spell Cast");
+                        Dialog.append("You just case the Floating Flame spell.");
+                        Dialog.open();
                     >>
-                    <<run $spellDetails.illusion.floatingflame.onCast>>
                 <</link>>
             <</hovertip>>
         <</if>>

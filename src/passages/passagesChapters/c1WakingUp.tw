@@ -477,8 +477,7 @@
 
     With that, $npcs.janessa.firstName turns around and walks out, leaving you alone in your decrepit room.
 
-    <<button [[Look around | StarrResidence-PlayerRoom]]>>
-        <<set $unlockVar.userInterface.locations = true>>
+    <<button [[Look around | Residence_Starr_PlayerRoom]]>>
     <</button>>
 
 

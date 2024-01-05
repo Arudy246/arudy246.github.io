@@ -155,7 +155,13 @@
         <<widget "readBook">>
             <<switch _args[0]>>
                 <<case "miscbook">>
+                    <<if $unlockVar.userInterface.locations != true>>
+                        <<set $unlockVar.userInterface.locations = true>>
+                    <</if>>
+
                     <<if $bookMisc[_args[1]].pagesRead != $bookMisc[_args[1]].pagesTotal>>
+                        <<goto "Event_Unlock_Location">>
+
                         <<set $bookMisc[_args[1]].pagesRead += 1>>
 
                         <<pickup $plrinvbooks _args[1] 1>>
@@ -164,6 +170,9 @@
                         <<set _unlocknum = $bookMisc[_args[1]].pagesRead>>
                         <<set _unlockname = $bookMisc[_args[1]].pageUnlocks[_unlocknum]>>
                         <<set _unlockmessage = $unlockVar.locations[_unlockname].name>>
+
+                        <<set $eventVar.location.name = _unlockmessage>>
+                        <<set $eventVar.location.book = $bookMisc[_args[1]].title>>
 
                         <<if _unlockname == undefined>>
                             <<set _unlockmessage = "nothing, but there are more chapters to read.">>
@@ -174,9 +183,16 @@
                             Dialog.open();
                         >>
                         <<set $unlockVar.locations[_unlockname].unlocked = true>>
-                    <<else>>
-                        <<drop $plrinvbooks _args[1] 1>>
-                        <<run UI.alert("You finished the book, there is nothing left to learn from this.")>>
+
+                        <<if $bookMisc[_args[1]].pagesRead == $bookMisc[_args[1]].pagesTotal>>
+                            <<drop $plrinvbooks _args[1] 1>>
+                            <<run
+                                Dialog.setup("Chapter Read and Book Finished");
+                                Dialog.wiki("After reading chapter " + _unlocknum + "/" + $bookMisc[_args[1]].pagesTotal + " of " + "'" + $bookMisc[_args[1]].title + "'" + " you discovered " + _unlockmessage + ".");
+                                Dialog.append("<br><br><br>You finished the book, there is nothing left to learn from this. The book disintegrates from your hands.");
+                                Dialog.open();
+                            >>    
+                        <</if>>
                     <</if>>
 
                 <<case "skillbook">>
@@ -189,7 +205,7 @@
 
                     <<if $unlockVar.events.firstSpellLearned == false>>
                         <<set $unlockVar.events.firstSpellLearned = true>>
-                        <<goto "Event-FirstSpellLearned">>
+                        <<goto "Event_Unlock_Spell">>
                     <</if>>
 
                     <<set _address = $bookSpell[_args[1]]>>
@@ -202,6 +218,9 @@
                         <<set _unlocknum = _address.pagesRead>>
                         <<set _unlockname = _address.pageUnlocks[_unlocknum]>>
                         <<set _unlockmessage ="how to cast the " + $spellDetails[_school][_unlockname].name + " spell!">>
+
+                        <<set $eventVar.spell.name = $spellDetails[_school][_unlockname].name>>
+                        <<set $eventVar.spell.book = _address.title>>
 
                         <<if _unlockname == undefined>>
                             <<set _unlockmessage = "nothing, but there is more in this to study.">>
@@ -548,5 +567,12 @@
                 <<set _args[0][_args[1]] += 1>>
                 <<calcTime 20 15>>
             <</if>>
+        <</widget>>
+    <</nobr>>
+
+    /* castSpell */
+    <<nobr>>
+        <<widget "castSpell">>
+
         <</widget>>
     <</nobr>>

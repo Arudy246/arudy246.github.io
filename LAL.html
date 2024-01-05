@@ -98,46 +98,49 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://49DA3755-D957-4866-AF0F-EC39C2B73777// --><tw-storydata name="Live Another Life" startnode="8" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="49DA3755-D957-4866-AF0F-EC39C2B73777" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">    @font-face {
-        font-family: HeaderText;
-        src: url("fonts/BreatheFireIi-2z9W.ttf");
-    }
-    .hidden {
-        visibility: hidden;
-    }
-    #story a.link-external:after {
-        content:"";
-    }
-    #story-title {
-        font-family: HeaderText;
-        font-size: 1.5em;
-        letter-spacing: 1px;
-        text-shadow: 2px 3px black;
-    }
-    #story-author {
-        margin: 0em 1em 0em 0em
-    }
-    #story-banner {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    h2 {
-        font-size: 5em;
-        text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
-        letter-spacing: 1px;
-    }
+	<!-- UUID://49DA3755-D957-4866-AF0F-EC39C2B73777// --><tw-storydata name="Live Another Life" startnode="8" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="49DA3755-D957-4866-AF0F-EC39C2B73777" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@font-face {
+    font-family: HeaderText;
+    src: url("fonts/BreatheFireIi-2z9W.ttf");
+}
 
-    .main-title {
-        background-image: url("img/title-border.png");
-        background-size: 70% 70%;
-        background-repeat: no-repeat;
-        background-position: center;
-        margin-top: -5em;
-        margin-bottom: -5em;
-    }
-
-    .wood-text {
+@font-face {
+    font-family: Achieve;
+    src: url("fonts/WarPriestRegular-PanE.ttf")
+}
+.hidden {
+    visibility: hidden;
+}
+#story a.link-external:after {
+    content:"";
+}
+#story-title {
+    font-family: HeaderText;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    text-shadow: 2px 3px black;
+}
+#story-author {
+    margin: 0em 1em 0em 0em
+}
+#story-banner {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+h2 {
+    font-size: 5em;
+    text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
+    letter-spacing: 1px;
+}
+.main-title {
+    background-image: url("img/title-border.png");
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: -5em;
+    margin-bottom: -5em;
+}
+.wood-text {
     background: url('img/title-texture.jpg');
     background-size: 35%;
     font-size: extra-large * 1.6;
@@ -147,375 +150,365 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-stroke-color: rgba(black, 0.6);
-    }
+}
+body {
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bgtest2.jpg);
+    background-size: 20%;
+    background-repeat: repeat;
+}
+.emphasis {
+    font-style: italic
+}
+.macro-button {
+    background: #000d1a;
+    border: 5px groove #00264d;
+    border-radius: 10px;
+}
+.macro-button:hover {
+    background: rgba(0, 128, 255, 0.5);
+    border: 5px ridge #00264d;
+}
+.text-center {
+    text-align: center;
+}
+#ui-bar {
+    background-image: url("img/bg_uibars.jpg");
+    background-size: cover;
+    border-right: 10px groove #262626;
+}
+#menu {
+    margin-top: 1.5em !important;
+}
+#menu ul {
+    border: 3px ridge #666666;
+}
+#menu li a {
+    background: rgba(26, 26, 26, 0.6);
+}
+#menu li:not(:first-child) {
+    border-top: 2px solid grey;
+}
+.passage {
+    font-family: Verdana, sans-serif;
+    border: 15px solid transparent;
+    border-image: url("img/passage-border.png") 80 repeat;
+    padding: 1.5em;
+    background-color: rgba(20, 20, 20, 0.8);
+    margin-left: -5em;
+    margin-right: -5em
+}
+#passage-start {
+    border: none;
+}
+#story-caption {
+    margin-top: -1em !important;
+}
+.green {
+    color: rgb(0, 173, 0);
+}
+.red {
+    color: red;
+}
+.crimson {
+    color: #eb2d53;
+}
+.negTone {
+    color: orangered;
+    font-style: italic;
+    margin-left: 5px;
+}
+.posTone {
+    color: yellowgreen;
+    font-style: italic;
+    margin-left: 5px;
+}
+.staminaInfo {
+    color: cyan
+}
+.staminaDec {
+    color: rgba(0, 255, 255, 0.25);
+}
+.staminaInc {
+    color: rgba(0, 255, 255, 0.75);
+}
+.cyan {
+    color: cyan;
+}
+.purple {
+    color: mediumpurple;
+}
+.darkgreen {
+    color: forestgreen;
+}
+.greenyellow {
+    color: greenyellow;
+}
+tbody {
+    font-size: 80%;
+} 
+table {
+    border: 1px solid black;
+    vertical-align: middle;
+    float: left;
+}
+tr:nth-child(even) {
+    background-color: rgb(68, 68, 68);
+}
+.charinfosubhdr {
+    font-style: italic;
+}
+.charinfohdr {
+    font-size: 120%;
+    font-style: bold;
+    text-align: center;
+}
+img.scene {
+    display: block;
+    max-width: 70%;
+    max-height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+img.banner {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+img.mcselect {
+    display: block;
+    height: 9rem;
+    width: 9rem;
+    border: 5px solid gray;
+    border-radius: 7px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto ;
+    grid-template-rows: auto auto auto auto;
+    justify-content: space-evenly;
+}
 
-    body {
-        background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bgtest2.jpg);
-        background-size: 20%;
-        background-repeat: repeat;
-    }
+/* Simple Inventory, for SugarCube 2, by Chapel
+v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8 */
+ul.simple-inventory-list {
+    margin:0 auto;padding:0
+}
+.simple-inventory-listing {
+    list-style:none;padding:.3rem .3rem .3rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr
+}
+.simple-inventory-listing:nth-child(2n) {
+    background-color:#000
+}
+.simple-inventory-listing>a,.simple-inventory-listing>span {
+    display:inline-block
+}
+.all-listing.simple-inventory-listing {
+    border-top:1px solid #fafafa;background-color:transparent
+}
+.drop-link {
+    color:#e33
+}
+.drop-link:active,.drop-link:focus,.drop-link:hover {
+    color:#f88
+}
+/* End Simple Inventory */
 
-    .emphasis {
-        font-style: italic
-    }
+/* Speech Box System - Start */
+.speech {
+    color: white;
+    border: 2px solid #363636;
+    border-radius: 10px;
+    padding: 5px 7px 5px 7px;
+    box-shadow: 5px 5px 3px Black;
+}
+.avatar {
+    display: block;
+    padding: 1px;
+    height: 84px;
+    width: 84px;
+    float: left;
+    margin: 0px 10px 0px 0px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.plr {
+    background-color: #252525;
+}
+.janessa {
+    background-color: #1d003f;
+}
+.janessa .avatar {
+    background-image: URL("img/characters/thumb_janessa.jpg");
+}
+.amy {
+    background-color: #741225;
+}
+.amy .avatar {
+    background-image: URL("img/characters/thumb_amy.jpg");
+}
+.barden {
+    background-color: #000d1a;
+}
+.barden .avatar {
+    background-image: URL("img/characters/thumb_sullivan.jpg");
+}
+/* Speech Box System - End */
 
-    .macro-button {
-        background: #000d1a;
-        border: 5px groove #00264d;
-        border-radius: 10px;
-    }
-    .macro-button:hover {
-        background: rgba(0, 128, 255, 0.5);
-        border: 5px ridge #00264d;
-    }
-    .text-center {
-        text-align: center;
-    }
-    #ui-bar {
-        background-image: url("img/bg_uibars.jpg");
-        background-size: cover;
-        border-right: 10px groove #262626;
-    }
-    #menu {
-        margin-top: 1.5em !important;
-    }
-    #menu ul {
-        border: 3px ridge #666666;
-    }
-    #menu li a {
-        background: rgba(26, 26, 26, 0.6);
-    }
-    #menu li:not(:first-child) {
-        border-top: 2px solid grey;
-    }
-    .passage {
-        font-family: Verdana, sans-serif;
-        border: 15px solid transparent;
-        border-image: url("img/passage-border.png") 80 repeat;
-        padding: 1.5em;
-        background-color: rgba(20, 20, 20, 0.8);
-        margin-left: -5em;
-        margin-right: -5em
-    }
-    #passage-start {
-        border: none;
-    }
-    #story-caption {
-        margin-top: -1em !important;
-    }
+/* hovertip v2.0 - Start */
+.hoverTip {
+    display: inline-block;
+    top: 1px;
+    border-width: 0px;
+    border-bottom: 2px solid rgb(94, 94, 94);  /* If you want dots under the hoverable text */
+}
+.hoverTipTxt {
+    position: relative;
+    vertical-align: text-bottom;
+    line-height: initial;
+}
+.hoverTipTxt .hoverBox {
+    position: absolute;
+    visibility: hidden;
+}
+.hoverTipTxt:hover .hoverBox, .hoverTipTxt:focus .hoverBox {
+    visibility: visible;
+}
+.hoverBox {
+    padding: 5px 10px;
+    width: intrinsic;  /* Safari/WebKit uses a non-standard name */
+    width: -webkit-max-content;  /* Chrome */
+    width: -moz-max-content;  /* Firefox/Gecko */
+    width: max-content;
+    max-width: 350px;
+    line-height: initial;
+    text-align: left;
+    color: white;
+    background-color: rgb(17, 17, 17);
+    border: #7f7f7f solid 2px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+            border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+    z-index: 100;
+}
+.hoverTail::after {
+    content: "";
+    position: absolute;
+    top: 100%;  /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #7f7f7f transparent transparent transparent;
+    z-index: 100;
+}
+.hoverBox a {
+    -webkit-transition-duration: unset;
+    -moz-transition-duration: unset;
+        -o-transition-duration: unset;
+            transition-duration: unset;
+}
+#ui-bar .hoverBox {
+    max-width: 230px;
+}
+/* hovertip v2.0 - End */
 
-    #ui-dialog-title {
-        text-align: left;
-    }
-    .green {
-        color: rgb(0, 173, 0);
-    }
-    .red {
-        color: red;
-    }
-    .crimson {
-        color: #eb2d53;
-    }
-    .negTone {
-        color: orangered;
-        font-style: italic;
-        margin-left: 5px;
-    }
-    .posTone {
-        color: yellowgreen;
-        font-style: italic;
-        margin-left: 5px;
-    }
-    .staminaInfo {
-        color: cyan
-    }
-
-    .staminaDec {
-        color: rgba(0, 255, 255, 0.25);
-    }
-
-    .staminaInc {
-        color: rgba(0, 255, 255, 0.75);
-    }
-
-    .cyan {
-        color: cyan;
-    }
-    .purple {
-        color: mediumpurple;
-    }
-    .darkgreen {
-        color: forestgreen;
-    }
-    .greenyellow {
-        color: greenyellow;
-    }
-    tbody {
-        font-size: 80%;
-    } 
-    table {
-        border: 1px solid black;
-        vertical-align: middle;
-        float: left;
-    }
-    tr:nth-child(even) {
-        background-color: grey;
-    }
-    .charinfosubhdr {
-        font-style: italic;
-    }
-    .charinfohdr {
-        font-size: 120%;
-        font-style: bold;
-        text-align: center;
-    }
-    img.scene {
-        display: block;
-        max-width: 70%;
-        max-height: 70%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    img.banner {
-        display: block;
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    img.mcselect {
-        display: block;
-        height: 9rem;
-        width: 9rem;
-        border: 5px solid gray;
-        border-radius: 7px;
-    }
-    .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto auto ;
-        grid-template-rows: auto auto auto auto;
-        justify-content: space-evenly;
-    }
-
-    /* Simple Inventory, for SugarCube 2, by Chapel
-    v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8 */
-    ul.simple-inventory-list {
-        margin:0 auto;padding:0
-    }
-    .simple-inventory-listing {
-        list-style:none;padding:.3rem .3rem .3rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr
-    }
-    .simple-inventory-listing:nth-child(2n) {
-        background-color:#000
-    }
-    .simple-inventory-listing>a,.simple-inventory-listing>span {
-        display:inline-block
-    }
-    .all-listing.simple-inventory-listing {
-        border-top:1px solid #fafafa;background-color:transparent
-    }
-    .drop-link {
-        color:#e33
-    }
-    .drop-link:active,.drop-link:focus,.drop-link:hover {
-        color:#f88
-    }
-    /* End Simple Inventory */
-
-    /* Speech Box System - Start */
-    .speech {
-        color: white;
-        border: 2px solid #363636;
-        border-radius: 10px;
-        padding: 5px 7px 5px 7px;
-        box-shadow: 5px 5px 3px Black;
-    }
-    .avatar {
-        display: block;
-        padding: 1px;
-        height: 84px;
-        width: 84px;
-        float: left;
-        margin: 0px 10px 0px 0px;
-        border: 2px solid white;
-        border-radius: 5px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .plr {
-        background-color: #252525;
-    }
-    .janessa {
-        background-color: #1d003f;
-    }
-    .janessa .avatar {
-        background-image: URL("img/characters/thumb_janessa.jpg");
-    }
-    .amy {
-        background-color: #741225;
-    }
-    .amy .avatar {
-        background-image: URL("img/characters/thumb_amy.jpg");
-    }
-    .barden {
-        background-color: #000d1a;
-    }
-    .barden .avatar {
-        background-image: URL("img/characters/thumb_sullivan.jpg");
-    }
-    /* Speech Box System - End */
-
-    /* hovertip v2.0 - Start */
-    .hoverTip {
-        display: inline-block;
-        top: 1px;
-        border-width: 0px;
-        border-bottom: 2px solid rgb(94, 94, 94);  /* If you want dots under the hoverable text */
-    }
-    .hoverTipTxt {
-        position: relative;
-        vertical-align: text-bottom;
-        line-height: initial;
-    }
-    .hoverTipTxt .hoverBox {
-        position: absolute;
-        visibility: hidden;
-    }
-    .hoverTipTxt:hover .hoverBox, .hoverTipTxt:focus .hoverBox {
-        visibility: visible;
-    }
-    .hoverBox {
-        padding: 5px 10px;
-        width: intrinsic;  /* Safari/WebKit uses a non-standard name */
-        width: -webkit-max-content;  /* Chrome */
-        width: -moz-max-content;  /* Firefox/Gecko */
-        width: max-content;
-        max-width: 350px;
-        line-height: initial;
-        text-align: left;
-        color: white;
-        background-color: rgb(17, 17, 17);
-        border: #7f7f7f solid 2px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-                border-radius: 6px;
-        -webkit-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
-                box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
-        z-index: 100;
-    }
-    .hoverTail::after {
-        content: "";
-        position: absolute;
-        top: 100%;  /* At the bottom of the tooltip */
-        left: 50%;
-        margin-left: -5px;
-        border-width: 8px;
-        border-style: solid;
-        border-color: #7f7f7f transparent transparent transparent;
-        z-index: 100;
-    }
-    .hoverBox a {
-        -webkit-transition-duration: unset;
-        -moz-transition-duration: unset;
-            -o-transition-duration: unset;
-                transition-duration: unset;
-    }
-    #ui-bar .hoverBox {
-        max-width: 230px;
-    }
-    /* hovertip v2.0 - End */
-
-    /* Styling and Colours of the Right UI Bar. */
+/* Styling and Colours of the Right UI Bar. */
 #right-ui-bar {
     background-image: url("img/bg_uibars.jpg");
     background-size: cover;
     border-left: 10px groove #262626;
-	text-align: center;
+    text-align: center;
 }
 #right-ui-bar-toggle {
-	font-size: 1.2em;
-	line-height: inherit;
-	color: #eee;
-	background-color: transparent;
-	border: 1px solid #444;
+    font-size: 1.2em;
+    line-height: inherit;
+    color: #eee;
+    background-color: transparent;
+    border: 1px solid #444;
 }
 #right-ui-bar-toggle:before {
-	font-family: tme-fa-icons;
-	font-style: normal;
-	font-weight: 400;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
+    font-family: tme-fa-icons;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 }
 
 /* Layout and Positioning of the Right UI Bar. */
 #right-ui-bar {
-	position: fixed;
-	z-index: 50;
-	top: 0;
-	right: 0;
-	width: 17.5em;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	-webkit-transition: right .3s ease-in;
-	-o-transition: right .3s ease-in;
-	transition: right .3s ease-in;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    width: 17.5em;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: right .3s ease-in;
+    -o-transition: right .3s ease-in;
+    transition: right .3s ease-in;
 }
 #right-ui-bar-tray {
-	position: absolute;
-	top: .2em;
-	left: 0;
-	right: 0;
+    position: absolute;
+    top: .2em;
+    left: 0;
+    right: 0;
 }
 #right-ui-bar-toggle {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	border-left: none;
-	padding: .3em .45em .25em;
-	-webkit-user-select: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: none;
+    padding: .3em .45em .25em;
+    -webkit-user-select: none;
     user-select: none;
 }
 #right-ui-bar-toggle:before {
-	content: "\e81e";
+    content: "\e81e";
 }
 #right-ui-bar-body {
-	height: 90%;
-	height: calc(100% - 2.5em);
-	margin: 2.5em 0;
-	padding: 0 1.5em;
+    height: 90%;
+    height: calc(100% - 2.5em);
+    margin: 2.5em 0;
+    padding: 0 1.5em;
 }
 #right-ui-bar-body {
-	line-height: 1.5;
-	overflow: auto;
+    line-height: 1.5;
+    overflow: auto;
 }
 
 #story {
-	margin-right: 20em;
+    margin-right: 20em;
 }
 
 /* Stowing of the Right UI Bar. */
 #right-ui-bar.stowed {
-	right: -15em;
+    right: -15em;
 }
 #right-ui-bar.stowed #right-ui-bar-toggle {
-	padding: .3em .55em .25em .35em;
+    padding: .3em .55em .25em .35em;
 }
 #right-ui-bar.stowed #right-ui-bar-toggle:before {
-	content: "\e81d";
+    content: "\e81d";
 }
 #right-ui-bar.stowed #right-ui-bar-body {
-	visibility: hidden;
-	-webkit-transition: visibility .2s step-end;
-	-o-transition: visibility .2s step-end;
-	transition: visibility .2s step-end;
+    visibility: hidden;
+    -webkit-transition: visibility .2s step-end;
+    -o-transition: visibility .2s step-end;
+    transition: visibility .2s step-end;
 }
 
 #right-ui-bar.stowed~#story {
-	margin-right: 4.5em;
+    margin-right: 4.5em;
 }
 
 #right-ui-bar-body a {
@@ -529,32 +522,32 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
 #right-ui-bar-body a:hover {
     background-color: #444;
-	border-color: #eee;
+    border-color: #eee;
     text-decoration: none;
 }
 
 /* Horizontal Stat Bar - Start */
 .hzbarbkg {  /* default class for all horizontal bar backgrounds */
-	position: relative;
-	height: 15px;
-	width: 100%;
-	background-color: #808080;
-	background-image: linear-gradient(to right, rgba(68, 68, 68, 0.5), rgba(34, 34, 34, 0.5) 5px), linear-gradient(to bottom, rgba(68, 68, 68, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
-	border-radius: 10px;
+    position: relative;
+    height: 15px;
+    width: 100%;
+    background-color: #808080;
+    background-image: linear-gradient(to right, rgba(68, 68, 68, 0.5), rgba(34, 34, 34, 0.5) 5px), linear-gradient(to bottom, rgba(68, 68, 68, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
+    border-radius: 10px;
     border: 1px solid rgb(255, 255, 255);
-	z-index: 56;
-	visibility: visible;
+    z-index: 56;
+    visibility: visible;
 }
 .hzbar {  /* default class for all horizontal bars */
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	height: 15px;
-	background-color: transparent;
-	background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
-	border-radius: 10px;
-	z-index: 57;
-	transition: width ease 1s, background-color ease 1s;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 15px;
+    background-color: transparent;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5px), linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px), linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5px);
+    border-radius: 10px;
+    z-index: 57;
+    transition: width ease 1s, background-color ease 1s;
 }
 /* Horizontal Stat Bar - End */
 
@@ -589,15 +582,44 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     font-style: italic;
 }
 /* Quality Colors - End */
+#ui-dialog-title {
+    text-align: left;
+}
 
 #ui-dialog {
-    min-width: 40% !important;
+    min-width: 30% !important;
 }
 
 #ui-dialog-body {
     overflow: hidden;
-    min-height: 20em;
-    padding: 2.5em;
+    min-height: 25em;
+    padding: 3.5em 2.5em 2.5em 2.5em;
+}
+
+.achieve {
+    background: url('img/bg_achieve.jpg');
+    background-size: 30%;
+    font-size: 4.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: Achieve;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-stroke-color: rgba(black, 0.6);
+    text-shadow: 5px 5px rgba(229, 255, 0, 0.103);
+}
+
+.achievebg {
+    background-image: url("img/bg_smoke_achieve.jpg");
+    background-size: 100% 100%;
+    margin: auto -0.5em;
+    line-height: 1.2;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100em;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/*-----Favicon-----*/
 $(document.head).append("<link rel='icon' href='img/logo.png'>")
 
@@ -873,10 +895,11 @@ $rightUiBar.find('#right-ui-bar-toggle').ariaClick({label : "Toggle the Right UI
 /* Automatically show the contents of the StoryRightSidebar passage in the right-ui-bar-body element. */
 postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 	setPageElement('right-ui-bar-body', 'StoryRightSidebar');
-};</script><tw-passagedata pid="1" name="DevWand" tags="" position="100,100" size="100,100">&lt;&lt;button [[Quick Start | WakingUp14]]&gt;&gt;
+};</script><tw-passagedata pid="1" name="DevWand" tags="" position="100,100" size="100,100">&lt;&lt;button [[Quick Start | Residence_Starr_PlayerRoom]]&gt;&gt;
         &lt;&lt;set $plrName.fName = &quot;Azure&quot;&gt;&gt;
         &lt;&lt;set $plrName.lName = &quot;Paine&quot;&gt;&gt;
         &lt;&lt;set $plrName.prefix = &quot;Mr.&quot;&gt;&gt;
+        &lt;&lt;set $plrName.formal = $plrName.prefix + &quot; &quot; + $plrName.lName&gt;&gt;
         &lt;&lt;set $plrBody.static.sex = &quot;male&quot;&gt;&gt;
         &lt;&lt;set $plrBody.static.hairColor = &quot;blue&quot;&gt;&gt;
         &lt;&lt;set $plrBody.static.hairStyle = &quot;mohawk&quot;&gt;&gt;
@@ -897,8 +920,17 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;set $plrStats.focus.cur = 5&gt;&gt;
         &lt;&lt;set $plrImg = &quot;img/characters/thumb_male_bro_white.jpg&quot;&gt;&gt;
 
+        &lt;&lt;set $unlockVar.userInterface.inventory = true&gt;&gt;
+
+        &lt;&lt;pickup $plrinvbooks &quot;mapSchool&quot; 1&gt;&gt;
+        &lt;&lt;pickup $plrinvbooks &quot;mapTown&quot; 1&gt;&gt;
+        &lt;&lt;pickup $plrinvbooks &quot;illusion1&quot; 1&gt;&gt;
+
         &lt;&lt;run Dialog.close()&gt;&gt;
     &lt;&lt;/button&gt;&gt;
+
+
+    [[Testing_Spells]]
 
     &lt;&lt;link &quot;TestingGrounds&quot;&gt;&gt;
         &lt;&lt;run
@@ -1794,6 +1826,19 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         cleanliness: -2,
         booksFound: 0,
         tomesFound: 0,
+    }&gt;&gt;
+
+    &lt;&lt;set $eventVar = {
+        spell: {
+            name: &#39;&#39;,
+            description: &#39;&#39;,
+            book: &#39;&#39;
+        },
+        location: {
+            name: &#39;&#39;,
+            description: &#39;&#39;,
+            book: &#39;&#39;
+        }
     }&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="Widgets" tags="widget" position="850,100" size="100,100">/* base widget template */
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;templ&quot;&gt;&gt;
@@ -1949,7 +1994,13 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;widget &quot;readBook&quot;&gt;&gt;
             &lt;&lt;switch _args[0]&gt;&gt;
                 &lt;&lt;case &quot;miscbook&quot;&gt;&gt;
+                    &lt;&lt;if $unlockVar.userInterface.locations != true&gt;&gt;
+                        &lt;&lt;set $unlockVar.userInterface.locations = true&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
+
                     &lt;&lt;if $bookMisc[_args[1]].pagesRead != $bookMisc[_args[1]].pagesTotal&gt;&gt;
+                        &lt;&lt;goto &quot;Event_Unlock_Location&quot;&gt;&gt;
+
                         &lt;&lt;set $bookMisc[_args[1]].pagesRead += 1&gt;&gt;
 
                         &lt;&lt;pickup $plrinvbooks _args[1] 1&gt;&gt;
@@ -1958,6 +2009,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                         &lt;&lt;set _unlocknum = $bookMisc[_args[1]].pagesRead&gt;&gt;
                         &lt;&lt;set _unlockname = $bookMisc[_args[1]].pageUnlocks[_unlocknum]&gt;&gt;
                         &lt;&lt;set _unlockmessage = $unlockVar.locations[_unlockname].name&gt;&gt;
+
+                        &lt;&lt;set $eventVar.location.name = _unlockmessage&gt;&gt;
+                        &lt;&lt;set $eventVar.location.book = $bookMisc[_args[1]].title&gt;&gt;
 
                         &lt;&lt;if _unlockname == undefined&gt;&gt;
                             &lt;&lt;set _unlockmessage = &quot;nothing, but there are more chapters to read.&quot;&gt;&gt;
@@ -1968,9 +2022,16 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                             Dialog.open();
                         &gt;&gt;
                         &lt;&lt;set $unlockVar.locations[_unlockname].unlocked = true&gt;&gt;
-                    &lt;&lt;else&gt;&gt;
-                        &lt;&lt;drop $plrinvbooks _args[1] 1&gt;&gt;
-                        &lt;&lt;run UI.alert(&quot;You finished the book, there is nothing left to learn from this.&quot;)&gt;&gt;
+
+                        &lt;&lt;if $bookMisc[_args[1]].pagesRead == $bookMisc[_args[1]].pagesTotal&gt;&gt;
+                            &lt;&lt;drop $plrinvbooks _args[1] 1&gt;&gt;
+                            &lt;&lt;run
+                                Dialog.setup(&quot;Chapter Read and Book Finished&quot;);
+                                Dialog.wiki(&quot;After reading chapter &quot; + _unlocknum + &quot;/&quot; + $bookMisc[_args[1]].pagesTotal + &quot; of &quot; + &quot;&#39;&quot; + $bookMisc[_args[1]].title + &quot;&#39;&quot; + &quot; you discovered &quot; + _unlockmessage + &quot;.&quot;);
+                                Dialog.append(&quot;&lt;br&gt;&lt;br&gt;&lt;br&gt;You finished the book, there is nothing left to learn from this. The book disintegrates from your hands.&quot;);
+                                Dialog.open();
+                            &gt;&gt;    
+                        &lt;&lt;/if&gt;&gt;
                     &lt;&lt;/if&gt;&gt;
 
                 &lt;&lt;case &quot;skillbook&quot;&gt;&gt;
@@ -1983,7 +2044,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
                     &lt;&lt;if $unlockVar.events.firstSpellLearned == false&gt;&gt;
                         &lt;&lt;set $unlockVar.events.firstSpellLearned = true&gt;&gt;
-                        &lt;&lt;goto &quot;Event-FirstSpellLearned&quot;&gt;&gt;
+                        &lt;&lt;goto &quot;Event_Unlock_Spell&quot;&gt;&gt;
                     &lt;&lt;/if&gt;&gt;
 
                     &lt;&lt;set _address = $bookSpell[_args[1]]&gt;&gt;
@@ -1996,6 +2057,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                         &lt;&lt;set _unlocknum = _address.pagesRead&gt;&gt;
                         &lt;&lt;set _unlockname = _address.pageUnlocks[_unlocknum]&gt;&gt;
                         &lt;&lt;set _unlockmessage =&quot;how to cast the &quot; + $spellDetails[_school][_unlockname].name + &quot; spell!&quot;&gt;&gt;
+
+                        &lt;&lt;set $eventVar.spell.name = $spellDetails[_school][_unlockname].name&gt;&gt;
+                        &lt;&lt;set $eventVar.spell.book = _address.title&gt;&gt;
 
                         &lt;&lt;if _unlockname == undefined&gt;&gt;
                             &lt;&lt;set _unlockmessage = &quot;nothing, but there is more in this to study.&quot;&gt;&gt;
@@ -2342,6 +2406,13 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;set _args[0][_args[1]] += 1&gt;&gt;
                 &lt;&lt;calcTime 20 15&gt;&gt;
             &lt;&lt;/if&gt;&gt;
+        &lt;&lt;/widget&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
+
+    /* castSpell */
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;widget &quot;castSpell&quot;&gt;&gt;
+
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="Start" tags="" position="975,100" size="100,100">&lt;div class=&#39;text-center main-title&#39;&gt;\
 
@@ -2815,27 +2886,40 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     With that, $npcs.janessa.firstName turns around and walks out, leaving you alone in your decrepit room.
 
-    &lt;&lt;button [[Look around | StarrResidence-PlayerRoom]]&gt;&gt;
-        &lt;&lt;set $unlockVar.userInterface.locations = true&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="FirstWeek1" tags="" position="600,350" size="100,100"></tw-passagedata><tw-passagedata pid="26" name="FirstWeek2" tags="" position="725,350" size="100,100"></tw-passagedata><tw-passagedata pid="27" name="FirstWeek3" tags="" position="850,350" size="100,100"></tw-passagedata><tw-passagedata pid="28" name="FirstWeek4" tags="" position="975,350" size="100,100"></tw-passagedata><tw-passagedata pid="29" name="Event-FirstSpellLearned" tags="" position="1100,350" size="100,100">&lt;&lt;speech plr&gt;&gt;I think I just learned a spell!!!&lt;&lt;/speech&gt;&gt;
+    &lt;&lt;button [[Look around | Residence_Starr_PlayerRoom]]&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="FirstWeek1" tags="" position="600,350" size="100,100"></tw-passagedata><tw-passagedata pid="26" name="FirstWeek2" tags="" position="725,350" size="100,100"></tw-passagedata><tw-passagedata pid="27" name="FirstWeek3" tags="" position="850,350" size="100,100"></tw-passagedata><tw-passagedata pid="28" name="FirstWeek4" tags="" position="975,350" size="100,100"></tw-passagedata><tw-passagedata pid="29" name="Event_Unlock_Location" tags="" position="1100,350" size="100,100">&lt;&lt;speech plr&gt;&gt;
+        After reading &lt;i&gt;$eventVar.location.book&lt;/i&gt; you learned how to find the &lt;i&gt;$eventVar.location.name&lt;/i&gt;!
+    &lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Continue | previous()]]&gt;&gt;
-    
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Starr Residence" tags="" position="1225,350" size="100,100">Welcome to the Alston Residence!</tw-passagedata><tw-passagedata pid="31" name="librarium" tags="" position="100,475" size="100,100">Welcome to the librarium. Here be books...</tw-passagedata><tw-passagedata pid="32" name="Cafeteria" tags="" position="225,475" size="100,100">This is the dining hall. If it doesn&#39;t get all over the place, it doesn&#39;t belong in your face.</tw-passagedata><tw-passagedata pid="33" name="conservatorium" tags="" position="350,475" size="100,100"></tw-passagedata><tw-passagedata pid="34" name="theexchange" tags="" position="475,475" size="100,100"></tw-passagedata><tw-passagedata pid="35" name="leynode" tags="" position="600,475" size="100,100"></tw-passagedata><tw-passagedata pid="36" name="gymnasium" tags="" position="725,475" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="sigilarium" tags="" position="850,475" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="artificeworkshop" tags="" position="975,475" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="pentadentrix" tags="" position="1100,475" size="100,100"></tw-passagedata><tw-passagedata pid="40" name="headmasterstudy" tags="" position="1225,475" size="100,100"></tw-passagedata><tw-passagedata pid="41" name="medicalwing" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="professoroffices" tags="" position="225,600" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="tradingpost" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="cinema" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="hospital" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="cemetary" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="salooninn" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="StarrResidence-EntryHall" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="StarrResidence-Kitchen" tags="" position="1100,600" size="100,100"></tw-passagedata><tw-passagedata pid="50" name="StarrResidence-BanquetHall" tags="" position="1225,600" size="100,100"></tw-passagedata><tw-passagedata pid="51" name="StarrResidence-Bathroom" tags="" position="100,725" size="100,100"></tw-passagedata><tw-passagedata pid="52" name="StarrResidence-JanessaRoom" tags="" position="225,725" size="100,100"></tw-passagedata><tw-passagedata pid="53" name="StarrResidence-PlayerRoom" tags="" position="350,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
+
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Event_Unlock_Spell" tags="" position="1225,350" size="100,100">&lt;&lt;if lastVisited(&quot;Event_Unlock_Spell&quot;) &lt; 2&gt;&gt;
+        &lt;div class=&quot;achievebg&quot;&gt;
+            &lt;h1 class=&#39;achieve text-center&#39;&gt;Huge Advancement!&lt;/h1&gt;
+        &lt;/div&gt;
+        &lt;&lt;speech plr&gt;&gt;I think I just learned my first spell!!!&lt;&lt;/speech&gt;&gt;
+        &lt;&lt;speech plr&gt;&gt;It came from the tome &lt;i&gt;$eventVar.spell.book&lt;/i&gt; and has taught me the &lt;i&gt;$eventVar.spell.name&lt;/i&gt; spell!&lt;&lt;/speech&gt;&gt;\
+
+        &lt;&lt;elseif hasVisited(&quot;Event_Unlock_Spell&quot;)&gt;&gt;
+            &lt;&lt;speech plr&gt;&gt;I learned the &lt;i&gt;$eventVar.spell.name&lt;/i&gt; spell from the tome, &lt;i&gt;$eventVar.spell.book&lt;/i&gt;!&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;/if&gt;&gt;\
+
+    &lt;&lt;button [[Continue | previous()]]&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="Starr Residence" tags="" position="100,475" size="100,100">Welcome to the Alston Residence!</tw-passagedata><tw-passagedata pid="32" name="librarium" tags="" position="225,475" size="100,100">Welcome to the librarium. Here be books...</tw-passagedata><tw-passagedata pid="33" name="Cafeteria" tags="" position="350,475" size="100,100">This is the dining hall. If it doesn&#39;t get all over the place, it doesn&#39;t belong in your face.</tw-passagedata><tw-passagedata pid="34" name="conservatorium" tags="" position="475,475" size="100,100"></tw-passagedata><tw-passagedata pid="35" name="theexchange" tags="" position="600,475" size="100,100"></tw-passagedata><tw-passagedata pid="36" name="leynode" tags="" position="725,475" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="gymnasium" tags="" position="850,475" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="sigilarium" tags="" position="975,475" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="artificeworkshop" tags="" position="1100,475" size="100,100"></tw-passagedata><tw-passagedata pid="40" name="pentadentrix" tags="" position="1225,475" size="100,100"></tw-passagedata><tw-passagedata pid="41" name="headmasterstudy" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="medicalwing" tags="" position="225,600" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="professoroffices" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="tradingpost" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="cinema" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="hospital" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="cemetary" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="salooninn" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="Residence_Starr_EntryHall" tags="" position="1100,600" size="100,100"></tw-passagedata><tw-passagedata pid="50" name="Residence_Starr_Kitchen" tags="" position="1225,600" size="100,100"></tw-passagedata><tw-passagedata pid="51" name="Residence_Starr_BanquetHall" tags="" position="100,725" size="100,100"></tw-passagedata><tw-passagedata pid="52" name="Residence_Starr_Bathroom" tags="" position="225,725" size="100,100"></tw-passagedata><tw-passagedata pid="53" name="Residence_Starr_JanessaRoom" tags="" position="350,725" size="100,100"></tw-passagedata><tw-passagedata pid="54" name="Residence_Starr_PlayerRoom" tags="" position="475,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
 
     &lt;&lt;speech plr&gt;&gt;
         I&#39;m in my room. Glancing at the state of the place, it&#39;s &lt;&lt;commentClean&gt;&gt; clean. The floor is of &lt;&lt;commentFloor&gt;&gt; quality. I see my &lt;&lt;commentChair&gt;&gt; chair and &lt;&lt;commentDesk&gt;&gt; desk in the corner. On the far wall is my &lt;&lt;commentBed&gt;&gt; bed. The room is &lt;&lt;commentLight&gt;&gt; lit.
     &lt;&lt;/speech&gt;&gt;
-    &lt;&lt;button [[Look for anything interesting in the clutter | StarrResidence-PlayerRoom-Searching]]&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Try to clean up a bit | StarrResidence-PlayerRoom-Cleaning]]&gt;&gt;
+    &lt;&lt;button [[Look for anything interesting in the clutter | Residence_Starr_PlayerRoom_Searching]]&gt;&gt;&lt;&lt;/button&gt;&gt;
+    &lt;&lt;button [[Try to clean up a bit | Residence_Starr_PlayerRoom_Cleaning]]&gt;&gt;
         &lt;&lt;if $plrRoom.cleanliness &lt;= 2&gt;&gt;
             &lt;&lt;set $plrRoom.cleanliness += 1&gt;&gt;
             &lt;&lt;calcTime 30&gt;&gt;
         &lt;&lt;/if&gt;&gt;    
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
-        &lt;&lt;if not hasVisited(&quot;StarrResidence-PlayerRoom-Sleeping&quot;)&gt;&gt;
-            &lt;&lt;button [[Try to sleep | StarrResidence-PlayerRoom-Sleeping]]&gt;&gt;
+        &lt;&lt;if not hasVisited(&quot;Residence_Starr_PlayerRoom_Sleeping&quot;)&gt;&gt;
+            &lt;&lt;button [[Try to sleep | Residence_Starr_PlayerRoom_Sleeping]]&gt;&gt;
                 &lt;&lt;calcTime 30 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
             &lt;&lt;else&gt;&gt;
@@ -2847,7 +2931,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="StarrResidence-PlayerRoom-Cleaning" tags="" position="475,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="Residence_Starr_PlayerRoom_Cleaning" tags="" position="600,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $plrRoom.cleanliness &lt; 1&gt;&gt;
             &lt;&lt;speech plr&gt;&gt;It&#39;s slow progress, but it&#39;s definitely looking cleaner. Still disgusting though...&lt;&lt;/speech&gt;&gt;
@@ -2858,7 +2942,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;\
 
-    &lt;&lt;button [[Continue | StarrResidence-PlayerRoom]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="StarrResidence-PlayerRoom-Searching" tags="" position="600,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/searchclutter.jpg&#39;&gt;
+    &lt;&lt;button [[Continue | Residence_Starr_PlayerRoom]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="Residence_Starr_PlayerRoom_Searching" tags="" position="725,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/searchclutter.jpg&#39;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $plrRoom.booksFound == 0&gt;&gt;
                 &lt;&lt;searchForItem $plrRoom booksFound 3 &quot;miscbook&quot; &quot;mapSchool&quot;&gt;&gt;
@@ -2877,13 +2961,13 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;speech plr&gt;&gt;This place is picked clean.&lt;&lt;/speech&gt;&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
-    &lt;&lt;button [[Look back at your room | StarrResidence-PlayerRoom]]&gt;&gt;
+    &lt;&lt;button [[Look back at your room | Residence_Starr_PlayerRoom]]&gt;&gt;
     
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="StarrResidence-PlayerRoom-Sleeping" tags="" position="725,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/nastybed.jpg&#39;&gt;\
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="Residence_Starr_PlayerRoom_Sleeping" tags="" position="850,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/nastybed.jpg&#39;&gt;\
     &lt;&lt;speech plr&gt;&gt;You lay down on your &lt;&lt;commentBed&gt;&gt; bed. After trying for what felt like half an hour, you realize sleep is far from a possibility.&lt;&lt;/speech&gt;&gt;\
 
-    &lt;&lt;button [[Stand up | StarrResidence-PlayerRoom]]&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="BackgroundCar1" tags="" position="850,725" size="100,100">A few images find their way into your mind, but they are blurry. Almost like they&#39;re old memories mostly faded with time.
+    &lt;&lt;button [[Stand up | Residence_Starr_PlayerRoom]]&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="BackgroundCar1" tags="" position="975,725" size="100,100">A few images find their way into your mind, but they are blurry. Almost like they&#39;re old memories mostly faded with time.
 
     You can remember a car, a windy road, and the bright sun in the sky. 
     
@@ -2896,7 +2980,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was driving with my family | WakingUp7]]&gt;&gt;
         &lt;&lt;set $plrSpkChoice = &quot;All I remember was driving with three other people. I think they were my family. But that&#39;s it.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="BackgroundCar2" tags="" position="975,725" size="100,100"></tw-passagedata><tw-passagedata pid="59" name="BackgroundCar3" tags="" position="1100,725" size="100,100"></tw-passagedata><tw-passagedata pid="60" name="BackgroundFire1" tags="" position="1225,725" size="100,100">As you think to yourself and try to remember you can&#39;t help but feel like so many of your previous memories are out of reach. Like time has washed them away.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="BackgroundCar2" tags="" position="1100,725" size="100,100"></tw-passagedata><tw-passagedata pid="60" name="BackgroundCar3" tags="" position="1225,725" size="100,100"></tw-passagedata><tw-passagedata pid="61" name="BackgroundFire1" tags="" position="100,850" size="100,100">As you think to yourself and try to remember you can&#39;t help but feel like so many of your previous memories are out of reach. Like time has washed them away.
 
     But you do remember a huge party and there were dozens of people in a really nice house.
 
@@ -2907,7 +2991,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was at a party with my friends | WakingUp7]]&gt;&gt;
         &lt;&lt;set $plrSpkChoice = &quot;I think I was at a party and I&#39;m pretty sure they were all friends of mine. But I can&#39;t remember anything else.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="BackgroundFire2" tags="" position="100,850" size="100,100"></tw-passagedata><tw-passagedata pid="62" name="BackgroundFire3" tags="" position="225,850" size="100,100"></tw-passagedata><tw-passagedata pid="63" name="BackgroundHostage1" tags="" position="350,850" size="100,100">You can barely recall anything, the memories are so faded. You remember being at a house that seems familiar to you.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="BackgroundFire2" tags="" position="225,850" size="100,100"></tw-passagedata><tw-passagedata pid="63" name="BackgroundFire3" tags="" position="350,850" size="100,100"></tw-passagedata><tw-passagedata pid="64" name="BackgroundHostage1" tags="" position="475,850" size="100,100">You can barely recall anything, the memories are so faded. You remember being at a house that seems familiar to you.
 
     And smelling something delicious in the air. The only other thing you can pick-out is seeing a figure, not stranger, but someone you loved.
 
@@ -2918,7 +3002,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I think I was at home | WakingUp7]]&gt;&gt;
     &lt;&lt;set $plrSpkChoice = &quot;I can barely remember, but I think I was at home with my spouse. Beyond that, I don&#39;t know.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="BackgroundHostage2" tags="" position="475,850" size="100,100"></tw-passagedata><tw-passagedata pid="65" name="BackgroundHostage3" tags="" position="600,850" size="100,100"></tw-passagedata><tw-passagedata pid="66" name="BackgroundChase1" tags="" position="725,850" size="100,100">You take a second and think. You can remember a few things, but its almost like the rest of the memories are out of reach.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="BackgroundHostage2" tags="" position="600,850" size="100,100"></tw-passagedata><tw-passagedata pid="66" name="BackgroundHostage3" tags="" position="725,850" size="100,100"></tw-passagedata><tw-passagedata pid="67" name="BackgroundChase1" tags="" position="850,850" size="100,100">You take a second and think. You can remember a few things, but its almost like the rest of the memories are out of reach.
 
     You recall a forest, a campfire, and tents in a clearing. You were sitting at the campfire holding a cup of something. Coffee! It was coffee.
 
@@ -2931,7 +3015,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was camping in the woods | WakingUp7]]&gt;&gt;
         &lt;&lt;set $plrSpkChoice = &quot;I was in the woods, camping. There might have been others there, but I don&#39;t remember anything else.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="BackgroundChase2" tags="" position="850,850" size="100,100"></tw-passagedata><tw-passagedata pid="68" name="BackgroundChase3" tags="" position="975,850" size="100,100"></tw-passagedata><tw-passagedata pid="69" name="BackgroundInsanity1" tags="" position="1100,850" size="100,100">As you think hard to yourself, searching for memories of what might have happened you recall a few weak images.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="BackgroundChase2" tags="" position="975,850" size="100,100"></tw-passagedata><tw-passagedata pid="69" name="BackgroundChase3" tags="" position="1100,850" size="100,100"></tw-passagedata><tw-passagedata pid="70" name="BackgroundInsanity1" tags="" position="1225,850" size="100,100">As you think hard to yourself, searching for memories of what might have happened you recall a few weak images.
 
     You remember being on a couch watching something on a TV. And there was someone sitting next to you. You were both eating something...popcorn!
 
@@ -2942,7 +3026,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was watching a TV with someone| WakingUp7]]&gt;&gt;
     &lt;&lt;set $plrSpkChoice = &quot;I think I was watching TV with someone. And we were eating popcorn. But I don&#39;t remember anything else after that.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="BackgroundInsanity2" tags="" position="1225,850" size="100,100"></tw-passagedata><tw-passagedata pid="71" name="BackgroundInsanity3" tags="" position="100,975" size="100,100"></tw-passagedata><tw-passagedata pid="72" name="Actions" tags="" position="225,975" size="100,100">Coming soon</tw-passagedata><tw-passagedata pid="73" name="Inventory" tags="nobr" position="350,975" size="100,100">&lt;h3&gt;Books&lt;/h3&gt;
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="BackgroundInsanity2" tags="" position="100,975" size="100,100"></tw-passagedata><tw-passagedata pid="72" name="BackgroundInsanity3" tags="" position="225,975" size="100,100"></tw-passagedata><tw-passagedata pid="73" name="Actions" tags="" position="350,975" size="100,100">Coming soon</tw-passagedata><tw-passagedata pid="74" name="Inventory" tags="nobr" position="475,975" size="100,100">&lt;h3&gt;Books&lt;/h3&gt;
     &lt;&lt;inv $plrinvbooks use inspect&gt;&gt;
 
     &lt;hr&gt;
@@ -2953,18 +3037,25 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;hr&gt;
 
     &lt;h3&gt;Miscellanious&lt;/h3&gt;
-    &lt;&lt;inv $plrinvmisc use inspect&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="StoryCaption" tags="" position="475,975" size="100,100">@@#timeplusdate;&lt;&lt;calcTime&gt;&gt;@@
+    &lt;&lt;inv $plrinvmisc use inspect&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="StoryCaption" tags="" position="600,975" size="100,100">@@#timeplusdate;&lt;&lt;calcTime&gt;&gt;@@
     &lt;&lt;if $plrName.fName != &quot;&quot; &amp;&amp; $plrName.fName != &quot;First&quot;&gt;&gt;\
         &lt;u&gt;Your Name: $plrName.fName $plrName.lName&lt;/u&gt;\
-    &lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="75" name="StoryBanner" tags="" position="600,975" size="100,100">&lt;img class=&quot;banner&quot; src=&#39;img/logo.png&#39;/&gt;</tw-passagedata><tw-passagedata pid="76" name="StoryMenu" tags="" position="725,975" size="100,100">&lt;&lt;if $unlockVar.userInterface.dev == true&gt;&gt;
-        &lt;&lt;link &quot;Dev Wand&quot;&gt;&gt;
+    &lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="76" name="StoryBanner" tags="" position="725,975" size="100,100">&lt;img class=&quot;banner&quot; src=&#39;img/logo.png&#39;/&gt;</tw-passagedata><tw-passagedata pid="77" name="StoryMenu" tags="" position="850,975" size="100,100">&lt;&lt;if $unlockVar.userInterface.dev == true&gt;&gt;
+        &lt;&lt;link &quot;!Dev Wand&quot;&gt;&gt;
             &lt;&lt;run
                 Dialog.setup(&quot;Dev Wand&quot;, &quot;dev wand&quot;);
                 Dialog.wiki(Story.get(&quot;DevWand&quot;).processText());
                 Dialog.open();
             &gt;&gt;
         &lt;&lt;/link&gt;&gt;
-        [[Character Info]]
+        &lt;&lt;link &quot;!Dev Char Info&quot;&gt;&gt;
+            &lt;&lt;run
+                Dialog.setup(&quot;Character Info&quot;);
+                Dialog.wiki(Story.get(&quot;Character Info&quot;).processText());
+                Dialog.open();
+            &gt;&gt;
+        &lt;&lt;/link&gt;&gt;
+        [[!Dev Spell Testing | Testing_Spells]]
     &lt;&lt;/if&gt;&gt;
 
     &lt;&lt;if $unlockVar.userInterface.stats == true&gt;&gt;
@@ -2999,13 +3090,14 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 Dialog.open();
             &gt;&gt;
         &lt;&lt;/link&gt;&gt;
-    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="Character Info" tags="" position="850,975" size="100,100">&lt;&lt;= charInfoTbl($plrName, &quot;plrName&quot;)&gt;&gt;\
+    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="Character Info" tags="" position="975,975" size="100,100">&lt;&lt;= charInfoTbl($plrName, &quot;plrName&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTbl($plrBody.static, &quot;plrBody.static&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTbl($plrBody.dynamic, &quot;plrBody.dynamic&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTbl($plrPersonality, &quot;plrPersonality&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTbl($plrRel, &quot;plrRel&quot;)&gt;&gt;\
-    &lt;&lt;= charInfoTblSub($plrDisciplines, &quot;plrDisciplines&quot;)&gt;&gt;\</tw-passagedata><tw-passagedata pid="78" name="Your Status" tags="" position="975,975" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="79" name="Locations" tags="" position="1100,975" size="100,100">&lt;h3&gt;School&lt;/h3&gt;
-    &lt;&lt;nobr&gt;&gt;\
+    &lt;&lt;= charInfoTblSub($plrDisciplines, &quot;plrDisciplines&quot;)&gt;&gt;\</tw-passagedata><tw-passagedata pid="79" name="Your Status" tags="" position="1100,975" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="80" name="Locations" tags="" position="1225,975" size="100,100">&lt;h3&gt;School&lt;/h3&gt;
+    &lt;&lt;nobr&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.starrresidence.unlocked == true&gt;&gt;
             &lt;&lt;button [[Starr Residence | StarrResidence-EntryHall]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
@@ -3021,9 +3113,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\
+    &lt;&lt;/nobr&gt;&gt;
     &lt;br&gt;
-    &lt;&lt;nobr&gt;&gt;\
+    &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.conservatorium.unlocked == true&gt;&gt;
             &lt;&lt;button [[Conservatorium | conservatorium]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
@@ -3039,9 +3131,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\
-    &lt;br&gt;
-    &lt;&lt;nobr&gt;&gt;\
+    &lt;&lt;/nobr&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.gymnasium.unlocked == true&gt;&gt;
             &lt;&lt;button [[Gymnasium | gymnasium]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
@@ -3057,9 +3148,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\
-    &lt;br&gt;
-    &lt;&lt;nobr&gt;&gt;\
+    &lt;&lt;/nobr&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.pentadentrix.unlocked == true&gt;&gt;
             &lt;&lt;button [[Ritual Pentadentrix | pentadentrix]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
@@ -3075,18 +3165,17 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\
-    &lt;br&gt;
-    &lt;&lt;nobr&gt;&gt;\
+    &lt;&lt;/nobr&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.professoroffices.unlocked == true&gt;&gt;
             &lt;&lt;button [[Professor&#39;s Offices | professoroffices]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\
-
+    &lt;&lt;/nobr&gt;&gt;
+    &lt;hr&gt;
     &lt;h3&gt;Town&lt;/h3&gt;
-    &lt;&lt;nobr&gt;&gt;\
+    &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.tradingpost.unlocked == true&gt;&gt;
             &lt;&lt;button [[Herrington&#39;s Trading Post | tradingpost]]&gt;&gt;
                 &lt;&lt;run Dialog.close()&gt;&gt;
@@ -3102,8 +3191,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\
-    &lt;br&gt;
+    &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.cemetary.unlocked == true&gt;&gt;
             &lt;&lt;button [[Nome City Cemetary | cemetary]]&gt;&gt;
@@ -3115,11 +3203,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;run Dialog.close()&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\
-
-    &lt;&lt;link &quot;Exit&quot;&gt;&gt;
-        &lt;&lt;run Dialog.close()&gt;&gt;
-    &lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="StoryRightSidebar" tags="" position="1225,975" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\</tw-passagedata><tw-passagedata pid="81" name="StoryRightSidebar" tags="" position="100,1100" size="100,100">&lt;&lt;nobr&gt;&gt;
     &lt;&lt;if $plrStats.stamina.max != 0&gt;&gt;
             &lt;div id=&quot;staminaBarbkg&quot; class=&quot;hzbarbkg&quot;&gt;&lt;div id=&quot;staminaBar&quot; class=&quot;hzbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;
             &lt;span class=&quot;cyan&quot;&gt;Stamina: &lt;/span&gt;&lt;span id=&#39;ui-stamina&#39;&gt;&lt;/span&gt;
@@ -3161,24 +3246,135 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &gt;&gt;
         &lt;&lt;/link&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="Spells" tags="" position="100,1100" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="Spells" tags="" position="225,1100" size="100,100">&lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $spellDetails.illusion.floatingflame.unlocked == true&gt;&gt;
             &lt;&lt;hovertip $spellDetails.illusion.floatingflame.description&gt;&gt;
                 &lt;&lt;link &quot;Floating Flame&quot;&gt;&gt;
-                    &lt;&lt;run 
-                        var a = State.getVar(&quot;$spellDetails.illusion.floatingflame.effect&quot;);
-                        console.log(a);
-                    
+                    &lt;&lt;set $plrRoom.lights.none = false&gt;&gt;
+                    &lt;&lt;set $plrRoom.lights.trash = true&gt;&gt;
+                    &lt;&lt;set $plrDisciplines.illusion.level += 1&gt;&gt;
+                    &lt;&lt;run
+                        Dialog.setup(&quot;Spell Cast&quot;);
+                        Dialog.append(&quot;You just case the Floating Flame spell.&quot;);
+                        Dialog.open();
                     &gt;&gt;
-                    &lt;&lt;run $spellDetails.illusion.floatingflame.onCast&gt;&gt;
                 &lt;&lt;/link&gt;&gt;
             &lt;&lt;/hovertip&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="Spell-List" tags="init" position="225,1100" size="100,100">&lt;&lt;set $spellEffects = {
-        lightRoom: &quot;&lt;&lt;set $plrRoom.lights.none = false&gt;&gt; &lt;&lt;set $plrRoom.light.trash = true&gt;&gt;&quot;
-    }&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="Testing_Spells" tags="" position="350,1100" size="100,100">&lt;&lt;speech plr&gt;&gt;This is the spell testing grounds. Good luck dude...&lt;&lt;/speech&gt;&gt;
+    
+    targetCost:     &lt;&lt;numberbox &#39;$targetCost&#39; $targetCost&gt;&gt;
+    typeCost:       &lt;&lt;numberbox &#39;$typeCost&#39; $typeCost&gt;&gt;
+    durationCost:   &lt;&lt;numberbox &#39;$durationCost&#39; $durationCost&gt;&gt;
+    effectCost:     &lt;&lt;numberbox &#39;$effectCost&#39; $effectCost&gt;&gt;
+    strCost:        &lt;&lt;numberbox &#39;$strCost&#39; $strCost&gt;&gt;
+    discLvl:        &lt;&lt;numberbox &#39;$discLvl&#39; $discLvl&gt;&gt;
 
-    &lt;&lt;set $spellDetails = {
+    Equation Result: &lt;&lt;print $eqResult.toFixed(2)&gt;&gt;
+    &lt;&lt;run console.log($eqResult)&gt;&gt;
+
+    &lt;&lt;button [[Process | Testing_Spells]]&gt;&gt;
+        &lt;&lt;set $eqResult = $targetCost * $typeCost * $durationCost * $strCost * ($effectCost / ($discLvl * 0.4))&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Spells_Words_List" tags="init" position="475,1100" size="100,100">&lt;&lt;set $spellWords = {
+        target: {
+            self: {
+                latin: &#39;Ego&#39;,
+                description: &#39;Selects you as the focus of the spell.&#39;,
+                unlocked: false
+            },
+            other: {
+                latin: &#39;Alius&#39;,
+                description: &#39;Selects a nearby person or creature as the focus of the spell.&#39;,
+                unlocked: false
+            },
+            room: {
+                latin: &#39;Praesto&#39;,
+                description: &#39;Selects the room you are in as the focus of the spell.&#39;,
+                unlocked: false
+            },
+            wide: {
+                latin: &#39;Circa&#39;,
+                description: &#39;Selects a wide area (i.e. a residence or courtyard) as the focus of the spell.&#39;,
+                unlocked: false
+            },
+            item: {
+                latin: &#39;Item&#39;,
+                description: &#39;Selects an item as the focus of the spell.&#39;,
+                unlocked: false
+            }
+        },
+        type: {
+            direct: {
+                latin: &#39;Focus&#39;,
+                description: &#39;The spell only directly affects the initial target.&#39;,
+                unlocked: false
+            },
+            aura: {
+                latin: &#39;Aura&#39;,
+                description: &#39;The spell surrounds the initial target, but affects it and the surrounding area.&#39;,
+                unlocked: false
+            },
+            enchant: {
+                latin: &#39;Admagicae&#39;,
+                description: &#39;Mostly used to add an effect to an item.&#39;,
+                unlocked: false
+            }
+        },
+        duration: {
+            immediate: {
+                latin: &#39;Nunc&#39;,
+                description: &#39;The spell effect is applied immediately.&#39;,
+                unlocked: false
+            },
+            minute: {
+                latin: &#39;Mox&#39;,
+                description: &#39;The spell applies the affect now and for a few minutes.&#39;,
+                unlocked: false
+            },
+            hour: {
+                latin: &#39;Postea&#39;,
+                description: &#39;The spell applies the effect now and for about an hour.&#39;,
+                unlocked: false
+            },
+            day: {
+                latin: &#39;Hodie&#39;,
+                description: &#39;The spell applies the effect now and for about a day.&#39;,
+                unlocked: false
+            },
+            week: {
+                latin: &#39;Septimana&#39;,
+                description: &#39;The spell applies the effect now and for around one week&#39;,
+                unlocked: false
+            },
+            month: {
+                latin: &#39;Mensis&#39;,
+                description: &#39;The spell applies the effect now and for a whole month.&#39;,
+                unlocked: false
+            }
+        },
+        effect: {
+            damage: {
+                latin: &#39;asd&#39;,
+                description: &#39;asd&#39;,
+                unlocked: false
+            },
+        }
+    }&gt;&gt;
+        &lt;&lt;set $eqResult = 0&gt;&gt;
+        &lt;&lt;set $targetCost = 1&gt;&gt;
+        &lt;&lt;set $typeCost = 1&gt;&gt;
+        &lt;&lt;set $durationCost = 0.5&gt;&gt;
+        &lt;&lt;set $effectCost = 1&gt;&gt;
+        &lt;&lt;set $discLvl = 15&gt;&gt;
+        &lt;&lt;set $strCost = 3&gt;&gt;
+
+        strength: {
+            1: 3
+            2: 4
+            3: 9
+            4: 16
+            5: 25
+        }</tw-passagedata><tw-passagedata pid="85" name="Spell-List" tags="init" position="600,1100" size="100,100">&lt;&lt;set $spellDetails = {
         abjuration: {
 
         },
@@ -3188,13 +3384,12 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         illusion: {
             floatingflame: {
                 name: &quot;Floating Flame&quot;,
-                description: &quot;Creates a warm, but kind of dim floating flame. Good for light up a room.&quot;,
+                description: &quot;Creates a warm, but kind of dim floating flame. Good for first lighting up a room.&quot;,
                 unlocked: false,
                 staminaCost: 3,
                 diffLevel: 1,
-                effect: $spellEffects.lightRoom,
-                onCast: &quot;&lt;&lt;set $plrDisciplines.illusion.level += 1&gt;&gt;&quot;,
-                spellLevel: &quot;basic&quot;
+                spellLevel: &quot;basic&quot;,
+                timesCast: 0
             }
         }
     }&gt;&gt;</tw-passagedata></tw-storydata>
