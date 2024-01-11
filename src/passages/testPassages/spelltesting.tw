@@ -1,5 +1,10 @@
 :: Testing_Spells
     <<speech plr>>This is the spell testing grounds. Good luck dude...<</speech>>
+
+    <hr>
+    <h3>Experiment Area</h3>\
+    <<print 'nothing'>>
+    <hr>
     
     targetCost:     <<numberbox '$targetCost' $targetCost>>
     typeCost:       <<numberbox '$typeCost' $typeCost>>
@@ -9,11 +14,50 @@
     discLvl:        <<numberbox '$discLvl' $discLvl>>
 
     Equation Result: <<print $eqResult.toFixed(2)>>
-    <<run console.log($eqResult)>>
 
-    <<button [[Process | Testing_Spells]]>>
+    <<button [[Process Cost Equation | Testing_Spells]]>>
         <<set $eqResult = $targetCost * $typeCost * $durationCost * $strCost * ($effectCost / ($discLvl * 0.4))>>
     <</button>>
+    <hr>
+
+    <h3>Spell Buttons</h3>\
+    <<button 'Cast Self Damage Spell'>>
+        <<castSpell 'self' 'direct' 'immediate' 'damage'>>
+    <</button>>
+    <hr>
+
+:: Spell_Words_Widgets [widget]
+
+    /* castSpell 'target' 'type' 'duration' 'effect' 'enhancement' */
+    <<widget 'castSpell'>>
+
+        <<set _target = $spellWords.target[_args[0]].onCast()>>
+        <<set _type = $spellWords.type[_args[1]].onCast()>>
+        <<set _duration = $spellWords.duration[_args[2]].onCast()>>
+        <<set _effect = $spellWords.effect[_args[3]].onCast()>>
+        <<if _args[4]>>
+            <<set _enhance = $spellWords.enhancement[_args[4]].onCast()>>
+        <<else>>
+            <<set _enhance = 1>>
+        <</if>>
+
+        <<run console.log('_target: ' + _target)>>
+
+    <</widget>>
+
+    <<widget 'tDamageSpell'>>
+
+        <<set _target = $spellWords.target.self.onCast()>>
+        /* <<set _type = $spellWords.type.direct.onCast()>>
+        <<set _duration = $spellWords.duration.immediate.onCast()>> */
+        <<set _effect = $spellWords.effect.damage.onCast()>>
+        <<set _enhance = $spellWords.enhancement.enhance.onCast()>>
+
+        <<run Life($plrStats.life.cur, $plrStats.life.max, "lifeBar", true)>>
+        <<run console.log('tDamageSpell: ' + _runspell)>>
+
+
+    <</widget>>
 
 :: Spells_Words_List [init]
     <<set $spellWords = {
@@ -21,7 +65,11 @@
             self: {
                 latin: 'Ego',
                 description: 'Selects you as the focus of the spell.',
-                unlocked: false
+                unlocked: false,
+                costMulti: 0.5,
+                onCast: function() {
+                    return '$plrStats';
+                }
             },
             other: {
                 latin: 'Alius',
@@ -48,7 +96,11 @@
             direct: {
                 latin: 'Focus',
                 description: 'The spell only directly affects the initial target.',
-                unlocked: false
+                costMult: 1,
+                unlocked: false,
+                onCast: function() {
+                    return
+                }
             },
             aura: {
                 latin: 'Aura',
@@ -65,7 +117,11 @@
             immediate: {
                 latin: 'Nunc',
                 description: 'The spell effect is applied immediately.',
-                unlocked: false
+                costMult: 1,
+                unlocked: false,
+                onCast: function() {
+                    return
+                }
             },
             minute: {
                 latin: 'Mox',
@@ -95,10 +151,34 @@
         },
         effect: {
             damage: {
-                latin: 'asd',
-                description: 'asd',
-                unlocked: false
+                latin: 'Damnum',
+                description: 'Uses the destructive abilities of a given element type causing injuries.',
+                costMult: 1,
+                unlocked: false,
+                onCast: function() {
+                    return '.life.cur';
+                }
             },
+            heal: {
+                latin: 'Vulnus',
+                description: 'Renews the lifeforce and heals the surface wounds of living beings.',
+                unlocked: false
+            }
+        },
+        enhancement: {
+            enhance: {
+                latin: 'Augere',
+                description: 'Pour more of your energy into the spell.',
+                unlocked: false,
+                onCast: function() {
+                    return 1
+                }
+            },
+            delay: {
+                latin: 'Moratus',
+                description: 'Delays the effect of the spell for a chosen period of time.',
+                unlocked: false
+            }
         }
     }>>
         <<set $eqResult = 0>>

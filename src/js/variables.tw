@@ -45,7 +45,7 @@
         life: {
             max: 0,
             pre: 0,
-            cur:0
+            cur: 0
         }, 
         stamina: {
             max: 0,
