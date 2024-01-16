@@ -1,0 +1,507 @@
+    
+/* <<listbox '_target' autoselect>>
+    <<optionsfrom $spellWords.target.list>>
+<</listbox>>\
+<<listbox '_duration' autoselect>>
+    <<optionsfrom $spellWords.duration.list>>
+<</listbox>>\
+<<listbox '_effect' autoselect>>
+    <<optionsfrom $spellWords.effect.list>>
+<</listbox>>\
+<<listbox '_enhancement' autoselect>>
+    <<optionsfrom $spellWords.enhancement.list>>
+<</listbox>> */
+/* <<button 'Spell DropDown Test'>>
+    <<run console.log('target: ' + _target)>>
+    <<run console.log('duration: ' + _duration)>>
+    <<run console.log('effect: ' + _effect)>>
+
+    <<if tags().includes('room')>>
+    <<run console.log('passage tag found: room')>>
+    <</if>>
+    <<if tags().includes('playerHome')>>
+        <<run console.log('passage tag found: playerHome')>>
+    <</if>>
+    <<if tags().includes('outside')>>
+        <<run console.log('passage tag found: outside')>>
+    <</if>>
+    <<if tags() == false>>
+        <<run console.log('passage tag found: none')>>
+    <</if>>
+<</button>> */
+
+/* list: {
+    Ego: 'self',
+    Alius: 'other',
+    Praesto: 'room',
+    Circa: 'outside',
+    Item: 'item'
+},
+list: [
+    'immediate',
+    'minute',
+    'hour',
+    'day',
+    'week',
+    'month'
+],
+list: [
+    'damage',
+    'heal',
+    'calm'
+],
+list: [
+    'none',
+    'enhance'
+], */
+
+/* <<set $plrImg = ""
+>>
+<<set $plrName = {
+    fName: "",
+    lName: "",
+    prefix: "",
+    formal: ""
+}>>
+<<set $plrBody = {
+    static: {
+        sex: "",
+        hairColor: "",
+        hairStyle: "",
+        eyeColor: "",
+        faceShape: "",
+        height: ""
+    },
+    dynamic: {
+        hairLength: 0,
+        weight: 0,
+        atttractiveness: 0
+    }
+}>>
+<<set $plrStats = {
+    life: {
+        max: 0,
+        pre: 0,
+        cur: 0
+    }, 
+    stamina: {
+        max: 0,
+        pre: 0,
+        cur: 0
+    }, 
+    sanity: {
+        max: 0,
+        pre: 0,
+        cur: 0
+    }, 
+    hygiene: {
+        max: 0,
+        pre: 0,
+        cur: 0
+    }, 
+    focus: {
+        max: 0,
+        pre: 0,
+        cur: 0
+    }
+}>>
+<<set $plrRel = {
+    Amy: 0,
+    Janessa: 0,
+    Barden: 0
+}>>
+<<set $plrDisciplines = {
+    abjuration: {
+        level: 0,
+        desc: ""
+    },
+    alchemy: {
+        level: 0,
+        desc: ""
+    },
+    animancy: {
+        level: 0,
+        desc: ""
+    },
+    astromancy: {
+        level: 0,
+        desc: ""
+    },
+    biomancy: {
+        level: 0,
+        desc: ""
+    },
+    blood: {
+        level: 0,
+        desc: ""
+    },
+    chloromancy: {
+        level: 0,
+        desc: ""
+    },
+    chronomancy: {
+        level: 0,
+        desc: ""
+    },
+    clockwork: {
+        level: 0,
+        desc: ""
+    },
+    conjuration: {
+        level: 0,
+        desc: ""
+    },
+    demonology: {
+        level: 0,
+        desc: ""
+    },
+    divination: {
+        level: 0,
+        desc: ""
+    },
+    eldritch: {
+        level: 0,
+        desc: ""
+    },
+    elemental: {
+        level: 0,
+        desc: ""
+    },
+    enchantment: {
+        level: 0,
+        desc: ""
+    },
+    enochian: {
+        level: 0,
+        desc: ""
+    },
+    gate: {
+        level: 0,
+        desc: ""
+    },
+    illusion: {
+        level: 0,
+        desc: ""
+    },
+    lunar: {
+        level: 0,
+        desc: ""
+    },
+    necromancy: {
+        level: 0,
+        desc: ""
+    },
+    psionic: {
+        level: 0,
+        desc: ""
+    },
+    restoration: {
+        level: 0,
+        desc: ""
+    },
+    sex: {
+        level: 0,
+        desc: ""
+    },
+    soul: {
+        level: 0,
+        desc: ""
+    },
+    summoning: {
+        level: 0,
+        desc: ""
+    },
+    transmutation: {
+        level: 0,
+        desc: ""
+    }
+}>>
+<<set $plrSkills = {
+    mundane: {
+        lockpicking: {
+        level: 0,
+        desc: ""
+    }, 
+        pickpocketing: {
+        level: 0,
+        desc: ""
+    }, 
+        running: {
+        level: 0,
+        desc: ""
+    }, 
+        swimming: {
+        level: 0,
+        desc: ""
+    }, 
+        walking: {
+        level: 0,
+        desc: ""
+    }},
+    mental: {
+        confidence: {
+        level: 0,
+        desc: ""
+    }, 
+        leadership: {
+        level: 0,
+        desc: ""
+    }, 
+        patience: {
+        level: 0,
+        desc: ""
+    }, 
+        sitAwareness: {
+        level: 0,
+        desc: ""
+    }},
+    intimate: {
+        oral: {
+        level: 0,
+        desc: ""
+    }, 
+        partnerAtt: {
+        level: 0,
+        desc: ""
+    }, 
+        seduction: {
+        level: 0,
+        desc: ""
+    }, 
+        intercourse: {
+        level: 0,
+        desc: ""
+    }, 
+        touch: {
+        level: 0,
+        desc: ""
+    }},
+    academic: {
+        grammar: {
+        level: 0,
+        desc: ""
+    }, 
+        readingSpeed: {
+        level: 0,
+        desc: ""
+    }, 
+        vocabulary: {
+        level: 0,
+        desc: ""
+    }, 
+        researching: {
+        level: 0,
+        desc: ""
+    }, 
+        attentionSpan: {
+        level: 0,
+        desc: ""
+    }, 
+        englishLang: {
+        level: 0,
+        desc: ""
+    }, 
+        elvenLang: {
+        level: 0,
+        desc: ""
+    }, 
+        russianLang: {
+        level: 0,
+        desc: ""
+    }, 
+        frenchLang: {
+        level: 0,
+        desc: ""
+    }, 
+        latinLang: {
+        level: 0,
+        desc: ""
+    }, 
+        egyptianLang: {
+        level: 0,
+        desc: ""
+    }, 
+        chineseLang: {
+        level: 0,
+        desc: ""
+    }, 
+        demonLang: {
+        level: 0,
+        desc: ""
+    }, 
+        goblinLang: {
+        level: 0,
+        desc: ""
+    }, 
+        giantLang: {
+        level: 0,
+        desc: ""
+    }, 
+        dragonLang: {
+        level: 0,
+        desc: ""
+    }},
+    social: {
+        actListening: {
+        level: 0,
+        desc: ""
+    }, 
+        bodyLanguage: {
+        level: 0,
+        desc: ""
+    }, 
+        clusterRec: {
+        level: 0,
+        desc: ""
+    }, 
+        conflictRes: {
+        level: 0,
+        desc: ""
+    }, 
+        debate: {
+        level: 0,
+        desc: ""
+    }, 
+        effectiveCom: {
+        level: 0,
+        desc: ""
+    }, 
+        empthay: {
+        level: 0,
+        desc: ""
+    }, 
+        lying: {
+        level: 0,
+        desc: ""
+    }, 
+        manipulation: {
+        level: 0,
+        desc: ""
+    }, 
+        relManagement: {
+        level: 0,
+        desc: ""
+    }},
+    nature: {
+        anatomy: {
+        level: 0,
+        desc: ""
+    }, 
+        biology: {
+        level: 0,
+        desc: ""
+    }, 
+        botany: {
+        level: 0,
+        desc: ""
+    }, 
+        fishing: {
+        level: 0,
+        desc: ""
+    }, 
+        hunting: {
+        level: 0,
+        desc: ""
+    }, 
+        mineralRec: {
+        level: 0,
+        desc: ""
+    }, 
+        minerology: {
+        level: 0,
+        desc: ""
+    }, 
+        plantRec: {
+        level: 0,
+        desc: ""
+    }},
+    crafting: {
+        blacksmithing: {
+        level: 0,
+        desc: ""
+    }, 
+        cooking: {
+        level: 0,
+        desc: ""
+    }, 
+        gemCarv: {
+        level: 0,
+        desc: ""
+    }, 
+        jewelCraft: {
+        level: 0,
+        desc: ""
+    }, 
+        leatherworking: {
+        level: 0,
+        desc: ""
+    }, 
+        metallurgy: {
+        level: 0,
+        desc: ""
+    }, 
+        stoneCarv: {
+        level: 0,
+        desc: ""
+    }, 
+        tailoring: {
+        level: 0,
+        desc: ""
+    }, 
+        woodCarv: {
+        level: 0,
+        desc: ""
+    }}
+}>> */
+
+/* <<set $npcs = {
+    amy: {
+        firstName: "Amy", 
+        lastName: "Everett", 
+        title: "Mendicant", 
+        sex: "female", 
+        age: 40, 
+        eyes: "amber", 
+        hair: "blonde",
+        personality: "friendly",
+        formal: "Mrs. Everett"
+    },
+
+    barden: {
+        firstName: "Barden", 
+        lastName: "Sullivan", 
+        title: "Dean", 
+        sex: "male", 
+        age: 55,
+        eyes: "dark blue",
+        hair: "white",
+        personality: "neutral",
+        formal: "Dean Sullivan"
+    },
+
+    janessa: {
+        firstName: "Janessa",
+        lastName: "Starr",
+        title: "student",
+        sex: "female",
+        age: 20,
+        eyes: "gray",
+        hair: "blonde",
+        personality: "unfriendly",
+        formal: "Ms. Starr"
+    }
+}>> */
+
+/* targetCost:     <<numberbox '$targetCost' $targetCost>>
+typeCost:       <<numberbox '$typeCost' $typeCost>>
+durationCost:   <<numberbox '$durationCost' $durationCost>>
+effectCost:     <<numberbox '$effectCost' $effectCost>>
+strCost:        <<numberbox '$strCost' $strCost>>
+discLvl:        <<numberbox '$discLvl' $discLvl>>
+
+Equation Result: <<print $eqResult.toFixed(2)>>
+
+<<button [[Process Cost Equation | Testing_Spells]]>>
+    <<set $eqResult = $targetCost * $typeCost * $durationCost * $strCost * ($effectCost / ($discLvl * 0.4))>>
+<</button>>
+<hr>\

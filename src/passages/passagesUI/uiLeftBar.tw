@@ -1,7 +1,7 @@
 :: StoryCaption
     @@#timeplusdate;<<calcTime>>@@
-    <<if $plrName.fName != "" && $plrName.fName != "First">>\
-        <u>Your Name: $plrName.fName $plrName.lName</u>\
+    <<if $plr.name.firstName != "" && $plr.name.firstName != "First">>\
+        <u>Your Name: $plr.name.firstName $plr.name.lastName</u>\
     <</if>>\
 
 :: StoryBanner
@@ -62,12 +62,11 @@
     <</if>>
 
 :: Character Info
-    <<= charInfoTbl($plrName, "plrName")>>\
-    <<= charInfoTbl($plrBody.static, "plrBody.static")>>\
-    <<= charInfoTbl($plrBody.dynamic, "plrBody.dynamic")>>\
-    <<= charInfoTbl($plrPersonality, "plrPersonality")>>\
-    <<= charInfoTbl($plrRel, "plrRel")>>\
-    <<= charInfoTblSub($plrDisciplines, "plrDisciplines")>>\
+    <<= charInfoTbl($plr.name, "plr.name")>>\
+    <<= charInfoTbl($plr.body.static, "plr.body.static")>>\
+    <<= charInfoTbl($plr.body.dynamic, "plr.body.dynamic")>>\
+    <<= charInfoTbl($plr.relations, "plr.relations")>>\
+    <<= charInfoTblSub($plr.disciplines, "plr.disciplines")>>\
 
 :: Your Status
 

@@ -363,7 +363,7 @@ ul.simple-inventory-list {
     display: inline-block;
     top: 1px;
     border-width: 0px;
-    border-bottom: 2px solid rgb(94, 94, 94);  /* If you want dots under the hoverable text */
+    /* border-bottom: 2px solid rgb(94, 94, 94);  If you want dots under the hoverable text */
 }
 .hoverTipTxt {
     position: relative;
@@ -506,11 +506,9 @@ ul.simple-inventory-list {
     -o-transition: visibility .2s step-end;
     transition: visibility .2s step-end;
 }
-
 #right-ui-bar.stowed~#story {
     margin-right: 4.5em;
 }
-
 #right-ui-bar-body a {
     border: 3px ridge #666666;
     background: rgba(26, 26, 26, 0.6);
@@ -519,13 +517,11 @@ ul.simple-inventory-list {
     color: #ffffff;
     text-transform: uppercase;
 }
-
 #right-ui-bar-body a:hover {
     background-color: #444;
     border-color: #eee;
     text-decoration: none;
 }
-
 /* Horizontal Stat Bar - Start */
 .hzbarbkg {  /* default class for all horizontal bar backgrounds */
     position: relative;
@@ -582,6 +578,7 @@ ul.simple-inventory-list {
     font-style: italic;
 }
 /* Quality Colors - End */
+
 #ui-dialog-title {
     text-align: left;
 }
@@ -591,9 +588,9 @@ ul.simple-inventory-list {
 }
 
 #ui-dialog-body {
-    overflow: hidden;
+    overflow: auto;
     min-height: 25em;
-    padding: 3.5em 2.5em 2.5em 2.5em;
+    padding: 1em 2.5em 2.5em 1em;
 }
 
 .achieve {
@@ -620,7 +617,61 @@ ul.simple-inventory-list {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 100em;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/*-----Favicon-----*/
+}
+
+/* Spell Stuff - Start */
+
+#spell-result {
+    font-style: italic;
+    font-size: larger;
+    text-align: center;
+}
+
+.spell-word-grid {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 8em 8em 8em 8em 8em 8em;
+}
+
+.spell-word-grid-item {
+    border: 2px solid rgb(94, 94, 94);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.spell-word-grid-item .macro-button {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.spell-word-grid-item .macro-button:hover {
+    background-color: #2400a7;
+}
+
+#spell-box {
+    font-style: italic;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: -15px;
+    color:#2d98da;
+    animation: repeat;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes repeat {
+
+    0% {color: lightblue; text-shadow: 5px 5px 30px lightblue;}
+    20% {color: #45aaf2; text-shadow: 5px 5px 30px  #45aaf2;}
+    40% {color: #2d98da; text-shadow: 5px 5px 30px  #2d98da;}
+    60% {color: #4b7bec; text-shadow: 5px 5px 30px  #2d98da;}
+    80% {color: #3867d6; text-shadow: 5px 5px 30px  #3867d6;}
+    100% {color: lightblue; text-shadow: 5px 5px 30px  lightblue;}
+  
+}
+
+/* Spell Stuff - End */</style><script role="script" id="twine-user-script" type="text/twine-javascript">/*-----Favicon-----*/
 $(document.head).append("<link rel='icon' href='img/logo.png'>")
 
 window.charInfoTbl = function(obj, header) {
@@ -654,12 +705,20 @@ window.Stamina = function (CurST, MaxST, BarID, Horizontal, Container) {
 	}
 
     var lit = 50 * ((CurST / MaxST) * 1.2);
-    var col = "hsl(180, 100%, " + lit + "%)"
+    var col = "hsl(180, 100%, " + lit + "%)";
 	BarElement.css("background-color", col);
 
+	if (CurST % 1 != 0) {
+		CurST = CurST.toFixed(2);
+	}
+
+	if (MaxST % 1 != 0) {
+		MaxST = MaxST.toFixed(2);
+	}
+
 	BarElement.attr("title", CurST + "/" + MaxST + " Stamina");
-    $(Container).find("#ui-stamina").text(CurST + "/" + MaxST)
-	$(Container).find("#" + BarID + "bkg").attr("title", CurST + "/" + MaxST + " ST");
+    $(Container).find("#ui-stamina").text(CurST + "/" + MaxST);
+	$(Container).find("#" + BarID + "bkg").attr("title", CurST + "/" + MaxST + " Stamina");
 };
 
 window.Life = function (CurHP, MaxHP, BarID, Horizontal, Container) {
@@ -677,6 +736,14 @@ window.Life = function (CurHP, MaxHP, BarID, Horizontal, Container) {
     var lit = 47 * ((CurHP / MaxHP) * 1.2);
     var col = "hsl(348, 83%, " + lit + "%)";
 	BarElement.css("background-color", col);
+
+	if (CurHP % 1 != 0) {
+		CurHP = CurHP.toFixed(2);
+	}
+
+	if (MaxHP % 1 != 0) {
+		MaxHP = MaxHP.toFixed(2);
+	}
 
 	BarElement.attr("title", CurHP + "/" + MaxHP + " Lifeforce");
     $(Container).find("#ui-life").text(CurHP + "/" + MaxHP);
@@ -699,6 +766,14 @@ window.Sanity = function (CurSan, MaxSan, BarID, Horizontal, Container) {
     var col = "hsl(260, 60%, " + lit + "%)";
 	BarElement.css("background-color", col);
 
+	if (CurSan % 1 != 0) {
+		CurSan = CurSan.toFixed(2);
+	}
+
+	if (MaxSan % 1 != 0) {
+		MaxSan = MaxSan.toFixed(2);
+	}
+
 	BarElement.attr("title", CurSan + "/" + MaxSan + " Sanity");
     $(Container).find("#ui-sanity").text(CurSan + "/" + MaxSan);
 	$(Container).find("#" + BarID + "bkg").attr("title", CurSan + "/" + MaxSan + " Sanity");
@@ -720,6 +795,14 @@ window.FocusStat = function (CurCon, MaxCon, BarID, Horizontal, Container) {
     var col = "hsl(84, 100%, " + lit + "%)";
 	BarElement.css("background-color", col);
 
+	if (CurCon % 1 != 0) {
+		CurCon = CurCon.toFixed(2);
+	}
+
+	if (MaxCon % 1 != 0) {
+		MaxCon = MaxCon.toFixed(2);
+	}
+
 	BarElement.attr("title", CurCon + "/" + MaxCon + " Focus");
     $(Container).find("#ui-focus").text(CurCon + "/" + MaxCon);
 	$(Container).find("#" + BarID + "bkg").attr("title", CurCon + "/" + MaxCon + " Focus");
@@ -735,8 +818,8 @@ window.FocusStat = function (CurCon, MaxCon, BarID, Horizontal, Container) {
         tags : null,
         handler : function () {
             if (this.args[0] == "plr"){
-                var id = this.args[0], name = State.getVar("$plrName.fName");     
-                var img = State.getVar("$plrImg");
+                var id = this.args[0], name = State.getVar("$plr.name.firstName");     
+                var img = State.getVar("$plr.img");
                 
                 var output = '<div class="speech ' + id + '">';
                 output += '<span class="avatar" style=\x27background-image: url(\x22' + img + '\x22)\x27></span>';
@@ -895,36 +978,53 @@ $rightUiBar.find('#right-ui-bar-toggle').ariaClick({label : "Toggle the Right UI
 /* Automatically show the contents of the StoryRightSidebar passage in the right-ui-bar-body element. */
 postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 	setPageElement('right-ui-bar-body', 'StoryRightSidebar');
-};</script><tw-passagedata pid="1" name="DevWand" tags="" position="100,100" size="100,100">&lt;&lt;button [[Quick Start | Residence_Starr_PlayerRoom]]&gt;&gt;
-        &lt;&lt;set $plrName.fName = &quot;Azure&quot;&gt;&gt;
-        &lt;&lt;set $plrName.lName = &quot;Paine&quot;&gt;&gt;
-        &lt;&lt;set $plrName.prefix = &quot;Mr.&quot;&gt;&gt;
-        &lt;&lt;set $plrName.formal = $plrName.prefix + &quot; &quot; + $plrName.lName&gt;&gt;
-        &lt;&lt;set $plrBody.static.sex = &quot;male&quot;&gt;&gt;
-        &lt;&lt;set $plrBody.static.hairColor = &quot;blue&quot;&gt;&gt;
-        &lt;&lt;set $plrBody.static.hairStyle = &quot;mohawk&quot;&gt;&gt;
-        &lt;&lt;set $plrBody.static.eyeColor = &quot;amber&quot;&gt;&gt;
-        &lt;&lt;set $plrBody.static.faceShape = &quot;square&quot;&gt;&gt;
-        &lt;&lt;set $plrBody.static.height = &quot;tall&quot;&gt;&gt;
-        &lt;&lt;set $plrBody.dynamic.hairLength = 1&gt;&gt;
-        &lt;&lt;set $plrBody.dynamic.weight = 35&gt;&gt;
+};</script><tw-passagedata pid="1" name="DevWand" tags="" position="100,100" size="100,100">&lt;&lt;button [[Quick Start | Testing_Spells]]&gt;&gt;
+        &lt;&lt;set $plr.name.fName = &quot;Azure&quot;&gt;&gt;
+        &lt;&lt;set $plr.name.lName = &quot;Paine&quot;&gt;&gt;
+        &lt;&lt;set $plr.name.prefix = &quot;Mr.&quot;&gt;&gt;
+        &lt;&lt;set $plr.name.formal = $plr.name.prefix + &quot; &quot; + $plr.name.lName&gt;&gt;
+        &lt;&lt;set $plr.body.static.sex = &quot;male&quot;&gt;&gt;
+        &lt;&lt;set $plr.body.static.hairColor = &quot;blue&quot;&gt;&gt;
+        &lt;&lt;set $plr.body.static.hairStyle = &quot;mohawk&quot;&gt;&gt;
+        &lt;&lt;set $plr.body.static.eyeColor = &quot;amber&quot;&gt;&gt;
+        &lt;&lt;set $plr.body.static.faceShape = &quot;square&quot;&gt;&gt;
+        &lt;&lt;set $plr.body.static.height = &quot;tall&quot;&gt;&gt;
+        &lt;&lt;set $plr.body.dynamic.hairLength = 1&gt;&gt;
+        &lt;&lt;set $plr.body.dynamic.weight = 35&gt;&gt;
         &lt;&lt;calcAttractiveness&gt;&gt;
 
-        &lt;&lt;set $plrStats.stamina.max = 10&gt;&gt;
-        &lt;&lt;set $plrStats.stamina.cur = 10&gt;&gt;
-        &lt;&lt;set $plrStats.life.max = 10&gt;&gt;
-        &lt;&lt;set $plrStats.life.cur = 10&gt;&gt;
-        &lt;&lt;set $plrStats.sanity.max = 3&gt;&gt;
-        &lt;&lt;set $plrStats.sanity.cur = 3&gt;&gt;
-        &lt;&lt;set $plrStats.focus.max = 5&gt;&gt;
-        &lt;&lt;set $plrStats.focus.cur = 5&gt;&gt;
-        &lt;&lt;set $plrImg = &quot;img/characters/thumb_male_bro_white.jpg&quot;&gt;&gt;
+        &lt;&lt;set $plr.stats.stamina.max = 10&gt;&gt;
+        &lt;&lt;set $plr.stats.stamina.cur = 10&gt;&gt;
+        &lt;&lt;set $plr.stats.life.max = 10&gt;&gt;
+        &lt;&lt;set $plr.stats.life.cur = 10&gt;&gt;
+        &lt;&lt;set $plr.stats.sanity.max = 3&gt;&gt;
+        &lt;&lt;set $plr.stats.sanity.cur = 3&gt;&gt;
+        &lt;&lt;set $plr.stats.focus.max = 5&gt;&gt;
+        &lt;&lt;set $plr.stats.focus.cur = 5&gt;&gt;
+        &lt;&lt;set $plr.img = &quot;img/characters/thumb_male_bro_white.jpg&quot;&gt;&gt;
 
         &lt;&lt;set $unlockVar.userInterface.inventory = true&gt;&gt;
 
         &lt;&lt;pickup $plrinvbooks &quot;mapSchool&quot; 1&gt;&gt;
         &lt;&lt;pickup $plrinvbooks &quot;mapTown&quot; 1&gt;&gt;
         &lt;&lt;pickup $plrinvbooks &quot;illusion1&quot; 1&gt;&gt;
+
+        &lt;&lt;for _i, _name range $spellWords.target&gt;&gt;
+            &lt;&lt;set $spellWords.target[_i].unlocked = true&gt;&gt;
+            &lt;&lt;run _i + 1&gt;&gt;
+        &lt;&lt;/for&gt;&gt;
+        &lt;&lt;for _i, _name range $spellWords.duration&gt;&gt;
+            &lt;&lt;set $spellWords.duration[_i].unlocked = true&gt;&gt;
+            &lt;&lt;run _i + 1&gt;&gt;
+        &lt;&lt;/for&gt;&gt;
+        &lt;&lt;for _i, _name range $spellWords.effect&gt;&gt;
+            &lt;&lt;set $spellWords.effect[_i].unlocked = true&gt;&gt;
+            &lt;&lt;run _i + 1&gt;&gt;
+        &lt;&lt;/for&gt;&gt;
+        &lt;&lt;for _i, _name range $spellWords.enhancement&gt;&gt;
+            &lt;&lt;set $spellWords.enhancement[_i].unlocked = true&gt;&gt;
+            &lt;&lt;run _i + 1&gt;&gt;
+        &lt;&lt;/for&gt;&gt;
 
         &lt;&lt;run Dialog.close()&gt;&gt;
     &lt;&lt;/button&gt;&gt;
@@ -956,7 +1056,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     [[WakingUp11]]
     [[WakingUp12]]
     [[WakingUp13]]
-    [[WakingUp14]]</tw-passagedata><tw-passagedata pid="2" name="Todo" tags="" position="225,100" size="100,100">Inventory system - done
+    [[WakingUp14]]
+    [[Residence_Starr_PlayerRoom]]</tw-passagedata><tw-passagedata pid="2" name="Todo" tags="" position="225,100" size="100,100">Inventory system - done
     Library
     First five professors
     Make player stats populate on UI
@@ -1207,441 +1308,520 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     /*XXXXX Add beard stats XXXXX*/
 
     /*-----Player Variables-----*/
-    &lt;&lt;set $plrImg = &quot;&quot;
-    &gt;&gt;
-    &lt;&lt;set $plrName = {
-        fName: &quot;&quot;,
-        lName: &quot;&quot;,
-        prefix: &quot;&quot;,
-        formal: &quot;&quot;
-    }&gt;&gt;
-    &lt;&lt;set $plrBody = {
-        static: {
-            sex: &quot;&quot;,
-            hairColor: &quot;&quot;,
-            hairStyle: &quot;&quot;,
-            eyeColor: &quot;&quot;,
-            faceShape: &quot;&quot;,
-            height: &quot;&quot;
+
+    &lt;&lt;set $plr = {
+        img: &#39;&#39;,
+        stats: {
+            life: {
+                max: 0,
+                pre: 0,
+                cur: 0
+            }, 
+            stamina: {
+                max: 0,
+                pre: 0,
+                cur: 0
+            }, 
+            sanity: {
+                max: 0,
+                pre: 0,
+                cur: 0
+            }, 
+            focus: {
+                max: 0,
+                pre: 0,
+                cur: 0
+            }
         },
-        dynamic: {
-            hairLength: 0,
-            weight: 0,
-            atttractiveness: 0
+        name: {
+            firstName: &#39;&#39;,
+            lastName: &#39;&#39;,
+            prefix: &#39;&#39;,
+            formal: &#39;&#39;
+        },
+        body: {
+            static: {
+                sex: &#39;&#39;,
+                hairColor: &#39;&#39;,
+                hairStyle: &#39;&#39;,
+                eyeColor: &#39;&#39;,
+                faceShape: &#39;&#39;,
+                height: &#39;&#39;
+            },
+            dynamic: {
+                hairLength: 0,
+                weight: 0,
+                atttractiveness: 0
+            }
+        },
+        relations: {
+            amy: {
+                positive: 0,
+                negative: 0,
+                intimate: 0
+            },
+            janessa: {
+                positive: 0,
+                negative: 0,
+                intimate: 0
+            },
+            barden: {
+                positive: 0,
+                negative: 0,
+                intimate: 0
+            }
+        },
+        disciplines: {
+            abjuration: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            alchemy: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            animancy: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            astromancy: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            biomancy: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            blood: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            chloromancy: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            chronomancy: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            clockwork: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            conjuration: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            demonology: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            divination: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            eldritch: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            elemental: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            enchantment: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            enochian: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            gate: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            illusion: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            lunar: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            necromancy: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            psionic: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            restoration: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            sex: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            soul: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            summoning: {
+                level: 0,
+                desc: &quot;&quot;
+            },
+            transmutation: {
+                level: 0,
+                desc: &quot;&quot;
+            }
+        },
+        skills: {
+            mundane: {
+                lockpicking: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                pickpocketing: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                running: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                swimming: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                walking: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }
+            },
+            mental: {
+                confidence: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                leadership: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                patience: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                sitAwareness: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }
+            },
+            intimate: {
+                oral: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                partnerAtt: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                seduction: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                intercourse: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                touch: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }
+            },
+            academic: {
+                grammar: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                readingSpeed: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                vocabulary: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                researching: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                attentionSpan: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                englishLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                elvenLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                russianLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                frenchLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                latinLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                egyptianLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                chineseLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                demonLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                goblinLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                giantLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                dragonLang: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }
+            },
+            social: {
+                actListening: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                bodyLanguage: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                clusterRec: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                conflictRes: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                debate: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                effectiveCom: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                empthay: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                lying: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                manipulation: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                relManagement: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }
+            },
+            nature: {
+                anatomy: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                biology: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                botany: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                fishing: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                hunting: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                mineralRec: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                minerology: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                plantRec: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }
+            },
+            crafting: {
+                blacksmithing: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                cooking: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                gemCarv: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                jewelCraft: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                leatherworking: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                metallurgy: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                stoneCarv: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                tailoring: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }, 
+                woodCarv: {
+                    level: 0,
+                    desc: &quot;&quot;
+                }
+            }
         }
-    }&gt;&gt;
-    &lt;&lt;set $plrStats = {
-        life: {
-            max: 0,
-            pre: 0,
-            cur: 0
-        }, 
-        stamina: {
-            max: 0,
-            pre: 0,
-            cur: 0
-        }, 
-        sanity: {
-            max: 0,
-            pre: 0,
-            cur: 0
-        }, 
-        hygiene: {
-            max: 0,
-            pre: 0,
-            cur: 0
-        }, 
-        focus: {
-            max: 0,
-            pre: 0,
-            cur: 0
-        }
-    }&gt;&gt;
-    &lt;&lt;set $plrRel = {
-        Amy: 0,
-        Janessa: 0,
-        Barden: 0
-    }&gt;&gt;
-    &lt;&lt;set $plrDisciplines = {
-        abjuration: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        alchemy: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        animancy: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        astromancy: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        biomancy: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        blood: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        chloromancy: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        chronomancy: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        clockwork: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        conjuration: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        demonology: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        divination: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        eldritch: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        elemental: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        enchantment: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        enochian: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        gate: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        illusion: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        lunar: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        necromancy: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        psionic: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        restoration: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        sex: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        soul: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        summoning: {
-            level: 0,
-            desc: &quot;&quot;
-        },
-        transmutation: {
-            level: 0,
-            desc: &quot;&quot;
-        }
-    }&gt;&gt;
-    &lt;&lt;set $plrSkills = {
-        mundane: {
-            lockpicking: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            pickpocketing: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            running: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            swimming: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            walking: {
-            level: 0,
-            desc: &quot;&quot;
-        }},
-        mental: {
-            confidence: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            leadership: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            patience: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            sitAwareness: {
-            level: 0,
-            desc: &quot;&quot;
-        }},
-        intimate: {
-            oral: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            partnerAtt: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            seduction: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            intercourse: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            touch: {
-            level: 0,
-            desc: &quot;&quot;
-        }},
-        academic: {
-            grammar: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            readingSpeed: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            vocabulary: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            researching: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            attentionSpan: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            englishLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            elvenLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            russianLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            frenchLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            latinLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            egyptianLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            chineseLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            demonLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            goblinLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            giantLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            dragonLang: {
-            level: 0,
-            desc: &quot;&quot;
-        }},
-        social: {
-            actListening: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            bodyLanguage: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            clusterRec: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            conflictRes: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            debate: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            effectiveCom: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            empthay: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            lying: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            manipulation: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            relManagement: {
-            level: 0,
-            desc: &quot;&quot;
-        }},
-        nature: {
-            anatomy: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            biology: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            botany: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            fishing: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            hunting: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            mineralRec: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            minerology: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            plantRec: {
-            level: 0,
-            desc: &quot;&quot;
-        }},
-        crafting: {
-            blacksmithing: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            cooking: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            gemCarv: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            jewelCraft: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            leatherworking: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            metallurgy: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            stoneCarv: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            tailoring: {
-            level: 0,
-            desc: &quot;&quot;
-        }, 
-            woodCarv: {
-            level: 0,
-            desc: &quot;&quot;
-        }}
     }&gt;&gt;
 
     /*-----NPC Variables-----*/
+    /* template 
+        npcObj: {
+            name: {
+                firstName: &#39;&#39;,
+                lastName: &#39;&#39;,
+                title: &#39;&#39;,
+                formal: &#39;&#39;
+            },
+            stats: {
+                life: {
+                    max: 0,
+                    cur: 0
+                },
+                stamina: {
+                    max: 0,
+                    cur: 0
+                }
+            },
+            body: {
+                sex: &#39;&#39;,
+                eyes: &#39;&#39;,
+                hair: &#39;&#39;
+            },
+            personality: &#39;&#39;
+        }
+    */
     &lt;&lt;set $npcs = {
         amy: {
-            firstName: &quot;Amy&quot;, 
-            lastName: &quot;Everett&quot;, 
-            title: &quot;Mendicant&quot;, 
-            sex: &quot;female&quot;, 
-            age: 40, 
-            eyes: &quot;amber&quot;, 
-            hair: &quot;blonde&quot;,
-            personality: &quot;friendly&quot;,
-            formal: &quot;Mrs. Everett&quot;
+            name: {
+                firstName: &#39;Amy&#39;,
+                lastName: &#39;Everett&#39;,
+                title: &#39;Mendicant&#39;,
+                formal: &#39;Mrs. Everett&#39;
+            },
+            stats: {
+                life: {
+                    max: 100,
+                    cur: 100
+                },
+                stamina: {
+                    max: 100,
+                    cur: 100
+                }
+            },
+            body: {
+                sex: &#39;female&#39;,
+                eyes: &#39;amber&#39;,
+                hair: &#39;blonde&#39;
+            },
+            personality: &#39;friendly&#39;
         },
-
-        barden: {
-            firstName: &quot;Barden&quot;, 
-            lastName: &quot;Sullivan&quot;, 
-            title: &quot;Dean&quot;, 
-            sex: &quot;male&quot;, 
-            age: 55,
-            eyes: &quot;dark blue&quot;,
-            hair: &quot;white&quot;,
-            personality: &quot;neutral&quot;,
-            formal: &quot;Dean Sullivan&quot;
-        },
-
         janessa: {
-            firstName: &quot;Janessa&quot;,
-            lastName: &quot;Starr&quot;,
-            title: &quot;student&quot;,
-            sex: &quot;female&quot;,
-            age: 20,
-            eyes: &quot;gray&quot;,
-            hair: &quot;blonde&quot;,
-            personality: &quot;unfriendly&quot;,
-            formal: &quot;Ms. Starr&quot;
+            name: {
+                firstName: &#39;Janessa&#39;,
+                lastName: &#39;Starr&#39;,
+                title: &#39;student&#39;,
+                formal: &#39;Ms. Starr&#39;
+            },
+            stats: {
+                life: {
+                    max: 100,
+                    cur: 100
+                },
+                stamina: {
+                    max: 100,
+                    cur: 100
+                }
+            },
+            body: {
+                sex: &#39;female&#39;,
+                eyes: &#39;gray&#39;,
+                hair: &#39;blonde&#39;
+            },
+            personality: &#39;unfriendly&#39;
+        },
+        barden: {
+            name: {
+                firstName: &#39;Barden&#39;,
+                lastName: &#39;Sullivan&#39;,
+                title: &#39;Dean&#39;,
+                formal: &#39;Dean Sullivan&#39;
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: &#39;male&#39;,
+                eyes: &#39;dark blue&#39;,
+                hair: &#39;white&#39;
+            },
+            personality: &#39;stern&#39;
         }
     }&gt;&gt;
     &lt;&lt;set $npcPersonalityList = {
@@ -1847,7 +2027,13 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     /* relGain Amy 10 */
     &lt;&lt;widget &quot;relGain&quot;&gt;&gt;
-        &lt;&lt;set $plrRel[_args[0]] += _args[1] + ($plrBody.dynamic.atttractiveness / 10)&gt;&gt;
+        &lt;&lt;if _args[1] &gt; 0&gt;&gt;
+            &lt;&lt;set $plr.relations[_args[0]].positive += _args[1] + ($plr.body.dynamic.atttractiveness / 10)&gt;&gt;
+
+            &lt;&lt;else&gt;&gt;
+                &lt;&lt;set $plr.relations[_args[0]].negative += _args[1] + ($plr.body.dynamic.atttractiveness / 10)&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+
         &lt;&lt;set $relNpcTemp = _args[0]&gt;&gt;
         &lt;&lt;set $relAmtTemp = _args[1]&gt;&gt;
     &lt;&lt;/widget&gt;&gt;
@@ -1856,9 +2042,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;widget &quot;printRelGain&quot;&gt;&gt;
             &lt;&lt;if $relAmtTemp&gt;&gt;
                 &lt;&lt;if $relAmtTemp &gt; 0 &gt;&gt;
-                    &lt;&lt;print &#39;&lt;span class=&quot;green&quot;&gt;Your relationship with &#39; +  $npcs[$relNpcTemp].formal + &#39; has improved!&lt;/span&gt;&#39;&gt;&gt;
+                    &lt;&lt;print &#39;&lt;span class=&quot;green&quot;&gt;Your relationship with &#39; +  $npcs[$relNpcTemp].name.firstName + &#39; &#39; + $npcs[$relNpcTemp].name.lastName + &#39; has improved!&lt;/span&gt;&#39;&gt;&gt;
                 &lt;&lt;else&gt;&gt;
-                    &lt;&lt;print &#39;&lt;span class=&quot;red&quot;&gt;Your relationship with &#39; + $npcs[$relNpcTemp].formal + &#39; has deteriorated.&lt;/span&gt;&#39;&gt;&gt;
+                    &lt;&lt;print &#39;&lt;span class=&quot;red&quot;&gt;Your relationship with &#39; + $npcs[$relNpcTemp].name.firstName + &#39; &#39; + $npcs[$relNpcTemp].name.lastName + &#39; has deteriorated.&lt;/span&gt;&#39;&gt;&gt;
                 &lt;&lt;/if&gt;&gt;
                 &lt;&lt;unset $relAmtTemp, $relNpcTemp&gt;&gt;
             &lt;&lt;/if&gt;&gt;
@@ -1867,23 +2053,23 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;widget &quot;calcAttractiveness&quot;&gt;&gt;
         &lt;&lt;nobr&gt;&gt;
-            &lt;&lt;set $plrBody.dynamic.atttractiveness = 0&gt;&gt;
-            &lt;&lt;if $plrBody.static.sex == &quot;male&quot; &amp;&amp; ($plrBody.static.height == &quot;tall&quot; || $plrBody.static.height == &quot;very tall&quot;)&gt;&gt;
-                &lt;&lt;set $plrBody.dynamic.atttractiveness += 10&gt;&gt;
-            &lt;&lt;elseif $plrBody.static.sex == &quot;female&quot; &amp;&amp; ($plrBody.static.height == &quot;average&quot; || $plrBody.static.height == &quot;short&quot;)&gt;&gt;
-                &lt;&lt;set $plrBody.dynamic.atttractiveness += 10&gt;&gt;
+            &lt;&lt;set $plr.body.dynamic.atttractiveness = 0&gt;&gt;
+            &lt;&lt;if $plr.body.static.sex == &quot;male&quot; &amp;&amp; ($plr.body.static.height == &quot;tall&quot; || $plr.body.static.height == &quot;very tall&quot;)&gt;&gt;
+                &lt;&lt;set $plr.body.dynamic.atttractiveness += 10&gt;&gt;
+            &lt;&lt;elseif $plr.body.static.sex == &quot;female&quot; &amp;&amp; ($plr.body.static.height == &quot;average&quot; || $plr.body.static.height == &quot;short&quot;)&gt;&gt;
+                &lt;&lt;set $plr.body.dynamic.atttractiveness += 10&gt;&gt;
             &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;if $plrBody.static.faceShape == &quot;oblong&quot; || $plrBody.static.faceShape == &quot;square&quot;&gt;&gt;
-                &lt;&lt;set $plrBody.dynamic.atttractiveness += 10&gt;&gt;
+            &lt;&lt;if $plr.body.static.faceShape == &quot;oblong&quot; || $plr.body.static.faceShape == &quot;square&quot;&gt;&gt;
+                &lt;&lt;set $plr.body.dynamic.atttractiveness += 10&gt;&gt;
             &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;if $plrBody.dynamic.weight &gt;= 20 &amp;&amp; $plrBody.dynamic.weight &lt;= 55&gt;&gt;
-                &lt;&lt;set $plrBody.dynamic.atttractiveness += 10&gt;&gt;
+            &lt;&lt;if $plr.body.dynamic.weight &gt;= 20 &amp;&amp; $plr.body.dynamic.weight &lt;= 55&gt;&gt;
+                &lt;&lt;set $plr.body.dynamic.atttractiveness += 10&gt;&gt;
             &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;if $plrBody.static.sex == &quot;female&quot;&gt;&gt;
-                &lt;&lt;set $plrBody.dynamic.atttractiveness *= 1.1&gt;&gt;
+            &lt;&lt;if $plr.body.static.sex == &quot;female&quot;&gt;&gt;
+                &lt;&lt;set $plr.body.dynamic.atttractiveness *= 1.1&gt;&gt;
         &lt;&lt;/if&gt;&gt;
         &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;/widget&gt;&gt;
@@ -2146,40 +2332,40 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;setStamina&quot;&gt;&gt;
-            &lt;&lt;set $plrStats.stamina.cur = _args[0]&gt;&gt;
+            &lt;&lt;set $plr.stats.stamina.cur = _args[0]&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;setLife&quot;&gt;&gt;
-            &lt;&lt;set $plrStats.life.cur = _args[0]&gt;&gt;
+            &lt;&lt;set $plr.stats.life.cur = _args[0]&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;setFocus&quot;&gt;&gt;
-            &lt;&lt;set $plrStats.focus.cur = _args[0]&gt;&gt;
+            &lt;&lt;set $plr.stats.focus.cur = _args[0]&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;setSanity&quot;&gt;&gt;
-            &lt;&lt;set $plrStats.sanity.cur = _args[0]&gt;&gt;
+            &lt;&lt;set $plr.stats.sanity.cur = _args[0]&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;staminaUpdatePrint&quot;&gt;&gt;
-            &lt;&lt;set _stamDec = $plrStats.stamina.pre - $plrStats.stamina.cur&gt;&gt;
-            &lt;&lt;set _stamInc = $plrStats.stamina.cur - $plrStats.stamina.pre&gt;&gt;
-            &lt;&lt;if $plrStats.stamina.cur &lt; $plrStats.stamina.pre&gt;&gt;
+            &lt;&lt;set _stamDec = $plr.stats.stamina.pre - $plr.stats.stamina.cur&gt;&gt;
+            &lt;&lt;set _stamInc = $plr.stats.stamina.cur - $plr.stats.stamina.pre&gt;&gt;
+            &lt;&lt;if $plr.stats.stamina.cur &lt; $plr.stats.stamina.pre&gt;&gt;
                 &lt;span class=&quot;staminaDec&quot;&gt;Your stamina decreased by _stamDec.&lt;/span&gt;
 
-            &lt;&lt;else if $plrStats.stamina.cur &gt; $plrStats.stamina.pre&gt;&gt;
+            &lt;&lt;else if $plr.stats.stamina.cur &gt; $plr.stats.stamina.pre&gt;&gt;
                 &lt;span class=&quot;staminaInc&quot;&gt;Your stamina increased by _stamInc.&lt;/span&gt;
 
             &lt;&lt;/if&gt;&gt;
-            &lt;&lt;set $plrStats.stamina.pre = $plrStats.stamina.cur&gt;&gt;
+            &lt;&lt;set $plr.stats.stamina.pre = $plr.stats.stamina.cur&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
@@ -2469,7 +2655,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button [[Continue | WakingUp2]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="WakingUp2" tags="" position="225,225" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
 
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;
-        My name is $npcs.amy.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn&#39;t here when you woke, no doubt you are rather confused.
+        My name is $npcs.amy.name.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn&#39;t here when you woke, no doubt you are rather confused.
     &lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;
@@ -2478,39 +2664,39 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     She proceeds to stand over you and holds her hands above your chest. She says words. But what she says makes zero sense to you, almost as if she is speaking gibberish or a foreign language. Latin maybe? Sounds a little familiar.
 
-    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.formal is right, you are just confused. Very, very confused.
+    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.name.formal is right, you are just confused. Very, very confused.
 
     &lt;&lt;button [[Continue | WakingUp3]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="WakingUp3" tags="" position="350,225" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
 
-    $npcs.amy.formal sees you staring at the candles.
+    $npcs.amy.name.formal sees you staring at the candles.
 
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on forehead and maybe some grogginess, you will be just fine.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Someone enters the room | WakingUp4]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="WakingUp4" tags="" position="475,225" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/medicalwing.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;\
 
-    You see $npcs.amy.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
+    You see $npcs.amy.name.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
 
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;
         Someone will be along shortly to show you the way to the dean&#39;s office.
     &lt;&lt;/speech&gt;&gt;\
 
-    With you brain fog still in full force, you are as perplexed as ever. A few seconds later a young woman opens the large wooden doors to the room. She briefly looks at you before speaking to $npcs.amy.formal.
+    With you brain fog still in full force, you are as perplexed as ever. A few seconds later a young woman opens the large wooden doors to the room. She briefly looks at you before speaking to $npcs.amy.name.formal.
 
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt;
-        You called for me $npcs.amy.title? I assume the dean is expecting him?
+        You called for me $npcs.amy.name.title? I assume the dean is expecting him?
     &lt;&lt;/speech&gt;&gt;
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;
-        Good evening $npcs.janessa.formal. And yes, you and this one are expected in the dean&#39;s office.
+        Good evening $npcs.janessa.name.formal. And yes, you and this one are expected in the dean&#39;s office.
     &lt;&lt;/speech&gt;&gt;\
 
-    $npcs.amy.formal looks at you.
+    $npcs.amy.name.formal looks at you.
 
-    &lt;&lt;speech &quot;amy&quot;&gt;&gt;This is $npcs.janessa.firstName, she will escort you to the dean. Please have someone bring you back here if your grogginess sticks around for than a day or two. And if you have any other medical needs, I will be right here for you.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;amy&quot;&gt;&gt;This is $npcs.janessa.name.firstName, she will escort you to the dean. Please have someone bring you back here if your grogginess sticks around for than a day or two. And if you have any other medical needs, I will be right here for you.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;Please, do take care of yourself.&lt;&lt;/speech&gt;&gt;\
     &lt;&lt;tone &quot;pos&quot;&gt;&gt;There is more than a hint of pity in her voice.&lt;&lt;/tone&gt;&gt;
 
-    $npcs.amy.formal walks over to $npcs.janessa.firstName and speaks with her quietly. You cannot hear what either one is saying, but $npcs.janessa.firstName appears annoyed by whatever it is.
+    $npcs.amy.name.formal walks over to $npcs.janessa.name.firstName and speaks with her quietly. You cannot hear what either one is saying, but $npcs.janessa.name.firstName appears annoyed by whatever it is.
 
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt;Lets go.&lt;&lt;/speech&gt;&gt;\
 
@@ -2523,87 +2709,87 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;div class=&#39;grid-container text-center&#39;&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_blk_asian.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_blk_asian.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_blk_asian.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_blk_blk.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_blk_blk.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_blk_blk.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_blk_indian.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_blk_indian.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_blk_indian.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_blonde_white.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_blonde_white.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_blonde_white.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_bro_white.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_bro_white.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_bro_white.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_bro_hisp.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_bro_hisp.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_bro_hisp.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_blk_blk2.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_blk_blk2.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_blk_blk2.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img/characters/thumb_male_blk_asian2.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_male_blk_asian2.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_male_blk_asian2.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_blk_asian.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_blk_asian.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_blk_asian.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_blk_blk.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_blk_blk.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_blk_blk.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_blk_indian.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_blk_indian.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_blk_indian.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_blk_whi.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_blk_whi.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_blk_whi.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_blk_blk2.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_blk_blk2.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_blk_blk2.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_bln_whi.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_bln_whi.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_bln_whi.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_bln_white2.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_bln_white2.jpg&quot;&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_bln_white2.jpg&quot;&gt;&gt;
         &lt;/div&gt;\
         &lt;div&gt;
             &lt;img class=&quot;mcselect&quot; src=&quot;img\characters\thumb_fem_bro_hisp.jpg&quot; alt=&quot;test&quot;/&gt;\
-            &lt;&lt;radiobutton &quot;$plrImg&quot; &quot;img/characters/thumb_fem_bro_hisp.jpg&quot; checked&gt;&gt;
+            &lt;&lt;radiobutton &quot;$plr.img&quot; &quot;img/characters/thumb_fem_bro_hisp.jpg&quot; checked&gt;&gt;
         &lt;/div&gt;\
     &lt;/div&gt;
 
     At least you still remember your name,
-    &lt;&lt;textbox &quot;$plrName.fName&quot; &quot;First&quot;&gt;&gt; \
-    &lt;&lt;textbox &quot;$plrName.lName&quot; &quot;Last&quot;&gt;&gt;
+    &lt;&lt;textbox &quot;$plr.name.firstName&quot; &quot;First&quot;&gt;&gt; \
+    &lt;&lt;textbox &quot;$plr.name.lastName&quot; &quot;Last&quot;&gt;&gt;
 
     Obviously, you are \
-    &lt;&lt;listbox &quot;$plrBody.static.sex&quot; autoselect&gt;&gt; \
+    &lt;&lt;listbox &quot;$plr.body.static.sex&quot; autoselect&gt;&gt; \
         &lt;&lt;option &quot;female&quot;&gt;&gt;
         &lt;&lt;option &quot;male&quot;&gt;&gt;
     &lt;&lt;/listbox&gt;&gt;
 
     Your hair is a shade of \
-    &lt;&lt;listbox &quot;$plrBody.static.hairColor&quot; autoselect&gt;&gt;
+    &lt;&lt;listbox &quot;$plr.body.static.hairColor&quot; autoselect&gt;&gt;
         &lt;&lt;optionsfrom $hairColors&gt;&gt;
     &lt;&lt;/listbox&gt;&gt;
 
     and appears to be \
-    &lt;&lt;listbox &quot;$plrBody.dynamic.hairLength&quot; autoselect&gt;&gt;
+    &lt;&lt;listbox &quot;$plr.body.dynamic.hairLength&quot; autoselect&gt;&gt;
         &lt;&lt;option &quot;shaved&quot; 1&gt;&gt;
         &lt;&lt;option &quot;ear length&quot; 2&gt;&gt;
         &lt;&lt;option &quot;neck length&quot; 3&gt;&gt;
@@ -2614,22 +2800,22 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;/listbox&gt;&gt;
 
     Your hair is styled as \
-    &lt;&lt;listbox &quot;$plrBody.static.hairStyle&quot; autoselect&gt;&gt;
+    &lt;&lt;listbox &quot;$plr.body.static.hairStyle&quot; autoselect&gt;&gt;
         &lt;&lt;optionsfrom $hairStyles&gt;&gt;
     &lt;&lt;/listbox&gt;&gt;
 
     Your eyes now look \
-    &lt;&lt;listbox &quot;$plrBody.static.eyeColor&quot; autoselect&gt;&gt;
+    &lt;&lt;listbox &quot;$plr.body.static.eyeColor&quot; autoselect&gt;&gt;
         &lt;&lt;optionsfrom $eyeColors&gt;&gt;
     &lt;&lt;/listbox&gt;&gt;
 
     and your face is \
-    &lt;&lt;listbox &quot;$plrBody.static.faceShape&quot; autoselect&gt;&gt;
+    &lt;&lt;listbox &quot;$plr.body.static.faceShape&quot; autoselect&gt;&gt;
         &lt;&lt;optionsfrom $faceShapes&gt;&gt;
     &lt;&lt;/listbox&gt;&gt;
 
     Finally, you notice you are \
-    &lt;&lt;listbox &quot;$plrBody.dynamic.weight&quot; autoselect&gt;&gt;
+    &lt;&lt;listbox &quot;$plr.body.dynamic.weight&quot; autoselect&gt;&gt;
         &lt;&lt;option &quot;quite skinny&quot; 10&gt;&gt;
         &lt;&lt;option &quot;fit&quot; 30&gt;&gt;
         &lt;&lt;option &quot;average&quot; 50&gt;&gt;
@@ -2638,7 +2824,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;/listbox&gt;&gt;
 
     and you are \
-    &lt;&lt;listbox &quot;$plrBody.static.height&quot; autoselect&gt;&gt;
+    &lt;&lt;listbox &quot;$plr.body.static.height&quot; autoselect&gt;&gt;
         &lt;&lt;option &quot;very tall&quot;&gt;&gt;
         &lt;&lt;option &quot;tall&quot;&gt;&gt;
         &lt;&lt;option &quot;average&quot;&gt;&gt;
@@ -2662,35 +2848,35 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;set $plrSpkChoice = &quot;I am so confused... What am I wearing and what is going on?&quot;&gt;&gt;
 
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="WakingUp5" tags="" position="600,225" size="100,100">&lt;&lt;silently&gt;&gt;
-        &lt;&lt;if $plrBody.static.sex == &quot;female&quot;&gt;&gt;
-            &lt;&lt;set $plrName.prefix = &quot;Ms.&quot;&gt;&gt;
-        &lt;&lt;elseif $plrBody.static.sex == &quot;male&quot;&gt;&gt;
-            &lt;&lt;set $plrName.prefix = &quot;Mr.&quot;&gt;&gt;
+        &lt;&lt;if $plr.body.static.sex == &quot;female&quot;&gt;&gt;
+            &lt;&lt;set $plr.name.prefix = &quot;Ms.&quot;&gt;&gt;
+        &lt;&lt;elseif $plr.body.static.sex == &quot;male&quot;&gt;&gt;
+            &lt;&lt;set $plr.name.prefix = &quot;Mr.&quot;&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-        &lt;&lt;set $plrName.formal = $plrName.prefix + &quot; &quot; + $plrName.lName&gt;&gt;
+        &lt;&lt;set $plr.name.formal = $plr.name.prefix + &quot; &quot; + $plr.name.lastName&gt;&gt;
         &lt;&lt;calcAttractiveness&gt;&gt;
     &lt;&lt;/silently&gt;&gt;\
     &lt;img class=&quot;scene&quot; src=&quot;img/hallway.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
     &lt;&lt;speech plr&gt;&gt;&lt;&lt;print $plrSpkChoice&gt;&gt;&lt;&lt;/speech&gt;&gt;\
     &lt;&lt;printRelGain&gt;&gt;
 
-    $npcs.janessa.firstName rolls her eyes and walks towards the door.
+    $npcs.janessa.name.firstName rolls her eyes and walks towards the door.
 
-    &lt;&lt;speech &quot;amy&quot;&gt;&gt;The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you&#39;re wearing is normal patient attire. I am sure $npcs.janessa.firstName will show you where to get something more comfortable after you meet with the dean.&lt;&lt;/speech&gt;&gt;
+    &lt;&lt;speech &quot;amy&quot;&gt;&gt;The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you&#39;re wearing is normal patient attire. I am sure $npcs.janessa.name.firstName will show you where to get something more comfortable after you meet with the dean.&lt;&lt;/speech&gt;&gt;
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt;Let&#39;s go.&lt;&lt;/speech&gt;&gt;\
 
-    $npcs.janessa.firstName is standing in the doorway, appearing rather impatient.
+    $npcs.janessa.name.firstName is standing in the doorway, appearing rather impatient.
 
     You follow her out of the medical wing and into a long hallway that gently curves off into the distance. She is walking almost 30 feet ahead of you and is obviously not interested in talking to you, so you follow in silence. The hall is lit with the same floating candles lining the walls.
 
     You pass by many doors as you walk the hall. Some are large wooden doors not dissimiliar to the medical wing and others have massive iron locks on them. A few doors appear barely large enough to allow a young child to fit through them.
 
-    The hallway is eerily silent, a silence only broken by the sound of your footsteps. While trying to think through what is happening and how you got here, you hear a set of disjointed footsteps lightly echo through the hall. Its hard to tell where the sound is coming from, but looking ahead of you you see nothing except $npcs.janessa.firstName. Suddenly, the volume of the footsteps grows and speeds up as if someone is running. The sound is loud enough, you know the sound is coming from behind you. You stop and spin around. The hall behind you is completely empty, only lit by candleless flames. But several of the flames flicker, the calm air disturbed by some unseen force.
+    The hallway is eerily silent, a silence only broken by the sound of your footsteps. While trying to think through what is happening and how you got here, you hear a set of disjointed footsteps lightly echo through the hall. Its hard to tell where the sound is coming from, but looking ahead of you you see nothing except $npcs.janessa.name.firstName. Suddenly, the volume of the footsteps grows and speeds up as if someone is running. The sound is loud enough, you know the sound is coming from behind you. You stop and spin around. The hall behind you is completely empty, only lit by candleless flames. But several of the flames flicker, the calm air disturbed by some unseen force.
 
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt; For all the leylines, what are you doing now?&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;tone &quot;neg&quot;&gt;&gt;$npcs.janessa.firstName is obviously annoyed at something&lt;&lt;/tone&gt;&gt;
+    &lt;&lt;tone &quot;neg&quot;&gt;&gt;$npcs.janessa.name.firstName is obviously annoyed at something&lt;&lt;/tone&gt;&gt;
 
-    You turn back towards $npcs.janessa.firstName and say:
+    You turn back towards $npcs.janessa.name.firstName and say:
 
     &lt;&lt;button [[Did you not hear that? | WakingUp6]]&gt;&gt;
         &lt;&lt;set $plrSpkChoice = &quot;Did you not hear that? It sounded like, something?&quot;&gt;&gt;
@@ -2705,15 +2891,15 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;speech &quot;plr&quot;&gt;&gt;&lt;&lt;print $plrSpkChoice&gt;&gt;&lt;&lt;/speech&gt;&gt;
     &lt;&lt;printRelGain&gt;&gt;\
-    $npcs.janessa.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself &quot;What is going on here?&quot;
+    $npcs.janessa.name.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself &quot;What is going on here?&quot;
 
-    The two of you approach a heavily reinforced door. The ancient thick oak planks encased in a heavy layer of iron and, gilded with some kind of lapis, maybe? Whatever it is, it has a blue iridescent sheen to it. The center of the door is adorned with a small iron bird figurine. $npcs.janessa.firstName looks at the metal bird and knocks on the door while whispering something.
+    The two of you approach a heavily reinforced door. The ancient thick oak planks encased in a heavy layer of iron and, gilded with some kind of lapis, maybe? Whatever it is, it has a blue iridescent sheen to it. The center of the door is adorned with a small iron bird figurine. $npcs.janessa.name.firstName looks at the metal bird and knocks on the door while whispering something.
 
     The eyes of the bird glow bright blue and the door quietly swings open. Ahead of you is a room decorated with well organized shelves, all the books appear to be arranged in decreasing height and thickness. The walls are covered in plaques with runic symbols etched on them.
 
     Sitting at a desk near the back of the room, surrounded by the bookcases, is a man. His weathered face bears evidence of a long, hard life. The lines creased beneath his eyes and the aged wrinkles give his skin the appearance of sun tanned leather. He is wearing a thick, brown robe interwoven with a silvery thread. The hard stare he sends in your direction as you walk across the room, gives you the distinct feeling you are being judged. And it doesn&#39;t look like it is going well for you.
 
-    &lt;&lt;speech &quot;barden&quot;&gt;&gt; $plrName.formal, welcome to Magna Schola. We are one of North America&#39;s most...thorough... arcane educational institutions. I am $npcs.barden.formal. I am sure you have questions so I will try to make this as quick as possible. &lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;barden&quot;&gt;&gt; $plr.name.formal, welcome to Magna Schola. We are one of North America&#39;s most...thorough... arcane educational institutions. I am $npcs.barden.name.formal. I am sure you have questions so I will try to make this as quick as possible. &lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech &quot;barden&quot;&gt;&gt;I will keep the sugarcoating to a minimum here. You are what we call Inferni. Translated from Latin, literally it means &lt;strong&gt;&lt;em&gt;of hell&lt;/em&gt;&lt;/strong&gt;. While I admit it is a bit of an archaic term, it is apt for reasons I cannot share with you. Most knowledge of inferni is either lost or highly privileged.&lt;&lt;/speech&gt;&gt;\
 
@@ -2722,7 +2908,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;speech &quot;barden&quot;&gt;&gt; And because it would be cruel not to explain something about your new reality, know this. Inferni are created when a human outside of the magical world experiences a... most grim and unenviable trauma. For this rebirth of yours, you have my sincerest condolences. It is a fate I would wish on noone.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech &quot;barden&quot;&gt;&gt; I apologize for asking, but it is common for those like you to completely forget the event that changes them so completely. You don&#39;t happen to remember what happened to you, do you?&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;tone &quot;neg&quot;&gt;&gt;$npcs.barden.formal almost seems...afraid?&lt;&lt;/tone&gt;&gt;
+    &lt;&lt;tone &quot;neg&quot;&gt;&gt;$npcs.barden.name.formal almost seems...afraid?&lt;&lt;/tone&gt;&gt;
 
     &lt;&lt;speech &quot;plr&quot;&gt;&gt;I remember...&lt;&lt;/speech&gt;&gt;\
 
@@ -2745,34 +2931,34 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;speech &quot;plr&quot;&gt;&gt;&lt;&lt;print $plrSpkChoice&gt;&gt;&lt;&lt;/speech&gt;&gt;
 
     &lt;&lt;speech &quot;barden&quot;&gt;&gt;Well, sometimes it is better to leave one&#39;s past in the past.&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;tone &quot;pos&quot;&gt;&gt;$npcs.barden.formal looks visibly relieved before moving on&lt;&lt;/tone&gt;&gt;
+    &lt;&lt;tone &quot;pos&quot;&gt;&gt;$npcs.barden.name.formal looks visibly relieved before moving on&lt;&lt;/tone&gt;&gt;
 
-    &lt;&lt;speech &quot;barden&quot;&gt;&gt;The safety and excellence of this institution is my responsibility and I care for it deeply. I expect you to learn how to live in our world. Quickly. To help you acclimate and to make sure you don&#39;t get yourself or anyone else hurt, $npcs.janessa.formal will be your Secutor. She will familiarize you with this institution, our rules, and how to survive on this side of reality.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;barden&quot;&gt;&gt;The safety and excellence of this institution is my responsibility and I care for it deeply. I expect you to learn how to live in our world. Quickly. To help you acclimate and to make sure you don&#39;t get yourself or anyone else hurt, $npcs.janessa.name.formal will be your Secutor. She will familiarize you with this institution, our rules, and how to survive on this side of reality.&lt;&lt;/speech&gt;&gt;\
 
-    $npcs.barden.formal looks at $npcs.janessa.firstName but says to you:
+    $npcs.barden.name.formal looks at $npcs.janessa.name.firstName but says to you:
 
     &lt;&lt;speech &quot;barden&quot;&gt;&gt;You will be staying her family residence until other arrangements can be made.&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;tone &quot;neg&quot;&gt;&gt;$npcs.barden.formal appears regretful&lt;&lt;/tone&gt;&gt;
+    &lt;&lt;tone &quot;neg&quot;&gt;&gt;$npcs.barden.name.formal appears regretful&lt;&lt;/tone&gt;&gt;
 
-    $npcs.janessa.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn&#39;t like, it&#39;s the invasion of her private space you represent.
+    $npcs.janessa.name.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn&#39;t like, it&#39;s the invasion of her private space you represent.
 
-    &lt;&lt;speech &quot;barden&quot;&gt;&gt;Something to keep in mind $plrName.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;barden&quot;&gt;&gt;Something to keep in mind $plrName.name.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech &quot;barden&quot;&gt;&gt;I do not know your life&#39;s background nor whether you were considered a moral person, but just know that becoming violent with anyone, or almost anything, in our world will probably earn you a death sentence given your current level of comprehension and ability. If I were you, I would behave myself, get to know as many people as possible, and embrace the knowledge available to you at my university.&lt;&lt;/speech&gt;&gt;\
 
-    &lt;&lt;speech &quot;barden&quot;&gt;&gt;Our world is one built on reputations, connections, and ability. Neglect any of these core concepts at your own peril. And never forget, you are being watched. Be very careful with your choices. Good luck, $plrName.formal.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;barden&quot;&gt;&gt;Our world is one built on reputations, connections, and ability. Neglect any of these core concepts at your own peril. And never forget, you are being watched. Be very careful with your choices. Good luck, $plr.name.formal.&lt;&lt;/speech&gt;&gt;\
 
-    Before you can reply in any way, $npcs.barden.formal stands up and walks towards the back of his study without a parting glance.
+    Before you can reply in any way, $npcs.barden.name.formal stands up and walks towards the back of his study without a parting glance.
 
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt;Let&#39;s go.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Follow her | WakingUp8]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="WakingUp8" tags="" position="975,225" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/street.jpg&quot;/&gt;\
 
-    $npcs.janessa.firstName leads you out of the headmaster&#39;s study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
+    $npcs.janessa.name.firstName leads you out of the headmaster&#39;s study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
     
-    $npcs.janessa.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
+    $npcs.janessa.name.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
 
-    After walking for several minutes, $npcs.janessa.firstName stops at one of the houses. It looks like it is at least three stories high with a large arched front door. A large rusted wrought iron fence complete with spikes and small iron thorns surrounds the entire front of the home along with a large iron gate adorned with swirls, vines, and what you could only describe as strange glyphs or symbols. 
+    After walking for several minutes, $npcs.janessa.name.firstName stops at one of the houses. It looks like it is at least three stories high with a large arched front door. A large rusted wrought iron fence complete with spikes and small iron thorns surrounds the entire front of the home along with a large iron gate adorned with swirls, vines, and what you could only describe as strange glyphs or symbols. 
     
     The outside of the residence is...a bit rundown. The front has obviously not seen a gardner&#39;s touch in many years. Piles of leaves and debris are scattered everywhere. The vines that climb over the iron fence also appear to be actively trying to strangle the side of the house.
 
@@ -2780,9 +2966,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt;This is my residence. It&#39;s been in my family for many generations. I&#39;ll give you a short tour and then we are done for the night. Classes will start Monday morning.&lt;&lt;/speech&gt;&gt;\
 
-    $npcs.janessa.firstName whispers something to the front gate and it swings open.
+    $npcs.janessa.name.firstName whispers something to the front gate and it swings open.
 
-    $npcs.janessa.firstName walks upto the front door and repeats the process, touching the door and whispering to it. The door creaks open, revealing a massive entrance hall. While still standing outside, you look up towards the roof. The height of the residence is nowwhere near tall enough to fit the height of the ceiling you see inside of the residence.
+    $npcs.janessa.name.firstName walks upto the front door and repeats the process, touching the door and whispering to it. The door creaks open, revealing a massive entrance hall. While still standing outside, you look up towards the roof. The height of the residence is nowwhere near tall enough to fit the height of the ceiling you see inside of the residence.
 
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt;It is a form of spatial magic. This residence was one of the last at Magna to have had the spells cast. So yes, it is larger on the inside than on the outside.&lt;&lt;/speech&gt;&gt;\
 
@@ -2809,9 +2995,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;printRelGain&gt;&gt;\
 
     &lt;&lt;if $relAmtTemp &lt; 0&gt;&gt;
-        &lt;&lt;speech janessa&gt;&gt;Get grip. Being pathetic or weak will not help you. And seriously, I don&#39;t care. Go talk to $npcs.amy.formal if you need to &quot;talk&quot; to someone. But leave me out of it.&lt;&lt;/speech&gt;&gt;\
+        &lt;&lt;speech janessa&gt;&gt;Get a grip. Being pathetic or weak will not help you. And seriously, I don&#39;t care. Go talk to $npcs.amy.name.formal if you need to &quot;talk&quot; to someone. But leave me out of it.&lt;&lt;/speech&gt;&gt;\
     &lt;&lt;else&gt;&gt;
-        &lt;&lt;speech janessa&gt;&gt;I&#39;m sorry you are too. But thanks for seeing that. Just don&#39;t use me as your emotional outlet, find someone else, please.&lt;&lt;/speech&gt;&gt;\
+        &lt;&lt;speech janessa&gt;&gt;I&#39;m sorry you are too. But thanks for seeing that. Just don&#39;t use me as your emotional outlet, find someone else. Please.&lt;&lt;/speech&gt;&gt;\
     &lt;&lt;/if&gt;&gt;\
 
     &lt;&lt;speech janessa&gt;&gt;Try to keep this in mind, whether it seems like it or not you&#39;ve been given a gift. Either you&#39;ll figure that out or you won&#39;t. I mean, do you know how often an unitiated is made aware of the arcane, let alone gets to embrace it? Ya, never. The possibilities that are now open to you are nearly limitless. Seriously, you now have the chance to shoot lightning from your fingertips. Hell, if you decided to forsake our laws you could even commune with the dead, or make yourself as close to immortal as natural law allows. You can shield yourself from harm, use the power of the stars to foresee events, and throw balls of searing plasma at... well at whatever you want. I know you don&#39;t know it yet, but the things you are capable of now dwarf anything you could have possibly done before tonight.&lt;&lt;/speech&gt;&gt;\
@@ -2825,7 +3011,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;speech janessa&gt;&gt;So to sum up, training your body and practicing magic will both improve your &lt;span class=&#39;emphasis cyan&#39;&gt;&lt;em&gt;Stamina&lt;/em&gt;&lt;/span&gt;. Eating and sleeping will also help you replenish it. I can&#39;t tell you how many times I was up late casting with friends and needed to raid the cafeteria for a a huge meal.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Keep listening | WakingUp11]]&gt;&gt;
-        &lt;&lt;set $plrStats.stamina.max = 10&gt;&gt;
+        &lt;&lt;set $plr.stats.stamina.max = 10&gt;&gt;
         &lt;&lt;setStamina 6&gt;&gt;
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="WakingUp11" tags="" position="100,350" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/JanResidKitchen.jpg&#39;/&gt;\
 
@@ -2833,46 +3019,44 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     You see that it hasn&#39;t been used a very long time. Dust covers everything, the pot rack is empty, and the shelves are bare. Even the floating candles seem to be dying, shedding only a small amount of light on the room.
 
-    &lt;&lt;speech janessa&gt;&gt;But anyways, next lesson. You will need to be aware of injuries, most refer to this as &lt;span class=&#39;emphasis crimson&#39;&gt;&lt;em&gt;Lifeforce&lt;/em&gt;&lt;/span&gt;. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you&#39;re gonna get hurt. You can only take so many injuries before you lose the ability to survive. &lt;span class=&#39;emphasis crimson&#39;&gt;&lt;em&gt;Lifeforce&lt;/em&gt;&lt;/span&gt; is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.formal at the Clinic. If you&#39;re unlucky, well don&#39;t be suprised if there are some lasting consequences, if you even survive. To regain your &lt;span class=&#39;emphasis crimson&#39;&gt;&lt;em&gt;Lifeforce&lt;/em&gt;&lt;/span&gt;, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech janessa&gt;&gt;But anyways, next lesson. You will need to be aware of injuries, most refer to this as &lt;span class=&#39;emphasis crimson&#39;&gt;&lt;em&gt;Lifeforce&lt;/em&gt;&lt;/span&gt;. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you&#39;re gonna get hurt. You can only take so many injuries before you lose the ability to survive. &lt;span class=&#39;emphasis crimson&#39;&gt;&lt;em&gt;Lifeforce&lt;/em&gt;&lt;/span&gt; is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.name.formal at the Clinic. If you&#39;re unlucky, well don&#39;t be suprised if there are some lasting consequences, if you even survive. To regain your &lt;span class=&#39;emphasis crimson&#39;&gt;&lt;em&gt;Lifeforce&lt;/em&gt;&lt;/span&gt;, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Keep listening | WakingUp12]]&gt;&gt;
-        &lt;&lt;set $plrStats.life.max = 10&gt;&gt;
+        &lt;&lt;set $plr.stats.life.max = 10&gt;&gt;
         &lt;&lt;setLife 10&gt;&gt;
-        &lt;&lt;run Life($plrStats.life.cur, $plrStats.life.max, &quot;lifeBar&quot;, true)&gt;&gt;
     &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="22" name="WakingUp12" tags="" position="225,350" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroomdoor.jpg&#39;/&gt;\
 
-    You are led out of the kitchen and towards a short hallway with several closed doors. $npcs.janessa.firstName points towards one of them.
+    You are led out of the kitchen and towards a short hallway with several closed doors. $npcs.janessa.name.firstName points towards one of them.
 
     &lt;&lt;speech janessa&gt;&gt;This room is is mine. Do. Not. Ever. Try to enter my room without permission. You&#39;ll learn over the next few days that no still living practitioner tolerates trespassing or unsanctioned violence. I swear, I will turn you into poultry and donate you to the cafeteria cooks.&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;tone neg&gt;&gt;$npcs.janessa.firstName is not smiling and appears quite serious about her threat&lt;&lt;/tone&gt;&gt;
+    &lt;&lt;tone neg&gt;&gt;$npcs.janessa.name.firstName is not smiling and appears quite serious about her threat&lt;&lt;/tone&gt;&gt;
 
-    $npcs.janessa.firstName walks further down the hallway as you follow her. She opens one of the doors.
+    $npcs.janessa.name.firstName walks further down the hallway as you follow her. She opens one of the doors.
 
     &lt;&lt;speech janessa&gt;&gt;This will be your room. I know it is not much. Actually, it really isn&#39;t anything. But if have the time or money, you can put whatever you want in it. A proper bed might be a good idea. Don&#39;t ask, I have nothing to spare.&lt;&lt;/speech&gt;&gt;\
 
-    &lt;&lt;speech janessa&gt;&gt;Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast be newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt;. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt; on, will quickly help you figure out how to concentrate better and hold your attention on your casting.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech janessa&gt;&gt;Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast by newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt;. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt; on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.&lt;&lt;/speech&gt;&gt;\
 
-    $npcs.janessa.firstName leads you into &quot;your&quot; room.
+    $npcs.janessa.name.firstName leads you into &quot;your&quot; room.
 
     &lt;&lt;button [[Follow | WakingUp13]]&gt;&gt;
-        &lt;&lt;set $plrStats.focus.max = 3&gt;&gt;
+        &lt;&lt;set $plr.stats.focus.max = 3&gt;&gt;
         &lt;&lt;setFocus 2&gt;&gt;
-        &lt;&lt;run FocusStat($plrStats.focus.cur, $plrStats.focus.max, &quot;focusBar&quot;, true)&gt;&gt;
     &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="23" name="WakingUp13" tags="" position="350,350" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
 
-    You follow $npcs.janessa.firstName into your room. She wasn&#39;t kidding, you&#39;ll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that&#39;s it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it&#39;s hard to tell. The only light comes from the candles in the hallway.
+    You follow $npcs.janessa.name.firstName into your room. She wasn&#39;t kidding, you&#39;ll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that&#39;s it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it&#39;s hard to tell. The only light comes from the candles in the hallway.
 
-    $npcs.janessa.firstName notices your concern.
+    $npcs.janessa.name.firstName notices your concern.
 
     &lt;&lt;speech janessa&gt;&gt;Ya, so you have some work to do. I recommend you tidy up and figure out how to make some money to at least get the bed and maybe a desk. Reading books on the floor seems like a great way to get a crink in your neck. But hey, it&#39;s your space for now. So you do you I guess.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech janessa&gt;&gt;Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It&#39;s called &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;. Studying magic is confusing. Reading old, half-rotted tombs is agitating. Trying to cast spells you can&#39;t focus on is frustrating. All these things will slowly eat away at you &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I&#39;ve been in the room when some kid got his hands on a spell written on a napkin and left in the library. He tried to cast it in class...It cost him his life and several other students their own &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;.&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;tone neg&gt;&gt;$npcs.janessa.firstName trails off and glances towards some dark corner in your room for a moment&lt;&lt;/tone&gt;&gt;
+    &lt;&lt;tone neg&gt;&gt;$npcs.janessa.name.firstName trails off and glances towards some dark corner in your room for a moment&lt;&lt;/tone&gt;&gt;
         
     &lt;&lt;speech janessa&gt;&gt;Think of it this way, if you try to cast something you simply don&#39;t understand, it may horribly backfire on you. You could have been trying to coax a plan into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Keep listening | WakingUp14]]&gt;&gt;
-        &lt;&lt;set $plrStats.sanity.max = 3&gt;&gt;
+        &lt;&lt;set $plr.stats.sanity.max = 3&gt;&gt;
         &lt;&lt;setSanity 2&gt;&gt;
         &lt;&lt;set $plrRoom.cleanliness = -3&gt;&gt;
     &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="24" name="WakingUp14" tags="" position="475,350" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
@@ -2880,11 +3064,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;speech janessa&gt;&gt;Now in regards Monday and your first week. Your schedule is now my schedule, which means I will be following you around for a few days. If it seems like you will survive on your own without causing any trouble. If you manage that, we aren&#39;t attached at the hip anymore and I can go back to my lessons. Keep in mind, I am losing valuable instruction time to stick around with you, so please try not to do anything stupid that might extend this unfortunate arrangement.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech janessa&gt;&gt;The courses you will be taking are all basic 101 level courses, meaning there will be a lot of children. This should actually be motivating for you, children will be more educated and competent than you are now.&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;tone pos&gt;&gt;This is the first time you see $npcs.janessa.firstName smile and give a short chuckle&lt;&lt;/tone&gt;&gt;
+    &lt;&lt;tone pos&gt;&gt;This is the first time you see $npcs.janessa.name.firstName smile and give a short chuckle&lt;&lt;/tone&gt;&gt;
 
     &lt;&lt;speech janessa&gt;&gt;I will explain your courses tomorrow, but for now I&#39;m going to bed.&lt;&lt;/speech&gt;&gt;\
 
-    With that, $npcs.janessa.firstName turns around and walks out, leaving you alone in your decrepit room.
+    With that, $npcs.janessa.name.firstName turns around and walks out, leaving you alone in your decrepit room.
 
     &lt;&lt;button [[Look around | Residence_Starr_PlayerRoom]]&gt;&gt;
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="FirstWeek1" tags="" position="600,350" size="100,100"></tw-passagedata><tw-passagedata pid="26" name="FirstWeek2" tags="" position="725,350" size="100,100"></tw-passagedata><tw-passagedata pid="27" name="FirstWeek3" tags="" position="850,350" size="100,100"></tw-passagedata><tw-passagedata pid="28" name="FirstWeek4" tags="" position="975,350" size="100,100"></tw-passagedata><tw-passagedata pid="29" name="Event_Unlock_Location" tags="" position="1100,350" size="100,100">&lt;&lt;speech plr&gt;&gt;
@@ -2905,7 +3089,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;/if&gt;&gt;\
 
     &lt;&lt;button [[Continue | previous()]]&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="Starr Residence" tags="" position="100,475" size="100,100">Welcome to the Alston Residence!</tw-passagedata><tw-passagedata pid="32" name="librarium" tags="" position="225,475" size="100,100">Welcome to the librarium. Here be books...</tw-passagedata><tw-passagedata pid="33" name="Cafeteria" tags="" position="350,475" size="100,100">This is the dining hall. If it doesn&#39;t get all over the place, it doesn&#39;t belong in your face.</tw-passagedata><tw-passagedata pid="34" name="conservatorium" tags="" position="475,475" size="100,100"></tw-passagedata><tw-passagedata pid="35" name="theexchange" tags="" position="600,475" size="100,100"></tw-passagedata><tw-passagedata pid="36" name="leynode" tags="" position="725,475" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="gymnasium" tags="" position="850,475" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="sigilarium" tags="" position="975,475" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="artificeworkshop" tags="" position="1100,475" size="100,100"></tw-passagedata><tw-passagedata pid="40" name="pentadentrix" tags="" position="1225,475" size="100,100"></tw-passagedata><tw-passagedata pid="41" name="headmasterstudy" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="medicalwing" tags="" position="225,600" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="professoroffices" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="tradingpost" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="cinema" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="hospital" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="cemetary" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="salooninn" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="Residence_Starr_EntryHall" tags="" position="1100,600" size="100,100"></tw-passagedata><tw-passagedata pid="50" name="Residence_Starr_Kitchen" tags="" position="1225,600" size="100,100"></tw-passagedata><tw-passagedata pid="51" name="Residence_Starr_BanquetHall" tags="" position="100,725" size="100,100"></tw-passagedata><tw-passagedata pid="52" name="Residence_Starr_Bathroom" tags="" position="225,725" size="100,100"></tw-passagedata><tw-passagedata pid="53" name="Residence_Starr_JanessaRoom" tags="" position="350,725" size="100,100"></tw-passagedata><tw-passagedata pid="54" name="Residence_Starr_PlayerRoom" tags="" position="475,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="Starr Residence" tags="" position="100,475" size="100,100">Welcome to the Alston Residence!</tw-passagedata><tw-passagedata pid="32" name="librarium" tags="" position="225,475" size="100,100">Welcome to the librarium. Here be books...</tw-passagedata><tw-passagedata pid="33" name="Cafeteria" tags="" position="350,475" size="100,100">This is the dining hall. If it doesn&#39;t get all over the place, it doesn&#39;t belong in your face.</tw-passagedata><tw-passagedata pid="34" name="conservatorium" tags="" position="475,475" size="100,100"></tw-passagedata><tw-passagedata pid="35" name="theexchange" tags="" position="600,475" size="100,100"></tw-passagedata><tw-passagedata pid="36" name="leynode" tags="" position="725,475" size="100,100"></tw-passagedata><tw-passagedata pid="37" name="gymnasium" tags="" position="850,475" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="sigilarium" tags="" position="975,475" size="100,100"></tw-passagedata><tw-passagedata pid="39" name="artificeworkshop" tags="" position="1100,475" size="100,100"></tw-passagedata><tw-passagedata pid="40" name="pentadentrix" tags="" position="1225,475" size="100,100"></tw-passagedata><tw-passagedata pid="41" name="headmasterstudy" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="42" name="medicalwing" tags="" position="225,600" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="professoroffices" tags="" position="350,600" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="tradingpost" tags="" position="475,600" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="cinema" tags="" position="600,600" size="100,100"></tw-passagedata><tw-passagedata pid="46" name="hospital" tags="" position="725,600" size="100,100"></tw-passagedata><tw-passagedata pid="47" name="cemetary" tags="" position="850,600" size="100,100"></tw-passagedata><tw-passagedata pid="48" name="salooninn" tags="" position="975,600" size="100,100"></tw-passagedata><tw-passagedata pid="49" name="Residence_Starr_EntryHall" tags="room" position="1100,600" size="100,100"></tw-passagedata><tw-passagedata pid="50" name="Residence_Starr_Kitchen" tags="room" position="1225,600" size="100,100"></tw-passagedata><tw-passagedata pid="51" name="Residence_Starr_BanquetHall" tags="room" position="100,725" size="100,100"></tw-passagedata><tw-passagedata pid="52" name="Residence_Starr_Bathroom" tags="room" position="225,725" size="100,100"></tw-passagedata><tw-passagedata pid="53" name="Residence_Starr_JanessaRoom" tags="room" position="350,725" size="100,100"></tw-passagedata><tw-passagedata pid="54" name="Residence_Starr_PlayerRoom" tags="room, playerHome, upgrades" position="475,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
 
     &lt;&lt;speech plr&gt;&gt;
         I&#39;m in my room. Glancing at the state of the place, it&#39;s &lt;&lt;commentClean&gt;&gt; clean. The floor is of &lt;&lt;commentFloor&gt;&gt; quality. I see my &lt;&lt;commentChair&gt;&gt; chair and &lt;&lt;commentDesk&gt;&gt; desk in the corner. On the far wall is my &lt;&lt;commentBed&gt;&gt; bed. The room is &lt;&lt;commentLight&gt;&gt; lit.
@@ -2931,7 +3115,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="Residence_Starr_PlayerRoom_Cleaning" tags="" position="600,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="Residence_Starr_PlayerRoom_Cleaning" tags="minorEvent" position="600,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $plrRoom.cleanliness &lt; 1&gt;&gt;
             &lt;&lt;speech plr&gt;&gt;It&#39;s slow progress, but it&#39;s definitely looking cleaner. Still disgusting though...&lt;&lt;/speech&gt;&gt;
@@ -2942,7 +3126,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;\
 
-    &lt;&lt;button [[Continue | Residence_Starr_PlayerRoom]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="Residence_Starr_PlayerRoom_Searching" tags="" position="725,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/searchclutter.jpg&#39;&gt;
+    &lt;&lt;button [[Continue | Residence_Starr_PlayerRoom]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="Residence_Starr_PlayerRoom_Searching" tags="minorEvent" position="725,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/searchclutter.jpg&#39;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $plrRoom.booksFound == 0&gt;&gt;
                 &lt;&lt;searchForItem $plrRoom booksFound 3 &quot;miscbook&quot; &quot;mapSchool&quot;&gt;&gt;
@@ -3038,8 +3222,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;h3&gt;Miscellanious&lt;/h3&gt;
     &lt;&lt;inv $plrinvmisc use inspect&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="StoryCaption" tags="" position="600,975" size="100,100">@@#timeplusdate;&lt;&lt;calcTime&gt;&gt;@@
-    &lt;&lt;if $plrName.fName != &quot;&quot; &amp;&amp; $plrName.fName != &quot;First&quot;&gt;&gt;\
-        &lt;u&gt;Your Name: $plrName.fName $plrName.lName&lt;/u&gt;\
+    &lt;&lt;if $plr.name.firstName != &quot;&quot; &amp;&amp; $plr.name.firstName != &quot;First&quot;&gt;&gt;\
+        &lt;u&gt;Your Name: $plr.name.firstName $plr.name.lastName&lt;/u&gt;\
     &lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="76" name="StoryBanner" tags="" position="725,975" size="100,100">&lt;img class=&quot;banner&quot; src=&#39;img/logo.png&#39;/&gt;</tw-passagedata><tw-passagedata pid="77" name="StoryMenu" tags="" position="850,975" size="100,100">&lt;&lt;if $unlockVar.userInterface.dev == true&gt;&gt;
         &lt;&lt;link &quot;!Dev Wand&quot;&gt;&gt;
             &lt;&lt;run
@@ -3090,12 +3274,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 Dialog.open();
             &gt;&gt;
         &lt;&lt;/link&gt;&gt;
-    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="Character Info" tags="" position="975,975" size="100,100">&lt;&lt;= charInfoTbl($plrName, &quot;plrName&quot;)&gt;&gt;\
-    &lt;&lt;= charInfoTbl($plrBody.static, &quot;plrBody.static&quot;)&gt;&gt;\
-    &lt;&lt;= charInfoTbl($plrBody.dynamic, &quot;plrBody.dynamic&quot;)&gt;&gt;\
-    &lt;&lt;= charInfoTbl($plrPersonality, &quot;plrPersonality&quot;)&gt;&gt;\
-    &lt;&lt;= charInfoTbl($plrRel, &quot;plrRel&quot;)&gt;&gt;\
-    &lt;&lt;= charInfoTblSub($plrDisciplines, &quot;plrDisciplines&quot;)&gt;&gt;\</tw-passagedata><tw-passagedata pid="79" name="Your Status" tags="" position="1100,975" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="80" name="Locations" tags="" position="1225,975" size="100,100">&lt;h3&gt;School&lt;/h3&gt;
+    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="Character Info" tags="" position="975,975" size="100,100">&lt;&lt;= charInfoTbl($plr.name, &quot;plr.name&quot;)&gt;&gt;\
+    &lt;&lt;= charInfoTbl($plr.body.static, &quot;plr.body.static&quot;)&gt;&gt;\
+    &lt;&lt;= charInfoTbl($plr.body.dynamic, &quot;plr.body.dynamic&quot;)&gt;&gt;\
+    &lt;&lt;= charInfoTbl($plr.relations, &quot;plr.relations&quot;)&gt;&gt;\
+    &lt;&lt;= charInfoTblSub($plr.disciplines, &quot;plr.disciplines&quot;)&gt;&gt;\</tw-passagedata><tw-passagedata pid="79" name="Your Status" tags="" position="1100,975" size="100,100">[[Exit | previous()]]</tw-passagedata><tw-passagedata pid="80" name="Locations" tags="" position="1225,975" size="100,100">&lt;h3&gt;School&lt;/h3&gt;
     &lt;&lt;nobr&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.locations.starrresidence.unlocked == true&gt;&gt;
@@ -3205,34 +3388,34 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;\</tw-passagedata><tw-passagedata pid="81" name="StoryRightSidebar" tags="" position="100,1100" size="100,100">&lt;&lt;nobr&gt;&gt;
-    &lt;&lt;if $plrStats.stamina.max != 0&gt;&gt;
+    &lt;&lt;if $plr.stats.stamina.max != 0&gt;&gt;
             &lt;div id=&quot;staminaBarbkg&quot; class=&quot;hzbarbkg&quot;&gt;&lt;div id=&quot;staminaBar&quot; class=&quot;hzbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;
             &lt;span class=&quot;cyan&quot;&gt;Stamina: &lt;/span&gt;&lt;span id=&#39;ui-stamina&#39;&gt;&lt;/span&gt;
-            &lt;&lt;run Stamina($plrStats.stamina.cur, $plrStats.stamina.max, &quot;staminaBar&quot;, true)&gt;&gt;
+            &lt;&lt;run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, &quot;staminaBar&quot;, true)&gt;&gt;
             &lt;hr&gt;
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;&lt;nobr&gt;&gt;
-    &lt;&lt;if $plrStats.life.max != 0&gt;&gt;
+    &lt;&lt;if $plr.stats.life.max != 0&gt;&gt;
             &lt;div id=&quot;lifeBarbkg&quot; class=&quot;hzbarbkg&quot;&gt;&lt;div id=&quot;lifeBar&quot; class=&quot;hzbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;
             &lt;span class=&quot;crimson&quot;&gt;Lifeforce: &lt;/span&gt;&lt;span id=&#39;ui-life&#39;&gt;&lt;/span&gt;
-            &lt;&lt;run Life($plrStats.life.cur, $plrStats.life.max, &quot;lifeBar&quot;, true)&gt;&gt;
+            &lt;&lt;run Life($plr.stats.life.cur, $plr.stats.life.max, &quot;lifeBar&quot;, true)&gt;&gt;
             &lt;hr&gt;
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;&lt;nobr&gt;&gt;
-    &lt;&lt;if $plrStats.focus.max != 0&gt;&gt;
+    &lt;&lt;if $plr.stats.focus.max != 0&gt;&gt;
         &lt;div id=&quot;focusBarbkg&quot; class=&quot;hzbarbkg&quot;&gt;&lt;div id=&quot;focusBar&quot; class=&quot;hzbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;span class=&quot;greenyellow&quot;&gt;Focus: &lt;/span&gt;&lt;span id=&#39;ui-focus&#39;&gt;&lt;/span&gt;
-        &lt;&lt;run FocusStat($plrStats.focus.cur, $plrStats.focus.max, &quot;focusBar&quot;, true)&gt;&gt;
+        &lt;&lt;run FocusStat($plr.stats.focus.cur, $plr.stats.focus.max, &quot;focusBar&quot;, true)&gt;&gt;
         &lt;hr&gt;
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
 &lt;&lt;nobr&gt;&gt;
-    &lt;&lt;if $plrStats.sanity.max != 0&gt;&gt;
-        &lt;div id=&quot;sanityBarbkg&quot; class=&quot;hzbarbkg&quot;&gt;&lt;div id=&quot;sanityBar&quot; class=&quot;hzbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;&lt;run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, &quot;sanityBar&quot;, true)&gt;&gt;
+    &lt;&lt;if $plr.stats.sanity.max != 0&gt;&gt;
+        &lt;div id=&quot;sanityBarbkg&quot; class=&quot;hzbarbkg&quot;&gt;&lt;div id=&quot;sanityBar&quot; class=&quot;hzbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;span class=&quot;purple&quot;&gt;Sanity: &lt;/span&gt;&lt;span id=&#39;ui-sanity&#39;&gt;&lt;/span&gt;
-        &lt;&lt;run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, &quot;sanityBar&quot;, true)&gt;&gt;
+        &lt;&lt;run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, &quot;sanityBar&quot;, true)&gt;&gt;
         &lt;hr&gt;
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/nobr&gt;&gt;\
@@ -3261,111 +3444,383 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;/link&gt;&gt;
             &lt;&lt;/hovertip&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="Testing_Spells" tags="" position="350,1100" size="100,100">&lt;&lt;speech plr&gt;&gt;This is the spell testing grounds. Good luck dude...&lt;&lt;/speech&gt;&gt;
-
-    &lt;hr&gt;
-    &lt;h3&gt;Experiment Area&lt;/h3&gt;\
-    &lt;&lt;print &#39;nothing&#39;&gt;&gt;
-    &lt;hr&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="Testing_Spells" tags="room" position="350,1100" size="100,100">&lt;&lt;speech plr&gt;&gt;This is the spell testing grounds. Good luck dude...&lt;&lt;/speech&gt;&gt;
     
-    targetCost:     &lt;&lt;numberbox &#39;$targetCost&#39; $targetCost&gt;&gt;
-    typeCost:       &lt;&lt;numberbox &#39;$typeCost&#39; $typeCost&gt;&gt;
-    durationCost:   &lt;&lt;numberbox &#39;$durationCost&#39; $durationCost&gt;&gt;
-    effectCost:     &lt;&lt;numberbox &#39;$effectCost&#39; $effectCost&gt;&gt;
-    strCost:        &lt;&lt;numberbox &#39;$strCost&#39; $strCost&gt;&gt;
-    discLvl:        &lt;&lt;numberbox &#39;$discLvl&#39; $discLvl&gt;&gt;
-
-    Equation Result: &lt;&lt;print $eqResult.toFixed(2)&gt;&gt;
-
-    &lt;&lt;button [[Process Cost Equation | Testing_Spells]]&gt;&gt;
-        &lt;&lt;set $eqResult = $targetCost * $typeCost * $durationCost * $strCost * ($effectCost / ($discLvl * 0.4))&gt;&gt;
-    &lt;&lt;/button&gt;&gt;
+    &lt;h3&gt;Spell Test Buttons&lt;/h3&gt;\
+    &lt;&lt;button &#39;Open Spell Modal&#39;&gt;&gt;
+        &lt;&lt;run
+            Dialog.setup(&#39;Formulate and Cast a Spell&#39;);
+            Dialog.wiki(Story.get(&quot;Spell_Words_Modal&quot;).processText());
+            Dialog.open();
+        &gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Spell_Words_Modal" tags="" position="475,1100" size="100,100">&lt;div id=&#39;spell-result&#39; class=&#39;green&#39;&gt;&lt;/div&gt;\
+    &lt;h3&gt;Choose your target&lt;/h3&gt;\
+    &lt;&lt;nobr&gt;&gt;
+        &lt;div class=&#39;spell-word-grid&#39;&gt;
+            &lt;&lt;if $spellWords.target.self.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.target.self.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.target.self.latin&gt;&gt;
+                            &lt;&lt;set _target = &#39;self&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.target[_target].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#targetBox&#39;&gt;&gt;$spellWords.target.self.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.target.other.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.target.other.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.target.other.latin&gt;&gt;
+                            &lt;&lt;set _target = &#39;other&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.target[_target].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#targetBox&#39;&gt;&gt;$spellWords.target.other.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.target.room.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.target.room.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.target.room.latin&gt;&gt;
+                            &lt;&lt;set _target = &#39;room&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.target[_target].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#targetBox&#39;&gt;&gt;$spellWords.target.room.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.target.outdoors.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.target.outdoors.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.target.outdoors.latin&gt;&gt;
+                            &lt;&lt;set _target = &#39;outdoors&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.target[_target].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#targetBox&#39;&gt;&gt;$spellWords.target.outdoors.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.target.item.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.target.item.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.target.item.latin&gt;&gt;
+                            &lt;&lt;set _target = &#39;item&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.target[_target].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#targetBox&#39;&gt;&gt;$spellWords.target.item.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;\
     &lt;hr&gt;
-
-    &lt;h3&gt;Spell Buttons&lt;/h3&gt;\
-    &lt;&lt;button &#39;Cast Self Damage Spell&#39;&gt;&gt;
-        &lt;&lt;castSpell &#39;self&#39; &#39;direct&#39; &#39;immediate&#39; &#39;damage&#39;&gt;&gt;
-    &lt;&lt;/button&gt;&gt;
-    &lt;hr&gt;</tw-passagedata><tw-passagedata pid="84" name="Spell_Words_Widgets" tags="widget" position="475,1100" size="100,100">/* castSpell &#39;target&#39; &#39;type&#39; &#39;duration&#39; &#39;effect&#39; &#39;enhancement&#39; */
+    &lt;h3&gt;Choose an effect&lt;/h3&gt;\
+    &lt;&lt;nobr&gt;&gt;
+        &lt;div class=&#39;spell-word-grid&#39;&gt;
+            &lt;&lt;if $spellWords.effect.damage.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.effect.damage.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.effect.damage.latin&gt;&gt;
+                            &lt;&lt;set _effect = &#39;damage&#39;&gt;&gt;
+                            &lt;&lt;replace &#39;#effectBox&#39;&gt;&gt;$spellWords.effect.damage.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.effect.heal.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.effect.heal.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.effect.heal.latin&gt;&gt;
+                            &lt;&lt;set _effect = &#39;heal&#39;&gt;&gt;
+                            &lt;&lt;replace &#39;#effectBox&#39;&gt;&gt;$spellWords.effect.heal.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.effect.calm.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.effect.calm.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.effect.calm.latin&gt;&gt;
+                            &lt;&lt;set _effect = &#39;calm&#39;&gt;&gt;
+                            &lt;&lt;replace &#39;#effectBox&#39;&gt;&gt;$spellWords.effect.calm.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;hr&gt;
+    &lt;h3&gt;Choose a duration&lt;/h3&gt;\
+    &lt;&lt;nobr&gt;&gt;
+        &lt;div class=&#39;spell-word-grid&#39;&gt;
+            &lt;&lt;if $spellWords.duration.immediate.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.duration.immediate.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.duration.immediate.latin&gt;&gt;
+                            &lt;&lt;set _duration = &#39;immediate&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.duration[_duration].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#durationBox&#39;&gt;&gt;$spellWords.duration.immediate.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.duration.minute.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.duration.minute.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.duration.minute.latin&gt;&gt;
+                            &lt;&lt;set _duration = &#39;minute&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.duration[_duration].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#durationBox&#39;&gt;&gt;$spellWords.duration.minute.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.duration.hour.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.duration.hour.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.duration.hour.latin&gt;&gt;
+                            &lt;&lt;set _duration = &#39;hour&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.duration[_duration].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#durationBox&#39;&gt;&gt;$spellWords.duration.hour.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.duration.day.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.duration.day.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.duration.day.latin&gt;&gt;
+                            &lt;&lt;set _duration = &#39;day&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.duration[_duration].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#durationBox&#39;&gt;&gt;$spellWords.duration.day.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.duration.week.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.duration.week.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.duration.week.latin&gt;&gt;
+                            &lt;&lt;set _duration = &#39;week&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.duration[_duration].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#durationBox&#39;&gt;&gt;$spellWords.duration.week.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.duration.month.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.duration.month.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.duration.month.latin&gt;&gt;
+                            &lt;&lt;set _duration = &#39;month&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.duration[_duration].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#durationBox&#39;&gt;&gt;$spellWords.duration.month.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;hr&gt;
+    &lt;h3&gt;Enhance the spell?&lt;/h3&gt;\
+    &lt;&lt;nobr&gt;&gt;
+        &lt;div class=&#39;spell-word-grid&#39;&gt;
+            &lt;&lt;hovertip $spellWords.enhancement.none.description&gt;&gt;
+                &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                    &lt;&lt;button $spellWords.enhancement.none.latin&gt;&gt;
+                        &lt;&lt;set _enhancement = &#39;none&#39;&gt;&gt;
+                        &lt;&lt;run $spellWords.enhancement[_enhancement].onCast()&gt;&gt;
+                        &lt;&lt;replace &#39;#enhancementBox&#39;&gt;&gt;$spellWords.enhancement.none.latin&lt;&lt;/replace&gt;&gt;
+                    &lt;&lt;/button&gt;&gt;
+                &lt;/div&gt;
+            &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;if $spellWords.enhancement.enhance1.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.enhancement.enhance1.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.enhancement.enhance1.latin&gt;&gt;
+                            &lt;&lt;set _enhancement = &#39;enhance1&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.enhancement[_enhancement].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#enhancementBox&#39;&gt;&gt;$spellWords.enhancement.enhance1.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.enhancement.enhance2.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.enhancement.enhance2.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.enhancement.enhance2.latin&gt;&gt;
+                            &lt;&lt;set _enhancement = &#39;enhance2&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.enhancement[_enhancement].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#enhancementBox&#39;&gt;&gt;$spellWords.enhancement.enhance2.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.enhancement.enhance3.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.enhancement.enhance3.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.enhancement.enhance3.latin&gt;&gt;
+                            &lt;&lt;set _enhancement = &#39;enhance3&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.enhancement[_enhancement].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#enhancementBox&#39;&gt;&gt;$spellWords.enhancement.enhance3.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.enhancement.enhance4.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.enhancement.enhance4.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.enhancement.enhance4.latin&gt;&gt;
+                            &lt;&lt;set _enhancement = &#39;enhance4&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.enhancement[_enhancement].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#enhancementBox&#39;&gt;&gt;$spellWords.enhancement.enhance4.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+            &lt;&lt;if $spellWords.enhancement.enhance5.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $spellWords.enhancement.enhance5.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button $spellWords.enhancement.enhance5.latin&gt;&gt;
+                            &lt;&lt;set _enhancement = &#39;enhance5&#39;&gt;&gt;
+                            &lt;&lt;run $spellWords.enhancement[_enhancement].onCast()&gt;&gt;
+                            &lt;&lt;replace &#39;#enhancementBox&#39;&gt;&gt;$spellWords.enhancement.enhance5.latin&lt;&lt;/replace&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;\
+    &lt;hr&gt;
+    &lt;h4&gt;The Words, as they appear in your mind&lt;/h4&gt;\
+    &lt;&lt;nobr&gt;&gt;
+        &lt;div id=&#39;spell-box&#39;&gt;
+            &lt;span id=&#39;targetBox&#39;&gt;&lt;/span&gt;
+            &lt;span id=&#39;effectBox&#39;&gt;&lt;/span&gt;
+            &lt;span id=&#39;durationBox&#39;&gt;&lt;/span&gt;
+            &lt;span id=&#39;enhancementBox&#39;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;
+    &lt;div class=&#39;text-center&#39;&gt;
+        &lt;&lt;button &#39;Speak the Words&#39;&gt;&gt;
+            &lt;&lt;castSpell _target _duration _effect _enhancement&gt;&gt;
+        &lt;&lt;/button&gt;&gt;
+    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="85" name="Spell_Words_Widgets" tags="widget" position="600,1100" size="100,100">/* castSpell &#39;target&#39; &amp; &#39;duration&#39; &amp;&#39;effect&#39; &amp;| &#39;enhancement&#39; */
     &lt;&lt;widget &#39;castSpell&#39;&gt;&gt;
+        &lt;&lt;if _args[0] &amp;&amp; _args[1] &amp;&amp; _args[2] &amp;&amp; _args[3]&gt;&gt;
+            &lt;&lt;run console.log(&#39;-----castSpell Info-----&#39;)&gt;&gt;
 
-        &lt;&lt;set _target = $spellWords.target[_args[0]].onCast()&gt;&gt;
-        &lt;&lt;set _type = $spellWords.type[_args[1]].onCast()&gt;&gt;
-        &lt;&lt;set _duration = $spellWords.duration[_args[2]].onCast()&gt;&gt;
-        &lt;&lt;set _effect = $spellWords.effect[_args[3]].onCast()&gt;&gt;
-        &lt;&lt;if _args[4]&gt;&gt;
-            &lt;&lt;set _enhance = $spellWords.enhancement[_args[4]].onCast()&gt;&gt;
+            &lt;&lt;set _target = _args[0]&gt;&gt;
+            &lt;&lt;set _duration = _args[1]&gt;&gt;
+            &lt;&lt;set _effect = _args[2]&gt;&gt;
+            &lt;&lt;set _enhancement = _args[3]&gt;&gt;
+            &lt;&lt;set $spellCastVar.spellDiscipline = $spellWords.effect[_effect].discipline&gt;&gt;
+            &lt;&lt;set $spellCastVar.spellCost = 
+                $spellWords.target[_target].costMult *
+                ($spellWords.effect[_effect].costMult - ($plr.disciplines[$spellCastVar.spellDiscipline].level * 0.1)) *
+                $spellWords.duration[_duration].costMult *
+                $spellWords.enhancement[_enhancement].costMult
+            &gt;&gt;
+
+            &lt;&lt;if $spellCastVar.spellCost &lt;= $plr.stats.stamina.cur &amp;&amp; $spellCastVar.spellCost &lt;= $plr.stats.focus.cur&gt;&gt;
+                &lt;&lt;run $spellWords.effect[_effect].onCast()&gt;&gt;
+                &lt;&lt;set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2&gt;&gt;
+                &lt;&lt;set $plr.stats.stamina.cur -= $spellCastVar.spellCost&gt;&gt;
+
+                &lt;&lt;removeclass &#39;#spell-result&#39;&gt;&gt;
+                &lt;&lt;addclass &#39;#spell-result&#39; &#39;green&#39;&gt;&gt;
+                &lt;&lt;replace &#39;#spell-result&#39;&gt;&gt;I successfully cast my spell!&lt;&lt;/replace&gt;&gt;
+
+            &lt;&lt;elseif $spellCastVar.spellCost &gt; $plr.stats.stamina.cur&gt;&gt;
+                &lt;&lt;removeclass &#39;#spell-result&#39;&gt;&gt;
+                &lt;&lt;addclass &#39;#spell-result&#39; &#39;red&#39;&gt;&gt;
+                &lt;&lt;replace &#39;#spell-result&#39;&gt;&gt;I am too tired to cast the spell I want to.&lt;&lt;/replace&gt;&gt;
+
+            &lt;&lt;elseif $spellCastVar.spellCost &gt; $plr.stats.focus.cur&gt;&gt;
+                &lt;&lt;removeclass &#39;#spell-result&#39;&gt;&gt;
+                &lt;&lt;addclass &#39;#spell-result&#39; &#39;red&#39;&gt;&gt;
+                &lt;&lt;replace &#39;#spell-result&#39;&gt;&gt;I do not have the mental focus required to cast a spell of this power.&lt;&lt;/replace&gt;&gt;
+
+            &lt;&lt;/if&gt;&gt;
+
+            &lt;&lt;run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, &quot;staminaBar&quot;, true)&gt;&gt;
+            &lt;&lt;run Life($plr.stats.life.cur, $plr.stats.life.max, &quot;lifeBar&quot;, true)&gt;&gt;
+            &lt;&lt;run FocusStat($plr.stats.focus.cur, $plr.stats.focus.max, &quot;focusBar&quot;, true)&gt;&gt;
+            &lt;&lt;run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, &quot;sanityBar&quot;, true)&gt;&gt;
+
+            &lt;&lt;run console.log(&#39;---End of castSpell Info---&#39;)&gt;&gt;
+
         &lt;&lt;else&gt;&gt;
-            &lt;&lt;set _enhance = 1&gt;&gt;
+            &lt;&lt;removeclass &#39;#spell-result&#39;&gt;&gt;
+            &lt;&lt;addclass &#39;#spell-result&#39; &#39;purple&#39;&gt;&gt;
+            &lt;&lt;replace &#39;#spell-result&#39;&gt;&gt;Half-baked spells are guaranteed to go spectacularly wrong... I should complete choice of Words.&lt;&lt;/replace&gt;&gt;
         &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Spells_Words_List" tags="init" position="725,1100" size="100,100">&lt;&lt;set $spellCastVar = {
+        spellTarget: &#39;&#39;,
+        spellDuration: &#39;&#39;,
+        spellEffect: &#39;&#39;,
+        spellEnhancement: &#39;&#39;,
+        spellCost: 0,
+        spellDiscipline: &#39;&#39;
+    }&gt;&gt;
 
-        &lt;&lt;run console.log(&#39;_target: &#39; + _target)&gt;&gt;
+    &lt;&lt;set $eqResult = 0&gt;&gt;
+    &lt;&lt;set $targetCost = 1&gt;&gt;
+    &lt;&lt;set $typeCost = 1&gt;&gt;
+    &lt;&lt;set $durationCost = 0.5&gt;&gt;
+    &lt;&lt;set $effectCost = 1&gt;&gt;
+    &lt;&lt;set $discLvl = 15&gt;&gt;
+    &lt;&lt;set $strCost = 3&gt;&gt;
 
-    &lt;&lt;/widget&gt;&gt;
-
-    &lt;&lt;widget &#39;tDamageSpell&#39;&gt;&gt;
-
-        &lt;&lt;set _target = $spellWords.target.self.onCast()&gt;&gt;
-        /* &lt;&lt;set _type = $spellWords.type.direct.onCast()&gt;&gt;
-        &lt;&lt;set _duration = $spellWords.duration.immediate.onCast()&gt;&gt; */
-        &lt;&lt;set _effect = $spellWords.effect.damage.onCast()&gt;&gt;
-        &lt;&lt;set _enhance = $spellWords.enhancement.enhance.onCast()&gt;&gt;
-
-        &lt;&lt;run Life($plrStats.life.cur, $plrStats.life.max, &quot;lifeBar&quot;, true)&gt;&gt;
-        &lt;&lt;run console.log(&#39;tDamageSpell: &#39; + _runspell)&gt;&gt;
-
-
-    &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Spells_Words_List" tags="init" position="600,1100" size="100,100">&lt;&lt;set $spellWords = {
+    &lt;&lt;set $spellWords = {
         target: {
             self: {
                 latin: &#39;Ego&#39;,
                 description: &#39;Selects you as the focus of the spell.&#39;,
                 unlocked: false,
-                costMulti: 0.5,
+                costMult: 0.5,
                 onCast: function() {
-                    return &#39;$plrStats&#39;;
+                    let x = state.getVar(&#39;$plr&#39;);
+                    state.setVar(&#39;$spellCastVar.spellTarget&#39;, x);
                 }
             },
             other: {
                 latin: &#39;Alius&#39;,
                 description: &#39;Selects a nearby person or creature as the focus of the spell.&#39;,
-                unlocked: false
+                unlocked: false,
+                costMult: 1,
+                onCast: function() {
+                    let x = state.getVar(&#39;$npcs.janessa&#39;);
+                    state.setVar(&#39;$spellCastVar.spellTarget&#39;, x);
+                }
             },
             room: {
                 latin: &#39;Praesto&#39;,
                 description: &#39;Selects the room you are in as the focus of the spell.&#39;,
-                unlocked: false
+                unlocked: false,
+                costMult: 1.5,
+                onCast: function() {
+                    return 1
+                }
             },
-            wide: {
+            outdoors: {
                 latin: &#39;Circa&#39;,
-                description: &#39;Selects a wide area (i.e. a residence or courtyard) as the focus of the spell.&#39;,
-                unlocked: false
+                description: &#39;Selects a large outdoor area (i.e. a courtyard, tree grove, or park) as the focus of the spell.&#39;,
+                unlocked: false,
+                costMult: 1.5,
+                onCast: function() {
+                    return 1
+                }
             },
             item: {
                 latin: &#39;Item&#39;,
                 description: &#39;Selects an item as the focus of the spell.&#39;,
-                unlocked: false
-            }
-        },
-        type: {
-            direct: {
-                latin: &#39;Focus&#39;,
-                description: &#39;The spell only directly affects the initial target.&#39;,
-                costMult: 1,
                 unlocked: false,
+                costMult: 1,
                 onCast: function() {
-                    return
+                    return 1
                 }
-            },
-            aura: {
-                latin: &#39;Aura&#39;,
-                description: &#39;The spell surrounds the initial target, but affects it and the surrounding area.&#39;,
-                unlocked: false
-            },
-            enchant: {
-                latin: &#39;Admagicae&#39;,
-                description: &#39;Mostly used to add an effect to an item.&#39;,
-                unlocked: false
             }
         },
         duration: {
@@ -3375,82 +3830,158 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 costMult: 1,
                 unlocked: false,
                 onCast: function() {
-                    return
+                    state.setVar(&#39;$spellCastVar.spellDuration&#39;, 0);
                 }
             },
             minute: {
                 latin: &#39;Mox&#39;,
                 description: &#39;The spell applies the affect now and for a few minutes.&#39;,
-                unlocked: false
+                costMult: 5,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellDuration&#39;, 10);
+                }
             },
             hour: {
                 latin: &#39;Postea&#39;,
                 description: &#39;The spell applies the effect now and for about an hour.&#39;,
-                unlocked: false
+                costMult: 10,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellDuration&#39;, 60);
+                }
             },
             day: {
                 latin: &#39;Hodie&#39;,
-                description: &#39;The spell applies the effect now and for about a day.&#39;,
-                unlocked: false
+                description: &#39;The spell applies the effect for about a day.&#39;,
+                costMult: 20,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellDuration&#39;, 1440);
+                }
             },
             week: {
                 latin: &#39;Septimana&#39;,
-                description: &#39;The spell applies the effect now and for around one week&#39;,
-                unlocked: false
+                description: &#39;The spell applies the effect for around one week&#39;,
+                costMult: 40,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellDuration&#39;, 10080);
+                }
             },
             month: {
                 latin: &#39;Mensis&#39;,
-                description: &#39;The spell applies the effect now and for a whole month.&#39;,
-                unlocked: false
+                description: &#39;The spell applies the effect for a whole month.&#39;,
+                costMult: 60,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellDuration&#39;, 40320);
+                }
             }
         },
         effect: {
             damage: {
                 latin: &#39;Damnum&#39;,
-                description: &#39;Uses the destructive abilities of a given element type causing injuries.&#39;,
+                description: &#39;Uses the destructive aspect of elemental magic to cause physical injuries.&#39;,
                 costMult: 1,
                 unlocked: false,
+                discipline: &#39;elemental&#39;,
                 onCast: function() {
-                    return &#39;.life.cur&#39;;
+                    let curLife = state.getVar(&#39;$spellCastVar.spellTarget.stats.life.cur&#39;);
+                    let maxLife = state.getVar(&#39;$spellCastVar.spellTarget.stats.life.max&#39;);
+                    let mult = state.getVar(&#39;$spellCastVar.spellEnhancement&#39;);
+
+                    if (curLife &gt; 0) {
+                        let r = curLife - (1 * mult);
+                        state.setVar(&#39;$spellCastVar.spellTarget.stats.life.cur&#39;, r);
+                    }
                 }
             },
             heal: {
                 latin: &#39;Vulnus&#39;,
                 description: &#39;Renews the lifeforce and heals the surface wounds of living beings.&#39;,
-                unlocked: false
+                costMult: 1,
+                unlocked: false,
+                discipline: &#39;restoration&#39;,
+                onCast: function() {
+                    let curLife = state.getVar(&#39;$spellCastVar.spellTarget.stats.life.cur&#39;);
+                    let maxLife = state.getVar(&#39;$spellCastVar.spellTarget.stats.life.max&#39;);
+                    let mult = state.getVar(&#39;$spellCastVar.spellEnhancement&#39;);
+                    
+                    if (curLife &lt; maxLife) {
+                        let r = curLife + (1 * mult);
+                        state.setVar(&#39;$spellCastVar.spellTarget.stats.life.cur&#39;, r);
+                    }
+                }
+            },
+            calm: {
+                latin: &#39;Tranquillitas&#39;,
+                description: &#39;Eases the mind, restoring a small amount of sanity.&#39;,
+                costMult: 1.5,
+                unlocked: false,
+                discipline: &#39;restoration&#39;,
+                onCast: function() {
+                    let x = state.getVar(&#39;$spellCastVar.spellTarget.stats.sanity.cur&#39;);
+                    state.setVar(&#39;$spellCastVar.spellEffect&#39;, x);
+                }
             }
         },
         enhancement: {
-            enhance: {
-                latin: &#39;Augere&#39;,
-                description: &#39;Pour more of your energy into the spell.&#39;,
-                unlocked: false,
+            none: {
+                latin: &#39;Nullus&#39;,
+                description: &#39;Choose to not increase the power of your spell.&#39;,
+                costMult: 1,
                 onCast: function() {
-                    return 1
+                    state.setVar(&#39;$spellCastVar.spellEnhancement&#39;, 1);
                 }
             },
-            delay: {
-                latin: &#39;Moratus&#39;,
-                description: &#39;Delays the effect of the spell for a chosen period of time.&#39;,
-                unlocked: false
+            enhance1: {
+                latin: &#39;Augere&#39;,
+                description: &#39;Add a little more of your energy into the spell.&#39;,
+                costMult: 2,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellEnhancement&#39;, 2);
+                }
+            },
+            enhance2: {
+                latin: &#39;Augmento&#39;,
+                description: &#39;Add a decent amount of energy into the spell.&#39;,
+                costMult: 5,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellEnhancement&#39;, 3)
+                }
+            },
+            enhance3: {
+                latin: &#39;Amplius&#39;,
+                description: &#39;Pour your energy into the spell!&#39;,
+                costMult: 15,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellEnhancement&#39;, 4)
+                }
+            },
+            enhance4: {
+                latin: &#39;Vastus&#39;,
+                description: &#39;Give the spell almost everything you have!!&#39;,
+                costMult: 30,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellEnhancement&#39;, 5)
+                }
+            },
+            enhance5: {
+                latin: &#39;Immanis&#39;,
+                description: &#39;You will not be contained!!!&#39;,
+                costMult: 60,
+                unlocked: false,
+                onCast: function() {
+                    state.setVar(&#39;$spellCastVar.spellEnhancement&#39;, 7)
+                }
             }
         }
-    }&gt;&gt;
-        &lt;&lt;set $eqResult = 0&gt;&gt;
-        &lt;&lt;set $targetCost = 1&gt;&gt;
-        &lt;&lt;set $typeCost = 1&gt;&gt;
-        &lt;&lt;set $durationCost = 0.5&gt;&gt;
-        &lt;&lt;set $effectCost = 1&gt;&gt;
-        &lt;&lt;set $discLvl = 15&gt;&gt;
-        &lt;&lt;set $strCost = 3&gt;&gt;
-
-        strength: {
-            1: 3
-            2: 4
-            3: 9
-            4: 16
-            5: 25
-        }</tw-passagedata><tw-passagedata pid="86" name="Spell-List" tags="init" position="725,1100" size="100,100">&lt;&lt;set $spellDetails = {
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="Spell-List" tags="init" position="850,1100" size="100,100">&lt;&lt;set $spellDetails = {
         abjuration: {
 
         },

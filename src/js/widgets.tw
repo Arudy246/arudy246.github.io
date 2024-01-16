@@ -8,7 +8,13 @@
 
     /* relGain Amy 10 */
     <<widget "relGain">>
-        <<set $plrRel[_args[0]] += _args[1] + ($plrBody.dynamic.atttractiveness / 10)>>
+        <<if _args[1] > 0>>
+            <<set $plr.relations[_args[0]].positive += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
+
+            <<else>>
+                <<set $plr.relations[_args[0]].negative += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
+        <</if>>
+
         <<set $relNpcTemp = _args[0]>>
         <<set $relAmtTemp = _args[1]>>
     <</widget>>
@@ -17,9 +23,9 @@
     <<widget "printRelGain">>
             <<if $relAmtTemp>>
                 <<if $relAmtTemp > 0 >>
-                    <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].formal + ' has improved!</span>'>>
+                    <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has improved!</span>'>>
                 <<else>>
-                    <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].formal + ' has deteriorated.</span>'>>
+                    <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
                 <</if>>
                 <<unset $relAmtTemp, $relNpcTemp>>
             <</if>>
@@ -28,23 +34,23 @@
 
     <<widget "calcAttractiveness">>
         <<nobr>>
-            <<set $plrBody.dynamic.atttractiveness = 0>>
-            <<if $plrBody.static.sex == "male" && ($plrBody.static.height == "tall" || $plrBody.static.height == "very tall")>>
-                <<set $plrBody.dynamic.atttractiveness += 10>>
-            <<elseif $plrBody.static.sex == "female" && ($plrBody.static.height == "average" || $plrBody.static.height == "short")>>
-                <<set $plrBody.dynamic.atttractiveness += 10>>
+            <<set $plr.body.dynamic.atttractiveness = 0>>
+            <<if $plr.body.static.sex == "male" && ($plr.body.static.height == "tall" || $plr.body.static.height == "very tall")>>
+                <<set $plr.body.dynamic.atttractiveness += 10>>
+            <<elseif $plr.body.static.sex == "female" && ($plr.body.static.height == "average" || $plr.body.static.height == "short")>>
+                <<set $plr.body.dynamic.atttractiveness += 10>>
             <</if>>
 
-            <<if $plrBody.static.faceShape == "oblong" || $plrBody.static.faceShape == "square">>
-                <<set $plrBody.dynamic.atttractiveness += 10>>
+            <<if $plr.body.static.faceShape == "oblong" || $plr.body.static.faceShape == "square">>
+                <<set $plr.body.dynamic.atttractiveness += 10>>
             <</if>>
 
-            <<if $plrBody.dynamic.weight >= 20 && $plrBody.dynamic.weight <= 55>>
-                <<set $plrBody.dynamic.atttractiveness += 10>>
+            <<if $plr.body.dynamic.weight >= 20 && $plr.body.dynamic.weight <= 55>>
+                <<set $plr.body.dynamic.atttractiveness += 10>>
             <</if>>
 
-            <<if $plrBody.static.sex == "female">>
-                <<set $plrBody.dynamic.atttractiveness *= 1.1>>
+            <<if $plr.body.static.sex == "female">>
+                <<set $plr.body.dynamic.atttractiveness *= 1.1>>
         <</if>>
         <</nobr>>
     <</widget>>
@@ -307,40 +313,40 @@
 
     <<nobr>>
         <<widget "setStamina">>
-            <<set $plrStats.stamina.cur = _args[0]>>
+            <<set $plr.stats.stamina.cur = _args[0]>>
         <</widget>>
     <</nobr>>
 
     <<nobr>>
         <<widget "setLife">>
-            <<set $plrStats.life.cur = _args[0]>>
+            <<set $plr.stats.life.cur = _args[0]>>
         <</widget>>
     <</nobr>>
 
     <<nobr>>
         <<widget "setFocus">>
-            <<set $plrStats.focus.cur = _args[0]>>
+            <<set $plr.stats.focus.cur = _args[0]>>
         <</widget>>
     <</nobr>>
 
     <<nobr>>
         <<widget "setSanity">>
-            <<set $plrStats.sanity.cur = _args[0]>>
+            <<set $plr.stats.sanity.cur = _args[0]>>
         <</widget>>
     <</nobr>>
 
     <<nobr>>
         <<widget "staminaUpdatePrint">>
-            <<set _stamDec = $plrStats.stamina.pre - $plrStats.stamina.cur>>
-            <<set _stamInc = $plrStats.stamina.cur - $plrStats.stamina.pre>>
-            <<if $plrStats.stamina.cur < $plrStats.stamina.pre>>
+            <<set _stamDec = $plr.stats.stamina.pre - $plr.stats.stamina.cur>>
+            <<set _stamInc = $plr.stats.stamina.cur - $plr.stats.stamina.pre>>
+            <<if $plr.stats.stamina.cur < $plr.stats.stamina.pre>>
                 <span class="staminaDec">Your stamina decreased by _stamDec.</span>
 
-            <<else if $plrStats.stamina.cur > $plrStats.stamina.pre>>
+            <<else if $plr.stats.stamina.cur > $plr.stats.stamina.pre>>
                 <span class="staminaInc">Your stamina increased by _stamInc.</span>
 
             <</if>>
-            <<set $plrStats.stamina.pre = $plrStats.stamina.cur>>
+            <<set $plr.stats.stamina.pre = $plr.stats.stamina.cur>>
         <</widget>>
     <</nobr>>
 

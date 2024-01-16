@@ -263,7 +263,7 @@ ul.simple-inventory-list {
     display: inline-block;
     top: 1px;
     border-width: 0px;
-    border-bottom: 2px solid rgb(94, 94, 94);  /* If you want dots under the hoverable text */
+    /* border-bottom: 2px solid rgb(94, 94, 94);  If you want dots under the hoverable text */
 }
 .hoverTipTxt {
     position: relative;
@@ -406,11 +406,9 @@ ul.simple-inventory-list {
     -o-transition: visibility .2s step-end;
     transition: visibility .2s step-end;
 }
-
 #right-ui-bar.stowed~#story {
     margin-right: 4.5em;
 }
-
 #right-ui-bar-body a {
     border: 3px ridge #666666;
     background: rgba(26, 26, 26, 0.6);
@@ -419,13 +417,11 @@ ul.simple-inventory-list {
     color: #ffffff;
     text-transform: uppercase;
 }
-
 #right-ui-bar-body a:hover {
     background-color: #444;
     border-color: #eee;
     text-decoration: none;
 }
-
 /* Horizontal Stat Bar - Start */
 .hzbarbkg {  /* default class for all horizontal bar backgrounds */
     position: relative;
@@ -482,6 +478,7 @@ ul.simple-inventory-list {
     font-style: italic;
 }
 /* Quality Colors - End */
+
 #ui-dialog-title {
     text-align: left;
 }
@@ -491,9 +488,9 @@ ul.simple-inventory-list {
 }
 
 #ui-dialog-body {
-    overflow: hidden;
+    overflow: auto;
     min-height: 25em;
-    padding: 3.5em 2.5em 2.5em 2.5em;
+    padding: 1em 2.5em 2.5em 1em;
 }
 
 .achieve {
@@ -521,3 +518,57 @@ ul.simple-inventory-list {
     background-position: center;
     border-radius: 100em;
 }
+
+/* Spell Stuff - Start */
+
+#spell-result {
+    font-style: italic;
+    font-size: larger;
+    text-align: center;
+}
+
+.spell-word-grid {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 8em 8em 8em 8em 8em 8em;
+}
+
+.spell-word-grid-item {
+    border: 2px solid rgb(94, 94, 94);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.spell-word-grid-item .macro-button {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.spell-word-grid-item .macro-button:hover {
+    background-color: #2400a7;
+}
+
+#spell-box {
+    font-style: italic;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: -15px;
+    color:#2d98da;
+    animation: repeat;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes repeat {
+
+    0% {color: lightblue; text-shadow: 5px 5px 30px lightblue;}
+    20% {color: #45aaf2; text-shadow: 5px 5px 30px  #45aaf2;}
+    40% {color: #2d98da; text-shadow: 5px 5px 30px  #2d98da;}
+    60% {color: #4b7bec; text-shadow: 5px 5px 30px  #2d98da;}
+    80% {color: #3867d6; text-shadow: 5px 5px 30px  #3867d6;}
+    100% {color: lightblue; text-shadow: 5px 5px 30px  lightblue;}
+  
+}
+
+/* Spell Stuff - End */

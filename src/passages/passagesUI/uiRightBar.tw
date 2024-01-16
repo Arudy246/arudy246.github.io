@@ -1,34 +1,34 @@
 :: StoryRightSidebar
 
 <<nobr>>
-    <<if $plrStats.stamina.max != 0>>
+    <<if $plr.stats.stamina.max != 0>>
             <div id="staminaBarbkg" class="hzbarbkg"><div id="staminaBar" class="hzbar"></div></div>
             <span class="cyan">Stamina: </span><span id='ui-stamina'></span>
-            <<run Stamina($plrStats.stamina.cur, $plrStats.stamina.max, "staminaBar", true)>>
+            <<run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, "staminaBar", true)>>
             <hr>
     <</if>>
 <</nobr>>\
 <<nobr>>
-    <<if $plrStats.life.max != 0>>
+    <<if $plr.stats.life.max != 0>>
             <div id="lifeBarbkg" class="hzbarbkg"><div id="lifeBar" class="hzbar"></div></div>
             <span class="crimson">Lifeforce: </span><span id='ui-life'></span>
-            <<run Life($plrStats.life.cur, $plrStats.life.max, "lifeBar", true)>>
+            <<run Life($plr.stats.life.cur, $plr.stats.life.max, "lifeBar", true)>>
             <hr>
     <</if>>
 <</nobr>>\
 <<nobr>>
-    <<if $plrStats.focus.max != 0>>
+    <<if $plr.stats.focus.max != 0>>
         <div id="focusBarbkg" class="hzbarbkg"><div id="focusBar" class="hzbar"></div></div>
         <span class="greenyellow">Focus: </span><span id='ui-focus'></span>
-        <<run FocusStat($plrStats.focus.cur, $plrStats.focus.max, "focusBar", true)>>
+        <<run FocusStat($plr.stats.focus.cur, $plr.stats.focus.max, "focusBar", true)>>
         <hr>
     <</if>>
 <</nobr>>\
 <<nobr>>
-    <<if $plrStats.sanity.max != 0>>
-        <div id="sanityBarbkg" class="hzbarbkg"><div id="sanityBar" class="hzbar"></div></div><<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "sanityBar", true)>>
+    <<if $plr.stats.sanity.max != 0>>
+        <div id="sanityBarbkg" class="hzbarbkg"><div id="sanityBar" class="hzbar"></div></div>
         <span class="purple">Sanity: </span><span id='ui-sanity'></span>
-        <<run Sanity($plrStats.sanity.cur, $plrStats.sanity.max, "sanityBar", true)>>
+        <<run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, "sanityBar", true)>>
         <hr>
     <</if>>
 <</nobr>>\

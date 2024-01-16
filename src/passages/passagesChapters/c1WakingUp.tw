@@ -24,7 +24,7 @@
     <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
 
     <<speech "amy">>
-        My name is $npcs.amy.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn't here when you woke, no doubt you are rather confused.
+        My name is $npcs.amy.name.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn't here when you woke, no doubt you are rather confused.
     <</speech>>\
 
     <<speech "amy">>
@@ -33,14 +33,14 @@
 
     She proceeds to stand over you and holds her hands above your chest. She says words. But what she says makes zero sense to you, almost as if she is speaking gibberish or a foreign language. Latin maybe? Sounds a little familiar.
 
-    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.formal is right, you are just confused. Very, very confused.
+    To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.name.formal is right, you are just confused. Very, very confused.
 
     <<button [[Continue | WakingUp3]]>><</button>>
 
 :: WakingUp3
     <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
 
-    $npcs.amy.formal sees you staring at the candles.
+    $npcs.amy.name.formal sees you staring at the candles.
 
     <<speech "amy">>I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on forehead and maybe some grogginess, you will be just fine.<</speech>>\
 
@@ -49,29 +49,29 @@
 :: WakingUp4
     <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>\
 
-    You see $npcs.amy.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
+    You see $npcs.amy.name.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
 
     <<speech "amy">>
         Someone will be along shortly to show you the way to the dean's office.
     <</speech>>\
 
-    With you brain fog still in full force, you are as perplexed as ever. A few seconds later a young woman opens the large wooden doors to the room. She briefly looks at you before speaking to $npcs.amy.formal.
+    With you brain fog still in full force, you are as perplexed as ever. A few seconds later a young woman opens the large wooden doors to the room. She briefly looks at you before speaking to $npcs.amy.name.formal.
 
     <<speech "janessa">>
-        You called for me $npcs.amy.title? I assume the dean is expecting him?
+        You called for me $npcs.amy.name.title? I assume the dean is expecting him?
     <</speech>>
     <<speech "amy">>
-        Good evening $npcs.janessa.formal. And yes, you and this one are expected in the dean's office.
+        Good evening $npcs.janessa.name.formal. And yes, you and this one are expected in the dean's office.
     <</speech>>\
 
-    $npcs.amy.formal looks at you.
+    $npcs.amy.name.formal looks at you.
 
-    <<speech "amy">>This is $npcs.janessa.firstName, she will escort you to the dean. Please have someone bring you back here if your grogginess sticks around for than a day or two. And if you have any other medical needs, I will be right here for you.<</speech>>\
+    <<speech "amy">>This is $npcs.janessa.name.firstName, she will escort you to the dean. Please have someone bring you back here if your grogginess sticks around for than a day or two. And if you have any other medical needs, I will be right here for you.<</speech>>\
 
     <<speech "amy">>Please, do take care of yourself.<</speech>>\
     <<tone "pos">>There is more than a hint of pity in her voice.<</tone>>
 
-    $npcs.amy.formal walks over to $npcs.janessa.firstName and speaks with her quietly. You cannot hear what either one is saying, but $npcs.janessa.firstName appears annoyed by whatever it is.
+    $npcs.amy.name.formal walks over to $npcs.janessa.name.firstName and speaks with her quietly. You cannot hear what either one is saying, but $npcs.janessa.name.firstName appears annoyed by whatever it is.
 
     <<speech "janessa">>Lets go.<</speech>>\
 
@@ -84,87 +84,87 @@
     <div class='grid-container text-center'>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_blk_asian.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_asian.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_blk_asian.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_blk_blk.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_blk.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_blk_blk.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_blk_indian.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_indian.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_blk_indian.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_blonde_white.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_blonde_white.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_blonde_white.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_bro_white.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_bro_white.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_bro_white.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_bro_hisp.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_bro_hisp.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_bro_hisp.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_blk_blk2.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_blk2.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_blk_blk2.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img/characters/thumb_male_blk_asian2.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_male_blk_asian2.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_male_blk_asian2.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_blk_asian.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_asian.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_blk_asian.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_blk_blk.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_blk.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_blk_blk.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_blk_indian.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_indian.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_blk_indian.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_blk_whi.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_whi.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_blk_whi.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_blk_blk2.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_blk_blk2.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_blk_blk2.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_bln_whi.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_bln_whi.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_bln_whi.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_bln_white2.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_bln_white2.jpg">>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_bln_white2.jpg">>
         </div>\
         <div>
             <img class="mcselect" src="img\characters\thumb_fem_bro_hisp.jpg" alt="test"/>\
-            <<radiobutton "$plrImg" "img/characters/thumb_fem_bro_hisp.jpg" checked>>
+            <<radiobutton "$plr.img" "img/characters/thumb_fem_bro_hisp.jpg" checked>>
         </div>\
     </div>
 
     At least you still remember your name,
-    <<textbox "$plrName.fName" "First">> \
-    <<textbox "$plrName.lName" "Last">>
+    <<textbox "$plr.name.firstName" "First">> \
+    <<textbox "$plr.name.lastName" "Last">>
 
     Obviously, you are \
-    <<listbox "$plrBody.static.sex" autoselect>> \
+    <<listbox "$plr.body.static.sex" autoselect>> \
         <<option "female">>
         <<option "male">>
     <</listbox>>
 
     Your hair is a shade of \
-    <<listbox "$plrBody.static.hairColor" autoselect>>
+    <<listbox "$plr.body.static.hairColor" autoselect>>
         <<optionsfrom $hairColors>>
     <</listbox>>
 
     and appears to be \
-    <<listbox "$plrBody.dynamic.hairLength" autoselect>>
+    <<listbox "$plr.body.dynamic.hairLength" autoselect>>
         <<option "shaved" 1>>
         <<option "ear length" 2>>
         <<option "neck length" 3>>
@@ -175,22 +175,22 @@
     <</listbox>>
 
     Your hair is styled as \
-    <<listbox "$plrBody.static.hairStyle" autoselect>>
+    <<listbox "$plr.body.static.hairStyle" autoselect>>
         <<optionsfrom $hairStyles>>
     <</listbox>>
 
     Your eyes now look \
-    <<listbox "$plrBody.static.eyeColor" autoselect>>
+    <<listbox "$plr.body.static.eyeColor" autoselect>>
         <<optionsfrom $eyeColors>>
     <</listbox>>
 
     and your face is \
-    <<listbox "$plrBody.static.faceShape" autoselect>>
+    <<listbox "$plr.body.static.faceShape" autoselect>>
         <<optionsfrom $faceShapes>>
     <</listbox>>
 
     Finally, you notice you are \
-    <<listbox "$plrBody.dynamic.weight" autoselect>>
+    <<listbox "$plr.body.dynamic.weight" autoselect>>
         <<option "quite skinny" 10>>
         <<option "fit" 30>>
         <<option "average" 50>>
@@ -199,7 +199,7 @@
     <</listbox>>
 
     and you are \
-    <<listbox "$plrBody.static.height" autoselect>>
+    <<listbox "$plr.body.static.height" autoselect>>
         <<option "very tall">>
         <<option "tall">>
         <<option "average">>
@@ -226,35 +226,35 @@
 
 :: WakingUp5
     <<silently>>
-        <<if $plrBody.static.sex == "female">>
-            <<set $plrName.prefix = "Ms.">>
-        <<elseif $plrBody.static.sex == "male">>
-            <<set $plrName.prefix = "Mr.">>
+        <<if $plr.body.static.sex == "female">>
+            <<set $plr.name.prefix = "Ms.">>
+        <<elseif $plr.body.static.sex == "male">>
+            <<set $plr.name.prefix = "Mr.">>
         <</if>>
-        <<set $plrName.formal = $plrName.prefix + " " + $plrName.lName>>
+        <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
         <<calcAttractiveness>>
     <</silently>>\
     <img class="scene" src="img/hallway.jpg" alt="medical wing photo"/>
     <<speech plr>><<print $plrSpkChoice>><</speech>>\
     <<printRelGain>>
 
-    $npcs.janessa.firstName rolls her eyes and walks towards the door.
+    $npcs.janessa.name.firstName rolls her eyes and walks towards the door.
 
-    <<speech "amy">>The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you're wearing is normal patient attire. I am sure $npcs.janessa.firstName will show you where to get something more comfortable after you meet with the dean.<</speech>>
+    <<speech "amy">>The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you're wearing is normal patient attire. I am sure $npcs.janessa.name.firstName will show you where to get something more comfortable after you meet with the dean.<</speech>>
     <<speech "janessa">>Let's go.<</speech>>\
 
-    $npcs.janessa.firstName is standing in the doorway, appearing rather impatient.
+    $npcs.janessa.name.firstName is standing in the doorway, appearing rather impatient.
 
     You follow her out of the medical wing and into a long hallway that gently curves off into the distance. She is walking almost 30 feet ahead of you and is obviously not interested in talking to you, so you follow in silence. The hall is lit with the same floating candles lining the walls.
 
     You pass by many doors as you walk the hall. Some are large wooden doors not dissimiliar to the medical wing and others have massive iron locks on them. A few doors appear barely large enough to allow a young child to fit through them.
 
-    The hallway is eerily silent, a silence only broken by the sound of your footsteps. While trying to think through what is happening and how you got here, you hear a set of disjointed footsteps lightly echo through the hall. Its hard to tell where the sound is coming from, but looking ahead of you you see nothing except $npcs.janessa.firstName. Suddenly, the volume of the footsteps grows and speeds up as if someone is running. The sound is loud enough, you know the sound is coming from behind you. You stop and spin around. The hall behind you is completely empty, only lit by candleless flames. But several of the flames flicker, the calm air disturbed by some unseen force.
+    The hallway is eerily silent, a silence only broken by the sound of your footsteps. While trying to think through what is happening and how you got here, you hear a set of disjointed footsteps lightly echo through the hall. Its hard to tell where the sound is coming from, but looking ahead of you you see nothing except $npcs.janessa.name.firstName. Suddenly, the volume of the footsteps grows and speeds up as if someone is running. The sound is loud enough, you know the sound is coming from behind you. You stop and spin around. The hall behind you is completely empty, only lit by candleless flames. But several of the flames flicker, the calm air disturbed by some unseen force.
 
     <<speech "janessa">> For all the leylines, what are you doing now?<</speech>>\
-    <<tone "neg">>$npcs.janessa.firstName is obviously annoyed at something<</tone>>
+    <<tone "neg">>$npcs.janessa.name.firstName is obviously annoyed at something<</tone>>
 
-    You turn back towards $npcs.janessa.firstName and say:
+    You turn back towards $npcs.janessa.name.firstName and say:
 
     <<button [[Did you not hear that? | WakingUp6]]>>
         <<set $plrSpkChoice = "Did you not hear that? It sounded like, something?">>
@@ -272,15 +272,15 @@
 
     <<speech "plr">><<print $plrSpkChoice>><</speech>>
     <<printRelGain>>\
-    $npcs.janessa.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself "What is going on here?"
+    $npcs.janessa.name.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself "What is going on here?"
 
-    The two of you approach a heavily reinforced door. The ancient thick oak planks encased in a heavy layer of iron and, gilded with some kind of lapis, maybe? Whatever it is, it has a blue iridescent sheen to it. The center of the door is adorned with a small iron bird figurine. $npcs.janessa.firstName looks at the metal bird and knocks on the door while whispering something.
+    The two of you approach a heavily reinforced door. The ancient thick oak planks encased in a heavy layer of iron and, gilded with some kind of lapis, maybe? Whatever it is, it has a blue iridescent sheen to it. The center of the door is adorned with a small iron bird figurine. $npcs.janessa.name.firstName looks at the metal bird and knocks on the door while whispering something.
 
     The eyes of the bird glow bright blue and the door quietly swings open. Ahead of you is a room decorated with well organized shelves, all the books appear to be arranged in decreasing height and thickness. The walls are covered in plaques with runic symbols etched on them.
 
     Sitting at a desk near the back of the room, surrounded by the bookcases, is a man. His weathered face bears evidence of a long, hard life. The lines creased beneath his eyes and the aged wrinkles give his skin the appearance of sun tanned leather. He is wearing a thick, brown robe interwoven with a silvery thread. The hard stare he sends in your direction as you walk across the room, gives you the distinct feeling you are being judged. And it doesn't look like it is going well for you.
 
-    <<speech "barden">> $plrName.formal, welcome to Magna Schola. We are one of North America's most...thorough... arcane educational institutions. I am $npcs.barden.formal. I am sure you have questions so I will try to make this as quick as possible. <</speech>>\
+    <<speech "barden">> $plr.name.formal, welcome to Magna Schola. We are one of North America's most...thorough... arcane educational institutions. I am $npcs.barden.name.formal. I am sure you have questions so I will try to make this as quick as possible. <</speech>>\
 
     <<speech "barden">>I will keep the sugarcoating to a minimum here. You are what we call Inferni. Translated from Latin, literally it means <strong><em>of hell</em></strong>. While I admit it is a bit of an archaic term, it is apt for reasons I cannot share with you. Most knowledge of inferni is either lost or highly privileged.<</speech>>\
 
@@ -289,7 +289,7 @@
     <<speech "barden">> And because it would be cruel not to explain something about your new reality, know this. Inferni are created when a human outside of the magical world experiences a... most grim and unenviable trauma. For this rebirth of yours, you have my sincerest condolences. It is a fate I would wish on noone.<</speech>>\
 
     <<speech "barden">> I apologize for asking, but it is common for those like you to completely forget the event that changes them so completely. You don't happen to remember what happened to you, do you?<</speech>>\
-    <<tone "neg">>$npcs.barden.formal almost seems...afraid?<</tone>>
+    <<tone "neg">>$npcs.barden.name.formal almost seems...afraid?<</tone>>
 
     <<speech "plr">>I remember...<</speech>>\
 
@@ -315,24 +315,24 @@
     <<speech "plr">><<print $plrSpkChoice>><</speech>>
 
     <<speech "barden">>Well, sometimes it is better to leave one's past in the past.<</speech>>\
-    <<tone "pos">>$npcs.barden.formal looks visibly relieved before moving on<</tone>>
+    <<tone "pos">>$npcs.barden.name.formal looks visibly relieved before moving on<</tone>>
 
-    <<speech "barden">>The safety and excellence of this institution is my responsibility and I care for it deeply. I expect you to learn how to live in our world. Quickly. To help you acclimate and to make sure you don't get yourself or anyone else hurt, $npcs.janessa.formal will be your Secutor. She will familiarize you with this institution, our rules, and how to survive on this side of reality.<</speech>>\
+    <<speech "barden">>The safety and excellence of this institution is my responsibility and I care for it deeply. I expect you to learn how to live in our world. Quickly. To help you acclimate and to make sure you don't get yourself or anyone else hurt, $npcs.janessa.name.formal will be your Secutor. She will familiarize you with this institution, our rules, and how to survive on this side of reality.<</speech>>\
 
-    $npcs.barden.formal looks at $npcs.janessa.firstName but says to you:
+    $npcs.barden.name.formal looks at $npcs.janessa.name.firstName but says to you:
 
     <<speech "barden">>You will be staying her family residence until other arrangements can be made.<</speech>>\
-    <<tone "neg">>$npcs.barden.formal appears regretful<</tone>>
+    <<tone "neg">>$npcs.barden.name.formal appears regretful<</tone>>
 
-    $npcs.janessa.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn't like, it's the invasion of her private space you represent.
+    $npcs.janessa.name.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn't like, it's the invasion of her private space you represent.
 
-    <<speech "barden">>Something to keep in mind $plrName.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.<</speech>>\
+    <<speech "barden">>Something to keep in mind $plrName.name.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.<</speech>>\
 
     <<speech "barden">>I do not know your life's background nor whether you were considered a moral person, but just know that becoming violent with anyone, or almost anything, in our world will probably earn you a death sentence given your current level of comprehension and ability. If I were you, I would behave myself, get to know as many people as possible, and embrace the knowledge available to you at my university.<</speech>>\
 
-    <<speech "barden">>Our world is one built on reputations, connections, and ability. Neglect any of these core concepts at your own peril. And never forget, you are being watched. Be very careful with your choices. Good luck, $plrName.formal.<</speech>>\
+    <<speech "barden">>Our world is one built on reputations, connections, and ability. Neglect any of these core concepts at your own peril. And never forget, you are being watched. Be very careful with your choices. Good luck, $plr.name.formal.<</speech>>\
 
-    Before you can reply in any way, $npcs.barden.formal stands up and walks towards the back of his study without a parting glance.
+    Before you can reply in any way, $npcs.barden.name.formal stands up and walks towards the back of his study without a parting glance.
 
     <<speech "janessa">>Let's go.<</speech>>\
 
@@ -341,11 +341,11 @@
 :: WakingUp8
     <img class="scene" src="img/street.jpg"/>\
 
-    $npcs.janessa.firstName leads you out of the headmaster's study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
+    $npcs.janessa.name.firstName leads you out of the headmaster's study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
     
-    $npcs.janessa.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
+    $npcs.janessa.name.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
 
-    After walking for several minutes, $npcs.janessa.firstName stops at one of the houses. It looks like it is at least three stories high with a large arched front door. A large rusted wrought iron fence complete with spikes and small iron thorns surrounds the entire front of the home along with a large iron gate adorned with swirls, vines, and what you could only describe as strange glyphs or symbols. 
+    After walking for several minutes, $npcs.janessa.name.firstName stops at one of the houses. It looks like it is at least three stories high with a large arched front door. A large rusted wrought iron fence complete with spikes and small iron thorns surrounds the entire front of the home along with a large iron gate adorned with swirls, vines, and what you could only describe as strange glyphs or symbols. 
     
     The outside of the residence is...a bit rundown. The front has obviously not seen a gardner's touch in many years. Piles of leaves and debris are scattered everywhere. The vines that climb over the iron fence also appear to be actively trying to strangle the side of the house.
 
@@ -356,9 +356,9 @@
 
     <<speech "janessa">>This is my residence. It's been in my family for many generations. I'll give you a short tour and then we are done for the night. Classes will start Monday morning.<</speech>>\
 
-    $npcs.janessa.firstName whispers something to the front gate and it swings open.
+    $npcs.janessa.name.firstName whispers something to the front gate and it swings open.
 
-    $npcs.janessa.firstName walks upto the front door and repeats the process, touching the door and whispering to it. The door creaks open, revealing a massive entrance hall. While still standing outside, you look up towards the roof. The height of the residence is nowwhere near tall enough to fit the height of the ceiling you see inside of the residence.
+    $npcs.janessa.name.firstName walks upto the front door and repeats the process, touching the door and whispering to it. The door creaks open, revealing a massive entrance hall. While still standing outside, you look up towards the roof. The height of the residence is nowwhere near tall enough to fit the height of the ceiling you see inside of the residence.
 
     <<speech "janessa">>It is a form of spatial magic. This residence was one of the last at Magna to have had the spells cast. So yes, it is larger on the inside than on the outside.<</speech>>\
 
@@ -388,9 +388,9 @@
     <<printRelGain>>\
 
     <<if $relAmtTemp < 0>>
-        <<speech janessa>>Get grip. Being pathetic or weak will not help you. And seriously, I don't care. Go talk to $npcs.amy.formal if you need to "talk" to someone. But leave me out of it.<</speech>>\
+        <<speech janessa>>Get a grip. Being pathetic or weak will not help you. And seriously, I don't care. Go talk to $npcs.amy.name.formal if you need to "talk" to someone. But leave me out of it.<</speech>>\
     <<else>>
-        <<speech janessa>>I'm sorry you are too. But thanks for seeing that. Just don't use me as your emotional outlet, find someone else, please.<</speech>>\
+        <<speech janessa>>I'm sorry you are too. But thanks for seeing that. Just don't use me as your emotional outlet, find someone else. Please.<</speech>>\
     <</if>>\
 
     <<speech janessa>>Try to keep this in mind, whether it seems like it or not you've been given a gift. Either you'll figure that out or you won't. I mean, do you know how often an unitiated is made aware of the arcane, let alone gets to embrace it? Ya, never. The possibilities that are now open to you are nearly limitless. Seriously, you now have the chance to shoot lightning from your fingertips. Hell, if you decided to forsake our laws you could even commune with the dead, or make yourself as close to immortal as natural law allows. You can shield yourself from harm, use the power of the stars to foresee events, and throw balls of searing plasma at... well at whatever you want. I know you don't know it yet, but the things you are capable of now dwarf anything you could have possibly done before tonight.<</speech>>\
@@ -404,7 +404,7 @@
     <<speech janessa>>So to sum up, training your body and practicing magic will both improve your <span class='emphasis cyan'><em>Stamina</em></span>. Eating and sleeping will also help you replenish it. I can't tell you how many times I was up late casting with friends and needed to raid the cafeteria for a a huge meal.<</speech>>\
 
     <<button [[Keep listening | WakingUp11]]>>
-        <<set $plrStats.stamina.max = 10>>
+        <<set $plr.stats.stamina.max = 10>>
         <<setStamina 6>>
     <</button>>
 
@@ -415,52 +415,50 @@
 
     You see that it hasn't been used a very long time. Dust covers everything, the pot rack is empty, and the shelves are bare. Even the floating candles seem to be dying, shedding only a small amount of light on the room.
 
-    <<speech janessa>>But anyways, next lesson. You will need to be aware of injuries, most refer to this as <span class='emphasis crimson'><em>Lifeforce</em></span>. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you're gonna get hurt. You can only take so many injuries before you lose the ability to survive. <span class='emphasis crimson'><em>Lifeforce</em></span> is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.formal at the Clinic. If you're unlucky, well don't be suprised if there are some lasting consequences, if you even survive. To regain your <span class='emphasis crimson'><em>Lifeforce</em></span>, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.<</speech>>\
+    <<speech janessa>>But anyways, next lesson. You will need to be aware of injuries, most refer to this as <span class='emphasis crimson'><em>Lifeforce</em></span>. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you're gonna get hurt. You can only take so many injuries before you lose the ability to survive. <span class='emphasis crimson'><em>Lifeforce</em></span> is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.name.formal at the Clinic. If you're unlucky, well don't be suprised if there are some lasting consequences, if you even survive. To regain your <span class='emphasis crimson'><em>Lifeforce</em></span>, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.<</speech>>\
 
     <<button [[Keep listening | WakingUp12]]>>
-        <<set $plrStats.life.max = 10>>
+        <<set $plr.stats.life.max = 10>>
         <<setLife 10>>
-        <<run Life($plrStats.life.cur, $plrStats.life.max, "lifeBar", true)>>
     <</button>>\
 
 :: WakingUp12
     <img class="scene" src='img/plrroomdoor.jpg'/>\
 
-    You are led out of the kitchen and towards a short hallway with several closed doors. $npcs.janessa.firstName points towards one of them.
+    You are led out of the kitchen and towards a short hallway with several closed doors. $npcs.janessa.name.firstName points towards one of them.
 
     <<speech janessa>>This room is is mine. Do. Not. Ever. Try to enter my room without permission. You'll learn over the next few days that no still living practitioner tolerates trespassing or unsanctioned violence. I swear, I will turn you into poultry and donate you to the cafeteria cooks.<</speech>>\
-    <<tone neg>>$npcs.janessa.firstName is not smiling and appears quite serious about her threat<</tone>>
+    <<tone neg>>$npcs.janessa.name.firstName is not smiling and appears quite serious about her threat<</tone>>
 
-    $npcs.janessa.firstName walks further down the hallway as you follow her. She opens one of the doors.
+    $npcs.janessa.name.firstName walks further down the hallway as you follow her. She opens one of the doors.
 
     <<speech janessa>>This will be your room. I know it is not much. Actually, it really isn't anything. But if have the time or money, you can put whatever you want in it. A proper bed might be a good idea. Don't ask, I have nothing to spare.<</speech>>\
 
-    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast be newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this <span class='emphasis greenyellow'><em>Focus</em></span>. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='emphasis greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on your casting.<</speech>>\
+    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast by newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this <span class='emphasis greenyellow'><em>Focus</em></span>. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='emphasis greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.<</speech>>\
 
-    $npcs.janessa.firstName leads you into "your" room.
+    $npcs.janessa.name.firstName leads you into "your" room.
 
     <<button [[Follow | WakingUp13]]>>
-        <<set $plrStats.focus.max = 3>>
+        <<set $plr.stats.focus.max = 3>>
         <<setFocus 2>>
-        <<run FocusStat($plrStats.focus.cur, $plrStats.focus.max, "focusBar", true)>>
     <</button>>\
 
 :: WakingUp13
     <img class="scene" src='img/plrroom.jpg'>\
 
-    You follow $npcs.janessa.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it's hard to tell. The only light comes from the candles in the hallway.
+    You follow $npcs.janessa.name.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it's hard to tell. The only light comes from the candles in the hallway.
 
-    $npcs.janessa.firstName notices your concern.
+    $npcs.janessa.name.firstName notices your concern.
 
     <<speech janessa>>Ya, so you have some work to do. I recommend you tidy up and figure out how to make some money to at least get the bed and maybe a desk. Reading books on the floor seems like a great way to get a crink in your neck. But hey, it's your space for now. So you do you I guess.<</speech>>\
 
     <<speech janessa>>Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It's called <span class='emphasis purple'><em>Sanity</em></span>. Studying magic is confusing. Reading old, half-rotted tombs is agitating. Trying to cast spells you can't focus on is frustrating. All these things will slowly eat away at you <span class='emphasis purple'><em>Sanity</em></span>. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I've been in the room when some kid got his hands on a spell written on a napkin and left in the library. He tried to cast it in class...It cost him his life and several other students their own <span class='emphasis purple'><em>Sanity</em></span>.<</speech>>\
-    <<tone neg>>$npcs.janessa.firstName trails off and glances towards some dark corner in your room for a moment<</tone>>
+    <<tone neg>>$npcs.janessa.name.firstName trails off and glances towards some dark corner in your room for a moment<</tone>>
         
     <<speech janessa>>Think of it this way, if you try to cast something you simply don't understand, it may horribly backfire on you. You could have been trying to coax a plan into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.<</speech>>\
 
     <<button [[Keep listening | WakingUp14]]>>
-        <<set $plrStats.sanity.max = 3>>
+        <<set $plr.stats.sanity.max = 3>>
         <<setSanity 2>>
         <<set $plrRoom.cleanliness = -3>>
     <</button>>\
@@ -471,11 +469,11 @@
     <<speech janessa>>Now in regards Monday and your first week. Your schedule is now my schedule, which means I will be following you around for a few days. If it seems like you will survive on your own without causing any trouble. If you manage that, we aren't attached at the hip anymore and I can go back to my lessons. Keep in mind, I am losing valuable instruction time to stick around with you, so please try not to do anything stupid that might extend this unfortunate arrangement.<</speech>>\
 
     <<speech janessa>>The courses you will be taking are all basic 101 level courses, meaning there will be a lot of children. This should actually be motivating for you, children will be more educated and competent than you are now.<</speech>>\
-    <<tone pos>>This is the first time you see $npcs.janessa.firstName smile and give a short chuckle<</tone>>
+    <<tone pos>>This is the first time you see $npcs.janessa.name.firstName smile and give a short chuckle<</tone>>
 
     <<speech janessa>>I will explain your courses tomorrow, but for now I'm going to bed.<</speech>>\
 
-    With that, $npcs.janessa.firstName turns around and walks out, leaving you alone in your decrepit room.
+    With that, $npcs.janessa.name.firstName turns around and walks out, leaving you alone in your decrepit room.
 
     <<button [[Look around | Residence_Starr_PlayerRoom]]>>
     <</button>>

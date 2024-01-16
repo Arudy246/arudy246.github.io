@@ -32,12 +32,20 @@ window.Stamina = function (CurST, MaxST, BarID, Horizontal, Container) {
 	}
 
     var lit = 50 * ((CurST / MaxST) * 1.2);
-    var col = "hsl(180, 100%, " + lit + "%)"
+    var col = "hsl(180, 100%, " + lit + "%)";
 	BarElement.css("background-color", col);
 
+	if (CurST % 1 != 0) {
+		CurST = CurST.toFixed(2);
+	}
+
+	if (MaxST % 1 != 0) {
+		MaxST = MaxST.toFixed(2);
+	}
+
 	BarElement.attr("title", CurST + "/" + MaxST + " Stamina");
-    $(Container).find("#ui-stamina").text(CurST + "/" + MaxST)
-	$(Container).find("#" + BarID + "bkg").attr("title", CurST + "/" + MaxST + " ST");
+    $(Container).find("#ui-stamina").text(CurST + "/" + MaxST);
+	$(Container).find("#" + BarID + "bkg").attr("title", CurST + "/" + MaxST + " Stamina");
 };
 
 window.Life = function (CurHP, MaxHP, BarID, Horizontal, Container) {
@@ -55,6 +63,14 @@ window.Life = function (CurHP, MaxHP, BarID, Horizontal, Container) {
     var lit = 47 * ((CurHP / MaxHP) * 1.2);
     var col = "hsl(348, 83%, " + lit + "%)";
 	BarElement.css("background-color", col);
+
+	if (CurHP % 1 != 0) {
+		CurHP = CurHP.toFixed(2);
+	}
+
+	if (MaxHP % 1 != 0) {
+		MaxHP = MaxHP.toFixed(2);
+	}
 
 	BarElement.attr("title", CurHP + "/" + MaxHP + " Lifeforce");
     $(Container).find("#ui-life").text(CurHP + "/" + MaxHP);
@@ -77,6 +93,14 @@ window.Sanity = function (CurSan, MaxSan, BarID, Horizontal, Container) {
     var col = "hsl(260, 60%, " + lit + "%)";
 	BarElement.css("background-color", col);
 
+	if (CurSan % 1 != 0) {
+		CurSan = CurSan.toFixed(2);
+	}
+
+	if (MaxSan % 1 != 0) {
+		MaxSan = MaxSan.toFixed(2);
+	}
+
 	BarElement.attr("title", CurSan + "/" + MaxSan + " Sanity");
     $(Container).find("#ui-sanity").text(CurSan + "/" + MaxSan);
 	$(Container).find("#" + BarID + "bkg").attr("title", CurSan + "/" + MaxSan + " Sanity");
@@ -98,6 +122,14 @@ window.FocusStat = function (CurCon, MaxCon, BarID, Horizontal, Container) {
     var col = "hsl(84, 100%, " + lit + "%)";
 	BarElement.css("background-color", col);
 
+	if (CurCon % 1 != 0) {
+		CurCon = CurCon.toFixed(2);
+	}
+
+	if (MaxCon % 1 != 0) {
+		MaxCon = MaxCon.toFixed(2);
+	}
+
 	BarElement.attr("title", CurCon + "/" + MaxCon + " Focus");
     $(Container).find("#ui-focus").text(CurCon + "/" + MaxCon);
 	$(Container).find("#" + BarID + "bkg").attr("title", CurCon + "/" + MaxCon + " Focus");
@@ -113,8 +145,8 @@ window.FocusStat = function (CurCon, MaxCon, BarID, Horizontal, Container) {
         tags : null,
         handler : function () {
             if (this.args[0] == "plr"){
-                var id = this.args[0], name = State.getVar("$plrName.fName");     
-                var img = State.getVar("$plrImg");
+                var id = this.args[0], name = State.getVar("$plr.name.firstName");     
+                var img = State.getVar("$plr.img");
                 
                 var output = '<div class="speech ' + id + '">';
                 output += '<span class="avatar" style=\x27background-image: url(\x22' + img + '\x22)\x27></span>';
