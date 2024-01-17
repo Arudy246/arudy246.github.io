@@ -1,18 +1,270 @@
-:: Spells
-
+:: Spell_Words_Modal
+    <div id='spell-result' class='green'></div>\
+    <h3>Choose your target</h3>\
     <<nobr>>
-        <<if $spellDetails.illusion.floatingflame.unlocked == true>>
-            <<hovertip $spellDetails.illusion.floatingflame.description>>
-                <<link "Floating Flame">>
-                    <<set $plrRoom.lights.none = false>>
-                    <<set $plrRoom.lights.trash = true>>
-                    <<set $plrDisciplines.illusion.level += 1>>
-                    <<run
-                        Dialog.setup("Spell Cast");
-                        Dialog.append("You just case the Floating Flame spell.");
-                        Dialog.open();
-                    >>
-                <</link>>
+        <div class='spell-word-grid'>
+            <<if $spellWords.target.self.unlocked == true>>
+                <<hovertip $spellWords.target.self.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.target.self.latin>>
+                            <<set _target = 'self'>>
+                            <<run $spellWords.target[_target].onCast()>>
+                            <<replace '#targetBox'>>$spellWords.target.self.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.target.other.unlocked == true>>
+                <<hovertip $spellWords.target.other.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.target.other.latin>>
+                            <<set _target = 'other'>>
+                            <<run $spellWords.target[_target].onCast()>>
+                            <<replace '#targetBox'>>$spellWords.target.other.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.target.room.unlocked == true>>
+                <<hovertip $spellWords.target.room.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.target.room.latin>>
+                            <<set _target = 'room'>>
+                            <<if tags().includes('playerHome')>>
+                                <<set $spellCastVar.passageTag = 'playerHome'>>
+                            <<elseif tags().includes('room')>>
+                                <<set $spellCastVar.passageTag = 'room'>>
+                            <</if>>
+                            <<run $spellWords.target[_target].onCast()>>
+                            <<replace '#targetBox'>>$spellWords.target.room.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.target.outdoors.unlocked == true>>
+                <<hovertip $spellWords.target.outdoors.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.target.outdoors.latin>>
+                            <<set _target = 'outdoors'>>
+                            <<run $spellWords.target[_target].onCast()>>
+                            <<replace '#targetBox'>>$spellWords.target.outdoors.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.target.item.unlocked == true>>
+                <<hovertip $spellWords.target.item.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.target.item.latin>>
+                            <<set _target = 'item'>>
+                            <<run $spellWords.target[_target].onCast()>>
+                            <<replace '#targetBox'>>$spellWords.target.item.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+        </div>
+    <</nobr>>\
+    <hr>
+    <h3>Choose an effect</h3>\
+    <<nobr>>
+        <div class='spell-word-grid'>
+            <<if $spellWords.effect.damage.unlocked == true>>
+                <<hovertip $spellWords.effect.damage.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.effect.damage.latin>>
+                            <<set _effect = 'damage'>>
+                            <<replace '#effectBox'>>$spellWords.effect.damage.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.effect.heal.unlocked == true>>
+                <<hovertip $spellWords.effect.heal.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.effect.heal.latin>>
+                            <<set _effect = 'heal'>>
+                            <<replace '#effectBox'>>$spellWords.effect.heal.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.effect.calm.unlocked == true>>
+                <<hovertip $spellWords.effect.calm.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.effect.calm.latin>>
+                            <<set _effect = 'calm'>>
+                            <<replace '#effectBox'>>$spellWords.effect.calm.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.effect.light.unlocked == true>>
+                <<hovertip $spellWords.effect.light.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.effect.light.latin>>
+                            <<set _effect = 'light'>>
+                            <<replace '#effectBox'>>$spellWords.effect.light.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+        </div>
+    <</nobr>>\
+    <hr>
+    <h3>Choose a duration</h3>\
+    <<nobr>>
+        <div class='spell-word-grid'>
+            <<if $spellWords.duration.immediate.unlocked == true>>
+                <<hovertip $spellWords.duration.immediate.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.duration.immediate.latin>>
+                            <<set _duration = 'immediate'>>
+                            <<run $spellWords.duration[_duration].onCast()>>
+                            <<replace '#durationBox'>>$spellWords.duration.immediate.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.duration.minute.unlocked == true>>
+                <<hovertip $spellWords.duration.minute.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.duration.minute.latin>>
+                            <<set _duration = 'minute'>>
+                            <<run $spellWords.duration[_duration].onCast()>>
+                            <<replace '#durationBox'>>$spellWords.duration.minute.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.duration.hour.unlocked == true>>
+                <<hovertip $spellWords.duration.hour.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.duration.hour.latin>>
+                            <<set _duration = 'hour'>>
+                            <<run $spellWords.duration[_duration].onCast()>>
+                            <<replace '#durationBox'>>$spellWords.duration.hour.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.duration.day.unlocked == true>>
+                <<hovertip $spellWords.duration.day.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.duration.day.latin>>
+                            <<set _duration = 'day'>>
+                            <<run $spellWords.duration[_duration].onCast()>>
+                            <<replace '#durationBox'>>$spellWords.duration.day.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.duration.week.unlocked == true>>
+                <<hovertip $spellWords.duration.week.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.duration.week.latin>>
+                            <<set _duration = 'week'>>
+                            <<run $spellWords.duration[_duration].onCast()>>
+                            <<replace '#durationBox'>>$spellWords.duration.week.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.duration.month.unlocked == true>>
+                <<hovertip $spellWords.duration.month.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.duration.month.latin>>
+                            <<set _duration = 'month'>>
+                            <<run $spellWords.duration[_duration].onCast()>>
+                            <<replace '#durationBox'>>$spellWords.duration.month.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+        </div>
+    <</nobr>>\
+    <hr>
+    <h3>Enhance the spell?</h3>\
+    <<nobr>>
+        <div class='spell-word-grid'>
+            <<hovertip $spellWords.enhancement.none.description>>
+                <div class='spell-word-grid-item'>
+                    <<button $spellWords.enhancement.none.latin>>
+                        <<set _enhancement = 'none'>>
+                        <<run $spellWords.enhancement[_enhancement].onCast()>>
+                        <<replace '#enhancementBox'>>$spellWords.enhancement.none.latin<</replace>>
+                    <</button>>
+                </div>
             <</hovertip>>
-        <</if>>
+            <<if $spellWords.enhancement.enhance1.unlocked == true>>
+                <<hovertip $spellWords.enhancement.enhance1.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.enhancement.enhance1.latin>>
+                            <<set _enhancement = 'enhance1'>>
+                            <<run $spellWords.enhancement[_enhancement].onCast()>>
+                            <<replace '#enhancementBox'>>$spellWords.enhancement.enhance1.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.enhancement.enhance2.unlocked == true>>
+                <<hovertip $spellWords.enhancement.enhance2.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.enhancement.enhance2.latin>>
+                            <<set _enhancement = 'enhance2'>>
+                            <<run $spellWords.enhancement[_enhancement].onCast()>>
+                            <<replace '#enhancementBox'>>$spellWords.enhancement.enhance2.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.enhancement.enhance3.unlocked == true>>
+                <<hovertip $spellWords.enhancement.enhance3.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.enhancement.enhance3.latin>>
+                            <<set _enhancement = 'enhance3'>>
+                            <<run $spellWords.enhancement[_enhancement].onCast()>>
+                            <<replace '#enhancementBox'>>$spellWords.enhancement.enhance3.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.enhancement.enhance4.unlocked == true>>
+                <<hovertip $spellWords.enhancement.enhance4.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.enhancement.enhance4.latin>>
+                            <<set _enhancement = 'enhance4'>>
+                            <<run $spellWords.enhancement[_enhancement].onCast()>>
+                            <<replace '#enhancementBox'>>$spellWords.enhancement.enhance4.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+            <<if $spellWords.enhancement.enhance5.unlocked == true>>
+                <<hovertip $spellWords.enhancement.enhance5.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button $spellWords.enhancement.enhance5.latin>>
+                            <<set _enhancement = 'enhance5'>>
+                            <<run $spellWords.enhancement[_enhancement].onCast()>>
+                            <<replace '#enhancementBox'>>$spellWords.enhancement.enhance5.latin<</replace>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+        </div>
+    <</nobr>>\
+    <hr>
+    <h4>The Words, as they appear in your mind</h4>\
+    <<nobr>>
+        <div id='spell-box'>
+            <span id='targetBox'></span>
+            <span id='effectBox'></span>
+            <span id='durationBox'></span>
+            <span id='enhancementBox'></span>
+        </div>
     <</nobr>>
+    <div class='text-center'>
+        <<button 'Speak the Words'>>
+            <<castSpell _target _duration _effect _enhancement>>
+        <</button>>
+    </div>

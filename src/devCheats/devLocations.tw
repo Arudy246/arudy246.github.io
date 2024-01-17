@@ -1,9 +1,9 @@
 :: DevWand
-    <<button [[Quick Start | Testing_Spells]]>>
-        <<set $plr.name.fName = "Azure">>
-        <<set $plr.name.lName = "Paine">>
+    <<button [[Quick Start | Residence_Starr_PlayerRoom]]>>
+        <<set $plr.name.firstName = "Azure">>
+        <<set $plr.name.lastName = "Paine">>
         <<set $plr.name.prefix = "Mr.">>
-        <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lName>>
+        <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
         <<set $plr.body.static.sex = "male">>
         <<set $plr.body.static.hairColor = "blue">>
         <<set $plr.body.static.hairStyle = "mohawk">>
@@ -25,6 +25,7 @@
         <<set $plr.img = "img/characters/thumb_male_bro_white.jpg">>
 
         <<set $unlockVar.userInterface.inventory = true>>
+        <<set $unlockVar.userInterface.spells = true>>
 
         <<pickup $plrinvbooks "mapSchool" 1>>
         <<pickup $plrinvbooks "mapTown" 1>>
@@ -46,6 +47,34 @@
             <<set $spellWords.enhancement[_i].unlocked = true>>
             <<run _i + 1>>
         <</for>>
+
+        <<run Dialog.close()>>
+    <</button>>
+
+    <<button [[Realish Start | Residence_Starr_PlayerRoom]]>>
+        <<set $plr.name.firstName = "Azure">>
+        <<set $plr.name.lastName = "Paine">>
+        <<set $plr.name.prefix = "Mr.">>
+        <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
+        <<set $plr.body.static.sex = "male">>
+        <<set $plr.body.static.hairColor = "blue">>
+        <<set $plr.body.static.hairStyle = "mohawk">>
+        <<set $plr.body.static.eyeColor = "amber">>
+        <<set $plr.body.static.faceShape = "square">>
+        <<set $plr.body.static.height = "tall">>
+        <<set $plr.body.dynamic.hairLength = 1>>
+        <<set $plr.body.dynamic.weight = 35>>
+        <<calcAttractiveness>>
+
+        <<set $plr.stats.stamina.max = 10>>
+        <<set $plr.stats.stamina.cur = 6>>
+        <<set $plr.stats.life.max = 10>>
+        <<set $plr.stats.life.cur = 10>>
+        <<set $plr.stats.sanity.max = 3>>
+        <<set $plr.stats.sanity.cur = 2>>
+        <<set $plr.stats.focus.max = 4>>
+        <<set $plr.stats.focus.cur = 3>>
+        <<set $plr.img = "img/characters/thumb_male_bro_white.jpg">>
 
         <<run Dialog.close()>>
     <</button>>

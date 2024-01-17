@@ -34,12 +34,12 @@
             $bookMisc.mapTown.description You have read $bookMisc.mapTown.pagesRead out of $bookMisc.mapTown.pagesTotal chapters.
     <</consumable>>
 
-    <<consumable "illusion1" "Illusion: A Child's Primer">>
+    <<consumable "spellsBasic" "Basic Spellwork: A Child's Primer">>
         <<nobr>>
-            <<readBook spellbook illusion1>>
+            <<readBook spellbook spellsBasic>>
         <</nobr>>
         <<description>>\
-            $bookSpell.illusion1.description You have read $bookSpell.illusion1.pagesRead out of $bookSpell.illusion1.pagesTotal chapters.
+            $bookSpell.spellsBasic.description You have read $bookSpell.spellsBasic.pagesRead out of $bookSpell.spellsBasic.pagesTotal chapters.
     <</consumable>>
 
     /* Item Detail and Unlock Arrays */
@@ -84,19 +84,33 @@
     }>>
 
     <<set $bookSpell = {
-        illusion1: {
-            title: "Illusion: A Child's Primer",
-            school: "illusion",
-            description: "An introduction to the Illusion discipline for the young practitioner.",
+        spellsBasic: {
+            title: "Basic Spellwork: A Child's Primer",
+            description: "An introduction to basic spellwork for the child-aged practitioner.",
+            costMult: 0.4,
             pagesRead: 0,
-            pagesTotal: 20,
+            pagesTotal: 4,
             pageUnlocks: {
-                1: "floatingflame",
-                2: "",
-                3: "",
-                9: "",
-                13: "",
-                20: ""
+                1: function() {
+                        state.setVar('$spellWords.target.self.unlocked', true);
+                        let x = state.getVar('$spellWords.target.self');
+                        return x
+                    },
+                2: function() {
+                        state.setVar('$spellWords.target.room.unlocked', true);
+                        let x = state.getVar('$spellWords.target.room');
+                        return x
+                    },
+                3: function() {
+                        state.setVar('$spellWords.effect.light.unlocked', true);
+                        let x = state.getVar('$spellWords.effect.light');
+                        return x
+                    },
+                4: function() {
+                        state.setVar('$spellWords.duration.immediate.unlocked', true);
+                        let x = state.getVar('$spellWords.duration.immediate');
+                        return x
+                    }
             }
         }
     }>>

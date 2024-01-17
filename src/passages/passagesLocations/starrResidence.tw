@@ -8,7 +8,7 @@
 
 :: Residence_Starr_JanessaRoom[room]
 
-:: Residence_Starr_PlayerRoom[room, playerHome, upgrades]
+:: Residence_Starr_PlayerRoom[room playerHome]
     <img class="scene" src='img/plrroom.jpg'>\
 
     <<speech plr>>
@@ -64,7 +64,7 @@
                 <<speech plr>>There is a little more clutter to look through.<</speech>>
 
             <<elseif $plrRoom.booksFound == 2>>
-                <<searchForItem $plrRoom booksFound 3 "spellbook" "illusion1">>
+                <<searchForItem $plrRoom booksFound 3 "spellbook" "spellsBasic">>
                 <<speech plr>>There's nothing more to find here.<</speech>>
 
             <<else>>

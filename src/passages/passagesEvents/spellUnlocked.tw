@@ -1,14 +1,17 @@
 :: Event_Unlock_Spell
-    <<if lastVisited("Event_Unlock_Spell") < 2>>
+    <<if visited() < 2>>
         <div class="achievebg">
             <h1 class='achieve text-center'>Huge Advancement!</h1>
         </div>
-        <<speech plr>>I think I just learned my first spell!!!<</speech>>
-        <<speech plr>>It came from the tome <i>$eventVar.spell.book</i> and has taught me the <i>$eventVar.spell.name</i> spell!<</speech>>\
+        <<speech plr>>I think I just learned my first Word!!! It came from the tome <i>$eventVar.spell.book</i> and has taught me the Word, <i>$eventVar.spell.name</i>!<</speech>>
+        <<speech plr>> The book described <i>$eventVar.spell.name</i> as <i>"$eventVar.spell.description"</i><</speech>>
+        <<speech plr>>Much of what I read has to do with what $npcs.janessa.name.firstName told me about <span class='emphasis cyan'><em>Stamina</em></span>. It also talked about how different Words have differing levels of difficulty and energy cost. Using Words of increasing difficulty helps me learn faster, but also drains my energy very quickly. While at the same time allowing me to strengthen myself, allowing me to cast spells much more efficiently in the future.<</speech>>
+        <<speech plr>>The book also described the basic syntax for every castable spell. And the dire consequences of not following its guidence... something about tears in space and time coupled with temporal paradoxes, demon incursions, etc. Anyways, I need at least four words for each, which I interpreted as a target, an effect, a duration, and an enhancement.<</speech>>
+        <<speech plr>>After finishing <i>$eventVar.spell.book</i>, I should try to cast my first spell!<</speech>>\
 
-        <<elseif hasVisited("Event_Unlock_Spell")>>
-            <<speech plr>>I learned the <i>$eventVar.spell.name</i> spell from the tome, <i>$eventVar.spell.book</i>!<</speech>>\
+        <<elseif hasVisited('Event_Unlock_Spell')>>
+            <<speech plr>>I learned the Word <i>$eventVar.spell.name</i> from the tome, <i>$eventVar.spell.book</i>!<</speech>>
+            <<speech plr>>The book describes <i>$eventVar.spell.name</i> as <i>"$eventVar.spell.description"</i><</speech>>
     <</if>>\
-
     <<button [[Continue | previous()]]>>
     <</button>>

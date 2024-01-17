@@ -1,0 +1,7 @@
+:: Spell_Success
+    <<speech plr>>I cast my room-wide spell successfully!<</speech>>\
+
+    <<button [[Continue | previous()]]>>
+    <</button>>
+
+:: Spell-Failure

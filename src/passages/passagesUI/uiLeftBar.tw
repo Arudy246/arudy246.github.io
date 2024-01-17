@@ -24,7 +24,6 @@
                 Dialog.open();
             >>
         <</link>>
-        [[!Dev Spell Testing | Testing_Spells]]
     <</if>>
 
     <<if $unlockVar.userInterface.stats == true>>

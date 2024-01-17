@@ -211,39 +211,42 @@
 
                     <<if $unlockVar.events.firstSpellLearned == false>>
                         <<set $unlockVar.events.firstSpellLearned = true>>
-                        <<goto "Event_Unlock_Spell">>
                     <</if>>
 
+
                     <<set _address = $bookSpell[_args[1]]>>
-                    <<if _address.pagesRead != _address.pagesTotal>>
+                    <<if _address.pagesRead != _address.pagesTotal && $plr.stats.sanity.cur >= _address.costMult>>
+                        <<set $plr.stats.sanity.cur -= _address.costMult>>
+                        <<goto "Event_Unlock_Spell">>
+
                         <<set _address.pagesRead += 1>>
 
                         <<pickup $plrinvbooks _args[1] 1>>
-                        <<calcTime 30 30>>
-                        <<set _school = _address.school >>
+
+                        <<calcTime 60 30>>
+
                         <<set _unlocknum = _address.pagesRead>>
-                        <<set _unlockname = _address.pageUnlocks[_unlocknum]>>
-                        <<set _unlockmessage ="how to cast the " + $spellDetails[_school][_unlockname].name + " spell!">>
+                        <<set _unlockFunc = _address.pageUnlocks[_unlocknum]()>>
+                        <<set _unlockmessage ="how to use the " + _unlockFunc.latin  + " spell word!">>
 
-                        <<set $eventVar.spell.name = $spellDetails[_school][_unlockname].name>>
+                        <<set $eventVar.spell.name = _unlockFunc.latin>>
                         <<set $eventVar.spell.book = _address.title>>
+                        <<set $eventVar.spell.description = _unlockFunc.description>>
 
-                        <<if _unlockname == undefined>>
-                            <<set _unlockmessage = "nothing, but there is more in this to study.">>
-                        <</if>>
-
-                        <<run
+                        /* <<run
                             Dialog.setup("Spell Tome Studied");
                             Dialog.wiki("After reading chapter " + _unlocknum + "/" + _address.pagesTotal + " of " + "'" + _address.title + "'" + " you learned " + _unlockmessage);
                             Dialog.open();
-                        >>
-                        <<if _unlocknum != "">>
-                            <<set $spellDetails.illusion[_unlockname].unlocked = true>>
-                        <</if>>
-                    <<else>>
+                        >> */
+                        <<run Dialog.close()>>
+                        <<run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, "sanityBar", true)>>
 
-                        <<drop $plrinvbooks _args[1] 1>>
-                        <<run UI.alert("You have already gleamed all you can from this tome.")>>
+                    <<elseif _address.pagesRead == _address.pagesTotal>>
+                        <<run UI.alert("I have already learned all I can from this tome.")>>
+
+                    <<elseif $plr.stats.sanity.cur < _address.costMult>>
+                        <<run UI.alert('I feel my mental stability waning, I can\'t possibly read anything else right now.')>>
+
                     <</if>>
 
                 <<case "recipebook">>
@@ -576,9 +579,69 @@
         <</widget>>
     <</nobr>>
 
-    /* castSpell */
-    <<nobr>>
-        <<widget "castSpell">>
+ /* castSpell 'target' & 'duration' &'effect' &| 'enhancement' */
+    <<widget 'castSpell'>>
+        <<if _args[0] && _args[1] && _args[2] && _args[3]>>
+            <<set _target = _args[0]>>
+            <<set _duration = _args[1]>>
+            <<set _effect = _args[2]>>
+            <<set _enhancement = _args[3]>>
+            <<set $spellCastVar.spellDiscipline = $spellWords.effect[_effect].discipline>>
+            <<set $spellCastVar.spellCost = 
+                $spellWords.target[_target].costMult *
+                ($spellWords.effect[_effect].costMult - ($plr.disciplines[$spellCastVar.spellDiscipline].level * 0.1)) *
+                $spellWords.duration[_duration].costMult *
+                $spellWords.enhancement[_enhancement].costMult
+            >>
 
-        <</widget>>
-    <</nobr>>
+            <<if $spellCastVar.spellCost <= $plr.stats.stamina.cur && $spellCastVar.spellCost <= $plr.stats.focus.cur>>
+                <<if _target == 'self' || _target == 'other'>>
+                    <<run $spellWords.effect[_effect].onCast()>>
+                    <<if $spellCastVar.badCombo != ''>>
+                        <<run console.log('badCombo')>>
+                    <</if>>
+
+                <</if>>
+
+                <<set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2>>
+                <<set $plr.stats.stamina.cur -= $spellCastVar.spellCost>>
+
+                <<removeclass '#spell-result'>>
+                <<addclass '#spell-result' 'green'>>
+                <<replace '#spell-result'>>I successfully cast my spell!<</replace>>
+
+                <<if _target == 'room' && tags().includes('room')>>
+                    <<run $spellWords.effect[_effect].onCast()>>
+                    <<goto 'Spell_Success'>>
+                    <<run Dialog.close()>>
+                    
+                <</if>>
+                
+            <<elseif $spellCastVar.spellCost > $plr.stats.stamina.cur>>
+                <<removeclass '#spell-result'>>
+                <<addclass '#spell-result' 'red'>>
+                <<replace '#spell-result'>>I am too tired to cast the spell I want to.<</replace>>
+
+            <<elseif $spellCastVar.spellCost > $plr.stats.focus.cur>>
+                <<removeclass '#spell-result'>>
+                <<addclass '#spell-result' 'red'>>
+                <<replace '#spell-result'>>I do not have the mental focus required to cast a spell of this power.<</replace>>
+
+            <<elseif $spellCastVar.badCombo != ''>>
+                <<removeclass '#spell-result'>>
+                <<addclass '#spell-result' 'orange'>>
+                <<replace '#spell-result'>>$spellCastVar.badCombo<</replace>>
+
+            <</if>>
+
+            <<run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, "staminaBar", true)>>
+            <<run Life($plr.stats.life.cur, $plr.stats.life.max, "lifeBar", true)>>
+            <<run FocusStat($plr.stats.focus.cur, $plr.stats.focus.max, "focusBar", true)>>
+            <<run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, "sanityBar", true)>>
+
+        <<else>>
+            <<removeclass '#spell-result'>>
+            <<addclass '#spell-result' 'purple'>>
+            <<replace '#spell-result'>>Half-baked spells are guaranteed to go spectacularly wrong... I should complete my choice of Words.<</replace>>
+        <</if>>
+    <</widget>>

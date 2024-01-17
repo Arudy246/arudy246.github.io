@@ -434,13 +434,13 @@
 
     <<speech janessa>>This will be your room. I know it is not much. Actually, it really isn't anything. But if have the time or money, you can put whatever you want in it. A proper bed might be a good idea. Don't ask, I have nothing to spare.<</speech>>\
 
-    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only a few effects can be cast by newbies, but anything above a few words will be impossible to cast. Creatively enough, we call this <span class='emphasis greenyellow'><em>Focus</em></span>. The more you have, the more words you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='emphasis greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.<</speech>>\
+    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only basic effects can be cast by newbies, but anything above that or using more powerful words will be impossible to cast. Creatively enough, we call this <span class='emphasis greenyellow'><em>Focus</em></span>. The more you have, the more energy you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='emphasis greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.<</speech>>\
 
     $npcs.janessa.name.firstName leads you into "your" room.
 
     <<button [[Follow | WakingUp13]]>>
-        <<set $plr.stats.focus.max = 3>>
-        <<setFocus 2>>
+        <<set $plr.stats.focus.max = 4>>
+        <<setFocus 3>>
     <</button>>\
 
 :: WakingUp13

@@ -34,10 +34,10 @@
 <</nobr>>\
 <<nobr>>
     <<if $unlockVar.userInterface.spells == true>>
-        <<link "Spells">>
+        <<link "Spellwork">>
             <<run
-                Dialog.setup("Spells", "spellModal");
-                Dialog.wiki(Story.get("Spells").processText());
+                Dialog.setup('Form and Cast a Spell');
+                Dialog.wiki(Story.get("Spell_Words_Modal").processText());
                 Dialog.open();
             >>
         <</link>>

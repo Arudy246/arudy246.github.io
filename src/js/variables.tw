@@ -567,6 +567,17 @@
                 "I'm busy, what do you want?",
                 "Now what?"
             ]
+        },
+        stern: {
+            desc: "stern attitude",
+            placeholderA: 0,
+            placeholderB: 0,
+            greetings: [
+                "Hello.",
+                "Yes?",
+                "What can I do for you?",
+                "Hmm?"
+            ]
         }
     }>>
 
