@@ -1,12 +1,81 @@
-:: Residence_Starr_EntryHall[room]
+:: Residence_Starr_Courtyard[outdoors]
+    <img class='scene' src='img/residence_starr_courtyard.jpg'>\
 
-:: Residence_Starr_Kitchen[room]
+    <<speech plr>>It sure is imposing, if not in complete disrepair.<</speech>>
+    <<button[[Enter the Starr Residence | Residence_Starr_EntryHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
+    <<button [[University Main Road | University_MainRoad]]>>
+        <<calcTime 0 5>>
+    <</button>>
 
 :: Residence_Starr_BanquetHall[room]
+    <img class='scene' src='img/residence_starr_banquethall.jpg'>\
+
+    <<speech plr>>The banquet hall is impressive, or at least it would be, if someone had used a broom on it in the last century. Or two.<</speech>>
+    <<button [[Entry Hall | Residence_Starr_EntryHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
 
 :: Residence_Starr_Bathroom[room]
+    <img class='scene' src='img/residence_starr_bathroom.gif'>\
+
+    <<speech plr>>The bathroom is bright and suprisingly modern. But it looks completely unused.<</speech>>
+    <<button [[Bedroom Hallway | Residence_Starr_BedroomHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
+
+:: Residence_Starr_EntryHall[room]
+    <img class='scene' src='img/residence_starr_entryhall.jpg'>\
+
+    You are in the entryway of the residence.
+
+    <<button [[Kitchen | Residence_Starr_Kitchen]]>>
+        <<calcTime 0 5>>
+    <</button>>
+    <<button [[Banquet Room | Residence_Starr_BanquetHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
+    <<button [[Bedroom Hallway | Residence_Starr_BedroomHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
+    <<button [[Exit Residence | Residence_Starr_Courtyard]]>>
+        <<calcTime 0 5>>
+    <</button>>
+
+:: Residence_Starr_BedroomHall[room]
+    <img class='scene' src='img/residence_starr_hallway.jpg'>\
+
+    You are in the bedroom hallway.
+
+    <<button [[Your Room | Residence_Starr_PlayerRoom]]>>
+        <<calcTime 0 5>>
+    <</button>>
+    <<button [[Bathroom | Residence_Starr_Bathroom]]>>
+        <<calcTime 0 5>>
+    <</button>>
+    <<button [[Entry Hall | Residence_Starr_EntryHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
+    <<button [[Janessa's Room | Residence_Starr_JanessaRoom]]>>
+        <<calcTime 0 5>>
+    <</button>>
 
 :: Residence_Starr_JanessaRoom[room]
+    <img class='scene' src='img/residence_starr_janessaroom.jpg'>\
+
+    <<speech plr>>$npcs.janessa.name.firstName said to stay out. For now, I should do just that.<</speech>>
+    <<button [[Bedroom Hallway | Residence_Starr_BedroomHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
+
+:: Residence_Starr_Kitchen[room]
+    <img class='scene' src='img/residence_starr_kitchen.jpg'>\
+
+    <<speech plr>>She was right, this place hasn't been used in years.<</speech>>
+    <<button [[Entry Hall | Residence_Starr_EntryHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
 
 :: Residence_Starr_PlayerRoom[room playerHome]
     <img class="scene" src='img/plrroom.jpg'>\
@@ -18,7 +87,7 @@
     <<button [[Try to clean up a bit | Residence_Starr_PlayerRoom_Cleaning]]>>
         <<if $plrRoom.cleanliness <= 2>>
             <<set $plrRoom.cleanliness += 1>>
-            <<calcTime 30>>
+            <<calcTime 60 30>>
         <</if>>    
     <</button>>
     <<nobr>>
@@ -36,6 +105,14 @@
             <</button>>
         <</if>>
     <</nobr>>
+    <<button 'Rest'>>
+        <<set $plr.stats.stamina.cur += 2>>
+        <<run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, "staminaBar", true)>>
+    <</button>>
+    <<button [[Exit Room | Residence_Starr_BedroomHall]]>>
+        <<calcTime 0 5>>
+    <</button>>
+
 
 :: Residence_Starr_PlayerRoom_Cleaning[minorEvent]
     <img class="scene" src='img/plrroom.jpg'>\
@@ -47,7 +124,8 @@
         <<else>>
             <<speech plr>>It's as good as it can get for now.<</speech>>
         <</if>>
-    <</nobr>>\
+    <</nobr>>
+        <<speech plr>>It takes so much time cleaning by hand, I wonder if I could use a spell to make this easier on myself?<</speech>>\
 
     <<button [[Continue | Residence_Starr_PlayerRoom]]>><</button>>
 

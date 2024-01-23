@@ -20,16 +20,16 @@
     <</widget>>
 
     <<nobr>>
-    <<widget "printRelGain">>
-            <<if $relAmtTemp>>
-                <<if $relAmtTemp > 0 >>
-                    <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has improved!</span>'>>
-                <<else>>
-                    <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
+        <<widget "printRelGain">>
+                <<if $relAmtTemp>>
+                    <<if $relAmtTemp > 0 >>
+                        <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has improved!</span>'>>
+                    <<else>>
+                        <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
+                    <</if>>
+                    <<unset $relAmtTemp, $relNpcTemp>>
                 <</if>>
-                <<unset $relAmtTemp, $relNpcTemp>>
-            <</if>>
-    <</widget>>
+        <</widget>>
     <</nobr>>
 
     <<widget "calcAttractiveness">>
@@ -60,8 +60,10 @@
         <<widget "calcTime">>
                 <<if _args[1]>>
                     <<set $dateTime.min += _args[0] + random(_args[1])>>
+                    <<set _staminaLoss = (_args[0] + random(_args[1])) * 0.01>>
                 <<elseif _args[0]>>
                     <<set $dateTime.min += _args[0]>>
+                    <<set _staminaLoss = _args[0] * 0.01>>
                 <</if>>
                 <<if $dateTime.min >= 60>>
                     <<set $dateTime.hour += 1>>
@@ -151,7 +153,13 @@
                     <<else>>
                         <<print '<br>' + $dateTime.hour + ':' + $dateTime.min + '<br>'>>
                     <</if>>
+
                     <<print $dateTime.dayName + ' ' + $dateTime.monthName + ' ' + $dateTime.date + ', ' + $dateTime.year + '<br>'>>
+                    <<if _staminaLoss>>
+                        <<set $plr.stats.stamina.cur -= _staminaLoss>>
+                    <</if>>
+                    <<run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, "staminaBar", true)>>
+
                 <</replace>>
         <</widget>>
     <</nobr>>
@@ -593,18 +601,18 @@
                 $spellWords.duration[_duration].costMult *
                 $spellWords.enhancement[_enhancement].costMult
             >>
-
-            <<if $spellCastVar.spellCost <= $plr.stats.stamina.cur && $spellCastVar.spellCost <= $plr.stats.focus.cur>>
+            <<run $spellWords.effect[_effect].badCombo()>>
+            
+            <<if $spellCastVar.spellCost <= $plr.stats.stamina.cur && $spellCastVar.spellCost <= $plr.stats.focus.cur && !$spellCastVar.badCombo>>
                 <<if _target == 'self' || _target == 'other'>>
                     <<run $spellWords.effect[_effect].onCast()>>
-                    <<if $spellCastVar.badCombo != ''>>
-                        <<run console.log('badCombo')>>
-                    <</if>>
 
                 <</if>>
 
                 <<set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2>>
                 <<set $plr.stats.stamina.cur -= $spellCastVar.spellCost>>
+                <<set $plr.stats.stamina.max += $spellCastVar.spellCost * 0.1>>
+                <<set $plr.stats.focus.max += $spellCastVar.spellCost * 0.05>>
 
                 <<removeclass '#spell-result'>>
                 <<addclass '#spell-result' 'green'>>
@@ -627,7 +635,7 @@
                 <<addclass '#spell-result' 'red'>>
                 <<replace '#spell-result'>>I do not have the mental focus required to cast a spell of this power.<</replace>>
 
-            <<elseif $spellCastVar.badCombo != ''>>
+            <<elseif $spellCastVar.badCombo>>
                 <<removeclass '#spell-result'>>
                 <<addclass '#spell-result' 'orange'>>
                 <<replace '#spell-result'>>$spellCastVar.badCombo<</replace>>
@@ -643,5 +651,18 @@
             <<removeclass '#spell-result'>>
             <<addclass '#spell-result' 'purple'>>
             <<replace '#spell-result'>>Half-baked spells are guaranteed to go spectacularly wrong... I should complete my choice of Words.<</replace>>
+
         <</if>>
+        
+        <<set $spellCastVar = {
+            spellTarget: '',
+            spellDuration: '',
+            spellEffect: '',
+            spellEnhancement: '',
+            spellCost: 0,
+            spellDiscipline: '',
+            passageTag: '',
+            badCombo: false
+        }>>
+
     <</widget>>

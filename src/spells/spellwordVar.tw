@@ -7,7 +7,7 @@
         spellCost: 0,
         spellDiscipline: '',
         passageTag: '',
-        badCombo: ''
+        badCombo: false
     }>>
 
     <<set $spellWords = {
@@ -123,6 +123,9 @@
                 costMult: 1,
                 unlocked: false,
                 discipline: 'elemental',
+                badCombo : function(){
+                    return false
+                },
                 onCast: function() {
                     let curLife = state.getVar('$spellCastVar.spellTarget.stats.life.cur');
                     let maxLife = state.getVar('$spellCastVar.spellTarget.stats.life.max');
@@ -140,6 +143,9 @@
                 costMult: 1,
                 unlocked: false,
                 discipline: 'restoration',
+                badCombo : function(){
+                    return false
+                },
                 onCast: function() {
                     let curLife = state.getVar('$spellCastVar.spellTarget.stats.life.cur');
                     let maxLife = state.getVar('$spellCastVar.spellTarget.stats.life.max');
@@ -161,6 +167,9 @@
                 costMult: 1.5,
                 unlocked: false,
                 discipline: 'restoration',
+                badCombo : function(){
+                    return false
+                },
                 onCast: function() {
                     return 'xxxxx'
                 }
@@ -171,33 +180,46 @@
                 costMult: 1.5,
                 unlocked: false,
                 discipline: 'conjuration',
-                onCast: function() {
-
-                    let eLevel = state.getVar('$spellCastVar.spellEnhancement')
+                badCombo: function() {
                     if(state.getVar('$spellCastVar.spellTarget') == state.getVar('$plr')) {
                         state.setVar('$spellCastVar.badCombo', 'I\'m not sure what purpose would be served by making myself light up right now...')
 
-                    } else if (state.getVar('$spellCastVar.passageTag') == 'room') {
+                    } else {
+                        state.setVar('$spellCastVar.badCombo', false)
+                    }
+                },
+                onCast: function() {
+
+                    let eLevel = state.getVar('$spellCastVar.spellEnhancement')
+                    if (state.getVar('$spellCastVar.passageTag') == 'room') {
                         return 'xxxxx'
 
                     } else if (state.getVar('$spellCastVar.passageTag') == 'playerHome') {
-                        if (state.getVar('$plrRoom.lights.none') == true) {
+                        if (eLevel == 1) {
                             state.setVar('$plrRoom.lights.none', false)
-                            if (eLevel == 1) {
-                                state.setVar('$plrRoom.lights.trash', true)
-                            } else if (eLevel == 2) {
-                                state.setVar('$plrRoom.lights.trash', false)
-                                state.setVar('$plrRoom.lights.common', true)
-                            } else if (eLevel == 3) {
-                                state.setVar('$plrRoom.lights.common', false)
-                                state.setVar('$plrRoom.lights.uncommon', true)
-                            } else if (eLevel == 4) {
-                                state.setVar('$plrRoom.lights.uncommon', false)
-                                state.setVar('$plrRoom.lights.rare', true)
-                            } else if (eLevel == 5) {
-                                state.setVar('$plrRoom.lights.rare', false)
-                                state.setVar('$plrRoom.lights.legendary', true)
-                            }
+                            state.setVar('$plrRoom.lights.trash', true)
+                        } else if (eLevel == 2) {
+                            state.setVar('$plrRoom.lights.none', false)
+                            state.setVar('$plrRoom.lights.trash', false)
+                            state.setVar('$plrRoom.lights.common', true)
+                        } else if (eLevel == 3) {
+                            state.setVar('$plrRoom.lights.none', false)
+                            state.setVar('$plrRoom.lights.trash', false)
+                            state.setVar('$plrRoom.lights.common', false)
+                            state.setVar('$plrRoom.lights.uncommon', true)
+                        } else if (eLevel == 4) {
+                            state.setVar('$plrRoom.lights.none', false)
+                            state.setVar('$plrRoom.lights.trash', false)
+                            state.setVar('$plrRoom.lights.common', false)
+                            state.setVar('$plrRoom.lights.uncommon', false)
+                            state.setVar('$plrRoom.lights.rare', true)
+                        } else if (eLevel == 5) {
+                            state.setVar('$plrRoom.lights.none', false)
+                            state.setVar('$plrRoom.lights.trash', false)
+                            state.setVar('$plrRoom.lights.common', false)
+                            state.setVar('$plrRoom.lights.uncommon', false)
+                            state.setVar('$plrRoom.lights.rare', false)
+                            state.setVar('$plrRoom.lights.legendary', true)
                         }
                     }
                 }

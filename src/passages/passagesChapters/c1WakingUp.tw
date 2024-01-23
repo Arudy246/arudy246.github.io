@@ -352,7 +352,7 @@
     <<button [[Continue | WakingUp9]]>><</button>>
 
 :: WakingUp9
-    <img class="scene" src="img/janessaresidence.jpg"/>\
+    <img class="scene" src="img/residence_starr_courtyard.jpg"/>\
 
     <<speech "janessa">>This is my residence. It's been in my family for many generations. I'll give you a short tour and then we are done for the night. Classes will start Monday morning.<</speech>>\
 
@@ -382,7 +382,7 @@
     <</button>>
 
 :: WakingUp10
-    <img class="scene" src="img/JanResidEntry.jpg"/>\
+    <img class="scene" src="img/residence_starr_entryhall.jpg"/>\
 
     <<speech plr>><<print $plrSpkChoice>><</speech>>\
     <<printRelGain>>\
@@ -409,7 +409,7 @@
     <</button>>
 
 :: WakingUp11
-    <img class="scene" src='img/JanResidKitchen.jpg'/>\
+    <img class="scene" src='img/residence_starr_kitchen.jpg'/>\
 
     <<speech janessa>>I'm sure I don't need to describe the kitchen. Obviously, it isn't well used. I don't know anyone who eats at their residence, everyone eats at the cafetaria.<</speech>>\
 
