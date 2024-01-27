@@ -104,7 +104,10 @@ body {
     margin-top: -1em !important;
 }
 .green {
-    color: rgb(0, 173, 0);
+    color: rgb(0, 252, 105);
+}
+.yellow {
+    color: yellow;
 }
 .red {
     color: red;
@@ -146,6 +149,11 @@ body {
 .greenyellow {
     color: greenyellow;
 }
+.blur {
+    font-size: large;
+    color: transparent;
+    text-shadow: 0 0 4px rgb(209, 209, 209)
+}
 tbody {
     font-size: 80%;
 } 
@@ -167,8 +175,9 @@ tr:nth-child(even) {
 }
 img.scene {
     display: block;
-    max-width: 70%;
-    max-height: 35em;
+    max-width: 100%;
+    min-height: 20em;
+    max-height: 24em;
     margin-left: auto;
     margin-right: auto;
 }
@@ -259,7 +268,51 @@ ul.simple-inventory-list {
 .barden .avatar {
     background-image: URL("img/characters/thumb_sullivan.jpg");
 }
+
+.ghost {
+    background-color: #000d1a;
+}
+.ghost .avatar {
+    background-image: URL('img/characters/thumb_ghost.png');
+}
 /* Speech Box System - End */
+
+/* Enemy Box System - Start */
+.enemy-name {
+    font-size: 1em;
+    text-shadow: 2px 2px rgb(0, 0, 0);
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.enemy-box {
+    color: white;
+    border: 2px solid #363636;
+    border-radius: 10px;
+    padding: 0px 7px 5px 7px;
+    box-shadow: 5px 5px 3px Black;
+    background-color: #270000;
+    width: 23em;
+}
+.enemy-avatar {
+    display: block;
+    padding: 1px;
+    height: 84px;
+    width: 84px;
+    float: left;
+    margin: 0px 10px 0px 0px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.enemy-bars {
+    width: 15em;
+    margin-left: 7em;
+    margin-top: 0.2em;
+}
+
+/* Enemy Box System - End */
 
 /* hovertip v2.0 - Start */
 .hoverTip {
@@ -523,7 +576,6 @@ ul.simple-inventory-list {
 }
 
 /* Spell Stuff - Start */
-
 #spell-result {
     font-style: italic;
     font-size: larger;
@@ -575,3 +627,43 @@ ul.simple-inventory-list {
 }
 
 /* Spell Stuff - End */
+
+/* For pages w/ many links */
+.passage-links-grid-3 {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 11em 11em 11em;
+    grid-template-rows: 4em 4em 4em;
+    row-gap: 1em;
+    column-gap: 1em;
+}
+
+.passage-links-grid-2 {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 11em 11em 11em;
+    grid-template-rows: 4em 4em;
+    row-gap: 1em;
+    column-gap: 1em;
+}
+
+.passage-links-grid-1 {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 11em 11em 11em;
+    grid-template-rows: 4em;
+    row-gap: 1em;
+    column-gap: 1em;
+}
+
+.passage-links-grid-item {
+    text-align: center;
+}
+
+.passage-links-grid-item .macro-button {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* End of pages w/ many links */

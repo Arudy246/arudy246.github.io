@@ -1,84 +1,71 @@
 :: Locations
-    <h3>School</h3>
+    <h3>School</h3>\
     <<nobr>>
         <<nobr>>
             <<if $unlockVar.locations.starrresidence.unlocked == true>>
                 <<button [[Starr Residence | Residence_Starr_EntryHall]]>>
                     <<run Dialog.close()>>
+                    <<calcTime 10>>
                 <</button>>
             <</if>>
-            <<if $unlockVar.locations.librarium.unlocked == true>>
-                <<button [[Librarium | University_Librarium]]>>
+            <<if $unlockVar.locations.universityentrance.unlocked == true>>
+                <<button [[University Entrance | University_Entrance]]>>
                     <<run Dialog.close()>>
+                    <<calcTime 10>>
                 <</button>>
             <</if>>
             <<if $unlockVar.locations.cafeteria.unlocked == true>>
                 <<button [[Cafeteria | University_Shops_Cafeteria]]>>
                     <<run Dialog.close()>>
+                    <<calcTime 10>>
                 <</button>>
             <</if>>
         <</nobr>>
         <br>
         <<nobr>>
-            <<if $unlockVar.locations.conservatorium.unlocked == true>>
-                <<button [[Conservatorium | University_Labs_Conservatorium]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
-            <<if $unlockVar.locations.theexchange.unlocked == true>>
-                <<button [[The Exchange | University_Shops_Exchange]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
-            <<if $unlockVar.locations.leynode.unlocked == true>>
-                <<button [[Ley Node | University_Labs_Leynode]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
-        <</nobr>>
-        <<nobr>>
-            <<if $unlockVar.locations.gymnasium.unlocked == true>>
-                <<button [[Gymnasium | gymnasium]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
-            <<if $unlockVar.locations.sigilarium.unlocked == true>>
-                <<button [[Sigilarium | sigilarium]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
-            <<if $unlockVar.locations.artifice.unlocked == true>>
-                <<button [[Artifice Workshop | artificeworkshop]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
-        <</nobr>>
-        <<nobr>>
-            <<if $unlockVar.locations.pentadentrix.unlocked == true>>
-                <<button [[Ritual Pentadentrix | University_Labs_Pentadendrix]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
-            <<if $unlockVar.locations.deanstudy.unlocked == true>>
-                <<button [[Headmaster's Study | University_Admin_Deanstudy]]>>
-                    <<run Dialog.close()>>
-                <</button>>
-            <</if>>
             <<if $unlockVar.locations.clinic.unlocked == true>>
-                <<button [[Medical Wing | University_Admin_Clinic]]>>
+                <<button [[Clinic | University_Admin_Clinic]]>>
                     <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            
+            <<if $unlockVar.locations.universityclasses.unlocked == true>>
+                <<button [[University Classes | University_Hall_Classes]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.universityshops.unlocked == true>>
+                <<button [[University Shops | University_Hall_Shops]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
                 <</button>>
             <</if>>
         <</nobr>>
+        <br>
         <<nobr>>
             <<if $unlockVar.locations.professoroffices.unlocked == true>>
-                <<button [[Professor's Offices | University_Admin_ProfessorHall]]>>
+                <<button [[Professor Wing | University_Admin_ProfessorHall]]>>
                     <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.universitybasement.unlocked == true>>
+                <<button [[University Basement | University_Hall_Basement]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.librarium.unlocked == true>>
+                <<button [[Librarium | University_Librarium]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
                 <</button>>
             <</if>>
         <</nobr>>
         <hr>
-        <h3>Town</h3>
+        /* <h3>Town</h3>
         <<nobr>>
             <<if $unlockVar.locations.tradingpost.unlocked == true>>
                 <<button [[Herrington's Trading Post | tradingpost]]>>
@@ -107,5 +94,5 @@
                     <<run Dialog.close()>>
                 <</button>>
             <</if>>
-        <</nobr>>
+        <</nobr>> */
     <</nobr>>\

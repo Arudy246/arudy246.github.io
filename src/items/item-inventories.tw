@@ -48,21 +48,53 @@
             title: "A Guide to Magnus Schola",
             description: "A book of locations, maps, and assorted histories of Magnus Schola.",
             pagesRead: 0,
-            pagesTotal: 13,
+            pagesTotal: 8,
             pageUnlocks: {
-                1: "starrresidence",
-                2: "librarium",
-                3: "cafeteria",
-                4: "conservatorium",
-                5: "theexchange",
-                6: "leynode",
-                7: "gymnasium",
-                8: "sigilarium",
-                9: "artifice",
-                10: "pentadentrix",
-                11: "deanstudy",
-                12: "clinic",
-                13: "professoroffices"
+                1: function() {
+                        state.setVar('$unlockVar.locations.starrresidence.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.starrresidence.name')
+                        return x
+                    },
+                2: function() {
+                        state.setVar('$unlockVar.locations.universityentrance.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.universityentrance.name')
+                        return x
+                    },
+                3: function() {
+                        state.setVar('$unlockVar.locations.cafeteria.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.cafeteria.name')
+                        return x
+                    },
+                4: function() {
+                        state.setVar('$unlockVar.locations.clinic.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.clinic.name')
+                        return x
+                    },
+                5: function() {
+                        state.setVar('$unlockVar.locations.universityclasses.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.universityclasses.name')
+                        return x
+                    },
+                6: function() {
+                        state.setVar('$unlockVar.locations.universityshops.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.universityshops.name')
+                        return x
+                    },
+                7: function() {
+                        state.setVar('$unlockVar.locations.professoroffices.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.professoroffices.name')
+                        return x
+                    },
+                8: function() {
+                        state.setVar('$unlockVar.locations.universitybasement.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.universitybasement.name')
+                        return x
+                    },
+                9: function() {
+                        state.setVar('$unlockVar.locations.librarium.unlocked', true)
+                        let x = state.getVar('$unlockVar.locations.librarium.name')
+                        return x
+                    }
             }
         },
         mapTown: {
@@ -81,6 +113,7 @@
     }>>
 
     <<set $bookSkills = {
+
     }>>
 
     <<set $bookSpell = {
@@ -89,7 +122,7 @@
             description: "An introduction to basic spellwork for the child-aged practitioner.",
             costMult: 0.4,
             pagesRead: 0,
-            pagesTotal: 4,
+            pagesTotal: 6,
             pageUnlocks: {
                 1: function() {
                         state.setVar('$spellWords.target.self.unlocked', true);
@@ -110,7 +143,29 @@
                         state.setVar('$spellWords.duration.immediate.unlocked', true);
                         let x = state.getVar('$spellWords.duration.immediate');
                         return x
+                    },
+                5: function() {
+                        state.setVar('$spellWords.effect.damage.unlocked', true);
+                        let x = state.getVar('$spellWords.effect.damage');
+                        return x
+                    },
+                6: function() {
+                        state.setVar('$spellWords.target.other.unlocked', true);
+                        let x = state.getVar('$spellWords.target.other');
+                        return x
                     }
             }
+        }
+    }>>
+
+    <<set $bookDisc = {
+        conjuration1: {
+            title: 'The Essentials of Conjuration',
+            description: 'A primer on the principles and operations of the conujuration discipline.',
+            discipline: 'conjuration',
+            gainLvl: 1,
+            costMult: 0.5,
+            pagesRead: 0,
+            pagesTotal: 20,
         }
     }>>

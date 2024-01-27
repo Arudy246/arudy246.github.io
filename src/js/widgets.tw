@@ -7,17 +7,19 @@
     <</nobr>>
 
     /* relGain Amy 10 */
-    <<widget "relGain">>
-        <<if _args[1] > 0>>
-            <<set $plr.relations[_args[0]].positive += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
+    <<nobr>>
+        <<widget "relGain">>
+            <<if _args[1] > 0>>
+                <<set $plr.relations[_args[0]].positive += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
 
-            <<else>>
-                <<set $plr.relations[_args[0]].negative += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
-        <</if>>
+                <<else>>
+                    <<set $plr.relations[_args[0]].negative += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
+            <</if>>
 
-        <<set $relNpcTemp = _args[0]>>
-        <<set $relAmtTemp = _args[1]>>
-    <</widget>>
+            <<set $relNpcTemp = _args[0]>>
+            <<set $relAmtTemp = _args[1]>>
+        <</widget>>
+    <</nobr>>
 
     <<nobr>>
         <<widget "printRelGain">>
@@ -55,20 +57,33 @@
         <</nobr>>
     <</widget>>
 
-    /* calcTime 20(increase in minutes) 5(random extra minutes) */
+    /* calcTime 20(increase in minutes) 5(random extra minutes) (empty if stam drain or false if no stam drain*/
     <<nobr>>
         <<widget "calcTime">>
+            <<set _minComp = $dateTime.min>>
                 <<if _args[1]>>
                     <<set $dateTime.min += _args[0] + random(_args[1])>>
-                    <<set _staminaLoss = (_args[0] + random(_args[1])) * 0.01>>
-                <<elseif _args[0]>>
-                    <<set $dateTime.min += _args[0]>>
-                    <<set _staminaLoss = _args[0] * 0.01>>
+                    <<set $dateTime.minPassed = $dateTime.min - _minComp>>
+
+                    <<if _args[2] != false>>
+                        <<set _staminaLoss = (_args[0] + random(_args[1])) * 0.01>>
+                    <</if>>
+
+                    <<elseif _args[0]>>
+                        <<set $dateTime.min += _args[0]>>
+                        <<set $dateTime.minPassed = $dateTime.min - _minComp>>
+
+                        <<if _args[2] != false>>
+                            <<set _staminaLoss = _args[0] * 0.01>>
+                        <</if>>
                 <</if>>
-                <<if $dateTime.min >= 60>>
-                    <<set $dateTime.hour += 1>>
-                    <<set $dateTime.min -= 60>>
-                <</if>>
+
+                <<for _i = $dateTime.min; _i >= 60; _i = $dateTime.min>>
+                    <<if $dateTime.min >= 60>>
+                        <<set $dateTime.hour += 1>>
+                        <<set $dateTime.min -= 60>>
+                    <</if>>
+                <</for>>
                 <<if $dateTime.hour >= 24>>
                     <<set $dateTime.date += 1>>
                     <<set $dateTime.hour -= 24>>
@@ -155,16 +170,20 @@
                     <</if>>
 
                     <<print $dateTime.dayName + ' ' + $dateTime.monthName + ' ' + $dateTime.date + ', ' + $dateTime.year + '<br>'>>
-                    <<if _staminaLoss>>
-                        <<set $plr.stats.stamina.cur -= _staminaLoss>>
-                    <</if>>
-                    <<run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, "staminaBar", true)>>
-
                 <</replace>>
+
+                <<if _staminaLoss>>
+                    <<set _staminaLoss = _staminaLoss * -1>>
+                    <<setStats 'plr' 'stamina' _staminaLoss>>
+                <</if>>
+
+                <<run Stamina()>>
+                <<processClean>>
+                <<set $dateTime.minPassed = 0>>
         <</widget>>
     <</nobr>>
 
-    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook) itemID */
+    /* readBook itemtype (miscbook, skillbook, spellbook, recipebook, lorebook, discbook) itemID */
     <<nobr>>
         <<widget "readBook">>
             <<switch _args[0]>>
@@ -175,30 +194,23 @@
 
                     <<if $bookMisc[_args[1]].pagesRead != $bookMisc[_args[1]].pagesTotal>>
                         <<goto "Event_Unlock_Location">>
+                        <<set _address = $bookMisc[_args[1]]>>
 
-                        <<set $bookMisc[_args[1]].pagesRead += 1>>
+                        <<set _address.pagesRead += 1>>
 
                         <<pickup $plrinvbooks _args[1] 1>>
-                        <<calcTime 20 15>>
+                        <<calcTime 30 15>>
 
-                        <<set _unlocknum = $bookMisc[_args[1]].pagesRead>>
-                        <<set _unlockname = $bookMisc[_args[1]].pageUnlocks[_unlocknum]>>
-                        <<set _unlockmessage = $unlockVar.locations[_unlockname].name>>
+                        <<set _unlocknum =_address.pagesRead>>
+                        <<set _unlockFunc = _address.pageUnlocks[_unlocknum]()>>
+                        <<set _unlockmessage = _unlockFunc>>
 
                         <<set $eventVar.location.name = _unlockmessage>>
-                        <<set $eventVar.location.book = $bookMisc[_args[1]].title>>
+                        <<set $eventVar.location.book = _address.title>>
+                        
+                        <<run Dialog.close()>>
 
-                        <<if _unlockname == undefined>>
-                            <<set _unlockmessage = "nothing, but there are more chapters to read.">>
-                        <</if>>
-                        <<run
-                            Dialog.setup("Chapter Read");
-                            Dialog.wiki("After reading chapter " + _unlocknum + "/" + $bookMisc[_args[1]].pagesTotal + " of " + "'" + $bookMisc[_args[1]].title + "'" + " you discovered " + _unlockmessage + ".");
-                            Dialog.open();
-                        >>
-                        <<set $unlockVar.locations[_unlockname].unlocked = true>>
-
-                        <<if $bookMisc[_args[1]].pagesRead == $bookMisc[_args[1]].pagesTotal>>
+                        <<if _address.pagesRead == _address.pagesTotal>>
                             <<drop $plrinvbooks _args[1] 1>>
                             <<run
                                 Dialog.setup("Chapter Read and Book Finished");
@@ -211,6 +223,33 @@
 
                 <<case "skillbook">>
 
+                <<case 'discbook'>>
+                    <<set _address = $discbook>>
+
+                    <<if _address.pagesRead != _address.pagesTotal && $plr.stats.sanity.cur >= _address.costMult>>
+                        <<set _address.pagesRead += 1>>
+                        <<pickup $plrinvbooks _args[1] 1>>
+                        <<set $plr.stats.sanity.cur -= _address.costMult>>
+                        <<set $plr.stats.sanity.max += (_address.costMult / 10)>>
+                        <<calcTime 60 30>>
+
+                        <<set _discipline = _address.discipline>>
+                        <<set _gainLvl = _address.gainLvl>>
+                        <<set _plrDiscipline = $plr.disciplines[_discipline]>>
+
+                        <<if _plrDiscipline.level > 1>>
+                            <<set _plrDiscipline.level += _gainLvl>>
+                        <<else>>
+                            <<set _plrDiscipline.level += (_gainLvl / _plrDiscipline.level)>>
+                        <</if>>
+
+                        <<run
+                            Dialog.setup("Magical Discipline Book Read");
+                            Dialog.wiki("After reading chapter " + _address.pagesRead + "/" + _address.pagesTotal + " of " + "'" + _address.title + "'" + " you learned more about the " + _discipline + ' discipline.');
+                            Dialog.open();
+                        >>
+                        <<run Sanity()>>
+                    <</if>>
 
                 <<case "spellbook">>
                     <<if $unlockVar.userInterface.spells == false>>
@@ -221,10 +260,10 @@
                         <<set $unlockVar.events.firstSpellLearned = true>>
                     <</if>>
 
-
                     <<set _address = $bookSpell[_args[1]]>>
                     <<if _address.pagesRead != _address.pagesTotal && $plr.stats.sanity.cur >= _address.costMult>>
                         <<set $plr.stats.sanity.cur -= _address.costMult>>
+                        <<set $plr.stats.sanity.max += (_address.costMult / 10)>>
                         <<goto "Event_Unlock_Spell">>
 
                         <<set _address.pagesRead += 1>>
@@ -247,7 +286,7 @@
                             Dialog.open();
                         >> */
                         <<run Dialog.close()>>
-                        <<run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, "sanityBar", true)>>
+                        <<run Sanity()>>
 
                     <<elseif _address.pagesRead == _address.pagesTotal>>
                         <<run UI.alert("I have already learned all I can from this tome.")>>
@@ -259,9 +298,7 @@
 
                 <<case "recipebook">>
 
-
                 <<case "lorebook">>
-
 
             <</switch>>
         <</widget>>
@@ -271,7 +308,7 @@
     <<nobr>>
         <<widget "foundItem">>
             <<switch _args[0]>>
-                <<case "miscbook">>
+                <<case "bookmisc">>
                     <<run 
                         Dialog.setup("Book Found");
                         Dialog.wiki("You found a book titled '<b>" + $bookMisc[_args[1]].title + "</b>.'" + "<br><br>" + " The first page reads '<i>" + $bookMisc[_args[1]].description + "</i>'.");
@@ -297,13 +334,19 @@
                     >>
                     <<pickup $plrinvmisc _args[1] 1>>
 
-                <<case "spellbook">>
+                <<case "bookspell">>
                     <<run 
                         Dialog.setup("Spell Tome Found");
                         Dialog.wiki("You found a tome titled '<b>" + $bookSpell[_args[1]].title + "</b>.'" + "<br><br>" + " The first page reads '<i>" + $bookSpell[_args[1]].description + "</i>'.");
                         Dialog.open();
                     >>
                     <<pickup $plrinvbooks _args[1] 1>>
+                <<case 'bookdisc'>>
+                    <<run
+                        Dialog.setup('Magical Discipline Book Found');
+                        Dialog.wiki("You found a book titled '<b>" + $bookDisc[_args[1]].title + "</b>.'" + "<br><br>" + " The first page reads '<i>" + $bookSpell[_args[1]].description + "</i>'.");
+                        Dialog.open();
+                    >>
             <</switch>>
         <</widget>>
     <</nobr>>
@@ -322,267 +365,353 @@
         <</widget>>
     <</nobr>>
 
+    /* setStats (plr or npcname) (stat to change) (# to increase by or use negative #)*/
     <<nobr>>
-        <<widget "setStamina">>
-            <<set $plr.stats.stamina.cur = _args[0]>>
-        <</widget>>
-    <</nobr>>
+        <<widget 'setStats'>>
+            <<set _curPass = passage()>>
+            <<if tags().includes('room') && $roomVars[_curPass].clean && _args[0] == 'plr' && _args[2] > 0 && (_args[1] == 'stamina' || _args[1] == 'sanity')>>
+                <<set _cleanMod = $roomVars[_curPass].clean>>
+                <<if _cleanMod >= 20>>
+                    <<set _args[2] = _args[2] * 0.5>>
 
-    <<nobr>>
-        <<widget "setLife">>
-            <<set $plr.stats.life.cur = _args[0]>>
-        <</widget>>
-    <</nobr>>
+                    <<elseif _cleanMod < 20 && _cleanMod >= 10>>
+                        <<set _args[2] = _args[2] * 0.8>>
 
-    <<nobr>>
-        <<widget "setFocus">>
-            <<set $plr.stats.focus.cur = _args[0]>>
-        <</widget>>
-    <</nobr>>
+                    <<elseif _cleanMod < 10 && _cleanMod >= 5>>
+                        <<set _args[2] = _args[2] * 1.1>>
 
-    <<nobr>>
-        <<widget "setSanity">>
-            <<set $plr.stats.sanity.cur = _args[0]>>
-        <</widget>>
-    <</nobr>>
+                    <<elseif _cleanMod < 5>>
+                        <<set _args[2] = _args[2] * 1.4>>    
+                <</if>>
+            <</if>>
 
-    <<nobr>>
-        <<widget "staminaUpdatePrint">>
-            <<set _stamDec = $plr.stats.stamina.pre - $plr.stats.stamina.cur>>
-            <<set _stamInc = $plr.stats.stamina.cur - $plr.stats.stamina.pre>>
-            <<if $plr.stats.stamina.cur < $plr.stats.stamina.pre>>
-                <span class="staminaDec">Your stamina decreased by _stamDec.</span>
+            <<if _args[0] == 'plr'>>
+                <<set _targ = $plr.stats>>
 
-            <<else if $plr.stats.stamina.cur > $plr.stats.stamina.pre>>
-                <span class="staminaInc">Your stamina increased by _stamInc.</span>
+            <<else>>
+                <<set _targ = $npcs[_args[0]].stats>>
 
             <</if>>
-            <<set $plr.stats.stamina.pre = $plr.stats.stamina.cur>>
-        <</widget>>
-    <</nobr>>
+            <<if _args[1]>>
+                <<set _stat = _targ[_args[1]]>>
+                <<set _stat.pre = _stat.cur>>
 
-    <<nobr>>
-        <<widget "commentClean">>
-            <<set _word = "">>
-            <<set _class = "">>
-            <<if $plrRoom.cleanliness <= 0 >>
-                <<set _word = "miles from">>
-                <<set _class = "trash">>
+                <<set _stat.cur += _args[2]>>
 
-            <<elseif $plrRoom.cleanliness > 0 && $plrRoom.cleanliness < 3>>
-                <<set _word = "mostly">>
-                <<set _class = "rare">>
+                <<if _stat.cur > _stat.max>>
+                    <<set _stat.cur = _stat.max>>
+                <</if>>
 
-            <<elseif $plrRoom.cleanliness > 2>>
-                <<set _word = "immaculately">>
-                <<set _class = "legendary">>
             <</if>>
-            <<print '<span class="' + _class + '">' + 
-                '<<hovertip "The cleaner the room, the more sanity and stamina you will gain from spending time in here.">>' + 
-                _word + '<</hovertip>></span>'
+            <<run 
+                Stamina();
+                Life();
+                FocusStat();
+                Sanity();
             >>
         <</widget>>
     <</nobr>>
 
     <<nobr>>
-        <<widget "commentBed">>
-            <<set _word = "">>
-            <<set _class = "">>
-
-            <<if $plrRoom.bed.trash == true>>
-                <<set _word = "truly uninviting">>
-                <<set _class = "trash">>
-
-            <<elseif $plrRoom.bed.common == true>>
-                <<set _word = "average">>
-                <<set _class = "common">>
-
-            <<elseif $plrRoom.bed.uncommon == true>>
-                <<set _word = "comfortable">>
-                <<set _class = "uncommon">>
-
-            <<elseif $plrRoom.bed.rare == true>>
-                <<set _word = "premium">>
-                <<set _class = "rare">>
-
-            <<elseif $plrRoom.bed.legendary == true>>
-                <<set _word = "luxurious">>
-                <<set _class = "legendary">>
-
-            <<elseif $plrRoom.bed.unique == true>>
-                <<set _word = "regal and ostentatious">>
-                <<set _class = "unique">>
-
+        <<widget 'statsChange'>>
+            <<if $plr.stats.stamina.pre>>
+                <<set _stamDiff = ($plr.stats.stamina.cur - $plr.stats.stamina.pre)>>
+                <<if _stamDiff >= 0.01 || _stamDiff <= -0.01>>
+                    <<if $plr.stats.stamina.pre < $plr.stats.stamina.cur>>
+                        <<print
+                            '<div class="green">I gained ' + _stamDiff.toFixed(2) + ' stamina.</div>'
+                        >>
+                            
+                        <<elseif $plr.stats.stamina.pre > $plr.stats.stamina.cur>>
+                            <<print
+                                '<div class="orange">I\'ve lost ' + (_stamDiff.toFixed(2) * -1) + ' stamina.</div>'
+                            >>
+                    <</if>>
+                <</if>>
+                <<set $plr.stats.stamina.pre = ''>>
             <</if>>
 
-            <<print '<span class="' + _class + '">' + 
-                '<<hovertip "The better the bed, the more stamina and lifeforce you regain per hour of rest.">>' + 
-                _word + '<</hovertip>></span>'
-            >>
+            <<if $plr.stats.life.pre>>
+                <<set _lifeDiff = ($plr.stats.life.cur - $plr.stats.life.pre)>>
+                <<if _lifeDiff >= 0.01 || _lifeDiff <= -0.01>>
+                    <<if $plr.stats.life.pre < $plr.stats.life.cur>>
+                        <<print
+                            '<div class="green">I gained ' + _lifeDiff.toFixed(2) + ' life.</div>'
+                        >>
+                            
+                        <<elseif $plr.stats.life.pre > $plr.stats.life.cur>>
+                            <<print
+                                '<div class="orange">I\'ve lost ' + (_lifeDiff.toFixed(2) * -1) + ' life.</div>'
+                            >>
+                    <</if>>
+                <</if>>
+                <<set $plr.stats.life.pre = ''>>
+            <</if>>
+
+            <<if $plr.stats.focus.pre>>
+                <<set _focusDiff = ($plr.stats.focus.cur - $plr.stats.focus.pre)>>
+                <<if _focusDiff >= 0.01 || _focusDiff <= -0.01>>
+                    <<if $plr.stats.focus.pre < $plr.stats.focus.cur>>
+                        <<print
+                            '<div class="green">I gained ' + _focusDiff.toFixed(2) + ' focus.</div>'
+                        >>
+                            
+                        <<elseif $plr.stats.focus.pre > $plr.stats.focus.cur>>
+                            <<print
+                                '<div class="orange">I\'ve lost ' + (_focusDiff.toFixed(2) * -1) + ' focus.</div>'
+                            >>
+                    <</if>>
+                <</if>>
+                <<set $plr.stats.focus.pre = ''>>
+            <</if>>
+
+            <<if $plr.stats.sanity.pre>>
+                <<set _sanityDiff = ($plr.stats.sanity.cur - $plr.stats.sanity.pre)>>
+                <<if _sanityDiff >= 0.01 || _sanityDiff <= -0.01>>
+                    <<if $plr.stats.sanity.pre < $plr.stats.sanity.cur>>
+                        <<print
+                            '<div class="green">I gained ' + _sanityDiff.toFixed(2) + ' sanity.</div>'
+                        >>
+                            
+                        <<elseif $plr.stats.sanity.pre > $plr.stats.sanity.cur>>
+                            <<print
+                                '<div class="orange">I\'ve lost ' + (_sanityDiff.toFixed(2) * -1) + ' sanity.</div>'
+                            >>
+                    <</if>>
+                <</if>>
+                <<set $plr.stats.sanity.pre = ''>>
+            <</if>>
         <</widget>>
     <</nobr>>
 
     <<nobr>>
-        <<widget "commentDesk">>
-            <<set _word = "">>
-            <<set _class = "">>
+        <<widget 'roomComments'>>
+            <<set _curPass = passage()>>
+            <<switch _args[0]>>
+                <<case 'clean'>>
+                    <<if $roomVars[_curPass].clean < 5>>
+                        <<set _word = "spotless.">>
+                        <<set _class = "legendary">>
+                    
+                    <<elseif $roomVars[_curPass].clean > 5 && $roomVars[_curPass].clean <= 10>>
+                        <<set _word = 'pretty clean.'>>
+                        <<set _class = 'rare'>>
 
-            <<if $plrRoom.desk.trash == true>>
-                <<set _word = "barely usable">>
-                <<set _class = "trash">>
+                    <<elseif $roomVars[_curPass].clean > 10 && $roomVars[_curPass].clean <= 20>>
+                        <<set _word = "gotten a little dirty.">>
+                        <<set _class = "common">>
 
-            <<elseif $plrRoom.desk.common == true>>
-                <<set _word = "regular">>
-                <<set _class = "common">>
+                    <<elseif $roomVars[_curPass].clean > 20>>
+                        <<set _word = "disgusting and needs a deep cleaning.">>
+                        <<set _class = "trash">>
+                    <</if>>
+                    <<print '<span class="' + _class + '">' + 
+                        '<<hovertip "The cleaner the room, the more sanity and stamina you will gain from spending time in here.">>' + 
+                        _word + '<</hovertip>></span>'
+                    >>
 
-            <<elseif $plrRoom.desk.uncommon == true>>
-                <<set _word = "attractive">>
-                <<set _class = "uncommon">>
+                <<case 'bed'>>
+                    <<if $roomVars.Residence_Starr_PlayerRoom.bed.trash == true>>
+                        <<set _word = "truly uninviting">>
+                        <<set _class = "trash">>
 
-            <<elseif $plrRoom.desk.rare == true>>
-                <<set _word = "impressive">>
-                <<set _class = "rare">>
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.bed.common == true>>
+                        <<set _word = "average">>
+                        <<set _class = "common">>
 
-            <<elseif $plrRoom.desk.legendary == true>>
-                <<set _word = "intricately">>
-                <<set _class = "legendary">>
-                
-            <<elseif $plrRoom.desk.unique == true>>
-                <<set _word = "gold and lapis adorned">>
-                <<set _class = "unique">>
-            <</if>>
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.bed.uncommon == true>>
+                        <<set _word = "comfortable">>
+                        <<set _class = "uncommon">>
 
-            <<print '<span class="' + _class + '">' + 
-                '<<hovertip "The nicer your desk the more effectively and sanely you can study books, tomes, and manuals.">>' + 
-                _word + '<</hovertip>></span>'
-            >>
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.bed.rare == true>>
+                        <<set _word = "premium">>
+                        <<set _class = "rare">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.bed.legendary == true>>
+                        <<set _word = "luxurious">>
+                        <<set _class = "legendary">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.bed.unique == true>>
+                        <<set _word = "regal and ostentatious">>
+                        <<set _class = "unique">>
+
+                    <</if>>
+                    <<print '<span class="' + _class + '">' + 
+                        '<<hovertip "The better the bed, the more stamina and lifeforce you regain per hour of rest.">>' + 
+                        _word + '<</hovertip>></span>'
+                    >>
+
+                <<case 'desk'>>
+                    <<if $roomVars.Residence_Starr_PlayerRoom.desk.trash == true>>
+                        <<set _word = "barely usable">>
+                        <<set _class = "trash">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.desk.common == true>>
+                        <<set _word = "regular">>
+                        <<set _class = "common">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.desk.uncommon == true>>
+                        <<set _word = "attractive">>
+                        <<set _class = "uncommon">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.desk.rare == true>>
+                        <<set _word = "impressive">>
+                        <<set _class = "rare">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.desk.legendary == true>>
+                        <<set _word = "intricately">>
+                        <<set _class = "legendary">>
+                        
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.desk.unique == true>>
+                        <<set _word = "gold and lapis adorned">>
+                        <<set _class = "unique">>
+                    <</if>>
+                    <<print '<span class="' + _class + '">' + 
+                        '<<hovertip "The nicer your desk the more effectively and sanely you can study books, tomes, and manuals.">>' + 
+                        _word + '<</hovertip>></span>'
+                    >>
+
+                <<case 'chair'>>
+                    <<if $roomVars.Residence_Starr_PlayerRoom.chair.trash == true>>
+                        <<set _word = "broken down">>
+                        <<set _class = "trash">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.chair.common == true>>
+                        <<set _word = "normal">>
+                        <<set _class = "common">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.chair.uncommon == true>>
+                        <<set _word = "nice">>
+                        <<set _class = "uncommon">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.chair.rare == true>>
+                        <<set _word = "very nice">>
+                        <<set _class = "rare">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.chair.legendary == true>>
+                        <<set _word = "really impressive">>
+                        <<set _class = "legendary">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.chair.unique == true>>
+                        <<set _word = "magically mastercrafted">>
+                        <<set _class = "unique">>
+                    <</if>>
+                    <<print '<span class="' + _class + '">' + 
+                        '<<hovertip "The better the build of your chair, the less sanity you lose from studying, and the more stamina you regain from just relaxing.">>' + 
+                        _word + '<</hovertip>></span>'
+                    >>
+
+                <<case 'floor'>>
+                    <<if $roomVars.Residence_Starr_PlayerRoom.floor.trash == true>>
+                        <<set _word = "trash-like">>
+                        <<set _class = "trash">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.floor.common == true>>
+                        <<set _word = "semi-decent">>
+                        <<set _class = "common">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.floor.uncommon == true>>
+                        <<set _word = "good">>
+                        <<set _class = "uncommon">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.floor.rare == true>>
+                        <<set _word = "really nice">>
+                        <<set _class = "rare">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.floor.legendary == true>>
+                        <<set _word = "impressive">>
+                        <<set _class = "legendary">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.floor.unique == true>>
+                        <<set _word = "royal">>
+                        <<set _class = "unique">>
+
+                    <</if>>
+                    <<print '<span class="' + _class + '">' + 
+                        '<<hovertip "The better your floor, the more sanity you regain from relaxing or performing activities other than studying">>' + 
+                        _word + '<</hovertip>></span>'
+                    >>
+
+                <<case 'light'>>
+                    <<if $roomVars.Residence_Starr_PlayerRoom.lights.none == true>>
+                        <<set _word = "not at all">>
+                        <<set _class = "trash">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.lights.trash == true>>
+                        <<set _word = "dimly">>
+                        <<set _class = "trash">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.lights.common == true>>
+                        <<set _word = "warmly">>
+                        <<set _class = "common">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.lights.uncommon == true>>
+                        <<set _word = "well">>
+                        <<set _class = "uncommon">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.lights.rare == true>>
+                        <<set _word = "brightly">>
+                        <<set _class = "rare">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.lights.legendary == true>>
+                        <<set _word = "impressively">>
+                        <<set _class = "legendary">>
+
+                    <<elseif $roomVars.Residence_Starr_PlayerRoom.lights.unique == true>>
+                        <<set _word = "star">>
+                        <<set _class = "unique">>
+
+                    <</if>>
+                    <<print '<span class="' + _class + '">' + 
+                        '<<hovertip "The more well-lit your room, the less sanity lost while studying.">>' + 
+                        _word + '<</hovertip>></span>'
+                    >>
+            <</switch>>
         <</widget>>
     <</nobr>>
 
-    <<nobr>>
-        <<widget "commentChair">>
-            <<set _word = "">>
-            <<set _class = "">>
-
-            <<if $plrRoom.chair.trash == true>>
-                <<set _word = "broken down">>
-                <<set _class = "trash">>
-
-            <<elseif $plrRoom.chair.common == true>>
-                <<set _word = "normal">>
-                <<set _class = "common">>
-
-            <<elseif $plrRoom.chair.uncommon == true>>
-                <<set _word = "nice">>
-                <<set _class = "uncommon">>
-
-            <<elseif $plrRoom.chair.rare == true>>
-                <<set _word = "very nice">>
-                <<set _class = "rare">>
-
-            <<elseif $plrRoom.chair.legendary == true>>
-                <<set _word = "really impressive">>
-                <<set _class = "legendary">>
-
-            <<elseif $plrRoom.chair.unique == true>>
-                <<set _word = "magically mastercrafted">>
-                <<set _class = "unique">>
-            <</if>>
-
-            <<print '<span class="' + _class + '">' + 
-                '<<hovertip "The better the build of your chair, the less sanity you lose from studying, and the more stamina you regain from just relaxing.">>' + 
-                _word + '<</hovertip>></span>'
-            >>
-        <</widget>>
-    <</nobr>>
-
-    <<nobr>>
-        <<widget "commentFloor">>
-            <<set _word = "">>
-            <<set _class = "">>
-
-            <<if $plrRoom.floor.trash == true>>
-                <<set _word = "trash-like">>
-                <<set _class = "trash">>
-
-            <<elseif $plrRoom.floor.common == true>>
-                <<set _word = "semi-decent">>
-                <<set _class = "common">>
-
-            <<elseif $plrRoom.floor.uncommon == true>>
-                <<set _word = "good">>
-                <<set _class = "uncommon">>
-
-            <<elseif $plrRoom.floor.rare == true>>
-                <<set _word = "really nice">>
-                <<set _class = "rare">>
-
-            <<elseif $plrRoom.floor.legendary == true>>
-                <<set _word = "impressive">>
-                <<set _class = "legendary">>
-
-            <<elseif $plrRoom.floor.unique == true>>
-                <<set _word = "royal">>
-                <<set _class = "unique">>
-
-            <</if>>
-
-            <<print '<span class="' + _class + '">' + 
-                '<<hovertip "The better your floor, the more sanity you regain from relaxing or performing activities other than studying">>' + 
-                _word + '<</hovertip>></span>'
-            >>
-        <</widget>>
-    <</nobr>>
-
-    <<nobr>>
-        <<widget "commentLight">>
-            <<set _word = "">>
-            <<set _class = "">>
-
-            <<if $plrRoom.lights.none == true>>
-                <<set _word = "not at all">>
-                <<set _class = "trash">>
-
-            <<elseif $plrRoom.lights.trash == true>>
-                <<set _word = "dimly">>
-                <<set _class = "trash">>
-
-            <<elseif $plrRoom.lights.common == true>>
-                <<set _word = "warmly">>
-                <<set _class = "common">>
-
-            <<elseif $plrRoom.lights.uncommon == true>>
-                <<set _word = "well">>
-                <<set _class = "uncommon">>
-
-            <<elseif $plrRoom.lights.rare == true>>
-                <<set _word = "brightly">>
-                <<set _class = "rare">>
-
-            <<elseif $plrRoom.lights.legendary == true>>
-                <<set _word = "impressively">>
-                <<set _class = "legendary">>
-
-            <<elseif $plrRoom.lights.unique == true>>
-                <<set _word = "star">>
-                <<set _class = "unique">>
-
-            <</if>>
-
-            <<print '<span class="' + _class + '">' + 
-                '<<hovertip "The more well-lit your room, the less sanity lost while studying.">>' + 
-                _word + '<</hovertip>></span>'
-            >>
-        <</widget>>
-    <</nobr>>
-
-    /* searchForItem locationvar searchvar searchvar_max itemType itemID ---- ie searchForItem $plrRoom booksFound 3 miscBook mapSchool*/
+    /* searchForItem i.e. searchForItem Residence_Starr_PlayerRoom (bookmisc, bookspell, bookdisc, bookskill) (mapSchool, spellBasic) (time passed)*/
     <<nobr>>
         <<widget "searchForItem">>
-            <<if _args[0][_args[1]] < _args[2]>>
-                <<foundItem _args[3] _args[4]>>
-                <<set _args[0][_args[1]] += 1>>
-                <<calcTime 20 15>>
+            <<set _room = $roomVars[_args[0]]>>
+            <<set _bookType = _args[1]>>
+            <<set _bookCur = _room[_bookType].cur>>
+            <<set _bookMax = _room[_bookType].max>>
+
+            <<if _bookCur < _bookMax>>
+                <<foundItem _bookType _args[2]>>
+                
+                <<set _room[_bookType].cur += 1>>
+                <<calcTime _args[3]>>
+            <</if>>
+
+            <<set _countCur = 
+                _room.bookmisc.cur +
+                _room.bookspell.cur +
+                _room.bookdisc.cur +
+                _room.bookskill.cur
+            >>
+            <<set _countMax = 
+                _room.bookmisc.max +
+                _room.bookspell.max +
+                _room.bookdisc.max +
+                _room.bookskill.max
+            >>
+
+            <<set _bookPerc = (100 *_countCur) / _countMax>>
+
+            <<if _bookPerc >= 0 && _bookPerc < 50>>
+                <<print
+                    '<<speech plr>>There is still a lot of stuff I can look through.<</speech>>'
+                >>
+                <<elseif _bookPerc >= 50 && _bookPerc < 100>>
+                    <<print
+                        '<<speech plr>>I\'ve searched through most of this place, but there is a little more I can poke around.<</speech>>'
+                    >>
+                <<elseif _bookPerc == 100>>
+                    <<print
+                        '<<speech plr>>I have found everything there is to find here.<</speech>>'
+                    >>
             <</if>>
         <</widget>>
     <</nobr>>
@@ -610,7 +739,8 @@
                 <</if>>
 
                 <<set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2>>
-                <<set $plr.stats.stamina.cur -= $spellCastVar.spellCost>>
+                <<set _stamChange = $spellCastVar.spellCost * -1>>
+                <<setStats 'plr' 'stamina' _stamChange>>
                 <<set $plr.stats.stamina.max += $spellCastVar.spellCost * 0.1>>
                 <<set $plr.stats.focus.max += $spellCastVar.spellCost * 0.05>>
 
@@ -623,6 +753,11 @@
                     <<goto 'Spell_Success'>>
                     <<run Dialog.close()>>
                     
+                <</if>>
+
+                <<if $eventVar.inCombat == true>>
+                    <<goto[[Spell_Combat]]>>
+                    <<run Dialog.close()>>
                 <</if>>
                 
             <<elseif $spellCastVar.spellCost > $plr.stats.stamina.cur>>
@@ -641,28 +776,216 @@
                 <<replace '#spell-result'>>$spellCastVar.badCombo<</replace>>
 
             <</if>>
-
-            <<run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, "staminaBar", true)>>
-            <<run Life($plr.stats.life.cur, $plr.stats.life.max, "lifeBar", true)>>
-            <<run FocusStat($plr.stats.focus.cur, $plr.stats.focus.max, "focusBar", true)>>
-            <<run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, "sanityBar", true)>>
-
         <<else>>
             <<removeclass '#spell-result'>>
             <<addclass '#spell-result' 'purple'>>
             <<replace '#spell-result'>>Half-baked spells are guaranteed to go spectacularly wrong... I should complete my choice of Words.<</replace>>
 
         <</if>>
-        
-        <<set $spellCastVar = {
-            spellTarget: '',
-            spellDuration: '',
-            spellEffect: '',
-            spellEnhancement: '',
-            spellCost: 0,
-            spellDiscipline: '',
-            passageTag: '',
-            badCombo: false
-        }>>
-
     <</widget>>
+
+/* Right Menu Stats Comment Section, <<statsComments (stat)>> */
+    <<nobr>>
+        <<widget 'statsComments'>>
+            <<set _totalV = $plr.stats[_args[0]].max>>
+            <<set _compV = $plr.stats[_args[0]].cur>>
+
+            <<set _percV = (100 * _compV) / _totalV>>
+            <<set _dispV = _percV.toFixed(0)>>
+            <<if _args[0] == 'stamina'>>
+                <<if _dispV >= 80>>
+                    <<replace '#stamina-comment'>>
+                        <span class = "green">I am feeling energized and ready to take on the world.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 50 && _dispV < 80>>
+                    <<replace '#stamina-comment'>>
+                        <span class = "yellow">I am feeling a little tired, but nothing serious.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 30 && _dispV < 50>>
+                    <<replace '#stamina-comment'>>
+                        <span class = "orange">I am getting really tired, a little rest sounds real good.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV < 30 >>
+                    <<replace '#stamina-comment'>>
+                        <span class = "red">I am exhausted and need to chill out for awhile.</span>
+                    <</replace>>
+                <</if>>
+            <</if>>
+            <<if _args[0] == 'life'>>
+                <<if _dispV >= 80>>
+                    <<replace '#life-comment'>>
+                        <span class = "green">I don\'t have so much as a scratch on me.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 50 && _dispV < 80>>
+                    <<replace '#life-comment'>>
+                        <span class = "yellow">I have some cuts and bruises.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 30 && _dispV < 50>>
+                    <<replace '#life-comment'>>
+                        <span class = "orange">I\'m missing enough blood to be concerned at this point.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV < 30 >>
+                    <<replace '#life-comment'>>
+                        <span class = "red">I am in need of urgent medical care.</span>
+                    <</replace>>
+                <</if>>
+            <</if>>
+            <<if _args[0] == 'focus'>>
+                <<if _dispV >= 80>>
+                    <<replace '#focus-comment'>>
+                        <span class = "green">I am completely focused.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 50 && _dispV < 80>>
+                    <<replace '#focus-comment'>>
+                        <span class = "yellow">My mind wanders just a little.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 30 && _dispV < 50>>
+                    <<replace '#focus-comment'>>
+                        <span class = "orange">It is getting difficult to focus.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV < 30 >>
+                    <<replace '#focus-comment'>>
+                        <span class = "red">I am spent and desperately in need of some me time.</span>
+                    <</replace>>
+                <</if>>
+            <</if>>
+            <<if _args[0] == 'sanity'>>
+                <<if _dispV >= 80>>
+                    <<replace '#sanity-comment'>>
+                        <span class = "green">Both feet are firmly planted in reality.</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 50 && _dispV < 80>>
+                    <<replace '#sanity-comment'>>
+                        <span class = "yellow">I might have seen two black cats. Or was it deja vu?</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV >= 30 && _dispV < 50>>
+                    <<replace '#sanity-comment'>>
+                        <span class = "orange">Am I starting to lose my mind?</span>
+                    <</replace>>
+                <</if>>
+                <<if _dispV < 30 >>
+                    <<replace '#sanity-comment'>>
+                        <span class = "red">My grasp on reality is slipping...</span>
+                    <</replace>>
+                <</if>>
+            <</if>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget 'processClean'>>
+            <<for _i, _name range $roomVars>>
+                <<set $roomVars[_i].clean += $dateTime.minPassed * 0.007>>
+                <<run _i += 1>>
+            <</for>>
+        <</widget>>
+    <</nobr>>
+
+    /* Sets available random events and runs based on multiple args, i.e. <<randomEvent (standard event) >> */
+
+    /* Things To-Do
+        4. Adjust event strength based on power score.
+        7. Add in professor and student npcs.
+        8. Implement relationship system.
+        9. Write first set of classes.
+        10. Write 'I will not be contained!!!! events.'
+        11. Add in more Words and spell combos.
+        12. Finish first week of classes. (Marks end of chapter 2!)
+        13. Setup combat
+        14. Allow targeting of others...somehow.
+        
+    */
+    <<nobr>>
+        <<widget 'randomEvent'>>
+            <<set _standardEvent = _args[0]>>
+            <<set _randEventNum = random(1, 3)>>
+            <<set _randNum = random(1, 10)>>
+            <<set _eventArray = $roomVars[passage()].randomEvents>>
+            <<if $dateTime.hour >= 6 && $dateTime.hour <= 19>>
+                <<set _curTime = 'day' + _randEventNum>>
+                <<else>>
+                    <<set _curTime = 'night' + _randEventNum>>
+            <</if>>
+
+            <<for _i = 0; _i < _eventArray.length; _i++>>
+                <<if tags(_eventArray[_i]).includes(_curTime) && _randNum <= 8>>
+                    <<set _curRndEvent = _eventArray[_i]>>
+                    <<if _curRndEvent>>
+                        <<break>>
+                    <</if>>
+
+                    <<else>>
+                        <<set _curRndEvent = _standardEvent>>
+                <</if>>
+            <</for>>
+            <<if tags(_curRndEvent).includes('combat')>>
+                <<set $eventVar.inCombat = true>>
+                <<set $eventVar.combatPass = _curRndEvent>>
+            <</if>>
+            <<include _curRndEvent>>
+
+        <</widget>>
+    <</nobr>>
+
+    /*Console log in a widget, i.e. <<consolelog 'life cur: ' _life */
+    <<nobr>>
+        <<widget 'consolelog'>>
+            <<if _args[0] && _args[1]>>
+                <<run console.log(_args[0] + ': ' + _args[1])>>
+                <<else>>
+                    <<run console.log(_args[0])>>
+            <</if>>
+        <</widget>>
+    <</nobr>>
+
+    /* Calculates player power score for use in encounter calculations and some npc interactions, i.e. <<PowerScore>> */
+    <<nobr>>
+        <<widget 'PowerScore'>>
+            <<set _discPower = 0>>
+
+            <<for _i, _name range $plr.disciplines>>
+                <<if $plr.disciplines[_i].level>>
+                    <<set _discPower += $plr.disciplines[_i].level>>
+                <</if>>
+                <<run _i + 1>>
+            <</for>>
+
+            <<set _powerScore = 
+                _discPower + 
+                ($plr.stats.stamina.max * 1.5) + 
+                ($plr.stats.life.max * 1.5) + 
+                ($plr.stats.focus.max * 1.5) + 
+                $plr.stats.sanity.max
+            >>
+            <<set $plr.powerScore = _powerScore.toFixed(1)>>
+            <<consolelog '$plr.powerScore' $plr.powerScore>>
+        <</widget>>
+    <</nobr>>
+
+    /* Creates and updates enemy stat bars for combat, i.e. <<enemyStatBars angrySquirrel>> */
+    <<nobr>>
+        <<widget 'enemyStatBars'>>
+            <<set _statAddr = $critters[_args[0]].stats>>
+            <<set _stamMax = _statAddr.stamina.max>>
+            <<set _stamCur = _statAddr.stamina.cur>>
+            <<set _lifeMax = _statAddr.life.max>>
+            <<set _lifeCur = _statAddr.life.cur>>
+            <<set _enemyName = $critters[_args[0]].name>>
+
+            <<replace '#enemyName'>>_enemyName<</replace>>
+            <<run $critters[_args[0]].img()>>
+            <<run EnemyStamina(_stamCur, _stamMax)>>
+            <<run EnemyLife(_lifeCur, _lifeMax)>>
+        <</widget>>
+    <</nobr>>

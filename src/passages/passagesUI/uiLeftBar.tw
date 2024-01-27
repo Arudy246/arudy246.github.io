@@ -7,14 +7,6 @@
             <hr>
         <</if>>
     <</nobr>>\
-    <<nobr>>
-        <<if $plr.stats.stamina.cur <= 1 && $plr.stats.stamina.max > 0>>
-            <div class='crimson'>I'm getting real tired and should get some sleep.</div><hr>
-        <</if>>
-        <<if $plr.stats.life.cur <= 2 && $plr.stats.life.max > 0>>
-            <div class = 'crimson'> I'm hurting real bad and need to heal.</div><hr>
-        <</if>>
-    <</nobr>>\
 
 :: StoryBanner
     <img class="banner" src='img/logo.png'/>

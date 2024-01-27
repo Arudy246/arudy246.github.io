@@ -26,10 +26,11 @@
 
         <<set $unlockVar.userInterface.inventory = true>>
         <<set $unlockVar.userInterface.spells = true>>
+        <<set $unlockVar.userInterface.locations = true>>
 
         <<pickup $plrinvbooks "mapSchool" 1>>
         <<pickup $plrinvbooks "mapTown" 1>>
-        <<pickup $plrinvbooks "illusion1" 1>>
+        <<pickup $plrinvbooks "spellsBasic" 1>>
 
         <<for _i, _name range $spellWords.target>>
             <<set $spellWords.target[_i].unlocked = true>>

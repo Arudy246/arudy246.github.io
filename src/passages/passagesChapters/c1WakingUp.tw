@@ -405,7 +405,7 @@
 
     <<button [[Keep listening | WakingUp11]]>>
         <<set $plr.stats.stamina.max = 10>>
-        <<setStamina 6>>
+        <<setStats 'plr' 'stamina' 9>>
     <</button>>
 
 :: WakingUp11
@@ -419,7 +419,7 @@
 
     <<button [[Keep listening | WakingUp12]]>>
         <<set $plr.stats.life.max = 10>>
-        <<setLife 10>>
+        <<setStats 'plr' 'life' 10>>
     <</button>>\
 
 :: WakingUp12
@@ -440,7 +440,7 @@
 
     <<button [[Follow | WakingUp13]]>>
         <<set $plr.stats.focus.max = 4>>
-        <<setFocus 3>>
+        <<setStats 'plr' 'focus' 3>>
     <</button>>\
 
 :: WakingUp13
@@ -459,7 +459,7 @@
 
     <<button [[Keep listening | WakingUp14]]>>
         <<set $plr.stats.sanity.max = 3>>
-        <<setSanity 2>>
+        <<setStats 'plr' 'sanity' 2>>
         <<set $plrRoom.cleanliness = -3>>
     <</button>>\
 

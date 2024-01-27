@@ -3,5 +3,3 @@
 
     <<button [[Continue | previous()]]>>
     <</button>>
-
-:: Spell-Failure

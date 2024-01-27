@@ -1,45 +1,66 @@
 :: StoryRightSidebar
 
-<<nobr>>
-    <<if $plr.stats.stamina.max != 0>>
+    <<nobr>>
+        <<if $unlockVar.userInterface.spells == true>>
+            <<link "Spellwork">>
+                <<run
+                    Dialog.setup('Form and Cast a Spell');
+                    Dialog.wiki(Story.get("Spell_Words_Modal").processText());
+                    Dialog.open();
+                >>
+            <</link>>
+            <hr>
+        <</if>>
+    <</nobr>>\
+    <<nobr>>
+        <<if $plr.stats.stamina.max != 0>>
             <div id="staminaBarbkg" class="hzbarbkg"><div id="staminaBar" class="hzbar"></div></div>
             <span class="cyan">Stamina: </span><span id='ui-stamina'></span>
-            <<run Stamina($plr.stats.stamina.cur, $plr.stats.stamina.max, "staminaBar", true)>>
+            <<run Stamina()>>
+            <br>
+            <<done>>
+                <<statsComments 'stamina'>>
+            <</done>>
+            <span id="stamina-comment"></span>
             <hr>
-    <</if>>
-<</nobr>>\
-<<nobr>>
-    <<if $plr.stats.life.max != 0>>
+        <</if>>
+    <</nobr>>\
+    <<nobr>>
+        <<if $plr.stats.life.max != 0>>
             <div id="lifeBarbkg" class="hzbarbkg"><div id="lifeBar" class="hzbar"></div></div>
             <span class="crimson">Lifeforce: </span><span id='ui-life'></span>
-            <<run Life($plr.stats.life.cur, $plr.stats.life.max, "lifeBar", true)>>
+            <<run Life()>>
+            <br>
+            <<done>>
+                <<statsComments 'life'>>
+            <</done>>
+            <span id='life-comment'></span>
             <hr>
-    <</if>>
-<</nobr>>\
-<<nobr>>
-    <<if $plr.stats.focus.max != 0>>
-        <div id="focusBarbkg" class="hzbarbkg"><div id="focusBar" class="hzbar"></div></div>
-        <span class="greenyellow">Focus: </span><span id='ui-focus'></span>
-        <<run FocusStat($plr.stats.focus.cur, $plr.stats.focus.max, "focusBar", true)>>
-        <hr>
-    <</if>>
-<</nobr>>\
-<<nobr>>
-    <<if $plr.stats.sanity.max != 0>>
-        <div id="sanityBarbkg" class="hzbarbkg"><div id="sanityBar" class="hzbar"></div></div>
-        <span class="purple">Sanity: </span><span id='ui-sanity'></span>
-        <<run Sanity($plr.stats.sanity.cur, $plr.stats.sanity.max, "sanityBar", true)>>
-        <hr>
-    <</if>>
-<</nobr>>\
-<<nobr>>
-    <<if $unlockVar.userInterface.spells == true>>
-        <<link "Spellwork">>
-            <<run
-                Dialog.setup('Form and Cast a Spell');
-                Dialog.wiki(Story.get("Spell_Words_Modal").processText());
-                Dialog.open();
-            >>
-        <</link>>
-    <</if>>
-<</nobr>>
+        <</if>>
+    <</nobr>>\
+    <<nobr>>
+        <<if $plr.stats.focus.max != 0>>
+            <div id="focusBarbkg" class="hzbarbkg"><div id="focusBar" class="hzbar"></div></div>
+            <span class="greenyellow">Focus: </span><span id='ui-focus'></span>
+            <<run FocusStat()>>
+            <br>
+            <<done>>
+                <<statsComments 'focus'>>
+            <</done>>
+            <span id='focus-comment'></span>
+            <hr>
+        <</if>>
+    <</nobr>>\
+    <<nobr>>
+        <<if $plr.stats.sanity.max != 0>>
+            <div id="sanityBarbkg" class="hzbarbkg"><div id="sanityBar" class="hzbar"></div></div>
+            <span class="purple">Sanity: </span><span id='ui-sanity'></span>
+            <<run Sanity()>>
+            <br>
+            <<done>>
+                <<statsComments 'sanity'>>
+            <</done>>
+            <span id='sanity-comment'></span>
+            <hr>
+        <</if>>
+    <</nobr>>

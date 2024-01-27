@@ -1,0 +1,24 @@
+:: Spell_Combat
+
+    <<nobr>>
+        <<done>>
+            <<if $spellCastVar.spellTarget.stats.life.cur <= 0>>
+                <<set $spellCastVar.spellTarget.stats.life.cur = $spellCastVar.spellTarget.stats.life.max>>
+                <<set $spellCastVar.availableTargets.critters = []>>
+                <<set $spellCastVar.spellTarget = ''>>
+                <<run UI.alert('You won!')>>
+                <<set $eventVar.inCombat = false>>
+                <<set $eventVar.combatPass = ''>>
+            <</if>>
+        <</done>>
+
+
+    <</nobr>>
+
+    This is the spell combat passage. Should only display after casting spell when in combat.
+        <<speech plr>>I successfully cast my <i>$spellCastVar.spellEffect</i> spell at the $spellCastVar.spellTarget.name and did $spellCastVar.damageDone damage to it.<</speech>>
+    <<speech plr>>The CREATURE DID/DID NOT do # DAMAGE to me.<</speech>>
+
+    <<button [[Continue | previous()]]>>
+    
+    <</button>>

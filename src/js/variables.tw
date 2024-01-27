@@ -2,12 +2,13 @@
     <<set $dateTime = {
         hour: 20,
         min: 30,
-        day: 7,
+        day: 6,
         month: 1,
         date: 8,
         year: 2023,
         dayName: "",
-        monthName: ""
+        monthName: "",
+        minPassed: 0
     }>>
 
     /*-----Player Stats and Info-----*/
@@ -21,6 +22,7 @@
 
     <<set $plr = {
         img: '',
+        powerScore: 0,
         stats: {
             life: {
                 max: 0,
@@ -433,6 +435,74 @@
         }
     }>>
 
+    <<set $critters = {
+        rabidDog: {
+            img: '',
+            name: 'Rabid Dog',
+            description: 'It\'s mangy, covered in fleas, and you can see it drooling all over itself. Not a pretty sight.',
+            stats: {
+                life: {
+                    max: 5,
+                    cur: 5,
+                    pre: 5
+                },
+                stamina: {
+                    max: 3,
+                    cur: 3,
+                    pre: 3
+                },
+                attack: 2,
+                defense: 0,
+            }
+        },
+        aggressiveSquirrel: {
+            img: function() {
+                let Container = document
+                let element = $(Container).find('#enemyAvatar')
+                element.attr('style', 'background-image: url("img/aggressivesquirrel.jpg")')
+            },
+            name: 'Oddly Aggressive Squirrel',
+            description: 'Seriously, it\'s a bunny. It\'s just sort of an aggressive looking...bunny. This cannot be happening.',
+            stats: {
+                life: {
+                    max: 2,
+                    cur: 2,
+                    pre: 2
+                },
+                stamina: {
+                    max: 1,
+                    cur: 1,
+                    pre: 1
+                },
+                attack: 1,
+                defense: 0,
+            }
+        },
+        tinyImp : {
+            img: function() {
+                let Container = document
+                let element = $(Container).find('#enemyAvatar')
+                element.attr('style', 'background-image: url("img/greenimp.png")')
+            },
+            name: 'Tiny Green Imp',
+            description: 'It\'s small, green, and seems to think it\'s more fearsome than it really is.',
+            stats: {
+                life: {
+                    max: 3,
+                    cur: 3,
+                    pre: 3
+                },
+                stamina: {
+                    max: 1,
+                    cur: 1,
+                    pre: 1
+                },
+                attack: 2,
+                defense: 0,
+            }
+        }
+    }>>
+
     /*-----NPC Variables-----*/
     /* template 
         npcObj: {
@@ -641,92 +711,246 @@
     <<set $plrSpkChoice = "">>
 
     /*-----Locations Variables----- */
-    <<set $plrRoom = {
-        painting: {
-            none: true,
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+    <<set $roomVars = {
+        Residence_Starr_PlayerRoom: {
+            clean: 21,
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 1
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max: 1
+            },
+            painting: {
+                none: true,
+                trash: false,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            lights: {
+                none: true,
+                trash: false,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            bed: {
+                trash: true,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            table: {
+                none: true,
+                trash: false,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            chair: {
+                trash: true,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            desk: {
+                trash: true,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            couch: {
+                none: true,
+                trash: false,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            floor: {
+                trash: true,
+                common: false,
+                uncommon: false,
+                rare: false,
+                legendary: false,
+                unique: false
+            },
+            bookcase: {
+                none: true,
+                capfive: false,
+                capten: false,
+                captwenty: false,
+                capfourty: false
+            },
+            equipment: {
+                alchemykit: false,
+                foci: false,
+                jewlerykit: false,
+                sigilkit: false,
+                gemkit: false
+            }
         },
-        lights: {
-            none: true,
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        Residence_Starr_Bathroom: {
+            clean: 10,
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 0
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max: 0
+            }
         },
-        bed: {
-            trash: true,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        Residence_Starr_Kitchen: {
+            clean: 21,
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 0
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max:0
+            }
         },
-        table: {
-            none: true,
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        Residence_Starr_BanquetHall: {
+            clean: 21,
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 0
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max:0
+            }
         },
-        chair: {
-            trash: true,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        Residence_Starr_JanessaRoom: {
+            clean: 21,
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 0
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max:0
+            }
         },
-        desk: {
-            trash: true,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        Residence_Starr_Courtyard: {
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 0
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max:0
+            },
+            randomEvents: [
+                'Residence_Starr_Courtyard_Janessa',
+                'Residence_Starr_Courtyard_Shimmer',
+                'Residence_Starr_Courtyard_Squirrel',
+                'Residence_Starr_Courtyard_Whisper',
+                'Residence_Starr_Courtyard_Imp',
+                'Residence_Starr_Courtyard_Feeling'
+            ]
         },
-        couch: {
-            none: true,
-            trash: false,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
+        Residence_Starr_BedroomHall: {
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 0
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max:0
+            }
         },
-        floor: {
-            trash: true,
-            common: false,
-            uncommon: false,
-            rare: false,
-            legendary: false,
-            unique: false
-        },
-        bookcase: {
-            none: true,
-            capfive: false,
-            capten: false,
-            captwenty: false,
-            capfourty: false
-        },
-        equipment: {
-            alchemykit: false,
-            foci: false,
-            jewlerykit: false,
-            sigilkit: false,
-            gemkit: false
-        },
-        cleanliness: -2,
-        booksFound: 0,
-        tomesFound: 0,
+        Residence_Starr_EntryHall: {
+            bookdisc: {
+                cur: 0,
+                max: 0
+            },
+            bookspell: {
+                cur: 0,
+                max: 0
+            },
+            bookskill: {
+                cur: 0,
+                max: 0
+            },
+            bookmisc: {
+                cur: 0,
+                max:0
+            }
+        }
     }>>
 
     <<set $eventVar = {
@@ -739,5 +963,7 @@
             name: '',
             description: '',
             book: ''
-        }
+        },
+        inCombat: false,
+        combatPass: ''
     }>>

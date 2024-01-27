@@ -15,36 +15,20 @@
                 name: "Cafeteria",
                 unlocked: false
             },
-            conservatorium: {
-                name: "Conservatorium",
+            universityentrance: {
+                name: "University Entrance Hall",
                 unlocked: false
             },
-            theexchange: {
-                name: "The Exchange",
+            universityshops: {
+                name: "University Shops Hall",
                 unlocked: false
             },
-            leynode: {
-                name: "Ley Node",
+            universityclasses: {
+                name: "University Class Hall",
                 unlocked: false
             },
-            gymnasium: {
-                name: "Gymnasium",
-                unlocked: false
-            },
-            sigilarium: {
-                name: "Sigilarium",
-                unlocked: false
-            },
-            artifice: {
-                name: "Artifice Workshop",
-                unlocked: false
-            },
-            pentadentrix: {
-                name: "Ritual Pentadentrix",
-                unlocked: false
-            },
-            deanstudy: {
-                name: "Dean's Study",
+            universitybasement: {
+                name: "University Basement Hall",
                 unlocked: false
             },
             clinic: {

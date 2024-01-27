@@ -1,11 +1,77 @@
 :: University_MainRoad
+    <img class='scene' src='img/street.jpg'>
+    The road is long, but lined with many small and some large houses.
+
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[University Courtyard | University_MainCourtyard]]>>
+            <<calcTime 10 5>>
+            <</button>>
+            <<button [[Main Gate | University_Gate]]>>
+                <<calcTime 10 5>>
+            <</button>>
+            <<button [[Starr Residence Courtyard | Residence_Starr_Courtyard]]>>
+                <<calcTime 10 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_MainCourtyard
+    <img class='scene' src='img/university_courtyard.jpg'>
+    <<speech 'plr'>>Yup, that's a magical looking courtyard alright.<</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[University Entrance | University_Entrance]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[University Road | University_MainRoad]]>>
+                <<calcTime 5 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Gate
+    <img class='scene' src='img/university_gate.jpg'>
+    <<speech 'plr'>>Now that is a gate! Sadly, it looks very much locked. And the air seems to shimmer along the outer wall. An illusion? Maybe a shield? Not sure yet.<</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[University Main Road | University_MainRoad]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Entrance
-
+    <img class='scene' src='img/university_entrance.jpg'>
+    <<speech 'plr'>>In we go...<</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-3'>
+            <<button [[Classrooms | University_Hall_Classes]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[Shops | University_Hall_Shops]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[Labratories | University_Hall_Labs]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[Artificers | University_Hall_Crafts]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[Basement | University_Hall_Basement]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[Admin Wing | University_Hall_Admin]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[Librarium | University_Librarium]]>>
+                <<calcTime 5 5>>
+            <</button>>
+            <<button [[Leave the building | University_MainCourtyard]]>>
+                <<calcTime 5 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 :: University_Hall_Admin
 
 :: University_Hall_Labs
