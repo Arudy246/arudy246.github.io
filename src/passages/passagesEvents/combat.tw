@@ -1,24 +1,28 @@
 :: Spell_Combat
-
     <<nobr>>
+        <<set $unlockVar.userInterface.spells = false>>
+        <<set $unlockVar.userInterface.locations = false>>
         <<done>>
             <<if $spellCastVar.spellTarget.stats.life.cur <= 0>>
-                <<set $spellCastVar.spellTarget.stats.life.cur = $spellCastVar.spellTarget.stats.life.max>>
+                <<run UI.alert('You won! And your foe just evaporated.')>>
+                <<set $eventVar.inCombat = false>>
+                <<for _i, _name range $critters>>
+                    <<set _critter = $critters[_i]>>
+                    <<set _critter.stats.life.cur = _critter.stats.life.max>>
+                    <<run _i + 1>>
+                <</for>>
+                <<set $eventVar.combatPass = ''>>
+                <<set _enemyLoot = $spellCastVar.spellTarget.stats.life.max + random(1, 3)>>
+                <<pickup $plrCurrencies 'goldflake' _enemyLoot>>
                 <<set $spellCastVar.availableTargets.critters = []>>
                 <<set $spellCastVar.spellTarget = ''>>
-                <<run UI.alert('You won!')>>
-                <<set $eventVar.inCombat = false>>
-                <<set $eventVar.combatPass = ''>>
             <</if>>
         <</done>>
-
-
     <</nobr>>
-
-    This is the spell combat passage. Should only display after casting spell when in combat.
-        <<speech plr>>I successfully cast my <i>$spellCastVar.spellEffect</i> spell at the $spellCastVar.spellTarget.name and did $spellCastVar.damageDone damage to it.<</speech>>
+    <<speech plr>>I successfully cast my <i>$spellCastVar.spellEffect</i> spell at the $spellCastVar.spellTarget.name and did $spellCastVar.damageDone damage to it.<</speech>>
     <<speech plr>>The CREATURE DID/DID NOT do # DAMAGE to me.<</speech>>
 
     <<button [[Continue | previous()]]>>
-    
+        <<set $unlockVar.userInterface.spells = true>>
+        <<set $unlockVar.userInterface.locations = true>>
     <</button>>

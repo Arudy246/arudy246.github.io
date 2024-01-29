@@ -1,7 +1,7 @@
 :: Event_Unlock_Location
 
     <<speech plr>>
-        After reading <i>$eventVar.location.book</i> you learned how to find the <i>$eventVar.location.name</i>!
+        After reading <i>$eventVar.location.book</i>, I learned how to find the <i>$eventVar.location.name</i>! I have read $eventVar.location.pagesCur out of $eventVar.location.pagesMax chapters.
     <</speech>>\
 
     <<button [[Continue | previous()]]>>

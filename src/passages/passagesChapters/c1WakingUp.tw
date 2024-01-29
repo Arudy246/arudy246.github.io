@@ -321,12 +321,12 @@
 
     $npcs.barden.name.formal looks at $npcs.janessa.name.firstName but says to you:
 
-    <<speech "barden">>You will be staying her family residence until other arrangements can be made.<</speech>>\
+    <<speech "barden">>You will be staying in her family residence until other arrangements can be made.<</speech>>\
     <<tone "neg">>$npcs.barden.name.formal appears regretful<</tone>>
 
-    $npcs.janessa.name.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn't like, it's the invasion of her private space you represent.
+    $npcs.janessa.name.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. It's not her assignment as a tour guide she doesn't like, it's the invasion of her private space you represent.
 
-    <<speech "barden">>Something to keep in mind $plrName.name.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.<</speech>>\
+    <<speech "barden">>Something to keep in mind $plr.name.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.<</speech>>\
 
     <<speech "barden">>I do not know your life's background nor whether you were considered a moral person, but just know that becoming violent with anyone, or almost anything, in our world will probably earn you a death sentence given your current level of comprehension and ability. If I were you, I would behave myself, get to know as many people as possible, and embrace the knowledge available to you at my university.<</speech>>\
 
@@ -341,7 +341,7 @@
 :: WakingUp8
     <img class="scene" src="img/street.jpg"/>\
 
-    $npcs.janessa.name.firstName leads you out of the headmaster's study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
+    $npcs.janessa.name.firstName leads you out of the dean's study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
     
     $npcs.janessa.name.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
 
@@ -384,9 +384,12 @@
 :: WakingUp10
     <img class="scene" src="img/residence_starr_entryhall.jpg"/>\
 
-    <<speech plr>><<print $plrSpkChoice>><</speech>>\
-    <<printRelGain>>\
-
+    <<nobr>>
+        <<speech plr>><<print $plrSpkChoice>><</speech>>
+        <<done>>
+            <<printRelGain>>
+        <</done>>
+    <</nobr>>\
     <<if $relAmtTemp < 0>>
         <<speech janessa>>Get a grip. Being pathetic or weak will not help you. And seriously, I don't care. Go talk to $npcs.amy.name.formal if you need to "talk" to someone. But leave me out of it.<</speech>>\
     <<else>>
@@ -432,9 +435,9 @@
 
     $npcs.janessa.name.firstName walks further down the hallway as you follow her. She opens one of the doors.
 
-    <<speech janessa>>This will be your room. I know it is not much. Actually, it really isn't anything. But if have the time or money, you can put whatever you want in it. A proper bed might be a good idea. Don't ask, I have nothing to spare.<</speech>>\
+    <<speech janessa>>This will be your room. I know it is not much. Actually, it really isn't anything. But if have the time or money, you can do whatever you want to it. A proper bed might be a good idea. Don't ask, I have nothing to spare.<</speech>>\
 
-    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only basic effects can be cast by newbies, but anything above that or using more powerful words will be impossible to cast. Creatively enough, we call this <span class='emphasis greenyellow'><em>Focus</em></span>. The more you have, the more energy you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='emphasis greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.<</speech>>\
+    <<speech janessa>>Next lesson. Casting spells not only tires you out, but they can be of vastly different complexities. Spells built with only basic effects can be cast by newbies, but anything above that or using more powerful words will be impossible to cast. Creatively enough, we call this <span class='emphasis greenyellow'><em>Focus</em></span>. The more you have, the more energy you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can <span class='emphasis greenyellow'><em>Focus</em></span> on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.<</speech>>\
 
     $npcs.janessa.name.firstName leads you into "your" room.
 
@@ -452,15 +455,14 @@
 
     <<speech janessa>>Ya, so you have some work to do. I recommend you tidy up and figure out how to make some money to at least get the bed and maybe a desk. Reading books on the floor seems like a great way to get a crink in your neck. But hey, it's your space for now. So you do you I guess.<</speech>>\
 
-    <<speech janessa>>Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It's called <span class='emphasis purple'><em>Sanity</em></span>. Studying magic is confusing. Reading old, half-rotted tombs is agitating. Trying to cast spells you can't focus on is frustrating. All these things will slowly eat away at you <span class='emphasis purple'><em>Sanity</em></span>. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I've been in the room when some kid got his hands on a spell written on a napkin and left in the library. He tried to cast it in class...It cost him his life and several other students their own <span class='emphasis purple'><em>Sanity</em></span>.<</speech>>\
+    <<speech janessa>>Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It's called <span class='emphasis purple'><em>Sanity</em></span>. Studying magic is confusing. Reading old, half-rotted tombs is agitating. Trying to cast spells you can't focus on is frustrating. All these things will slowly eat away at you <span class='emphasis purple'><em>Sanity</em></span>. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I've been in the room when some kid got his hands on a spell written on a napkin left in the library. He tried to cast it in class...It cost him his life and several other students their own <span class='emphasis purple'><em>Sanity</em></span>.<</speech>>\
     <<tone neg>>$npcs.janessa.name.firstName trails off and glances towards some dark corner in your room for a moment<</tone>>
         
-    <<speech janessa>>Think of it this way, if you try to cast something you simply don't understand, it may horribly backfire on you. You could have been trying to coax a plan into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.<</speech>>\
+    <<speech janessa>>Think of it this way, if you try to cast something you simply don't understand, it may horribly backfire on you. You could have been trying to coax a plant into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.<</speech>>\
 
     <<button [[Keep listening | WakingUp14]]>>
         <<set $plr.stats.sanity.max = 3>>
         <<setStats 'plr' 'sanity' 2>>
-        <<set $plrRoom.cleanliness = -3>>
     <</button>>\
 
 :: WakingUp14

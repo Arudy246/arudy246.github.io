@@ -1434,8 +1434,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Item-Inventories" tags="init" position="475,100" size="100,100">/* Inventory Variables */
     &lt;&lt;newinv $plrinvbooks&gt;&gt;
     &lt;&lt;newinv $plrinvmaterials&gt;&gt;
-    &lt;&lt;newinv $plrinvspells&gt;&gt;
     &lt;&lt;newinv $plrinvmisc&gt;&gt;
+    &lt;&lt;newinv $plrCurrencies&gt;&gt;
 
     /* Item SimpleStorage Variables */
 
@@ -1448,6 +1448,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;/consumable&gt;&gt;
     */
+
+    &lt;&lt;item &#39;goldflake&#39; &#39;Gold Flakes&#39;&gt;&gt;
+        &lt;&lt;description&gt;&gt;\
+            A bunch of small gold flakes. Looks valuable enough to keep.
+    &lt;&lt;/item&gt;&gt;
 
     &lt;&lt;consumable &quot;mapSchool&quot; &quot;A Guide to Magnus Schola&quot;&gt;&gt;
         &lt;&lt;nobr&gt;&gt;
@@ -1544,7 +1549,6 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     }&gt;&gt;
 
     &lt;&lt;set $bookSkills = {
-
     }&gt;&gt;
 
     &lt;&lt;set $bookSpell = {
@@ -1553,7 +1557,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             description: &quot;An introduction to basic spellwork for the child-aged practitioner.&quot;,
             costMult: 0.4,
             pagesRead: 0,
-            pagesTotal: 6,
+            pagesTotal: 7,
             pageUnlocks: {
                 1: function() {
                         state.setVar(&#39;$spellWords.target.self.unlocked&#39;, true);
@@ -1584,7 +1588,12 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                         state.setVar(&#39;$spellWords.target.other.unlocked&#39;, true);
                         let x = state.getVar(&#39;$spellWords.target.other&#39;);
                         return x
-                    }
+                    },
+                7: function() {
+                        state.setVar(&#39;$spellWords.effect.clean.unlocked&#39;, true);
+                        let x = state.getVar(&#39;$spellWords.effect.clean&#39;);
+                        return x
+                    },
             }
         }
     }&gt;&gt;
@@ -2630,12 +2639,16 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         spell: {
             name: &#39;&#39;,
             description: &#39;&#39;,
-            book: &#39;&#39;
+            book: &#39;&#39;,
+            pagesCur: 0,
+            pagesMax: 0
         },
         location: {
             name: &#39;&#39;,
             description: &#39;&#39;,
-            book: &#39;&#39;
+            book: &#39;&#39;,
+            pagesCur: 0,
+            pagesMax: 0
         },
         inCombat: false,
         combatPass: &#39;&#39;
@@ -2662,14 +2675,14 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;printRelGain&quot;&gt;&gt;
-                &lt;&lt;if $relAmtTemp&gt;&gt;
-                    &lt;&lt;if $relAmtTemp &gt; 0 &gt;&gt;
-                        &lt;&lt;print &#39;&lt;span class=&quot;green&quot;&gt;Your relationship with &#39; +  $npcs[$relNpcTemp].name.firstName + &#39; &#39; + $npcs[$relNpcTemp].name.lastName + &#39; has improved!&lt;/span&gt;&#39;&gt;&gt;
-                    &lt;&lt;else&gt;&gt;
-                        &lt;&lt;print &#39;&lt;span class=&quot;red&quot;&gt;Your relationship with &#39; + $npcs[$relNpcTemp].name.firstName + &#39; &#39; + $npcs[$relNpcTemp].name.lastName + &#39; has deteriorated.&lt;/span&gt;&#39;&gt;&gt;
-                    &lt;&lt;/if&gt;&gt;
-                    &lt;&lt;unset $relAmtTemp, $relNpcTemp&gt;&gt;
+            &lt;&lt;if $relAmtTemp&gt;&gt;
+                &lt;&lt;if $relAmtTemp &gt; 0 &gt;&gt;
+                    &lt;&lt;print &#39;&lt;span class=&quot;green&quot;&gt;Your relationship with &#39; +  $npcs[$relNpcTemp].name.firstName + &#39; &#39; + $npcs[$relNpcTemp].name.lastName + &#39; has improved!&lt;/span&gt;&#39;&gt;&gt;
+                &lt;&lt;else&gt;&gt;
+                    &lt;&lt;print &#39;&lt;span class=&quot;red&quot;&gt;Your relationship with &#39; + $npcs[$relNpcTemp].name.firstName + &#39; &#39; + $npcs[$relNpcTemp].name.lastName + &#39; has deteriorated.&lt;/span&gt;&#39;&gt;&gt;
                 &lt;&lt;/if&gt;&gt;
+                &lt;&lt;unset $relAmtTemp, $relNpcTemp&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
@@ -2846,6 +2859,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
                         &lt;&lt;set $eventVar.location.name = _unlockmessage&gt;&gt;
                         &lt;&lt;set $eventVar.location.book = _address.title&gt;&gt;
+                        &lt;&lt;set $eventVar.location.pagesCur = _address.pagesRead&gt;&gt;
+                        &lt;&lt;set $eventVar.location.pagesMax = _address.pagesMax&gt;&gt;
                         
                         &lt;&lt;run Dialog.close()&gt;&gt;
 
@@ -2888,6 +2903,10 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                             Dialog.open();
                         &gt;&gt;
                         &lt;&lt;run Sanity()&gt;&gt;
+
+                        &lt;&lt;elseif $plr.stats.sanity.cur &lt; _address.costMult&gt;&gt;
+                        &lt;&lt;run UI.alert(&#39;I feel my mental stability waning, I can\&#39;t possibly read anything else right now.&#39;)&gt;&gt;
+                        &lt;&lt;pickup $plrinvbooks _args[1] 1&gt;&gt;
                     &lt;&lt;/if&gt;&gt;
 
                 &lt;&lt;case &quot;spellbook&quot;&gt;&gt;
@@ -2918,6 +2937,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                         &lt;&lt;set $eventVar.spell.name = _unlockFunc.latin&gt;&gt;
                         &lt;&lt;set $eventVar.spell.book = _address.title&gt;&gt;
                         &lt;&lt;set $eventVar.spell.description = _unlockFunc.description&gt;&gt;
+                        &lt;&lt;set $eventVar.spell.pagesCur = _address.pagesRead&gt;&gt;
+                        &lt;&lt;set $eventVar.spell.pagesMax = _address.pagesTotal&gt;&gt;
 
                         /* &lt;&lt;run
                             Dialog.setup(&quot;Spell Tome Studied&quot;);
@@ -2932,6 +2953,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
                     &lt;&lt;elseif $plr.stats.sanity.cur &lt; _address.costMult&gt;&gt;
                         &lt;&lt;run UI.alert(&#39;I feel my mental stability waning, I can\&#39;t possibly read anything else right now.&#39;)&gt;&gt;
+                        &lt;&lt;pickup $plrinvbooks _args[1] 1&gt;&gt;
 
                     &lt;&lt;/if&gt;&gt;
 
@@ -3541,9 +3563,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         10. Write &#39;I will not be contained!!!! events.&#39;
         11. Add in more Words and spell combos.
         12. Finish first week of classes. (Marks end of chapter 2!)
-        13. Setup combat
-        14. Allow targeting of others...somehow.
-        
+
+        15. Fix health not resetting on critters after combat, check Spell_Combat passage maybe
+        16. Add bad combos() for damage/room, light/other
     */
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &#39;randomEvent&#39;&gt;&gt;
@@ -3639,7 +3661,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     If you decide to focus soley on your relationships with others, they will be able to help you advance your abilities and offer you assistance quickly, but only up to the extent of their knowledge and experiences.
 
-    There will be no immersion breaking explanations of mechanics or characters. You will learn as you go. Asking questions your fellow students, reading books, studying tomes, exploring the area, and casting spells will all help you give you more complete understanding of how the world works and what you can do with.
+    There will be no immersion breaking explanations of mechanics or characters. You will learn as you go. Asking questions of your fellow students, reading books, studying tomes, exploring the area, and casting spells will all help you give you more complete understanding of how the world works and what you can do with.
 
     So go forth and Live Another Life!\
     &lt;div class=&#39;text-center&#39;&gt;
@@ -3964,12 +3986,12 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     $npcs.barden.name.formal looks at $npcs.janessa.name.firstName but says to you:
 
-    &lt;&lt;speech &quot;barden&quot;&gt;&gt;You will be staying her family residence until other arrangements can be made.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;barden&quot;&gt;&gt;You will be staying in her family residence until other arrangements can be made.&lt;&lt;/speech&gt;&gt;\
     &lt;&lt;tone &quot;neg&quot;&gt;&gt;$npcs.barden.name.formal appears regretful&lt;&lt;/tone&gt;&gt;
 
-    $npcs.janessa.name.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. Its not her assignment as a tour guide she doesn&#39;t like, it&#39;s the invasion of her private space you represent.
+    $npcs.janessa.name.firstName barely blinks. She must have known this was coming. At least it makes sense now why she has been so rude to you all night. It&#39;s not her assignment as a tour guide she doesn&#39;t like, it&#39;s the invasion of her private space you represent.
 
-    &lt;&lt;speech &quot;barden&quot;&gt;&gt;Something to keep in mind $plrName.name.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;barden&quot;&gt;&gt;Something to keep in mind $plr.name.formal, every professor and student here. In fact every person in the magical world, is armed to the teeth. You will be taught how to harness the arcane arts. But bear in mind, magic is powerful and places everyone on pretty equal footing, from a child old enough to cast their first offensive spell to the oldest practitioner who still remembers how.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;speech &quot;barden&quot;&gt;&gt;I do not know your life&#39;s background nor whether you were considered a moral person, but just know that becoming violent with anyone, or almost anything, in our world will probably earn you a death sentence given your current level of comprehension and ability. If I were you, I would behave myself, get to know as many people as possible, and embrace the knowledge available to you at my university.&lt;&lt;/speech&gt;&gt;\
 
@@ -3981,7 +4003,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;button [[Follow her | WakingUp8]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="WakingUp8" tags="" position="975,225" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/street.jpg&quot;/&gt;\
 
-    $npcs.janessa.name.firstName leads you out of the headmaster&#39;s study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
+    $npcs.janessa.name.firstName leads you out of the dean&#39;s study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
     
     $npcs.janessa.name.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
 
@@ -4018,9 +4040,12 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;set $plrSpkChoice = &quot;[you cry]&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="WakingUp10" tags="" position="1225,225" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/residence_starr_entryhall.jpg&quot;/&gt;\
 
-    &lt;&lt;speech plr&gt;&gt;&lt;&lt;print $plrSpkChoice&gt;&gt;&lt;&lt;/speech&gt;&gt;\
-    &lt;&lt;printRelGain&gt;&gt;\
-
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;speech plr&gt;&gt;&lt;&lt;print $plrSpkChoice&gt;&gt;&lt;&lt;/speech&gt;&gt;
+        &lt;&lt;done&gt;&gt;
+            &lt;&lt;printRelGain&gt;&gt;
+        &lt;&lt;/done&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\
     &lt;&lt;if $relAmtTemp &lt; 0&gt;&gt;
         &lt;&lt;speech janessa&gt;&gt;Get a grip. Being pathetic or weak will not help you. And seriously, I don&#39;t care. Go talk to $npcs.amy.name.formal if you need to &quot;talk&quot; to someone. But leave me out of it.&lt;&lt;/speech&gt;&gt;\
     &lt;&lt;else&gt;&gt;
@@ -4060,9 +4085,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     $npcs.janessa.name.firstName walks further down the hallway as you follow her. She opens one of the doors.
 
-    &lt;&lt;speech janessa&gt;&gt;This will be your room. I know it is not much. Actually, it really isn&#39;t anything. But if have the time or money, you can put whatever you want in it. A proper bed might be a good idea. Don&#39;t ask, I have nothing to spare.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech janessa&gt;&gt;This will be your room. I know it is not much. Actually, it really isn&#39;t anything. But if have the time or money, you can do whatever you want to it. A proper bed might be a good idea. Don&#39;t ask, I have nothing to spare.&lt;&lt;/speech&gt;&gt;\
 
-    &lt;&lt;speech janessa&gt;&gt;Next lesson. Casting spells not only tires you out, but they are of vastly different complexities. Spells built with only basic effects can be cast by newbies, but anything above that or using more powerful words will be impossible to cast. Creatively enough, we call this &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt;. The more you have, the more energy you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt; on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech janessa&gt;&gt;Next lesson. Casting spells not only tires you out, but they can be of vastly different complexities. Spells built with only basic effects can be cast by newbies, but anything above that or using more powerful words will be impossible to cast. Creatively enough, we call this &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt;. The more you have, the more energy you can build into your spells. Training your mind and practicing with your spells, especially those at the upper end of what you can &lt;span class=&#39;emphasis greenyellow&#39;&gt;&lt;em&gt;Focus&lt;/em&gt;&lt;/span&gt; on, will quickly help you figure out how to concentrate better and hold your attention on spell casting.&lt;&lt;/speech&gt;&gt;\
 
     $npcs.janessa.name.firstName leads you into &quot;your&quot; room.
 
@@ -4077,15 +4102,14 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;speech janessa&gt;&gt;Ya, so you have some work to do. I recommend you tidy up and figure out how to make some money to at least get the bed and maybe a desk. Reading books on the floor seems like a great way to get a crink in your neck. But hey, it&#39;s your space for now. So you do you I guess.&lt;&lt;/speech&gt;&gt;\
 
-    &lt;&lt;speech janessa&gt;&gt;Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It&#39;s called &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;. Studying magic is confusing. Reading old, half-rotted tombs is agitating. Trying to cast spells you can&#39;t focus on is frustrating. All these things will slowly eat away at you &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I&#39;ve been in the room when some kid got his hands on a spell written on a napkin and left in the library. He tried to cast it in class...It cost him his life and several other students their own &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech janessa&gt;&gt;Final lesson for tonight. This one is at least as important as me telling you not fall of a cliff. It&#39;s called &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;. Studying magic is confusing. Reading old, half-rotted tombs is agitating. Trying to cast spells you can&#39;t focus on is frustrating. All these things will slowly eat away at you &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;. Oh, and casting forbidden magics will probably consume your mind too. They are banned for a reason, so try to remember that. I&#39;ve been in the room when some kid got his hands on a spell written on a napkin left in the library. He tried to cast it in class...It cost him his life and several other students their own &lt;span class=&#39;emphasis purple&#39;&gt;&lt;em&gt;Sanity&lt;/em&gt;&lt;/span&gt;.&lt;&lt;/speech&gt;&gt;\
     &lt;&lt;tone neg&gt;&gt;$npcs.janessa.name.firstName trails off and glances towards some dark corner in your room for a moment&lt;&lt;/tone&gt;&gt;
         
-    &lt;&lt;speech janessa&gt;&gt;Think of it this way, if you try to cast something you simply don&#39;t understand, it may horribly backfire on you. You could have been trying to coax a plan into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech janessa&gt;&gt;Think of it this way, if you try to cast something you simply don&#39;t understand, it may horribly backfire on you. You could have been trying to coax a plant into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Keep listening | WakingUp14]]&gt;&gt;
         &lt;&lt;set $plr.stats.sanity.max = 3&gt;&gt;
         &lt;&lt;setStats &#39;plr&#39; &#39;sanity&#39; 2&gt;&gt;
-        &lt;&lt;set $plrRoom.cleanliness = -3&gt;&gt;
     &lt;&lt;/button&gt;&gt;\</tw-passagedata><tw-passagedata pid="24" name="WakingUp14" tags="" position="475,350" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;\
 
     &lt;&lt;speech janessa&gt;&gt;Now in regards Monday and your first week. Your schedule is now my schedule, which means I will be following you around for a few days. If it seems like you will survive on your own without causing any trouble. If you manage that, we aren&#39;t attached at the hip anymore and I can go back to my lessons. Keep in mind, I am losing valuable instruction time to stick around with you, so please try not to do anything stupid that might extend this unfortunate arrangement.&lt;&lt;/speech&gt;&gt;\
@@ -4099,28 +4123,33 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;button [[Look around | Residence_Starr_PlayerRoom]]&gt;&gt;
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="FirstWeek1" tags="" position="600,350" size="100,100"></tw-passagedata><tw-passagedata pid="26" name="FirstWeek2" tags="" position="725,350" size="100,100"></tw-passagedata><tw-passagedata pid="27" name="FirstWeek3" tags="" position="850,350" size="100,100"></tw-passagedata><tw-passagedata pid="28" name="FirstWeek4" tags="" position="975,350" size="100,100"></tw-passagedata><tw-passagedata pid="29" name="Spell_Combat" tags="" position="1100,350" size="100,100">&lt;&lt;nobr&gt;&gt;
+        &lt;&lt;set $unlockVar.userInterface.spells = false&gt;&gt;
+        &lt;&lt;set $unlockVar.userInterface.locations = false&gt;&gt;
         &lt;&lt;done&gt;&gt;
             &lt;&lt;if $spellCastVar.spellTarget.stats.life.cur &lt;= 0&gt;&gt;
-                &lt;&lt;set $spellCastVar.spellTarget.stats.life.cur = $spellCastVar.spellTarget.stats.life.max&gt;&gt;
+                &lt;&lt;run UI.alert(&#39;You won! And your foe just evaporated.&#39;)&gt;&gt;
+                &lt;&lt;set $eventVar.inCombat = false&gt;&gt;
+                &lt;&lt;for _i, _name range $critters&gt;&gt;
+                    &lt;&lt;set _critter = $critters[_i]&gt;&gt;
+                    &lt;&lt;set _critter.stats.life.cur = _critter.stats.life.max&gt;&gt;
+                    &lt;&lt;run _i + 1&gt;&gt;
+                &lt;&lt;/for&gt;&gt;
+                &lt;&lt;set $eventVar.combatPass = &#39;&#39;&gt;&gt;
+                &lt;&lt;set _enemyLoot = $spellCastVar.spellTarget.stats.life.max + random(1, 3)&gt;&gt;
+                &lt;&lt;pickup $plrCurrencies &#39;goldflake&#39; _enemyLoot&gt;&gt;
                 &lt;&lt;set $spellCastVar.availableTargets.critters = []&gt;&gt;
                 &lt;&lt;set $spellCastVar.spellTarget = &#39;&#39;&gt;&gt;
-                &lt;&lt;run UI.alert(&#39;You won!&#39;)&gt;&gt;
-                &lt;&lt;set $eventVar.inCombat = false&gt;&gt;
-                &lt;&lt;set $eventVar.combatPass = &#39;&#39;&gt;&gt;
             &lt;&lt;/if&gt;&gt;
         &lt;&lt;/done&gt;&gt;
-
-
     &lt;&lt;/nobr&gt;&gt;
-
-    This is the spell combat passage. Should only display after casting spell when in combat.
-        &lt;&lt;speech plr&gt;&gt;I successfully cast my &lt;i&gt;$spellCastVar.spellEffect&lt;/i&gt; spell at the $spellCastVar.spellTarget.name and did $spellCastVar.damageDone damage to it.&lt;&lt;/speech&gt;&gt;
+    &lt;&lt;speech plr&gt;&gt;I successfully cast my &lt;i&gt;$spellCastVar.spellEffect&lt;/i&gt; spell at the $spellCastVar.spellTarget.name and did $spellCastVar.damageDone damage to it.&lt;&lt;/speech&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;The CREATURE DID/DID NOT do # DAMAGE to me.&lt;&lt;/speech&gt;&gt;
 
     &lt;&lt;button [[Continue | previous()]]&gt;&gt;
-    
+        &lt;&lt;set $unlockVar.userInterface.spells = true&gt;&gt;
+        &lt;&lt;set $unlockVar.userInterface.locations = true&gt;&gt;
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Event_Unlock_Location" tags="" position="1225,350" size="100,100">&lt;&lt;speech plr&gt;&gt;
-        After reading &lt;i&gt;$eventVar.location.book&lt;/i&gt; you learned how to find the &lt;i&gt;$eventVar.location.name&lt;/i&gt;!
+        After reading &lt;i&gt;$eventVar.location.book&lt;/i&gt;, I learned how to find the &lt;i&gt;$eventVar.location.name&lt;/i&gt;! I have read $eventVar.location.pagesCur out of $eventVar.location.pagesMax chapters.
     &lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Continue | previous()]]&gt;&gt;
@@ -4139,7 +4168,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;speech plr&gt;&gt;After finishing &lt;i&gt;$eventVar.spell.book&lt;/i&gt;, I should try to cast my first spell!&lt;&lt;/speech&gt;&gt;\
 
         &lt;&lt;elseif hasVisited(&#39;Event_Unlock_Spell&#39;)&gt;&gt;
-            &lt;&lt;speech plr&gt;&gt;I learned the Word &lt;i&gt;$eventVar.spell.name&lt;/i&gt; from the tome, &lt;i&gt;$eventVar.spell.book&lt;/i&gt;!&lt;&lt;/speech&gt;&gt;
+            &lt;&lt;speech plr&gt;&gt;I learned the Word &lt;i&gt;$eventVar.spell.name&lt;/i&gt; from the tome, &lt;i&gt;$eventVar.spell.book&lt;/i&gt;! I have read $eventVar.spell.pagesCur out of $eventVar.spell.pagesMax chapters.&lt;&lt;/speech&gt;&gt;
             &lt;&lt;speech plr&gt;&gt;The book describes &lt;i&gt;$eventVar.spell.name&lt;/i&gt; as &lt;i&gt;&quot;$eventVar.spell.description&quot;&lt;/i&gt;&lt;&lt;/speech&gt;&gt;
     &lt;&lt;/if&gt;&gt;\
     &lt;&lt;button [[Continue | previous()]]&gt;&gt;
@@ -4238,7 +4267,19 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
     &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Residence_Starr_PlayerRoom" tags="room playerHome" position="975,725" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/plrroom.jpg&#39;&gt;
-    &lt;&lt;statsChange&gt;&gt;
+    &lt;&lt;statsChange&gt;&gt;\
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur != $roomVars.Residence_Starr_PlayerRoom.bookspell.max || $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur != $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur&gt;&gt;
+            &lt;&lt;speech plr&gt;&gt;For starters, I should probably take a look around and see if there is anything useful or interesting here.&lt;&lt;/speech&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+
+        &lt;&lt;if $spellWords.effect.clean.unlocked != true &amp;&amp; $roomVars.Residence_Starr_PlayerRoom.bookspell.cur == $roomVars.Residence_Starr_PlayerRoom.bookspell.max&gt;&gt;
+            &lt;&lt;speech plr&gt;&gt;I found a spell book and it calls to me. I really should read all of it. I already placed it in my &lt;b&gt;Inventory&lt;/b&gt;.&lt;&lt;/speech&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+        &lt;&lt;if $bookSpell.spellsBasic.pagesRead == $bookSpell.spellsBasic.pagesTotal &amp;&amp; $spellWords.effect.clean.timesCast &lt; 1&gt;&gt;
+            &lt;&lt;speech plr&gt;&gt;After finishing $bookSpell.spellsBasic.title, I think I know how to clean this place up. And a cleaning spell is exactly what the doctor ordered!&lt;&lt;/speech&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         I&#39;m in my room. Glancing at the state of the place, it&#39;s &lt;&lt;roomComments &#39;clean&#39;&gt;&gt; The floor is of &lt;&lt;roomComments &#39;floor&#39;&gt;&gt; quality. I see my &lt;&lt;roomComments &#39;chair&#39;&gt;&gt; chair and &lt;&lt;roomComments &#39;desk&#39;&gt;&gt; desk in the corner. On the far wall is my &lt;&lt;roomComments &#39;bed&#39;&gt;&gt; bed. The room is &lt;&lt;roomComments &#39;light&#39;&gt;&gt; lit.
     &lt;&lt;/speech&gt;&gt;
@@ -4308,6 +4349,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if visited() == 1&gt;&gt;
             &lt;&lt;searchForItem &#39;Residence_Starr_PlayerRoom&#39; &#39;bookmisc&#39; &#39;mapSchool&#39; 30&gt;&gt;
+            &lt;&lt;set $unlockVar.userInterface.inventory = true&gt;&gt;
         &lt;&lt;/if&gt;&gt;
         &lt;&lt;if visited() == 2&gt;&gt;
             &lt;&lt;searchForItem &#39;Residence_Starr_PlayerRoom&#39; &#39;bookspell&#39; &#39;spellsBasic&#39; 30&gt;&gt;
@@ -4317,7 +4359,6 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;button [[Look back at your room | Residence_Starr_PlayerRoom]]&gt;&gt;
-    
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="Residence_Starr_PlayerRoom_Sleeping" tags="" position="100,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/nastybed.jpg&#39;&gt;\
     &lt;&lt;speech plr&gt;&gt;Try as I might, I simply cannot sleep. Letting my mind go blank, counting sheep, nothing is working! Nevermind on this idea I guess.&lt;&lt;/speech&gt;&gt;\
 
@@ -4516,17 +4557,16 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was watching a TV with someone| WakingUp7]]&gt;&gt;
     &lt;&lt;set $plrSpkChoice = &quot;I think I was watching TV with someone. And we were eating popcorn. But I don&#39;t remember anything else after that.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="BackgroundInsanity2" tags="" position="225,1475" size="100,100"></tw-passagedata><tw-passagedata pid="113" name="BackgroundInsanity3" tags="" position="350,1475" size="100,100"></tw-passagedata><tw-passagedata pid="114" name="Actions" tags="" position="475,1475" size="100,100">Coming soon</tw-passagedata><tw-passagedata pid="115" name="Inventory" tags="nobr" position="600,1475" size="100,100">&lt;h3&gt;Books&lt;/h3&gt;
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="BackgroundInsanity2" tags="" position="225,1475" size="100,100"></tw-passagedata><tw-passagedata pid="113" name="BackgroundInsanity3" tags="" position="350,1475" size="100,100"></tw-passagedata><tw-passagedata pid="114" name="Actions" tags="" position="475,1475" size="100,100">Coming soon</tw-passagedata><tw-passagedata pid="115" name="Inventory" tags="nobr" position="600,1475" size="100,100">&lt;h3&gt;Currency&lt;/h3&gt;\
+    &lt;&lt;inv $plrCurrencies inspect&gt;&gt;
+    &lt;hr&gt;
+    &lt;h3&gt;Books&lt;/h3&gt;\
     &lt;&lt;inv $plrinvbooks use inspect&gt;&gt;
-
     &lt;hr&gt;
-
-    &lt;h3&gt;Materials&lt;/h3&gt;
+    &lt;h3&gt;Materials&lt;/h3&gt;\
     &lt;&lt;inv $plrinvmaterials use inspect&gt;&gt;
-
     &lt;hr&gt;
-
-    &lt;h3&gt;Miscellanious&lt;/h3&gt;
+    &lt;h3&gt;Miscellanious&lt;/h3&gt;\
     &lt;&lt;inv $plrinvmisc use inspect&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="StoryCaption" tags="" position="725,1475" size="100,100">@@#timeplusdate;&lt;&lt;calcTime&gt;&gt;@@\
     &lt;hr&gt;
     &lt;&lt;nobr&gt;&gt;
@@ -4576,13 +4616,13 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;/if&gt;&gt;
 
     &lt;&lt;if $unlockVar.userInterface.inventory == true&gt;&gt;
-        &lt;&lt;link &quot;Inventory&quot;&gt;&gt;
-            &lt;&lt;run 
-                Dialog.setup(&quot;Inventory&quot;, &quot;inventory&quot;); 
-                Dialog.wiki(Story.get(&quot;Inventory&quot;).text); 
-                Dialog.open();
-            &gt;&gt;
-        &lt;&lt;/link&gt;&gt;
+            &lt;&lt;link &quot;Inventory&quot;&gt;&gt;
+                &lt;&lt;run 
+                    Dialog.setup(&quot;Inventory&quot;, &quot;inventory&quot;); 
+                    Dialog.wiki(Story.get(&quot;Inventory&quot;).text); 
+                    Dialog.open();
+                &gt;&gt;
+            &lt;&lt;/link&gt;&gt;
     &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Character Info" tags="" position="1100,1475" size="100,100">&lt;&lt;= charInfoTbl($plr.name, &quot;plr.name&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTbl($plr.body.static, &quot;plr.body.static&quot;)&gt;&gt;\
     &lt;&lt;= charInfoTbl($plr.body.dynamic, &quot;plr.body.dynamic&quot;)&gt;&gt;\
@@ -5066,11 +5106,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 unlocked: false,
                 costMult: 1,
                 onCast: function() {
-                    
                     let pre = state.getVar(&#39;$spellCastVar.availableTargets.critters[0]&#39;);
-
-                    let x = State.getVar(pre)
-                               
+                    let x = State.getVar(pre)   
                     state.setVar(&#39;$spellCastVar.spellTarget&#39;, x);
                 }
             },
@@ -5166,7 +5203,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 unlocked: false,
                 discipline: &#39;elemental&#39;,
                 badCombo : function(){
-                    return false
+                    if(State.getVar(&#39;$spellCastVar.spellTarget&#39;) == &#39;room&#39;) {
+                        State.setVar(&#39;$spellCastVar.badCombo&#39;, &#39;What did this room do to deserve such harsh treatment?&#39;)
+                    } else {
+                    State.setVar(&#39;$spellCastVar.badCombo&#39;, false)
+                    }
                 },
                 onCast: function() {
                     let curLife = state.getVar(&#39;$spellCastVar.spellTarget.stats.life.cur&#39;);
@@ -5182,7 +5223,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                         let r = curLife - d;
                         
                         state.setVar(&#39;$spellCastVar.spellTarget.stats.life.cur&#39;, r);
-                        State.setVar(&#39;$spellCastVar.damageDone&#39;, r)
+                        State.setVar(&#39;$spellCastVar.damageDone&#39;, d)
                     }
                 }
             },
@@ -5232,6 +5273,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 description: &#39;Break your back cleaning no more, let the dust collect itself and walk out the door.&#39;,
                 costMult: 1.3,
                 unlocked: false,
+                timesCast: 0,
                 discipline: &#39;transmutation&#39;,
                 badCombo: function() {
                     if(state.getVar(&#39;$spellCastVar.spellTarget&#39;) == state.getVar(&#39;$plr&#39;)) {
@@ -5245,15 +5287,23 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                     let eLevel = state.getVar(&#39;$spellCastVar.spellEnhancement&#39;)
                     if (state.getVar(&#39;$spellCastVar.passageTag&#39;) == &#39;playerHome&#39;) {
                         let cln = state.getVar(&#39;$roomVars.Residence_Starr_PlayerRoom.clean&#39;)
-                        let r = cln - (2.5 * eLevel)
+                        let r = cln - (4 * eLevel)
                         state.setVar(&#39;$roomVars.Residence_Starr_PlayerRoom.clean&#39;, r)
+
+                        let tc = State.getVar(&#39;$spellWords.effect.clean.timesCast&#39;)
+                        tc = tc + 1
+                        State.setVar(&#39;$spellWords.effect.clean.timesCast&#39;, tc)
 
                     } else if (state.getVar(&#39;$spellCastVar.passageTag&#39;) == &#39;room&#39;) {
                         let pass = state.getVar(&#39;$spellCastVar.passageTitle&#39;)
                         let adrs =&#39;$roomVars.&#39; + pass + &#39;.clean&#39;
                         let cln = state.getVar(adrs)
-                        let r = cln - (2.5 * eLevel)
+                        let r = cln - (4 * eLevel)
                         state.setVar(adrs, r)
+
+                        let tc = State.getVar(&#39;$spellWords.effect.clean.timesCast&#39;)
+                        tc = tc + 1
+                        State.setVar(&#39;$spellWords.effect.clean.timesCast&#39;, tc)
                     }
                 }
             },

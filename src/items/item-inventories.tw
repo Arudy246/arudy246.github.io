@@ -3,8 +3,8 @@
     /* Inventory Variables */
     <<newinv $plrinvbooks>>
     <<newinv $plrinvmaterials>>
-    <<newinv $plrinvspells>>
     <<newinv $plrinvmisc>>
+    <<newinv $plrCurrencies>>
 
     /* Item SimpleStorage Variables */
 
@@ -17,6 +17,11 @@
 
     <</consumable>>
     */
+
+    <<item 'goldflake' 'Gold Flakes'>>
+        <<description>>\
+            A bunch of small gold flakes. Looks valuable enough to keep.
+    <</item>>
 
     <<consumable "mapSchool" "A Guide to Magnus Schola">>
         <<nobr>>
@@ -113,7 +118,6 @@
     }>>
 
     <<set $bookSkills = {
-
     }>>
 
     <<set $bookSpell = {
@@ -122,7 +126,7 @@
             description: "An introduction to basic spellwork for the child-aged practitioner.",
             costMult: 0.4,
             pagesRead: 0,
-            pagesTotal: 6,
+            pagesTotal: 7,
             pageUnlocks: {
                 1: function() {
                         state.setVar('$spellWords.target.self.unlocked', true);
@@ -153,7 +157,12 @@
                         state.setVar('$spellWords.target.other.unlocked', true);
                         let x = state.getVar('$spellWords.target.other');
                         return x
-                    }
+                    },
+                7: function() {
+                        state.setVar('$spellWords.effect.clean.unlocked', true);
+                        let x = state.getVar('$spellWords.effect.clean');
+                        return x
+                    },
             }
         }
     }>>

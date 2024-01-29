@@ -115,7 +115,19 @@
 
 :: Residence_Starr_PlayerRoom[room playerHome]
     <img class="scene" src='img/plrroom.jpg'>
-    <<statsChange>>
+    <<statsChange>>\
+    <<nobr>>
+        <<if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur != $roomVars.Residence_Starr_PlayerRoom.bookspell.max || $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur != $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur>>
+            <<speech plr>>For starters, I should probably take a look around and see if there is anything useful or interesting here.<</speech>>
+        <</if>>
+
+        <<if $spellWords.effect.clean.unlocked != true && $roomVars.Residence_Starr_PlayerRoom.bookspell.cur == $roomVars.Residence_Starr_PlayerRoom.bookspell.max>>
+            <<speech plr>>I found a spell book and it calls to me. I really should read all of it. I already placed it in my <b>Inventory</b>.<</speech>>
+        <</if>>
+        <<if $bookSpell.spellsBasic.pagesRead == $bookSpell.spellsBasic.pagesTotal && $spellWords.effect.clean.timesCast < 1>>
+            <<speech plr>>After finishing $bookSpell.spellsBasic.title, I think I know how to clean this place up. And a cleaning spell is exactly what the doctor ordered!<</speech>>
+        <</if>>
+    <</nobr>>
     <<speech plr>>
         I'm in my room. Glancing at the state of the place, it's <<roomComments 'clean'>> The floor is of <<roomComments 'floor'>> quality. I see my <<roomComments 'chair'>> chair and <<roomComments 'desk'>> desk in the corner. On the far wall is my <<roomComments 'bed'>> bed. The room is <<roomComments 'light'>> lit.
     <</speech>>
@@ -191,6 +203,7 @@
     <<nobr>>
         <<if visited() == 1>>
             <<searchForItem 'Residence_Starr_PlayerRoom' 'bookmisc' 'mapSchool' 30>>
+            <<set $unlockVar.userInterface.inventory = true>>
         <</if>>
         <<if visited() == 2>>
             <<searchForItem 'Residence_Starr_PlayerRoom' 'bookspell' 'spellsBasic' 30>>
@@ -200,7 +213,6 @@
         <</if>>
     <</nobr>>
     <<button [[Look back at your room | Residence_Starr_PlayerRoom]]>>
-    
     <</button>>
 
 :: Residence_Starr_PlayerRoom_Sleeping

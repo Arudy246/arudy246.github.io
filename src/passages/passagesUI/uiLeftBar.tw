@@ -55,13 +55,13 @@
     <</if>>
 
     <<if $unlockVar.userInterface.inventory == true>>
-        <<link "Inventory">>
-            <<run 
-                Dialog.setup("Inventory", "inventory"); 
-                Dialog.wiki(Story.get("Inventory").text); 
-                Dialog.open();
-            >>
-        <</link>>
+            <<link "Inventory">>
+                <<run 
+                    Dialog.setup("Inventory", "inventory"); 
+                    Dialog.wiki(Story.get("Inventory").text); 
+                    Dialog.open();
+                >>
+            <</link>>
     <</if>>
 
 :: Character Info

@@ -23,14 +23,14 @@
 
     <<nobr>>
         <<widget "printRelGain">>
-                <<if $relAmtTemp>>
-                    <<if $relAmtTemp > 0 >>
-                        <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has improved!</span>'>>
-                    <<else>>
-                        <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
-                    <</if>>
-                    <<unset $relAmtTemp, $relNpcTemp>>
+            <<if $relAmtTemp>>
+                <<if $relAmtTemp > 0 >>
+                    <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has improved!</span>'>>
+                <<else>>
+                    <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
                 <</if>>
+                <<unset $relAmtTemp, $relNpcTemp>>
+            <</if>>
         <</widget>>
     <</nobr>>
 
@@ -207,6 +207,8 @@
 
                         <<set $eventVar.location.name = _unlockmessage>>
                         <<set $eventVar.location.book = _address.title>>
+                        <<set $eventVar.location.pagesCur = _address.pagesRead>>
+                        <<set $eventVar.location.pagesMax = _address.pagesMax>>
                         
                         <<run Dialog.close()>>
 
@@ -249,6 +251,10 @@
                             Dialog.open();
                         >>
                         <<run Sanity()>>
+
+                        <<elseif $plr.stats.sanity.cur < _address.costMult>>
+                        <<run UI.alert('I feel my mental stability waning, I can\'t possibly read anything else right now.')>>
+                        <<pickup $plrinvbooks _args[1] 1>>
                     <</if>>
 
                 <<case "spellbook">>
@@ -279,6 +285,8 @@
                         <<set $eventVar.spell.name = _unlockFunc.latin>>
                         <<set $eventVar.spell.book = _address.title>>
                         <<set $eventVar.spell.description = _unlockFunc.description>>
+                        <<set $eventVar.spell.pagesCur = _address.pagesRead>>
+                        <<set $eventVar.spell.pagesMax = _address.pagesTotal>>
 
                         /* <<run
                             Dialog.setup("Spell Tome Studied");
@@ -293,6 +301,7 @@
 
                     <<elseif $plr.stats.sanity.cur < _address.costMult>>
                         <<run UI.alert('I feel my mental stability waning, I can\'t possibly read anything else right now.')>>
+                        <<pickup $plrinvbooks _args[1] 1>>
 
                     <</if>>
 
@@ -902,9 +911,9 @@
         10. Write 'I will not be contained!!!! events.'
         11. Add in more Words and spell combos.
         12. Finish first week of classes. (Marks end of chapter 2!)
-        13. Setup combat
-        14. Allow targeting of others...somehow.
-        
+
+        15. Fix health not resetting on critters after combat, check Spell_Combat passage maybe
+        16. Add bad combos() for damage/room, light/other
     */
     <<nobr>>
         <<widget 'randomEvent'>>

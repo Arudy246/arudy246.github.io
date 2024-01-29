@@ -35,11 +35,8 @@
                 unlocked: false,
                 costMult: 1,
                 onCast: function() {
-                    
                     let pre = state.getVar('$spellCastVar.availableTargets.critters[0]');
-
-                    let x = State.getVar(pre)
-                               
+                    let x = State.getVar(pre)   
                     state.setVar('$spellCastVar.spellTarget', x);
                 }
             },
@@ -135,7 +132,11 @@
                 unlocked: false,
                 discipline: 'elemental',
                 badCombo : function(){
-                    return false
+                    if(State.getVar('$spellCastVar.spellTarget') == 'room') {
+                        State.setVar('$spellCastVar.badCombo', 'What did this room do to deserve such harsh treatment?')
+                    } else {
+                    State.setVar('$spellCastVar.badCombo', false)
+                    }
                 },
                 onCast: function() {
                     let curLife = state.getVar('$spellCastVar.spellTarget.stats.life.cur');
@@ -151,7 +152,7 @@
                         let r = curLife - d;
                         
                         state.setVar('$spellCastVar.spellTarget.stats.life.cur', r);
-                        State.setVar('$spellCastVar.damageDone', r)
+                        State.setVar('$spellCastVar.damageDone', d)
                     }
                 }
             },
@@ -201,6 +202,7 @@
                 description: 'Break your back cleaning no more, let the dust collect itself and walk out the door.',
                 costMult: 1.3,
                 unlocked: false,
+                timesCast: 0,
                 discipline: 'transmutation',
                 badCombo: function() {
                     if(state.getVar('$spellCastVar.spellTarget') == state.getVar('$plr')) {
@@ -214,15 +216,23 @@
                     let eLevel = state.getVar('$spellCastVar.spellEnhancement')
                     if (state.getVar('$spellCastVar.passageTag') == 'playerHome') {
                         let cln = state.getVar('$roomVars.Residence_Starr_PlayerRoom.clean')
-                        let r = cln - (2.5 * eLevel)
+                        let r = cln - (4 * eLevel)
                         state.setVar('$roomVars.Residence_Starr_PlayerRoom.clean', r)
+
+                        let tc = State.getVar('$spellWords.effect.clean.timesCast')
+                        tc = tc + 1
+                        State.setVar('$spellWords.effect.clean.timesCast', tc)
 
                     } else if (state.getVar('$spellCastVar.passageTag') == 'room') {
                         let pass = state.getVar('$spellCastVar.passageTitle')
                         let adrs ='$roomVars.' + pass + '.clean'
                         let cln = state.getVar(adrs)
-                        let r = cln - (2.5 * eLevel)
+                        let r = cln - (4 * eLevel)
                         state.setVar(adrs, r)
+
+                        let tc = State.getVar('$spellWords.effect.clean.timesCast')
+                        tc = tc + 1
+                        State.setVar('$spellWords.effect.clean.timesCast', tc)
                     }
                 }
             },

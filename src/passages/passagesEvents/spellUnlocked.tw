@@ -10,7 +10,7 @@
         <<speech plr>>After finishing <i>$eventVar.spell.book</i>, I should try to cast my first spell!<</speech>>\
 
         <<elseif hasVisited('Event_Unlock_Spell')>>
-            <<speech plr>>I learned the Word <i>$eventVar.spell.name</i> from the tome, <i>$eventVar.spell.book</i>!<</speech>>
+            <<speech plr>>I learned the Word <i>$eventVar.spell.name</i> from the tome, <i>$eventVar.spell.book</i>! I have read $eventVar.spell.pagesCur out of $eventVar.spell.pagesMax chapters.<</speech>>
             <<speech plr>>The book describes <i>$eventVar.spell.name</i> as <i>"$eventVar.spell.description"</i><</speech>>
     <</if>>\
     <<button [[Continue | previous()]]>>

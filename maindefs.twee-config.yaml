@@ -133,3 +133,16 @@ sugarcube-2:
 
     statsChange:
       description: 'Prints stats changed and their amount where function is called, i.e. <<statsChange>>'
+
+    dlg:
+      container: true
+      children: [level]
+      
+    level:
+      container: true
+      children: [line]
+      parents: [dlg]
+
+    line:
+      container: true
+      parents: [level]

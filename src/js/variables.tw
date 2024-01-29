@@ -957,12 +957,16 @@
         spell: {
             name: '',
             description: '',
-            book: ''
+            book: '',
+            pagesCur: 0,
+            pagesMax: 0
         },
         location: {
             name: '',
             description: '',
-            book: ''
+            book: '',
+            pagesCur: 0,
+            pagesMax: 0
         },
         inCombat: false,
         combatPass: ''
