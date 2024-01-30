@@ -134,6 +134,21 @@ sugarcube-2:
     statsChange:
       description: 'Prints stats changed and their amount where function is called, i.e. <<statsChange>>'
 
+    discChange:
+      description: 'Tracks and prints change in discipline levels where called, i.e. <<discChange>>'
+
+    setDisc:
+      description: 'Sets discipline level increase, with option for random discipline to be chosen, i.e. <<setDisc plr abjuration 0.43>>'
+
+    Updates:
+      description: 'Combines discChange and statsChange in one call, will be expanded with additional functions to be called on passage load, i.e. <<Updates>>'
+
+    CombatStart:
+      description: 'Begins combat sequence, needs one args for npc or critter object, i.e. <<CombatStart tinyImp>>'
+
+    CombatEnd:
+      description: 'Ends combat sequence, calculates loot, prints final result, i.e. <<CombatEnd>>'
+
     dlg:
       container: true
       children: [level]

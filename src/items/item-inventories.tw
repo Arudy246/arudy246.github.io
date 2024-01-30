@@ -1,10 +1,13 @@
+:: inventory.strings
+    use: Read
+
 :: Item-Inventories [init]
 
     /* Inventory Variables */
-    <<newinv $plrinvbooks>>
-    <<newinv $plrinvmaterials>>
-    <<newinv $plrinvmisc>>
-    <<newinv $plrCurrencies>>
+    <<newinv $plrinvbooks inspect>>
+    <<newinv $plrinvmaterials inspect>>
+    <<newinv $plrinvmisc inspect>>
+    <<newinv $plrCurrencies inspect>>
 
     /* Item SimpleStorage Variables */
 

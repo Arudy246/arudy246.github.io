@@ -65,13 +65,38 @@
     <</if>>
 
 :: Character Info
-    <<= charInfoTbl($plr.name, "plr.name")>>\
-    <<= charInfoTbl($plr.body.static, "plr.body.static")>>\
-    <<= charInfoTbl($plr.body.dynamic, "plr.body.dynamic")>>\
-    <<= charInfoTbl($plr.relations, "plr.relations")>>\
-    <<= charInfoTblSub($plr.disciplines, "plr.disciplines")>>\
-
-:: Your Status
-
-    [[Exit | previous()]]
+    <<nobr>>
+        <div class='w3-bar'>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("PlrName")'>Player Name</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("PlrBodyStatic")'>Player Body S</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("PlrBodyDynamic")'>Player Body D</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("PlrDisciplines")'>Player Disciplines</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("JanessaRelation")'>Janessa Relation</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("BardenRelation")'>Barden Relation</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("AmyRelation")'>Amy Relation</button>
+        </div>
+    <</nobr>>
+    <<nobr>>
+        <div id='PlrName' class='tabElement'>
+            <<= charInfoTbl($plr.name, "plr.name")>>
+        </div>
+        <div id='PlrBodyStatic' class='tabElement'>
+            <<= charInfoTbl($plr.body.static, "plr.body.static")>>
+        </div>
+        <div id='PlrBodyDynamic' class='tabElement'>
+            <<= charInfoTbl($plr.body.dynamic, "plr.body.dynamic")>>
+        </div>
+        <div id='PlrDisciplines' class='tabElement'>
+            <<= charInfoTblSub($plr.disciplines, "plr.disciplines")>>
+        </div>
+        <div id='JanessaRelation' class='tabElement'>
+            <<= charInfoTbl($plr.relations.janessa, "Janessa Relation")>>
+        </div>
+        <div id='BardenRelation' class='tabElement'>
+            <<= charInfoTbl($plr.relations.barden, "Barden Relation")>>
+        </div>
+        <div id='AmyRelation' class='tabElement'>
+            <<= charInfoTbl($plr.relations.amy, "Amy Relation")>>
+        </div>
+    <</nobr>>
 

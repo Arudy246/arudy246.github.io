@@ -1,8 +1,3 @@
-:: Dream1
-    This will use the base mechanics of the game to give a taste of what's to come.
-
-    <<button [[Skip...for now. | WakingUp1]]>><</button>>
-
 :: WakingUp1
     <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
 

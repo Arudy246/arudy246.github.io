@@ -10,9 +10,9 @@
     Live Another Life
 
 :: Start
-    <div class='text-center main-title'>\
 
-        <h2 class='wood-text'>Live Another Life</h2>
+    <div class='text-center main-title'>\
+        <div class='wood-text'>Live Another Life</div>
     </div>
     Welcome to Live Another Life!
 
@@ -47,7 +47,7 @@
             </a>
         </div>
         <div style="display: inline-block; margin-left: 7em">
-            <<button [[More Better? | Dream1]]>><</button>>
+            <<button [[More Better? | WakingUp1]]>><</button>>
         </div>
     </div>
     <</nobr>>

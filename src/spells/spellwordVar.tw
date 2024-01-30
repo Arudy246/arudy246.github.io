@@ -26,7 +26,7 @@
                 costMult: 0.5,
                 onCast: function() {
                     let x = state.getVar('$plr');
-                    state.setVar('$spellCastVar.spellTarget', x);
+                    State.setVar('$spellCastVar.spellTarget', x);
                 }
             },
             other: {
@@ -35,9 +35,20 @@
                 unlocked: false,
                 costMult: 1,
                 onCast: function() {
-                    let pre = state.getVar('$spellCastVar.availableTargets.critters[0]');
-                    let x = State.getVar(pre)   
-                    state.setVar('$spellCastVar.spellTarget', x);
+                    let x = ''
+                    let y = ''
+                    if (State.getVar('$spellCastVar.availableTargets.npcs[0]')) {
+                        x = State.getVar('$spellCastVar.availableTargets.npcs[0]')
+                        y = '$npcs.'
+
+                    } else if (State.getVar('$spellCastVar.availableTargets.critters[0]')) {
+                        x = State.getVar('$spellCastVar.availableTargets.critters[0]')
+                        y = '$critters.'
+                    }
+
+                    let adrs = y + x
+                    let r = State.getVar(adrs)
+                    State.setVar('$spellCastVar.spellTarget', r);
                 }
             },
             room: {
@@ -132,8 +143,10 @@
                 unlocked: false,
                 discipline: 'elemental',
                 badCombo : function(){
-                    if(State.getVar('$spellCastVar.spellTarget') == 'room') {
+                    if(State.getVar('$spellCastVar.spellTarget') == 'room' || State.getVar('$spellCastVar.spellTarget') == 'playerHome') {
                         State.setVar('$spellCastVar.badCombo', 'What did this room do to deserve such harsh treatment?')
+                    } else if (!State.getVar('$spellCastVar.availableTargets.npcs[0]') && !State.getVar('$spellCastVar.availableTargets.critters[0]')) {
+                        State.setVar('$spellCastVar.badCombo', 'There are no foes and nobody to target here.')
                     } else {
                     State.setVar('$spellCastVar.badCombo', false)
                     }
@@ -163,7 +176,9 @@
                 unlocked: false,
                 discipline: 'restoration',
                 badCombo : function(){
-                    return false
+                    if (state.getVar('$spellCastVar.spellTarget') == 'room' || state.getVar('$spellCastVar.spellTarget') == 'playerHome')  {
+                        State.setVar('$spellCastVar.badCombo', 'Healing a room? I don\'t know how that would even work.')
+                    }
                 },
                 onCast: function() {
                     let curLife = state.getVar('$spellCastVar.spellTarget.stats.life.cur');
@@ -175,12 +190,14 @@
                     }
                     
                     if (curLife < maxLife) {
-                        let r = curLife + (1 * mult);
+                        let d = 1 * mult
+                        let r = curLife + d;
 
                         if (r >= maxLife) {
                             r = maxLife
                         };
                         state.setVar('$spellCastVar.spellTarget.stats.life.cur', r);
+                        State.setVar('$spellCastVar.healDone', d)
                     }
                 }
             },
@@ -208,8 +225,11 @@
                     if(state.getVar('$spellCastVar.spellTarget') == state.getVar('$plr')) {
                         state.setVar('$spellCastVar.badCombo', 'Why would I use a powerful surface scrubbing spell on myself?')
                     
-                    } else {
-                        state.setVar('$spellCastVar.badCombo', false)
+                    } else if (state.getVar('$spellCastVar.spellTarget') == 'room' || state.getVar('$spellCastVar.spellTarget') == 'playerHome')  {
+                        State.setVar('$spellCastVar.badCombo', false)
+                    }
+                    else {
+                        state.setVar('$spellCastVar.badCombo', 'Why would I try to clean this? Seems pointless.')
                     }
                 },
                 onCast: function() {
@@ -246,8 +266,10 @@
                     if(state.getVar('$spellCastVar.spellTarget') == state.getVar('$plr')) {
                         state.setVar('$spellCastVar.badCombo', 'I\'m not sure what purpose would be served by making myself light up right now...')
 
+                    } else if (State.getVar('$spellCastVar.spellTarget') == 'room' || State.getVar('$spellCastVar.spellTarget') == 'playerHome') {
+                        State.setVar('$spellCastVar.badCombo', false)
                     } else {
-                        state.setVar('$spellCastVar.badCombo', false)
+                        State.setVar('$spellCastVar.badCombo', 'Making my target glow seems rather...unhelpful.')
                     }
                 },
                 onCast: function() {

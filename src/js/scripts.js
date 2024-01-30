@@ -1,23 +1,35 @@
 /*-----Favicon-----*/
 $(document.head).append("<link rel='icon' href='img/logo.png'>")
 
+/*-----W3 CSS Link-----*/
+$(document.head).append('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">')
+
 window.charInfoTbl = function(obj, header) {
-    let html = "<table><tbody><tr><th class='charinfohdr'>"+ header +"</th></tr>";
+    let html = "<table class='w3-table w3-bordered w3-black'><tbody><tr><th class='w3-indigo'>"+ header +"</th><th class='w3-indigo'>Value</th></tr>";
     for (var key in obj) {
-        html += "<tr><th class='charinfosubhdr'>" + key + "</th><td>" + obj[key] + "</td></tr>";
+        html += "<tr><th>" + key + "</th><td>" + obj[key] + "</td></tr>";
     };
     html += "</tbody></table>";
-return html;
+	return html;
 };
 
 window.charInfoTblSub = function(obj, header) {
-    let html = "<table><tbody><tr><th class='charinfohdr'>"+ header +"</th></tr>";
+    let html = "<table class='w3-table w3-bordered w3-black'><tbody><tr><th class='w3-indigo'>"+ header +"</th><th class='w3-indigo'>Value</th><th class='w3-indigo'>Description</th></tr>";
     for (var key in obj) {
-        html += "<tr><th class='charinfosubhdr'>" + key + "</th><td>" + obj[key].level + "</td><td>" + obj[key].desc + "</td></tr>";
+        html += "<tr><th>" + key + "</th><td>" + obj[key].level + "</td><td>" + obj[key].desc + "</td></tr>";
     };
     html += "</tbody></table>";
     return html;
 }
+
+window.openTab = function (name) {
+	var i;
+	var x = document.getElementsByClassName("tabElement");
+	for (i = 0; i < x.length; i++) {
+	  x[i].style.display = "none";
+	}
+	document.getElementById(name).style.display = "block";
+  }
 
 
 //Plr Stat Bars

@@ -208,7 +208,7 @@
                         <<set $eventVar.location.name = _unlockmessage>>
                         <<set $eventVar.location.book = _address.title>>
                         <<set $eventVar.location.pagesCur = _address.pagesRead>>
-                        <<set $eventVar.location.pagesMax = _address.pagesMax>>
+                        <<set $eventVar.location.pagesMax = _address.pagesTotal>>
                         
                         <<run Dialog.close()>>
 
@@ -410,6 +410,15 @@
                 <<if _stat.cur > _stat.max>>
                     <<set _stat.cur = _stat.max>>
                 <</if>>
+                <<if _targ.stamina.cur <= 0 && _targ.stamina.max > 0>>
+                    <<goto 'Out_of_Stamina'>>
+
+                    <<elseif _targ.life.cur <= 0 && _targ.life.max > 0>>
+                        <<goto 'Out_of_Life'>>
+                        
+                    <<elseif _targ.sanity.cur <= 0 && _targ.sanity.max > 0>>
+                        <<goto 'Out_of_Sanity'>>
+                <</if>>
 
             <</if>>
             <<run 
@@ -493,12 +502,82 @@
         <</widget>>
     <</nobr>>
 
+    /* i.e. <<setDisc plr abjuration 0.3>> or <<setDisc plr random 0.2>> */
+    <<nobr>>
+        <<widget 'setDisc'>>
+            <<if _args[1] == 'random'>>
+                <<set _rando = random(1,14)>>
+                <<set _discArray = [
+                    'transmutation',
+                    'elemental',
+                    'restoration',
+                    'enchantment',
+                    'necromancy',
+                    'lunar',
+                    'illusion',
+                    'divination',
+                    'conjuration',
+                    'biomancy',
+                    'astromancy',
+                    'animancy',
+                    'alchemy',
+                    'abjuration'
+
+                ]>>
+
+                <<set _disc = _discArray[_rando]>>
+                <<consolelog 'setDisc Random _disc' _disc>>
+
+                <<else>>
+                    <<set _disc = _args[1]>>
+            <</if>>
+            
+            <<set _discAmount = _args[2]>>
+
+            <<if _args[0] == 'plr'>>
+                <<set _discTarg = $plr.disciplines>>
+
+                <<else>>
+                    <<set _discTarg = $npcs[_args[0]].disciplines>>
+            <</if>>
+
+            <<set _discTarg[_disc].pre = _discTarg[_disc].level>>
+            <<if _discTarg[_disc].pre == 0>>
+                <<set _discTarg[_disc].pre = 0.0001>>
+            <</if>>
+            <<set _discTarg[_disc].level += _discAmount>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget 'discChange'>>
+            <<for _i, _name range $plr.disciplines>>
+                <<if $plr.disciplines[_i].pre != 0>>
+                    <<set _discDiff = ($plr.disciplines[_i].level - $plr.disciplines[_i].pre)>>
+                    <<print
+                        '<div class="green">I gained ' + _discDiff.toFixed(2) + ' points in the <i>' + $plr.disciplines[_i].title + '</i> discipline.</div>'
+                    >>
+                    <<set $plr.disciplines[_i].pre = 0>>
+                <</if>>
+
+                <<run _i + 1>>
+            <</for>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget 'Updates'>>
+            <<statsChange>>
+            <<discChange>>
+        <</widget>>
+    <</nobr>>
+
     <<nobr>>
         <<widget 'roomComments'>>
             <<set _curPass = passage()>>
             <<switch _args[0]>>
                 <<case 'clean'>>
-                    <<if $roomVars[_curPass].clean < 5>>
+                    <<if $roomVars[_curPass].clean <= 5>>
                         <<set _word = "spotless.">>
                         <<set _class = "legendary">>
                     
@@ -507,7 +586,7 @@
                         <<set _class = 'rare'>>
 
                     <<elseif $roomVars[_curPass].clean > 10 && $roomVars[_curPass].clean <= 20>>
-                        <<set _word = "gotten a little dirty.">>
+                        <<set _word = "a bit dirty.">>
                         <<set _class = "common">>
 
                     <<elseif $roomVars[_curPass].clean > 20>>
@@ -515,7 +594,7 @@
                         <<set _class = "trash">>
                     <</if>>
                     <<print '<span class="' + _class + '">' + 
-                        '<<hovertip "The cleaner the room, the more sanity and stamina you will gain from spending time in here.">>' + 
+                        '<<hovertip "The cleaner the room, the more sanity and stamina you will gain from resting in here.">>' + 
                         _word + '<</hovertip>></span>'
                     >>
 
@@ -747,9 +826,15 @@
 
                 <</if>>
 
-                <<set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2>>
+                /* <<set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2>> */
+                <<set _disc = $spellCastVar.spellDiscipline>>
+                <<set _discChange = $spellCastVar.spellCost * 0.2>>
+                <<setDisc 'plr' _disc _discChange>>
+
                 <<set _stamChange = $spellCastVar.spellCost * -1>>
                 <<setStats 'plr' 'stamina' _stamChange>>
+                
+
                 <<set $plr.stats.stamina.max += $spellCastVar.spellCost * 0.1>>
                 <<set $plr.stats.focus.max += $spellCastVar.spellCost * 0.05>>
 
@@ -826,7 +911,7 @@
             <<if _args[0] == 'life'>>
                 <<if _dispV >= 80>>
                     <<replace '#life-comment'>>
-                        <span class = "green">I don\'t have so much as a scratch on me.</span>
+                        <span class = "green">I don't have so much as a scratch on me.</span>
                     <</replace>>
                 <</if>>
                 <<if _dispV >= 50 && _dispV < 80>>
@@ -902,19 +987,6 @@
     <</nobr>>
 
     /* Sets available random events and runs based on multiple args, i.e. <<randomEvent (standard event) >> */
-
-    /* Things To-Do
-        4. Adjust event strength based on power score.
-        7. Add in professor and student npcs.
-        8. Implement relationship system.
-        9. Write first set of classes.
-        10. Write 'I will not be contained!!!! events.'
-        11. Add in more Words and spell combos.
-        12. Finish first week of classes. (Marks end of chapter 2!)
-
-        15. Fix health not resetting on critters after combat, check Spell_Combat passage maybe
-        16. Add bad combos() for damage/room, light/other
-    */
     <<nobr>>
         <<widget 'randomEvent'>>
             <<set _standardEvent = _args[0]>>
@@ -928,7 +1000,7 @@
             <</if>>
 
             <<for _i = 0; _i < _eventArray.length; _i++>>
-                <<if tags(_eventArray[_i]).includes(_curTime) && _randNum <= 8>>
+                <<if tags(_eventArray[_i]).includes(_curTime) && _randNum <= 3>>
                     <<set _curRndEvent = _eventArray[_i]>>
                     <<if _curRndEvent>>
                         <<break>>
@@ -940,6 +1012,7 @@
             <</for>>
             <<if tags(_curRndEvent).includes('combat')>>
                 <<set $eventVar.inCombat = true>>
+                <<set $unlockVar.userInterface.locations = false>>
                 <<set $eventVar.combatPass = _curRndEvent>>
             <</if>>
             <<include _curRndEvent>>
@@ -990,7 +1063,7 @@
             <<set _stamCur = _statAddr.stamina.cur>>
             <<set _lifeMax = _statAddr.life.max>>
             <<set _lifeCur = _statAddr.life.cur>>
-            <<set _enemyName = $critters[_args[0]].name>>
+            <<set _enemyName = $critters[_args[0]].name.firstName>>
 
             <<replace '#enemyName'>>_enemyName<</replace>>
             <<run $critters[_args[0]].img()>>
@@ -998,3 +1071,53 @@
             <<run EnemyLife(_lifeCur, _lifeMax)>>
         <</widget>>
     <</nobr>>
+
+    /* <<CombatStart 'tinyImp' */
+    <<nobr>>
+        <<widget 'CombatStart'>>
+            <<run $spellCastVar.availableTargets.critters.pushUnique('tinyImp')>>
+            <<enemyStatBars 'tinyImp'>>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget 'CombatEnd'>>
+            <<if $spellCastVar.spellTarget.stats.life.cur <= 0>>                
+                <<for _i, _name range $critters>>
+                    <<set _critter = $critters[_i]>>
+                    <<set _critter.stats.life.cur = _critter.stats.life.max>>
+                    <<set _critter.stats.stamina.cur = _critter.stats.stamina.max>>
+                    <<run _i + 1>>
+                <</for>>
+
+                <<set $eventVar.combatPass = ''>>
+                <<set $eventVar.inCombat = false>>
+
+                <<set _enemyLoot = $spellCastVar.spellTarget.stats.life.max + random(1, 3)>>
+                <<pickup $plrCurrencies 'goldflake' _enemyLoot>>
+
+                <<run
+                    Dialog.setup('Foe Defeated');
+                    Dialog.wiki('You have defeated a ' + $spellCastVar.spellTarget.name.firstName + '. Your enemy\'s body dissolved, but left behind <span class="yellow">' + _enemyLoot + ' gold flakes</span>, which you happily picked up.');
+                    Dialog.open();
+                >>
+
+                <<set $spellCastVar.availableTargets.critters = []>>
+                <<set $spellCastVar.spellTarget = ''>>
+                <<set $unlockVar.userInterface.locations = true>>
+            <</if>>
+        <</widget>>
+    <</nobr>>
+
+    /* Things To-Do
+        4. Adjust event strength based on power score.
+        7. Add in professor and student npcs.
+        8. Implement relationship system.
+        9. Write first set of classes.
+        10. Write 'I will not be contained!!!! events.'
+        11. Add in more Words and spell combos.
+        12. Finish first week of classes. (Marks end of chapter 2!)
+        >Refactor combat passage for if you rested to regain stamina
+        >setup discChange to track total gain after multiple castings between one passage transition.
+
+    */

@@ -1,28 +1,53 @@
 :: Spell_Combat
     <<nobr>>
         <<set $unlockVar.userInterface.spells = false>>
-        <<set $unlockVar.userInterface.locations = false>>
-        <<done>>
-            <<if $spellCastVar.spellTarget.stats.life.cur <= 0>>
-                <<run UI.alert('You won! And your foe just evaporated.')>>
-                <<set $eventVar.inCombat = false>>
-                <<for _i, _name range $critters>>
-                    <<set _critter = $critters[_i]>>
-                    <<set _critter.stats.life.cur = _critter.stats.life.max>>
-                    <<run _i + 1>>
-                <</for>>
-                <<set $eventVar.combatPass = ''>>
-                <<set _enemyLoot = $spellCastVar.spellTarget.stats.life.max + random(1, 3)>>
-                <<pickup $plrCurrencies 'goldflake' _enemyLoot>>
-                <<set $spellCastVar.availableTargets.critters = []>>
-                <<set $spellCastVar.spellTarget = ''>>
-            <</if>>
-        <</done>>
-    <</nobr>>
-    <<speech plr>>I successfully cast my <i>$spellCastVar.spellEffect</i> spell at the $spellCastVar.spellTarget.name and did $spellCastVar.damageDone damage to it.<</speech>>
-    <<speech plr>>The CREATURE DID/DID NOT do # DAMAGE to me.<</speech>>
+            <<if $spellCastVar.availableTargets.npcs[0]>>
+                <<set _target = $spellCastVar.availableTargets.npcs[0]>>
+                <<set _targetObj = $npcs[_target]>>
 
-    <<button [[Continue | previous()]]>>
-        <<set $unlockVar.userInterface.spells = true>>
-        <<set $unlockVar.userInterface.locations = true>>
-    <</button>>
+            <<elseif $spellCastVar.availableTargets.critters[0]>>
+                <<set _target = $spellCastVar.availableTargets.critters[0]>>
+                <<set _targetObj = $critters[_target]>>
+
+            <</if>>
+
+            <<set _targetStam = _targetObj.stats.stamina.cur>>
+            
+            <<if _targetStam >= 1>>
+                <<set _critterAttack = _targetObj.stats.attack * -1>>
+                <<setStats plr life _critterAttack>>
+                <<set _targetObj.stats.stamina.cur = _targetStam - 1>>
+
+                <<else>>
+                    <<set _targetObj.stats.stamina.cur = _targetStam + 0.5>>
+            <</if>>
+
+            <<set _effectCmt = $spellCastVar.spellEffect>>
+            <<set _targetCmt = _targetObj.name.firstName>>
+
+    <</nobr>>\
+    <<nobr>>
+        <<if _effectCmt == 'Damnum'>>
+            <<speech plr>>I successfully cast my <i>_effectCmt</i> spell at the _targetCmt and did $spellCastVar.damageDone damage to it.<</speech>><br>
+        <</if>>
+
+        <<if _effectCmt == 'Vulnus'>>
+            <<speech plr>> I successfully cast my <i>_effectCmt</i> spell at myself and healed for $spellCastVar.healDone.<</speech>><br>
+        <</if>>
+
+        <<if _targetStam >= 1>>
+            <<speech plr>>The _targetCmt caused _targetObj.stats.attack damage to me.<</speech>><br>
+        <<else>>
+            <<speech plr>>The _targetCmt looks tired and is trying to recouperate some stamina.<</speech>><br>
+        <</if>>
+    <</nobr>>\
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Continue | previous()]]>>
+                <<set $unlockVar.userInterface.spells = true>>
+                <<set $spellCastVar.damageDone = 0>>
+                <<set $spellCastVar.healDone = 0>>
+                <<CombatEnd>>
+            <</button>>
+        </div>
+    <</nobr>>

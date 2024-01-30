@@ -1,7 +1,7 @@
 :: Residence_Starr_Courtyard[outdoors]
     <img class='scene' src='img/residence_starr_courtyard.jpg'>
+    <<Updates>>
     <<nobr>>
-        <<statsChange>>
         <<if $eventVar.inCombat == false>>
             <<randomEvent Residence_Starr_Courtyard_Standard>>
             <<else>>
@@ -19,11 +19,17 @@
                 <</button>>
             </div>
         <</if>>
+        <<if $eventVar.inCombat == true && $plr.stats.stamina.cur <= 1>>
+            <<button 'Try to catch your breath'>>
+                <<setStats plr stamina 1>>
+                <<goto 'Spell_Combat'>>
+            <</button>>
+        <</if>>
     <</nobr>>
 
 :: Residence_Starr_BanquetHall[room]
     <img class='scene' src='img/residence_starr_banquethall.jpg'>
-    <<statsChange>>
+    <<Updates>>
     <<speech plr>>The banquet hall is impressive, or at least it would be, if someone had used a broom on it in the last century. Or two. It's <<roomComments 'clean'>><</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -35,7 +41,7 @@
 
 :: Residence_Starr_Bathroom[room]
     <img class='scene' src='img/residence_starr_bathroom.gif'>
-    <<statsChange>>
+    <<Updates>>
     <<speech plr>>The bathroom is bright and suprisingly modern. But it looks completely unused. Judging the condition, it's <<roomComments 'clean'>><</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -47,7 +53,7 @@
 
 :: Residence_Starr_EntryHall
     <img class='scene' src='img/residence_starr_entryhall.jpg'>
-    <<statsChange>>
+    <<Updates>>
     You are in the entryway of the residence.
 
     <<nobr>>
@@ -69,7 +75,7 @@
 
 :: Residence_Starr_BedroomHall
     <img class='scene' src='img/residence_starr_hallway.jpg'>
-    <<statsChange>>
+    <<Updates>>
     You are in the bedroom hallway.
 
     <<nobr>>
@@ -91,7 +97,7 @@
 
 :: Residence_Starr_JanessaRoom[room]
     <img class='scene' src='img/residence_starr_janessaroom.jpg'>
-    <<statsChange>>
+    <<Updates>>
     <<speech plr>>$npcs.janessa.name.firstName said to stay out. For now, I should do just that.<</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -103,7 +109,7 @@
 
 :: Residence_Starr_Kitchen[room]
     <img class='scene' src='img/residence_starr_kitchen.jpg'>
-    <<statsChange>>
+    <<Updates>>
     <<speech plr>>She was right, this place hasn't been used in years. As far as it's condition is concerned, it's <<roomComments 'clean'>><</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -115,7 +121,7 @@
 
 :: Residence_Starr_PlayerRoom[room playerHome]
     <img class="scene" src='img/plrroom.jpg'>
-    <<statsChange>>\
+    <<Updates>>
     <<nobr>>
         <<if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur != $roomVars.Residence_Starr_PlayerRoom.bookspell.max || $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur != $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur>>
             <<speech plr>>For starters, I should probably take a look around and see if there is anything useful or interesting here.<</speech>>
@@ -158,12 +164,14 @@
                 <<setStats 'plr' 'stamina' 2>>
                 <<setStats 'plr' 'sanity' 0.5>>
                 <<setStats 'plr' 'focus' 0.1>>
+                <<setStats plr life 0.2>>
             <</button>>
             <<button [[Relax (4hr) | Residence_Starr_PlayerRoom_Resting]]>>
                 <<calcTime 240 0 false>>
                 <<setStats 'plr' 'stamina' 8>>
                 <<setStats 'plr' 'sanity' 2>>
-                <<setStats 'plr' 'focus' 0.2>>
+                <<setStats 'plr' 'focus' 0.3>>
+                <<setStats plr life 0.8>>
             <</button>>
             <<button [[Exit Room | Residence_Starr_BedroomHall]]>>
                 <<calcTime 0 5>>
@@ -173,7 +181,7 @@
 
 :: Residence_Starr_PlayerRoom_Cleaning[minorEvent]
     <img class="scene" src='img/plrroom.jpg'>
-    <<statsChange>>
+    <<Updates>>
     <<nobr>>
         <<if $roomVars.Residence_Starr_PlayerRoom.clean >= 21>>
             <<speech plr>>It's slow progress, but it's definitely looking cleaner. Still disgusting though...<</speech>>
@@ -198,8 +206,7 @@
 
 :: Residence_Starr_PlayerRoom_Searching[minorEvent]
     <img class="scene" src='img/searchclutter.jpg'>
-    <<statsChange>>
-
+    <<Updates>>
     <<nobr>>
         <<if visited() == 1>>
             <<searchForItem 'Residence_Starr_PlayerRoom' 'bookmisc' 'mapSchool' 30>>
@@ -223,8 +230,8 @@
     <</button>>
 
 :: Residence_Starr_PlayerRoom_Resting
-    <img class="scene" src='img/nastybed.jpg'>\
-    <<statsChange>>
+    <img class="scene" src='img/nastybed.jpg'>
+    <<Updates>>
     You lay down on the <<roomComments 'bed'>> bed and feel tension and tiredness leave you.
 
     <<speech plr>>I feel a bit more rested.<</speech>>
@@ -290,12 +297,12 @@
 
 :: Residence_Starr_Courtyard_Shimmer[outdoors minorEvent day3]
     <<speech plr>>There is a shimmer above this place, I can barely see it, but it is there.<</speech>>
+    <<setDisc plr random 0.1>>
 
 :: Residence_Starr_Courtyard_Imp[outdoors combat night1]
     <<nobr>>
         <<done>>
-            <<run $spellCastVar.availableTargets.critters.pushUnique('$critters.tinyImp')>>
-            <<enemyStatBars 'tinyImp'>>
+            <<CombatStart 'tinyImp'>>
         <</done>>
     <</nobr>>\
     <div class='enemy-box'>\
@@ -314,6 +321,7 @@
         <span class='blur'>You must learn. Master. Will and reality entwined.</span>
     <</speech>>
     <<speech plr>>There's that familiar chill running down my spine....<</speech>>
+    <<setDisc plr random 0.2>>
 
 :: Residence_Starr_Courtyard_Feeling[outdoors minorEvent night3]
     <<speech plr>>The front of this place always leaves me feeling, small.<</speech>>

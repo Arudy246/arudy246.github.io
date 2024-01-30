@@ -1,5 +1,7 @@
 :: Spell_Success
-    <<speech plr>>I cast my room-wide spell successfully!<</speech>>\
+    <<set $unlockVar.userInterface.spells = false>>
+    <<speech plr>>My <i>$spellCastVar.spellEffect</i> spell was cast successfully on the present room.<</speech>>\
 
     <<button [[Continue | previous()]]>>
+        <<set $unlockVar.userInterface.spells = true>>
     <</button>>

@@ -86,7 +86,7 @@
                     <div class='spell-word-grid-item'>
                         <<button $spellWords.effect.heal.latin>>
                             <<set _effect = 'heal'>>
-                            <<set $spellCastVar.spellEffect = $spellWords.effect.damage.latin>>
+                            <<set $spellCastVar.spellEffect = $spellWords.effect.heal.latin>>
                             <<replace '#effectBox'>>$spellWords.effect.heal.latin<</replace>>
                         <</button>>
                     </div>
@@ -97,6 +97,7 @@
                     <div class='spell-word-grid-item'>
                         <<button $spellWords.effect.calm.latin>>
                             <<set _effect = 'calm'>>
+                            <<set $spellCastVar.spellEffect = $spellWords.effect.calm.latin>>
                             <<replace '#effectBox'>>$spellWords.effect.calm.latin<</replace>>
                         <</button>>
                     </div>
@@ -107,6 +108,7 @@
                     <div class='spell-word-grid-item'>
                         <<button $spellWords.effect.light.latin>>
                             <<set _effect = 'light'>>
+                            <<set $spellCastVar.spellEffect = $spellWords.effect.light.latin>>
                             <<replace '#effectBox'>>$spellWords.effect.light.latin<</replace>>
                         <</button>>
                     </div>
@@ -117,6 +119,7 @@
                     <div class='spell-word-grid-item'>
                         <<button $spellWords.effect.clean.latin>>
                             <<set _effect = 'clean'>>
+                            <<set $spellCastVar.spellEffect = $spellWords.effect.clean.latin>>
                             <<replace '#effectBox'>>$spellWords.effect.clean.latin<</replace>>
                         <</button>>
                     </div>

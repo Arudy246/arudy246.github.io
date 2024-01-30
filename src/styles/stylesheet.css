@@ -2,7 +2,6 @@
     font-family: HeaderText;
     src: url("fonts/BreatheFireIi-2z9W.ttf");
 }
-
 @font-face {
     font-family: Achieve;
     src: url("fonts/WarPriestRegular-PanE.ttf")
@@ -27,23 +26,19 @@
     margin-left: auto;
     margin-right: auto;
 }
-h2 {
-    font-size: 5em;
-    text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
-    letter-spacing: 1px;
-}
 .main-title {
     background-image: url("img/title-border.png");
-    background-size: 70% 70%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: -5em;
-    margin-bottom: -5em;
+    padding-top: 1em;
 }
 .wood-text {
     background: url('img/title-texture.jpg');
     background-size: 35%;
-    font-size: extra-large * 1.6;
+    font-size: 7em;
+    text-shadow: 5px 5px rgba(102, 179, 255, 0.1);
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-family: HeaderText;
     background-clip: text;
@@ -55,6 +50,9 @@ body {
     background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bgtest2.jpg);
     background-size: 20%;
     background-repeat: repeat;
+}
+html body{
+    font-size: 16px
 }
 .emphasis {
     font-style: italic
@@ -154,24 +152,15 @@ body {
     color: transparent;
     text-shadow: 0 0 4px rgb(209, 209, 209)
 }
-tbody {
-    font-size: 80%;
-} 
 table {
-    border: 1px solid black;
-    vertical-align: middle;
-    float: left;
+    overflow-y: scroll;
 }
 tr:nth-child(even) {
-    background-color: rgb(68, 68, 68);
+    background-color: rgb(37, 37, 37);
 }
-.charinfosubhdr {
-    font-style: italic;
-}
-.charinfohdr {
-    font-size: 120%;
-    font-style: bold;
-    text-align: center;
+.tabElement {
+    display: none;
+    max-height: 40em;
 }
 img.scene {
     display: block;
@@ -234,6 +223,9 @@ ul.simple-inventory-list {
     padding: 5px 7px 5px 7px;
     box-shadow: 5px 5px 3px Black;
 }
+.speech hr {
+    margin: 15px 0;
+}
 .avatar {
     display: block;
     padding: 1px;
@@ -268,7 +260,6 @@ ul.simple-inventory-list {
 .barden .avatar {
     background-image: URL("img/characters/thumb_sullivan.jpg");
 }
-
 .ghost {
     background-color: #000d1a;
 }
@@ -283,6 +274,7 @@ ul.simple-inventory-list {
     text-shadow: 2px 2px rgb(0, 0, 0);
     letter-spacing: 1px;
     font-weight: bold;
+    margin-bottom: -1em;
 }
 .enemy-box {
     color: white;
@@ -434,8 +426,8 @@ ul.simple-inventory-list {
 #right-ui-bar-body {
     height: 90%;
     height: calc(100% - 2.5em);
-    margin: 2.5em 0;
-    padding: 0 1.5em;
+    margin: 3.5em 0;
+    padding: 0 2em;
 }
 #right-ui-bar-body {
     line-height: 1.5;
@@ -510,7 +502,7 @@ ul.simple-inventory-list {
 }
 
 .common {
-    color: #ffffff;
+    color: #d9fdd4;
     font-style: italic;
 }
 
@@ -540,13 +532,14 @@ ul.simple-inventory-list {
 }
 
 #ui-dialog {
-    min-width: 30% !important;
+    max-width: 100%;
+    max-height: 90%;
 }
 
 #ui-dialog-body {
-    overflow: auto;
-    min-height: 15em;
+    overflow-y: scroll;
     padding: 1em 2.5em 2.5em 1em;
+
 }
 
 .achieve {
@@ -586,6 +579,7 @@ ul.simple-inventory-list {
     display: grid;
     box-sizing: border-box;
     grid-template-columns: 8em 8em 8em 8em 8em 8em;
+    column-gap: 0.4em;
 }
 
 .spell-word-grid-item {
@@ -598,6 +592,7 @@ ul.simple-inventory-list {
     display: block;
     width: 100%;
     border-radius: 10px;
+    padding: 0.5em;
 }
 
 .spell-word-grid-item .macro-button:hover {
@@ -638,6 +633,10 @@ ul.simple-inventory-list {
     column-gap: 1em;
 }
 
+.passage-links-grid-3 .macro-button {
+    padding: 0em;
+}
+
 .passage-links-grid-2 {
     display: grid;
     box-sizing: border-box;
@@ -647,6 +646,10 @@ ul.simple-inventory-list {
     column-gap: 1em;
 }
 
+.passage-links-grid-2 .macro-button {
+    padding: 0em;
+}
+
 .passage-links-grid-1 {
     display: grid;
     box-sizing: border-box;
@@ -654,6 +657,10 @@ ul.simple-inventory-list {
     grid-template-rows: 4em;
     row-gap: 1em;
     column-gap: 1em;
+}
+
+.passage-links-grid-1 .macro-button {
+    padding: 0em;
 }
 
 .passage-links-grid-item {
