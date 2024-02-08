@@ -145,7 +145,7 @@
                 badCombo : function(){
                     if(State.getVar('$spellCastVar.spellTarget') == 'room' || State.getVar('$spellCastVar.spellTarget') == 'playerHome') {
                         State.setVar('$spellCastVar.badCombo', 'What did this room do to deserve such harsh treatment?')
-                    } else if (!State.getVar('$spellCastVar.availableTargets.npcs[0]') && !State.getVar('$spellCastVar.availableTargets.critters[0]')) {
+                    } else if (!State.getVar('$spellCastVar.availableTargets.npcs[0]') && !State.getVar('$spellCastVar.availableTargets.critters[0]') && State.getVar('$spellCastVar.spellTarget') != State.getVar('$plr')) {
                         State.setVar('$spellCastVar.badCombo', 'There are no foes and nobody to target here.')
                     } else {
                     State.setVar('$spellCastVar.badCombo', false)

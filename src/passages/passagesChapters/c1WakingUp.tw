@@ -1,5 +1,5 @@
 :: WakingUp1
-    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
 
     You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren't anywhere you remember ever being before. The smell is unfamiliar. The bed you are laying in, is different. Even the air feels different. Thicker, maybe?
 
@@ -16,7 +16,7 @@
     <<button [[Continue | WakingUp2]]>><</button>>
 
 :: WakingUp2
-    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
 
     <<speech "amy">>
         My name is $npcs.amy.name.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn't here when you woke, no doubt you are rather confused.
@@ -33,7 +33,7 @@
     <<button [[Continue | WakingUp3]]>><</button>>
 
 :: WakingUp3
-    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
 
     $npcs.amy.name.formal sees you staring at the candles.
 
@@ -42,7 +42,7 @@
     <<button [[Someone enters the room | WakingUp4]]>><</button>>
 
 :: WakingUp4
-    <img class="scene" src="img/medicalwing.jpg" alt="medical wing photo"/>\
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>\
 
     You see $npcs.amy.name.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
 
@@ -229,7 +229,7 @@
         <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
         <<calcAttractiveness>>
     <</silently>>\
-    <img class="scene" src="img/hallway.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/hallway.jpg"/>
     <<speech plr>><<print $plrSpkChoice>><</speech>>\
     <<printRelGain>>
 
@@ -334,7 +334,7 @@
     <<button [[Follow her | WakingUp8]]>><</button>>
 
 :: WakingUp8
-    <img class="scene" src="img/street.jpg"/>\
+    <img class="scene" src="img/locations/university_mainroad.jpg"/>\
 
     $npcs.janessa.name.firstName leads you out of the dean's study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
     
@@ -347,7 +347,7 @@
     <<button [[Continue | WakingUp9]]>><</button>>
 
 :: WakingUp9
-    <img class="scene" src="img/residence_starr_courtyard.jpg"/>\
+    <img class="scene" src="img/locations/residence_starr_courtyard.jpg"/>\
 
     <<speech "janessa">>This is my residence. It's been in my family for many generations. I'll give you a short tour and then we are done for the night. Classes will start Monday morning.<</speech>>\
 
@@ -377,7 +377,7 @@
     <</button>>
 
 :: WakingUp10
-    <img class="scene" src="img/residence_starr_entryhall.jpg"/>\
+    <img class="scene" src="img/locations/residence_starr_entryhall.jpg"/>\
 
     <<nobr>>
         <<speech plr>><<print $plrSpkChoice>><</speech>>
@@ -407,7 +407,7 @@
     <</button>>
 
 :: WakingUp11
-    <img class="scene" src='img/residence_starr_kitchen.jpg'/>\
+    <img class="scene" src='img/locations/residence_starr_kitchen.jpg'/>\
 
     <<speech janessa>>I'm sure I don't need to describe the kitchen. Obviously, it isn't well used. I don't know anyone who eats at their residence, everyone eats at the cafetaria.<</speech>>\
 

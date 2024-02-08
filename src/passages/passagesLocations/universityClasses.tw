@@ -1,11 +1,29 @@
 :: Gymnasium
+    <img class='scene' src='img/locations/gymnasium.jpg'>
 
 :: Floor1_Class_Room105
+    <img class='scene' src='img/locations/floor1_class_room105.jpg'>
 
 :: Floor1_Class_Room106
+    <img class='scene' src='img/locations/floor1_class_room106.jpg'>
 
 :: Floor1_Class_Room107
+    <img class='scene' src='img/locations/floor1_class_room107.jpg'>
 
 :: Hall_Floor2
-
+    <img class='scene' src='img/locations/hall_floor2.jpg'>
+    <<speech plr>>
+        This is the second floor of the classroom wing.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Room 205 | Floor2_Class_Room205]]>>
+                <<calcTime 0 5>>
+            <</button>>
+            <<button [[First Floor Hall | University_Hall_Classes]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 :: Floor2_Class_Room205
+    <img class='scene' src='img/locations/floor2_class_room205.jpg'>

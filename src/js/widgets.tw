@@ -6,14 +6,23 @@
         <</widget>>
     <</nobr>>
 
-    /* relGain Amy 10 */
+    /* relGain Amy 10 (int | sus)*/
     <<nobr>>
         <<widget "relGain">>
-            <<if _args[1] > 0>>
+            <<if _args[1] > 0 && !_args[2]>>
                 <<set $plr.relations[_args[0]].positive += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
 
-                <<else>>
-                    <<set $plr.relations[_args[0]].negative += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
+            <<elseif _args[1] < 0 && !_args[2]>>
+                <<set $plr.relations[_args[0]].negative += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
+
+            <<elseif _args[2]>>
+                <<set $relTypeTemp = _args[2]>>
+                <<if _args[2] == 'int'>>
+                    <<set $plr.relations[_args[0]].intimate += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
+
+                <<elseif _args[2] == 'sus'>>
+                    <<set $plr.relations[_args[0]].suspicion += _args[1]>>
+                <</if>>
             <</if>>
 
             <<set $relNpcTemp = _args[0]>>
@@ -24,12 +33,19 @@
     <<nobr>>
         <<widget "printRelGain">>
             <<if $relAmtTemp>>
-                <<if $relAmtTemp > 0 >>
+                <<if $relAmtTemp > 0 && !$relTypeTemp>>
                     <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has improved!</span>'>>
-                <<else>>
-                    <<print '<span class="red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
+
+                <<elseif $relAmtTemp < 0 && !$relTypeTemp>>
+                    <<print '<span class="w3-text-red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
+
+                <<elseif $relTypeTemp == 'int'>>
+                    <<print '<span class="w3-text-purple">' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' is now more interested in you...</span>'>>
+
+                <<elseif $relTypeTemp == 'sus'>>
+                    <<print '<span class="w3-text-red">' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' is now more suspicious of you.</span>'>>
                 <</if>>
-                <<unset $relAmtTemp, $relNpcTemp>>
+                <<unset $relAmtTemp, $relNpcTemp, $relTypeTemp>>
             <</if>>
         <</widget>>
     <</nobr>>
@@ -66,7 +82,7 @@
                     <<set $dateTime.minPassed = $dateTime.min - _minComp>>
 
                     <<if _args[2] != false>>
-                        <<set _staminaLoss = (_args[0] + random(_args[1])) * 0.01>>
+                        <<set _staminaLoss = $dateTime.minPassed * 0.01>>
                     <</if>>
 
                     <<elseif _args[0]>>
@@ -74,7 +90,7 @@
                         <<set $dateTime.minPassed = $dateTime.min - _minComp>>
 
                         <<if _args[2] != false>>
-                            <<set _staminaLoss = _args[0] * 0.01>>
+                            <<set _staminaLoss = $dateTime.minPassed * 0.01>>
                         <</if>>
                 <</if>>
 
@@ -177,9 +193,23 @@
                     <<setStats 'plr' 'stamina' _staminaLoss>>
                 <</if>>
 
+                <<if _args[3] != 'nodebug'>>
+                    <<consolelog '-----$dateTime Start-----'>>
+                    <<consolelog '$dateTime Hour' $dateTime.hour>>
+                    <<consolelog '$dateTime Minute' $dateTime.min>>
+                    <<consolelog '$dateTime Day' $dateTime.day>>
+                    <<consolelog '$dateTime Dayname' $dateTime.dayName>>
+                    <<consolelog '$dateTime Month' $dateTime.month>>
+                    <<consolelog '$dateTime Year' $dateTime.year>>
+                    <<consolelog 'minPassed' $dateTime.minPassed>>
+                    <<consolelog 'staminaLoss' _staminaLoss>>
+                    <<consolelog '-----$dateTime End-----'>>
+                <</if>>
+
                 <<run Stamina()>>
                 <<processClean>>
                 <<set $dateTime.minPassed = 0>>
+                <<unset _staminaLoss>>
         <</widget>>
     <</nobr>>
 
@@ -541,10 +571,12 @@
                     <<set _discTarg = $npcs[_args[0]].disciplines>>
             <</if>>
 
-            <<set _discTarg[_disc].pre = _discTarg[_disc].level>>
             <<if _discTarg[_disc].pre == 0>>
                 <<set _discTarg[_disc].pre = 0.0001>>
             <</if>>
+
+            <<set _discTarg[_disc].pre = _discTarg[_disc].level - _discTarg[_disc].pre>>
+
             <<set _discTarg[_disc].level += _discAmount>>
         <</widget>>
     <</nobr>>
@@ -559,7 +591,6 @@
                     >>
                     <<set $plr.disciplines[_i].pre = 0>>
                 <</if>>
-
                 <<run _i + 1>>
             <</for>>
         <</widget>>
@@ -569,6 +600,21 @@
         <<widget 'Updates'>>
             <<statsChange>>
             <<discChange>>
+            <<TimeCheck 0700 0800 weekday>>
+                <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts soon<</ClassWarning>>
+            <</TimeCheck>>
+            <<TimeCheck 0800 0900 weekday>>
+                <<ClassWarning Floor1_Class_Room106>>Conservation of Magic class starts soon<</ClassWarning>>
+            <</TimeCheck>>
+            <<TimeCheck 0900 1000 weekday>>
+                <<ClassWarning Floor1_Class_Room107>>Arcane Disciplines class starts soon<</ClassWarning>>
+            <</TimeCheck>>
+            <<TimeCheck 1000 1100 weekday>>
+                <<ClassWarning Floor2_Class_Room205>>Arcane Law class starts soon<</ClassWarning>>
+            <</TimeCheck>>
+            <<TimeCheck 1100 1200 weekday>>
+                <<ClassWarning Basement_Class_RoomB3>>Incursion Histories class starts soon<</ClassWarning>>
+            <</TimeCheck>>
         <</widget>>
     <</nobr>>
 
@@ -1023,10 +1069,12 @@
     /*Console log in a widget, i.e. <<consolelog 'life cur: ' _life */
     <<nobr>>
         <<widget 'consolelog'>>
-            <<if _args[0] && _args[1]>>
-                <<run console.log(_args[0] + ': ' + _args[1])>>
-                <<else>>
-                    <<run console.log(_args[0])>>
+            <<if $devMode == true>>
+                <<if _args[0] && _args[1] !== void(0) >>
+                    <<run console.log(_args[0] + ': ' + _args[1])>>
+                    <<else>>
+                        <<run console.log(_args[0])>>
+                <</if>>
             <</if>>
         <</widget>>
     <</nobr>>
@@ -1109,6 +1157,184 @@
         <</widget>>
     <</nobr>>
 
+    /* If time and day lines up, then npc is available for conversation with the optional declared event in the location the func is called in. 
+    i.e. <<NpcAvailable 0:janessa 1:Janessa_SomeEvent 2:true>> 
+    i.e. <<NpcAvailable janessa Janessa_CleanResidence>>
+    */
+    <<nobr>>
+        <<widget 'NpcAvailable'>>
+            <<consolelog '-----NpcAvailable Start-----'>>
+            <<set _npc = _args[0].charAt(0).toUpperCase() + _args[0].slice(1)>>
+            
+            <<if _args[1]>>
+                <<set _event ='Conversation_' + _args[1]>>
+                <<set _eventCheck = $unlockVar.conversations[_args[1]]>>
+            <</if>>
+
+            <<consolelog '_npc' _npc>>
+            <<consolelog '_event' _event>>
+            <<consolelog  '_eventCheck' _eventCheck>>
+
+            <<if _event && _eventCheck == false>>
+                <<include _event>>
+                <<set $unlockVar.conversations[_args[1]] = true>>
+                <<consolelog 'Event Convo: Selected'>>
+            <<elseif _args[2] == true>>
+                <<set _npcDefault = 'Conversation_' + _npc + '_Random'>>
+                <<include _npcDefault>>
+                <<consolelog 'Random Convo: Selected'>>
+            <</if>>
+    
+            <<consolelog '---NpcAvailable End---'>>
+        <</widget>>
+    <</nobr>>
+
+    /* Adjusts npc conversation greeting according to relationship stats. <<NpcRelationGreet janessa>> */
+    <<nobr>>
+        <<widget 'NpcRelationGreet'>>
+            <<consolelog '-----NpcRelationGreet Start-----'>>
+            <<set _relPos = $plr.relations[_args[0]].positive>>
+            <<set _relNeg = $plr.relations[_args[0]].negative>>
+            <<set _relInt = $plr.relations[_args[0]].intimate>>
+            <<set _relSus = $plr.relations[_args[0]].suspicion>>
+            <<set _npcPersonality = $npcs[_args[0]].personality>>
+            <<consolelog '_npcPersonality' _npcPersonality>>
+
+            <<set _greetingAry = $personalityList[_npcPersonality].greetings>>
+            <<set _rando = random(0, (_greetingAry.length - 1))>>
+
+            <<consolelog '_rando' _rando>>
+
+            <<set _greeting = _greetingAry[[_rando]]>>
+
+            <<print _greeting>>
+
+            <<consolelog '_greeting' _greeting>>
+            <<consolelog '-----NpcRelationGreet End-----'>>
+        <</widget>>
+    <</nobr>>
+
+    /* Adjusts npc conversation goodbye according to relationship stats. <<NpcRelationBye janessa>> */
+    <<nobr>>
+        <<widget 'NpcRelationBye'>>
+        
+        <</widget>>
+    <</nobr>>
+
+    /* Adjusts npc conversation comments according to relationship stats. <<NpcRelationCmt janessa>> */
+    <<nobr>>
+        <<widget 'NpcRelationCmt'>>
+        
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "GenerateCourseTbl">>
+            <<set _courseTitle = $courses[_args[0]].title>>
+            <<set _courseRoom = $courses[_args[0]].classroom>>
+            <<set _roomNum = $courses[_args[0]].roomNum>>
+            <<set _courseInstructor = $courses[_args[0]].instructor>>
+            <<set _courseStart = $courses[_args[0]].startTime>>
+            <<set _courseEnd = $courses[_args[0]].endTime>>
+
+            <<run 
+                if(_courseStart.toString().length < 4) {
+                    _courseStart = '0' + _courseStart
+                };
+                if(_courseEnd.toString().length < 4) {
+                    _courseEnd = '0' + _courseEnd
+                }
+            >>
+            <<set _details ='Room ' + _roomNum + '<br>' + _courseStart + '-' + _courseEnd + '<br>' + $npcs[_courseInstructor].name.formal>>
+            <<consolelog '_location unlocked?'_courseRoom>>
+            <<hovertip _details>>
+                <<if $unlockVar.locations[_courseRoom].unlocked == true>>
+                    <<link _courseTitle>>
+                        <<calcTime 5 10>>
+                    <</link>>
+                    <<else>>
+                        _courseTitle
+                <</if>>
+            <</hovertip>>
+        <</widget>>
+    <</nobr>>
+
+    /*Allows content based on start and/or end time, day, month, year or false for anything but start/end times i.e. <<TimeCheck 1100 1300 thursday april 3 2024>>Its time!<</TimeCheck>> 
+
+    */
+    <<nobr>>
+        <<widget "TimeCheck" container>>
+            <<consolelog '-----TimeCheck Start-----'>>
+            <<set _start = _args[0] / 100>>
+            <<set _end = _args[1] / 100>>
+            
+            <<if _args[2] != false && _args[2] != 'weekdays' && _args[2] != 'weekend'>>
+                <<set _dayName = _args[2]>>
+            <</if>>
+            <<if _args[3] != false>>
+                <<set _month = _args[3]>>
+            <</if>>
+            <<if _args[4] != false>>
+                <<set _day = _args[4]>>
+            <</if>>
+            <<if _args[5] != false>>
+                <<set _year = _args[5]>>
+            <</if>>
+            
+            <<if _year && _month && _day>>
+                <<if _year == $dateTime.year && _month == $dateTime.monthName && _day == $dateTime.date && $dateTime.hour >= _start && $dateTime.hour < _end>>
+                    _contents
+                    <<consolelog 'Check: Year/Month/Date'>>
+                <</if>>
+
+            <<elseif _month && _day>>
+                <<if _month == $dateTime.monthName && _day == $dateTime.date && $dateTime.hour >= _start && $dateTime.hour < _end>>
+                    _contents
+                    <<consolelog 'Check: Month/Date'>>
+                <</if>>
+
+            <<elseif _month && _dayName>>
+                <<if _month == $dateTime.monthName && _dayName == $dateTime.dayName && $dateTime.hour >= _start && $dateTime.hour < _end>>
+                    _contents
+                    <<consolelog 'Check: Month/DayName'>>
+                <</if>>
+            
+            <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend'>>
+                <<if _dayName == $dateTime.dayName && $dateTime.hour >= _start && $dateTime.hour < _end>>
+                    _contents
+                    <<consolelog 'Check: DayName'>>
+                <</if>>
+
+            <<elseif _dayName == 'weekdays'>>
+                <<if $dateTime.dayName == 'Monday' || $dateTime.dayName == 'Tuesday' || $dateTime.dayName == 'Wednesday' || $dateTime.dayName == 'Thursday' || $dateTime.dayName == 'Friday'>>
+                    _contents
+                    <<consolelog 'Check: Weekdays'>>
+                <</if>>
+
+            <<elseif _dayName == 'weekend'>>
+                <<if $dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday'>>
+                    _contents
+                    <<consolelog 'Check: Weekend'>>
+                <</if>>
+            <<else>>
+                <<if $dateTime.hour >= _start && $dateTime.hour < _end>>
+                    _contents
+                    <<consolelog 'Check: Time Only'>>
+                <</if>>
+            <</if>>
+            <<consolelog '---TimeCheck End---'>>
+        <</widget>>
+    <</nobr>>
+
+    /* Takes two args, one for end hour and another for  prior to display warning message, i.e. <<TimeWarning Floor1_Class_Room105>>Class is soon!<</TimeWarning>> */
+    <<nobr>>
+        <<widget "ClassWarning" container>>
+            <<if passage() != _args[0]>>
+                <span class='yellow'><i>_contents</i></span>
+            <</if>>
+        <</widget>>
+    <</nobr>>
+
     /* Things To-Do
         4. Adjust event strength based on power score.
         7. Add in professor and student npcs.
@@ -1117,7 +1343,5 @@
         10. Write 'I will not be contained!!!! events.'
         11. Add in more Words and spell combos.
         12. Finish first week of classes. (Marks end of chapter 2!)
-        >Refactor combat passage for if you rested to regain stamina
-        >setup discChange to track total gain after multiple castings between one passage transition.
-
+        >Refactor combat passage dialog for if you rested to regain stamina
     */

@@ -58,20 +58,48 @@
             salooninn: {
                 name: "Goldpan Saloon and Inn",
                 unlocked: false
+            },
+            Floor1_Class_Room105: {
+                name: 'Classroom #105',
+                unlocked: false
+            },
+            Floor1_Class_Room106: {
+                name: 'Classroom #106',
+                unlocked: false
+            },
+            Floor1_Class_Room107: {
+                name: 'Classroom #107',
+                unlocked: false
+            },
+            Floor2_Class_Room205: {
+                name: 'Classroom #205',
+                unlocked: false
+            },
+            Basement_Class_RoomB3: {
+                name: 'Classroom #B3',
+                unlocked: false
             }
         },
         userInterface: {
-            dev: true,
             actions: false,
             locations: false,
             inventory: false,
             stats: false,
             relations: false,
-            spells: false
+            spells: false,
+            schedule: false,
+            myspellbook: false
         },
         events: {
             firstSpellLearned: false,
             firstSpellCast: false
+        },
+        rooms: {
+            roomJanessa: false
+        },
+        conversations: {
+            Janessa_CourseOverview: false,
+            Janessa_CleanResidence: false
         }
     }>>
 

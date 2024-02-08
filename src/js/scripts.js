@@ -3,6 +3,18 @@ $(document.head).append("<link rel='icon' href='img/logo.png'>")
 
 /*-----W3 CSS Link-----*/
 $(document.head).append('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">')
+$(document.head).append('<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">')
+
+Save.onSave.add(function (save, details) {
+	if (details.type === "slot") {
+		var title = prompt("Enter Save Slot Title:", save.title);
+		if (title !== null) {
+			save.title = title;
+		}
+	}
+});
+
+//Config.loadDelay = 1000;
 
 window.charInfoTbl = function(obj, header) {
     let html = "<table class='w3-table w3-bordered w3-black'><tbody><tr><th class='w3-indigo'>"+ header +"</th><th class='w3-indigo'>Value</th></tr>";
@@ -20,7 +32,7 @@ window.charInfoTblSub = function(obj, header) {
     };
     html += "</tbody></table>";
     return html;
-}
+};
 
 window.openTab = function (name) {
 	var i;
@@ -29,8 +41,7 @@ window.openTab = function (name) {
 	  x[i].style.display = "none";
 	}
 	document.getElementById(name).style.display = "block";
-  }
-
+};
 
 //Plr Stat Bars
 window.Stamina = function () {
@@ -466,7 +477,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             const doTrim = !!macroOptions.trim;
             const doPrepend = !!macroOptions.prepend;
 
-            const link = jQuery('<button class="dlg-line macro-button"></button>');
+            const link = jQuery('<button class="dlg-line w3-margin-right w3-button w3-border w3-round-xlarge w3-medium w3-flat-midnight-blue w3-border-blue w3-hover-black"></button>');
             link.wiki(`${bullet ? ('<span class="dlg-line-bullet">' + bullet + ' </span>') : ''}${line}`);
             link.ariaClick(() => {
                 const response = doTrim ? this.payload[0].contents.trim() : this.payload[0].contents;

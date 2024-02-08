@@ -1,5 +1,5 @@
 :: StoryCaption
-    @@#timeplusdate;<<calcTime>>@@\
+    @@#timeplusdate;<<calcTime '' '' '' 'nodebug'>>@@\
     <hr>
     <<nobr>>
         <<if $plr.name.firstName != "" && $plr.name.firstName != "First">>
@@ -13,7 +13,7 @@
 
 :: StoryMenu
 
-    <<if $unlockVar.userInterface.dev == true>>
+    <<if $devMode == true>>
         <<link "!Dev Wand">>
             <<run
                 Dialog.setup("Dev Wand", "dev wand");
@@ -23,7 +23,7 @@
         <</link>>
         <<link "!Dev Char Info">>
             <<run
-                Dialog.setup("Character Info");
+                Dialog.setup("Character Info", "char-info");
                 Dialog.wiki(Story.get("Character Info").processText());
                 Dialog.open();
             >>
@@ -55,13 +55,23 @@
     <</if>>
 
     <<if $unlockVar.userInterface.inventory == true>>
-            <<link "Inventory">>
-                <<run 
-                    Dialog.setup("Inventory", "inventory"); 
-                    Dialog.wiki(Story.get("Inventory").text); 
-                    Dialog.open();
-                >>
-            <</link>>
+        <<link "Inventory">>
+            <<run 
+                Dialog.setup("Inventory", "inventory"); 
+                Dialog.wiki(Story.get("Inventory").text); 
+                Dialog.open();
+            >>
+        <</link>>
+    <</if>>
+
+    <<if $unlockVar.userInterface.schedule == true >>
+        <<link "Classes">>
+            <<run 
+                Dialog.setup("Class Schedule", "schedule"); 
+                Dialog.wiki(Story.get("Schedule").text); 
+                Dialog.open();
+            >>
+        <</link>>
     <</if>>
 
 :: Character Info
@@ -100,3 +110,176 @@
         </div>
     <</nobr>>
 
+:: Schedule
+    <i>If I have read about the classrooms in a certain book, I can just go straight there.</i>
+    <table class='w3-table w3-margin-top w3-centered w3-border w3-black w3-round-large'>
+        <tr>
+            <th></th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+        </tr>
+        <tr>
+            <td>08:00</td>
+            <td><<GenerateCourseTbl arcanearts101>></td>
+            <td><<GenerateCourseTbl arcanearts101>></td>
+            <td><<GenerateCourseTbl arcanearts101>></td>
+            <td><<GenerateCourseTbl arcanearts101>></td>
+            <td><<GenerateCourseTbl arcanearts101>></td>
+            <td>Weekend</td>
+            <td>Weekend</td>
+        </tr>
+        <tr>
+            <td>09:00</td>
+            <td><<GenerateCourseTbl conservation101>></td>
+            <td><<GenerateCourseTbl conservation101>></td>
+            <td><<GenerateCourseTbl conservation101>></td>
+            <td><<GenerateCourseTbl conservation101>></td>
+            <td><<GenerateCourseTbl conservation101>></td>
+            <td>Weekend</td>
+            <td>Weekend</td>
+        </tr>
+        <tr>
+            <td>10:00</td>
+            <td><<GenerateCourseTbl arcanedisciplines101>></td>
+            <td><<GenerateCourseTbl arcanedisciplines101>></td>
+            <td><<GenerateCourseTbl arcanedisciplines101>></td>
+            <td><<GenerateCourseTbl arcanedisciplines101>></td>
+            <td><<GenerateCourseTbl arcanedisciplines101>></td>
+            <td>Weekend</td>
+            <td>Weekend</td>
+        </tr>
+        <tr>
+            <td>11:00</td>
+            <td><<GenerateCourseTbl arcanelaw101>></td>
+            <td><<GenerateCourseTbl arcanelaw101>></td>
+            <td><<GenerateCourseTbl arcanelaw101>></td>
+            <td><<GenerateCourseTbl arcanelaw101>></td>
+            <td><<GenerateCourseTbl arcanelaw101>></td>
+            <td>Weekend</td>
+            <td>Weekend</td>
+        </tr>
+        <tr>
+            <td>12:00</td>
+            <td><<GenerateCourseTbl incursionhistory>></td>
+            <td><<GenerateCourseTbl incursionhistory>></td>
+            <td><<GenerateCourseTbl incursionhistory>></td>
+            <td><<GenerateCourseTbl incursionhistory>></td>
+            <td><<GenerateCourseTbl incursionhistory>></td>
+            <td>Weekend</td>
+            <td>Weekend</td>
+        </tr>
+    </table>
+
+:: Inventory [nobr]
+    <h3>Currency</h3>\
+    <<inv $plrCurrencies inspect>>
+    <hr>
+    <h3>Books</h3>\
+    <<inv $plrinvbooks use inspect>>
+    <hr>
+    <h3>Materials</h3>\
+    <<inv $plrinvmaterials use inspect>>
+    <hr>
+    <h3>Miscellanious</h3>\
+    <<inv $plrinvmisc use inspect>>
+
+:: Actions
+    Work in Progress
+
+:: Locations
+    <h3>School</h3>\
+    <<nobr>>
+        <div class='passage-links-grid-5c'>
+            <<if $unlockVar.locations.starrresidence.unlocked == true>>
+                <<button [[Starr Residence | Residence_Starr_EntryHall]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.universityentrance.unlocked == true>>
+                <<button [[University Entrance | University_Entrance]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.cafeteria.unlocked == true>>
+                <<button [[Cafeteria | University_Shops_Cafeteria]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.clinic.unlocked == true>>
+                <<button [[Clinic | University_Admin_Clinic]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            
+            <<if $unlockVar.locations.universityclasses.unlocked == true>>
+                <<button [[University Classes | University_Hall_Classes]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.universityshops.unlocked == true>>
+                <<button [[University Shops | University_Hall_Shops]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.professoroffices.unlocked == true>>
+                <<button [[Professor Wing | University_Admin_ProfessorHall]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.universitybasement.unlocked == true>>
+                <<button [[University Basement | University_Hall_Basement]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.librarium.unlocked == true>>
+                <<button [[Librarium | University_Librarium]]>>
+                    <<run Dialog.close()>>
+                    <<calcTime 10>>
+                <</button>>
+            <</if>>
+        </div>
+        /*<hr>
+        <h3>Town</h3>
+        <<nobr>>
+            <<if $unlockVar.locations.tradingpost.unlocked == true>>
+                <<button [[Herrington's Trading Post | tradingpost]]>>
+                    <<run Dialog.close()>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.cinema.unlocked == true>>
+                <<button [[Bering Cinema | cinema]]>>
+                    <<run Dialog.close()>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.hospital.unlocked == true>>
+                <<button [[Nome Regional Hospital | hospital]]>>
+                    <<run Dialog.close()>>
+                <</button>>
+            <</if>>
+        <</nobr>>
+        <<nobr>>
+            <<if $unlockVar.locations.cemetary.unlocked == true>>
+                <<button [[Nome City Cemetary | cemetary]]>>
+                    <<run Dialog.close()>>
+                <</button>>
+            <</if>>
+            <<if $unlockVar.locations.salooninn.unlocked == true>>
+                <<button [[Goldpan Saloon and Inn | salooninn]]>>
+                    <<run Dialog.close()>>
+                <</button>>
+            <</if>>
+        <</nobr>> */
+    <</nobr>>\

@@ -1,0 +1,137 @@
+:: Conversation_Janessa_CourseOverview
+
+    <<speech janessa>>Let's go over the courses you are expected to attend.<</speech>>
+    <<nobr>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'Ok'>>
+                    <<speech plr>>
+                        I'm listening.
+                    <</speech>><br>
+                    <<speech janessa>>
+                        First up, is Arcane Arts 101 with Instructor Corbin in Room 105. Class is held each day from 08:00 to 09:00 There you will learn the essentials of spell casting and how to use the Words. Pretty simple. Something you need to be aware of though is that he is pretty strict. He's been teaching for a long time and has seen enough to make him, well, kinda jumpy. But he knows his shit.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 1>><br>
+                <<line 'Arcane arts, got it.'>>
+                    <<speech plr>>
+                        Arcane arts, got it. What's next?
+                    <</speech>><br>
+                    <<speech janessa>>
+                        Then you will have Conservation of Magic 101 with Instructor Gatlin in Room 106. Class lasts from 09:05 to 10:00. She will teach you how to avoid over exerting yourself when spell casting. Also pretty simple. Gatlin is pretty cool.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 2>><br>
+                <<line 'Understood.'>>
+                    <<speech plr>>
+                        Conservation of Magic, understood.
+                    <</speech>><br>
+                    <<speech janessa>>
+                        Next up is Arcane Disciplines 101 with Instructor Levee in Room 107. Class is from 10:05 to 11:00. Levee will talk about the various magical disciplines and what their purposes are. Levee is not cool. He's gotten very crotchity in his old age and doesn't stop talking about his "past glories." None of which are that impressive anyways. 
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 3>><br>
+                <<line 'Old and grumpy, fair enough.'>>
+                    <<speech plr>>
+                        The teacher is old old and grumpy. Got it.
+                    <</speech>><br>
+                    <<speech janessa>>
+                        And then you have an important one, Arcane Law 101. It's taught by Counselor Celeste Chao in Room 205 from 11:05 to 12:0. Arcane Law has to do with what you can and cannot do in our world. It's a complicated topic. And to make it even more challenging, Chao is a strange one. Her tangents alone will put you to sleep. But she definitely knows her stuff. Just don't be the last one to leave class, or she will almost literally kidnap you and force you to listen to her talk about something and anything.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 4>><br>
+                <<line 'Uh, don\'t be alone, got it.'>>
+                    <<speech plr>>
+                        Complicated, talkative teacher, don't get kidnapped. Fair enough.
+                    <</speech>><br>
+                    <<speech janessa>>
+                        Last on the list is Introduction to Incursion Histories. This one is in the basement, Room B-3 from 12:05 until 13:00. You'll be learning from the most amazing and experienced teacher, Master Adhya Rivera. She was, actually she is, the Hero of Hawaii. Without her, we'de have lost the islands to an incursion. And that she is even teaching here is just incredible. And her scars... Kinda hot.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 5>><br>
+                <<line 'Incursions?'>>
+                    <<speech plr>>
+                        What's an incursion? And what happened to Hawaii???
+                    <</speech>><br>
+                    <<speech janessa>>
+                        I'm not the one that's gonna be teaching you. You'll figure it out on Monday. Until then, stay inside the residence. And especially at night. I will come get you when it's time to go. Until then, study your class schedule. And please, be ready before I come for on Monday. Tardiness is not ok.
+                    <</speech>>
+                    <<set $unlockVar.userInterface.schedule = true>>
+                <</line>>
+            <</level>>
+        <</dlg>>
+    <</nobr>>
+    
+:: Conversation_Janessa_CleanResidence
+    <<speech 'janessa'>><<NpcRelationGreet janessa>>I need to ask you something.<</speech>>
+    <<nobr>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'Listen' '' 11>>
+                    <<speech plr>>Sure, what is it?<</speech>><br>
+                    <<speech 'janessa'>>I'm sure you noticed the state of the residence. It's part misfortune and part lack of time in the day. Between classes, studying, tutoring, and everything else...<</speech>>
+                <</line>>
+                <<line 'Nope.' '' 21>>
+                    <<speech plr>>Egh, not right now.<</speech>><br>
+                    <<speech 'janessa'>>Fine, whatever.<</speech>><br>
+                    <<relGain janessa -10>><<printRelGain>>
+                <</line>>
+            <</level>><br>
+            <<level 11>>
+                <<line 'Ok, what can I do?'>>
+                    <<speech plr>>
+                        Ok, what can I do to help?
+                    <</speech>><br>
+                    <<speech 'janessa'>>
+                        Well, with cleaning. I know it isn't an exciting request, but I figured since you are staying here maybe you could help out with it. I would appreciate it if you said yes.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 12>>
+                <<line 'Sure thing'>>
+                    <<speech plr>>
+                        Sure thing, I can help with that.
+                    <</speech>><br>
+                    <<speech janessa>>
+                        Glad to hear it.
+                    <</speech>><br>
+                    <<relGain janessa 10>><<printRelGain>>
+                <</line>>
+                <<line 'Uhm, not interested' 21>>
+                    <<speech plr>>
+                        Sorry, not really interested in cleaning.
+                    <</speech>><br>
+                    <<speech janessa>>
+                        Useless.
+                    <</speech>><br>
+                    <<relGain janessa -15>><<printRelGain>>\
+                <</line>>
+            <</level>>
+            <<level 21>><</level>>
+        <</dlg>>
+    <</nobr>>\
+
+:: Conversation_Janessa_Random
+    <<nobr>>
+        <<set _randoN = random(1,15)>>
+        <<switch _randoN>>
+            <<case 1>>
+                <<speech janessa>><<NpcRelationGreet janessa>>And what are you doing in the bathroom?<</speech>><br>
+            <<case 2>>
+                <<speech janessa>><<NpcRelationGreet janessa>>Well, care to wash my back for me?<</speech>><br>
+            <<case 3>>
+                <<speech janessa>><<NpcRelationGreet janessa>>Go away.<</speech>><br>
+            <<case 4>>
+                Janessa appears to be...washing certain parts of herself. She would probably not want you to see this.<br><br>
+
+                <<speech janessa>>Auhh, yes... Fuck I love this new wand...<</speech>><br>
+            <<case 5>>
+                <<speech janessa>><<NpcRelationGreet janessa>>I don't recall inviting you in.<</speech>><br>
+            <<default>>
+        <</switch>>
+    <</nobr>>

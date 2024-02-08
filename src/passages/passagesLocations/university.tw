@@ -1,5 +1,5 @@
 :: University_MainRoad
-    <img class='scene' src='img/street.jpg'>
+    <img class='scene' src='img/locations/university_mainroad.jpg'>
     The road is long, but lined with many small and some large houses.
 
     <<nobr>>
@@ -17,11 +17,11 @@
     <</nobr>>
 
 :: University_MainCourtyard
-    <img class='scene' src='img/university_courtyard.jpg'>
+    <img class='scene' src='img/locations/university_maincourtyard.webp'>
     <<speech 'plr'>>Yup, that's a magical looking courtyard alright.<</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
-            <<button [[University Entrance | University_Entrance]]>>
+            <<button [[University Entry Hall | University_Entrance]]>>
                 <<calcTime 5 5>>
             <</button>>
             <<button [[University Road | University_MainRoad]]>>
@@ -31,7 +31,7 @@
     <</nobr>>
 
 :: University_Gate
-    <img class='scene' src='img/university_gate.jpg'>
+    <img class='scene' src='img/locations/university_gate.jpg'>
     <<speech 'plr'>>Now that is a gate! Sadly, it looks very much locked. And the air seems to shimmer along the outer wall. An illusion? Maybe a shield? Not sure yet.<</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -42,7 +42,7 @@
     <</nobr>>
 
 :: University_Entrance
-    <img class='scene' src='img/university_entrance.jpg'>
+    <img class='scene' src='img/locations/university_entrance.jpg'>
     <<speech 'plr'>>In we go...<</speech>>
     <<nobr>>
         <div class='passage-links-grid-3'>
@@ -73,17 +73,63 @@
         </div>
     <</nobr>>
 :: University_Hall_Admin
+    <img class='scene' src='img/locations/university_hall_admin.jpg'>
 
 :: University_Hall_Labs
+    <img class='scene' src='img/locations/university_hall_labs.jpg'>
 
 :: University_Hall_Shops
+    <img class='scene' src='img/locations/university_hall_shops.jpg'>
 
 :: University_Hall_Classes
+    <img class='scene' src='img/locations/university_hall_classes.jpg'>
+    <<speech plr>>
+        Here be classrooms!
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[Room 105 | Floor1_Class_Room105]]>>
+                <<calcTime 0 5>>
+            <</button>>
+            <<button [[Room 106 | Floor1_Class_Room106]]>>
+                <<calcTime 0 5>>
+            <</button>>
+            <<button [[Room 107 | Floor1_Class_Room107]]>>
+                <<calcTime 0 5>>
+            <</button>>
+            <<button [[Second Floor | Hall_Floor2]]>>
+                <<calcTime 0 5>>
+            <</button>>
+            <<button [[Gymnasium | Gymnasium]]>>
+                <<calcTime 0 5>>
+            <</button>>
+            <<button [[Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Hall_Crafts
+    <img class='scene' src='img/locations/university_hall_crafts.jpg'>
 
 :: University_Hall_Professors
+    <img class='scene' src='img/locations/university_hall_professors.jpg'>
 
 :: University_Librarium
+    <img class='scene' src='img/locations/university_librarium.jpg'>
 
 :: University_Hall_Basement
+    <img class='scene' src='img/locations/university_hall_basement.webp'>
+    <<speech plr>>
+        Only a little eerie, at least it's not an actual dungeon.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Room B-3 | Basement_Class_RoomB3]]>>
+                <<calcTime 0 5>>
+            <</button>>
+            <<button [[Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>

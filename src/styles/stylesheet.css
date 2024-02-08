@@ -54,6 +54,13 @@ body {
 html body{
     font-size: 16px
 }
+th {
+    border-left: 1px solid white;
+    border-bottom: 1px dashed white;
+}
+td {
+    border-left: 1px solid white;
+}
 .emphasis {
     font-style: italic
 }
@@ -246,19 +253,19 @@ ul.simple-inventory-list {
     background-color: #1d003f;
 }
 .janessa .avatar {
-    background-image: URL("img/characters/thumb_janessa.jpg");
+    background-image: URL("img/characters/npcs/thumb_janessa.jpg");
 }
 .amy {
     background-color: #741225;
 }
 .amy .avatar {
-    background-image: URL("img/characters/thumb_amy.jpg");
+    background-image: URL("img/characters/npcs/thumb_amy.jpg");
 }
 .barden {
     background-color: #000d1a;
 }
 .barden .avatar {
-    background-image: URL("img/characters/thumb_sullivan.jpg");
+    background-image: URL("img/characters/npcs/thumb_sullivan.jpg");
 }
 .ghost {
     background-color: #000d1a;
@@ -321,6 +328,7 @@ ul.simple-inventory-list {
 .hoverTipTxt .hoverBox {
     position: absolute;
     visibility: hidden;
+    text-align: center;
 }
 .hoverTipTxt:hover .hoverBox, .hoverTipTxt:focus .hoverBox {
     visibility: visible;
@@ -500,27 +508,22 @@ ul.simple-inventory-list {
     color: #a3a3a3;
     font-style: italic;
 }
-
 .common {
     color: #d9fdd4;
     font-style: italic;
 }
-
 .uncommon {
     color: #00ff00;
     font-style: italic;
 }
-
 .rare {
     color: #3399ff;
     font-style: italic;
 }
-
 .legendary {
     color: #ffff00;
     font-style: italic;
 }
-
 .unique {
     color: #ff9900;
     font-style: italic;
@@ -529,19 +532,41 @@ ul.simple-inventory-list {
 
 #ui-dialog-title {
     text-align: left;
+    background-color: #161616;
 }
-
 #ui-dialog {
     max-width: 100%;
     max-height: 90%;
+    border: 10px solid transparent;
+    border-image: url("img/passage-border.png") 80 repeat;
 }
-
 #ui-dialog-body {
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 1em 2.5em 2.5em 1em;
+    border-top: 5px groove rgb(49, 49, 49);
 
 }
-
+.schedule {
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bg_dialogue3.jpg);
+    background-size: 110%;
+    background-repeat: no-repeat;
+}
+.locations {
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bg_locations.jpg);
+    background-size: 130%;
+    background-repeat: no-repeat;
+}
+.char-info {
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bg_locations.jpg);
+    background-size: 130%;
+    background-repeat: no-repeat;
+}
+.spellwork {
+    background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(img/bg_spellwork.jpg);
+    background-size: 160%;
+    background-repeat: no-repeat;
+}
 .achieve {
     background: url('img/bg_achieve.jpg');
     background-size: 30%;
@@ -557,7 +582,6 @@ ul.simple-inventory-list {
     -webkit-text-stroke-color: rgba(black, 0.6);
     text-shadow: 5px 5px rgba(229, 255, 0, 0.103);
 }
-
 .achievebg {
     background-image: url("img/bg_smoke_achieve.jpg");
     background-size: 100% 100%;
@@ -574,42 +598,36 @@ ul.simple-inventory-list {
     font-size: larger;
     text-align: center;
 }
-
 .spell-word-grid {
     display: grid;
     box-sizing: border-box;
     grid-template-columns: 8em 8em 8em 8em 8em 8em;
     column-gap: 0.4em;
 }
-
 .spell-word-grid-item {
     border: 2px solid rgb(94, 94, 94);
     border-radius: 10px;
     text-align: center;
 }
-
 .spell-word-grid-item .macro-button {
     display: block;
     width: 100%;
     border-radius: 10px;
     padding: 0.5em;
 }
-
 .spell-word-grid-item .macro-button:hover {
     background-color: #2400a7;
 }
-
 #spell-box {
     font-style: italic;
     text-align: center;
     font-size: 2rem;
-    margin-bottom: -15px;
+    margin-bottom: 0em;
     color:#2d98da;
     animation: repeat;
-    animation-duration: 3s;
+    animation-duration: 2.5s;
     animation-iteration-count: infinite;
 }
-
 @keyframes repeat {
 
     0% {color: lightblue; text-shadow: 5px 5px 30px lightblue;}
@@ -624,6 +642,18 @@ ul.simple-inventory-list {
 /* Spell Stuff - End */
 
 /* For pages w/ many links */
+.passage-links-grid-5c {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 11em 11em 11em 11em 11em;
+    grid-template-rows: 4em 4em 4em;
+    row-gap: 1em;
+    column-gap: 1em;
+}
+.passage-links-grid-5c .macro-button {
+    padding: 0em;
+}
+
 .passage-links-grid-3 {
     display: grid;
     box-sizing: border-box;
@@ -632,7 +662,6 @@ ul.simple-inventory-list {
     row-gap: 1em;
     column-gap: 1em;
 }
-
 .passage-links-grid-3 .macro-button {
     padding: 0em;
 }
@@ -645,7 +674,6 @@ ul.simple-inventory-list {
     row-gap: 1em;
     column-gap: 1em;
 }
-
 .passage-links-grid-2 .macro-button {
     padding: 0em;
 }
@@ -658,7 +686,6 @@ ul.simple-inventory-list {
     row-gap: 1em;
     column-gap: 1em;
 }
-
 .passage-links-grid-1 .macro-button {
     padding: 0em;
 }
@@ -666,7 +693,6 @@ ul.simple-inventory-list {
 .passage-links-grid-item {
     text-align: center;
 }
-
 .passage-links-grid-item .macro-button {
     display: block;
     width: 100%;
@@ -674,3 +700,9 @@ ul.simple-inventory-list {
 }
 
 /* End of pages w/ many links */
+
+.w3-tag {
+    position: absolute;
+    left: 10px;
+    bottom: -5px;
+}

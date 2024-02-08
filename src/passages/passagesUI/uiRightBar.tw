@@ -4,7 +4,7 @@
         <<if $unlockVar.userInterface.spells == true>>
             <<link "Spellwork">>
                 <<run
-                    Dialog.setup('Form and Cast a Spell');
+                    Dialog.setup('Form and Cast a Spell', 'spellwork');
                     Dialog.wiki(Story.get("Spell_Words_Modal").processText());
                     Dialog.open();
                 >>

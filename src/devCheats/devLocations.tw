@@ -80,6 +80,10 @@
         <<run Dialog.close()>>
     <</button>>
 
+    <<button "Debug View Toggle">><<script>>DebugView.toggle()<</script>><</button>>
+    <<button "Debug Mode On">><<run Config.debug = true>><</button>>
+    <<button "Debug Mode Off">><<run Config.debug = false>><</button>>
+
     [[Start]]
     [[WakingUp1]]
     [[WakingUp2]]

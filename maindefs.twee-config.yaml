@@ -6,7 +6,7 @@ sugarcube-2:
       description: "Changes relationships, needs first name (caps matter) and number"
       container: false
       parameters:
-        - text &+ number
+        - text &+ number |+ text
     
     printRelGain:
       description: "Prints whether or not a relationship increased"
@@ -64,6 +64,19 @@ sugarcube-2:
       container: true
       parameters:
        - text
+
+    GenerateCourseTbl:
+      description: "Generates both schedule cell info, hovertip for the course, and a link if location is unlocked."
+
+    ClassWarning:
+      container: true
+      description: "Generates a message for a class if you are not in the _args labeled classroom."
+
+    TimeCheck:
+      container: true
+      description: "Takes multiple possible args to determine if something should happen according to time."
+      parameters:
+       - number &+ number |+ text |+ text |+ text +| text
 
     # simple inventory macros
     item:
@@ -148,6 +161,12 @@ sugarcube-2:
 
     CombatEnd:
       description: 'Ends combat sequence, calculates loot, prints final result, i.e. <<CombatEnd>>'
+
+    NpcAvailable:
+      description: 'Runs the time and day check for npc conversations, optional event otherwise defaults to the npcs Random passage, i.e. <<NpcAvailable 1600 1700 janessa saturday CourseOverview>>'
+
+    NpcRelationGreet:
+      description: 'Sets an opening greeting from an npc, based on their personality, i.e. <<NpcRelationGreet janessa>>'
 
     dlg:
       container: true

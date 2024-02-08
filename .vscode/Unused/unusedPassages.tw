@@ -1,4 +1,4 @@
-:: PersonalityTest
+/* :: PersonalityTest
     Before you begin, please answer these questions to establish your alter ego's personality. This will likely change as you make choices throughout your new life, but a baseline is needed! Please choose the most applicable answers:
 
     /*openn*/\
@@ -61,4 +61,4 @@
     <label><<radiobutton "$temP.c2" 0>> I give into temptation sometimes</label>
     <label><<radiobutton "$temP.c2" -50>> Oh, I cannot stop myself</label>
 
-    <<button [[Ready! | Dream1]]>><</button>>
+    /*<<button [[Ready! | Dream1]]>><</button>> */

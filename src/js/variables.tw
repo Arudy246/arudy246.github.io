@@ -1,4 +1,6 @@
 :: StoryInit
+    <<set $devMode = true>>
+
     <<set $dateTime = {
         hour: 20,
         min: 30,
@@ -573,7 +575,7 @@
             img: function() {
                 let Container = document
                 let element = $(Container).find('#enemyAvatar')
-                element.attr('style', 'background-image: url("img/aggressivesquirrel.jpg")')
+                element.attr('style', 'background-image: url("img/creatures/aggressivesquirrel.jpg")')
             },
             name: {
                 firstName: 'Oddly Aggressive Squirrel'
@@ -598,7 +600,7 @@
             img: function() {
                 let Container = document
                 let element = $(Container).find('#enemyAvatar')
-                element.attr('style', 'background-image: url("img/greenimp.png")')
+                element.attr('style', 'background-image: url("img/creatures/greenimp.png")')
             },
             name: {
                 firstName: 'Tiny Green Imp'
@@ -720,51 +722,178 @@
                 hair: 'white'
             },
             personality: 'stern'
+        },
+        elliot: {
+            name: {
+                firstName: 'Elliot',
+                lastName: 'Corbin',
+                title: 'Instructor',
+                formal: 'Instructor Corbin'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'male',
+                eyes: 'blue',
+                hair: 'brown'
+            },
+            personality: 'stern'
+        },
+        juliette: {
+            name: {
+                firstName: 'Juliette',
+                lastName: 'Gatlin',
+                title: 'Instructor',
+                formal: 'Instructor Gatlin'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                eyes: 'green',
+                hair: 'red'
+            },
+            personality: 'friendly'
+        },
+        jonathan: {
+            name: {
+                firstName: 'Jonathan',
+                lastName: 'Levee',
+                title: 'Instructor',
+                formal: 'Intructor Levee'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'male',
+                eyes: 'brown',
+                hair: 'brown'
+            },
+            personality: 'neutral'
+        },
+        celeste: {
+            name: {
+                firstName: 'Celeste',
+                lastName: 'Chao',
+                title: 'Counselor',
+                formal: 'Counselor Chao'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                eyes: 'brown',
+                hair: 'black'
+            },
+            personality: 'friendly'
+        },
+        adhya: {
+            name: {
+                firstName: 'Adhya',
+                lastName: 'Rivera',
+                title: 'Master',
+                formal: 'Master Rivera'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                eyes: 'black',
+                hair: 'black'
+            },
+            personality: 'stern'
         }
     }>>
-    <<set $npcPersonalityList = {
+    <<set $personalityList = {
         friendly: {
-            desc: "friendly disposition",
-            placeholderA: 0,
-            placeholderB: 0,
+            description: "friendly disposition",
             greetings: [
                 "Oh, hi!",
                 "Well hello there!",
-                "Gosh its good to see you!",
+                "Gosh it's good to see you!",
                 "What a pleasant suprise!"
+            ],
+            comments: [
+                'friendly comment text'
+            ],
+            bye: [
+                'friendly bye text'
             ]
         },
         neutral: {
-            desc: "polite disposition",
-            placeholderA: 0,
-            placeholderB: 0,
+            description: "polite disposition",
             greetings: [
                 "Hello.",
                 "Hi.",
                 "Good day.",
-                "What can I do for you?"
+                "Hey."
             ]
         },
         unfriendly: {
-            desc: "unfriendly attitude",
-            placeholderA: 0,
-            placeholderB: 0,
+            description: "unfriendly attitude",
             greetings: [
-                "Yes?",
-                "What?",
-                "I'm busy, what do you want?",
-                "Now what?"
+                "Of all the people who could talk to me, it had to be you.",
+                "Look what the familiar dragged in.",
+                "Oh, it's you.",
+                "Oh, you're here, great."
             ]
         },
         stern: {
-            desc: "stern attitude",
-            placeholderA: 0,
-            placeholderB: 0,
+            description: "stern attitude",
             greetings: [
                 "Hello.",
-                "Yes?",
-                "What can I do for you?",
-                "Hmm?"
+                "Goodday.",
+                "I'm busy, but I can spare a minute.",
+                "Hmm."
+            ]
+        },
+        goofy: {
+            description: 'goofy attitude',
+            greetings: [
+                'Hay-o',
+                'What it do?',
+                'Zub zub!',
+                'Oi!'
             ]
         }
     }>>
@@ -1087,5 +1216,49 @@
             pagesMax: 0
         },
         inCombat: false,
-        combatPass: ''
+        combatPass: '',
+        courseOverview: false
+    }>>
+
+    <<set $courses = {
+        arcanearts101: {
+            title: 'Arcane Arts 101',
+            classroom: 'Floor1_Class_Room105',
+            roomNum: '105',
+            instructor: 'elliot',
+            startTime: 800,
+            endTime: 900
+        },
+        conservation101: {
+            title: 'Conservation of Magic 101',
+            classroom: 'Floor1_Class_Room106',
+            roomNum: '106',
+            instructor: 'juliette',
+            startTime: 905,
+            endTime: 1000
+        },
+        arcanedisciplines101: {
+            title: 'Arcane Disciplines 101',
+            classroom: 'Floor1_Class_Room107',
+            roomNum: '107',
+            instructor: 'jonathan',
+            startTime: 1005,
+            endTime: 1100
+        },
+        arcanelaw101: {
+            title: 'Arcane Law 101',
+            classroom: 'Floor2_Class_Room205',
+            roomNum: '205',
+            instructor: 'celeste',
+            startTime: 1105,
+            endTime: 1200
+        },
+        incursionhistory: {
+            title: 'Intro to Incursion Histories',
+            classroom: 'Basement_Class_RoomB3',
+            roomNum: 'B3',
+            instructor: 'adhya',
+            startTime: 1205,
+            endTime: 1300
+        }
     }>>

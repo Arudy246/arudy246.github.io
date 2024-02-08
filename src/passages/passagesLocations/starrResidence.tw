@@ -1,5 +1,5 @@
 :: Residence_Starr_Courtyard[outdoors]
-    <img class='scene' src='img/residence_starr_courtyard.jpg'>
+    <img class='scene' src='img/locations/residence_starr_courtyard.jpg'>
     <<Updates>>
     <<nobr>>
         <<if $eventVar.inCombat == false>>
@@ -28,7 +28,7 @@
     <</nobr>>
 
 :: Residence_Starr_BanquetHall[room]
-    <img class='scene' src='img/residence_starr_banquethall.jpg'>
+    <img class='scene' src='img/locations/residence_starr_banquethall.jpg'>
     <<Updates>>
     <<speech plr>>The banquet hall is impressive, or at least it would be, if someone had used a broom on it in the last century. Or two. It's <<roomComments 'clean'>><</speech>>
     <<nobr>>
@@ -40,7 +40,7 @@
     <</nobr>>
 
 :: Residence_Starr_Bathroom[room]
-    <img class='scene' src='img/residence_starr_bathroom.gif'>
+    <img class='scene' src='img/locations/residence_starr_bathroom.gif'>
     <<Updates>>
     <<speech plr>>The bathroom is bright and suprisingly modern. But it looks completely unused. Judging the condition, it's <<roomComments 'clean'>><</speech>>
     <<nobr>>
@@ -52,7 +52,7 @@
     <</nobr>>
 
 :: Residence_Starr_EntryHall
-    <img class='scene' src='img/residence_starr_entryhall.jpg'>
+    <img class='scene' src='img/locations/residence_starr_entryhall.jpg'>
     <<Updates>>
     You are in the entryway of the residence.
 
@@ -74,10 +74,15 @@
     <</nobr>>
 
 :: Residence_Starr_BedroomHall
-    <img class='scene' src='img/residence_starr_hallway.jpg'>
+    <img class='scene' src='img/locations/residence_starr_hallway.jpg'>
     <<Updates>>
-    You are in the bedroom hallway.
+    Looks like the bedroom hallway.
 
+    <<nobr>>
+        <<TimeCheck 0000 2400>>
+            <<NpcAvailable janessa Janessa_CourseOverview>>
+        <</TimeCheck>>
+    <</nobr>>
     <<nobr>>
         <div class='passage-links-grid-2'>
             <<button [[Your Room | Residence_Starr_PlayerRoom]]>>
@@ -96,19 +101,32 @@
     <</nobr>>
 
 :: Residence_Starr_JanessaRoom[room]
-    <img class='scene' src='img/residence_starr_janessaroom.jpg'>
-    <<Updates>>
-    <<speech plr>>$npcs.janessa.name.firstName said to stay out. For now, I should do just that.<</speech>>
+    <<nobr>>
+        <<if $unlockVar.rooms.roomJanessa == false>>
+            <img class='scene' src='img/locations/residence_starr_janessaroom.jpg'><br>
+
+            <<Updates>><br>
+
+            <<speech plr>>$npcs.janessa.name.firstName said to stay out. For now, I should do just that.<</speech>>
+            <<else>>
+                <img class='scene' src='img/locations/residence_starr_janessaroom_unlock.jpg'><br>
+
+                <<Updates>><br>
+                <<NpcAvailable 2000 2200 janessa>><br>
+            
+        <</if>>
+    <</nobr>>
     <<nobr>>
         <div class='passage-links-grid-1'>
             <<button [[Bedroom Hallway | Residence_Starr_BedroomHall]]>>
                 <<calcTime 0 5>>
             <</button>>
         </div>
+
     <</nobr>>
 
 :: Residence_Starr_Kitchen[room]
-    <img class='scene' src='img/residence_starr_kitchen.jpg'>
+    <img class='scene' src='img/locations/residence_starr_kitchen.jpg'>
     <<Updates>>
     <<speech plr>>She was right, this place hasn't been used in years. As far as it's condition is concerned, it's <<roomComments 'clean'>><</speech>>
     <<nobr>>
@@ -120,7 +138,7 @@
     <</nobr>>
 
 :: Residence_Starr_PlayerRoom[room playerHome]
-    <img class="scene" src='img/plrroom.jpg'>
+    <img class="scene" src='img/locations/residence_starr_playerroom.jpg'>
     <<Updates>>
     <<nobr>>
         <<if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur != $roomVars.Residence_Starr_PlayerRoom.bookspell.max || $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur != $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur>>
@@ -140,10 +158,10 @@
     <<nobr>>
         <div class='passage-links-grid-2'>
             <<button [[Search your room | Residence_Starr_PlayerRoom_Searching]]>><</button>>
-            <<button [[Tidy up | Residence_Starr_PlayerRoom_Cleaning]]>>
+            /* <<button [[Tidy up | Residence_Starr_PlayerRoom_Cleaning]]>>
                     <<set $roomVars.Residence_Starr_PlayerRoom.clean -= 2>>
                     <<calcTime 60 30>>
-            <</button>>
+            <</button>> */
             <<nobr>>
                 <<if not hasVisited("Residence_Starr_PlayerRoom_Sleeping")>>
                     <<button [[Try to sleep | Residence_Starr_PlayerRoom_Sleeping]]>>
@@ -153,7 +171,7 @@
                     <<button "Try to sleep">>
                         <<run
                             Dialog.setup("Pointless Endeavor");
-                            Dialog.append("You already know you can't sleep, trying again would just be a waste of time.");
+                            Dialog.append("Sleep seems impossible, trying again would just be a waste of time.");
                             Dialog.open();
                         >>
                     <</button>>
@@ -173,14 +191,31 @@
                 <<setStats 'plr' 'focus' 0.3>>
                 <<setStats plr life 0.8>>
             <</button>>
-            <<button [[Exit Room | Residence_Starr_BedroomHall]]>>
-                <<calcTime 0 5>>
+            <<button 'Exit Room'>>
+                <<if $spellWords.effect.clean.unlocked == true>>
+                    <<goto Residence_Starr_BedroomHall>>
+                    <<calcTime 0 5>>
+                    <<else>>
+                        <<if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur == 0>>
+                            <<run
+                                Dialog.setup('Hold on a Second');
+                                Dialog.append('I should probably search through my room first.');
+                                Dialog.open()
+                            >>
+                            <<else>>
+                                <<run
+                                Dialog.setup('Hold on a Second');
+                                Dialog.append('I should probably read that book I found.');
+                                Dialog.open()
+                            >>
+                        <</if>>
+                <</if>>
             <</button>>
         </div>
     <</nobr>>
 
 :: Residence_Starr_PlayerRoom_Cleaning[minorEvent]
-    <img class="scene" src='img/plrroom.jpg'>
+    <img class="scene" src='img/locations/plrroom.jpg'>
     <<Updates>>
     <<nobr>>
         <<if $roomVars.Residence_Starr_PlayerRoom.clean >= 21>>
@@ -205,17 +240,17 @@
     <</nobr>>
 
 :: Residence_Starr_PlayerRoom_Searching[minorEvent]
-    <img class="scene" src='img/searchclutter.jpg'>
+    <img class="scene" src='img/locations/searchclutter.jpg'>
     <<Updates>>
     <<nobr>>
-        <<if visited() == 1>>
+        /* <<if visited() == 1>>
             <<searchForItem 'Residence_Starr_PlayerRoom' 'bookmisc' 'mapSchool' 30>>
+        <</if>> */
+        <<if visited() == 1>>
+            <<searchForItem 'Residence_Starr_PlayerRoom' 'bookspell' 'spellsBasic' 30>>
             <<set $unlockVar.userInterface.inventory = true>>
         <</if>>
-        <<if visited() == 2>>
-            <<searchForItem 'Residence_Starr_PlayerRoom' 'bookspell' 'spellsBasic' 30>>
-        <</if>>
-        <<if visited() > 2>>
+        <<if visited() > 1>>
             <<speech 'plr'>>This place is picked clean of anything interesting or useful.<</speech>>
         <</if>>
     <</nobr>>
@@ -223,14 +258,14 @@
     <</button>>
 
 :: Residence_Starr_PlayerRoom_Sleeping
-    <img class="scene" src='img/nastybed.jpg'>\
+    <img class="scene" src='img/locations/residence_starr_resting.jpg'>\
     <<speech plr>>Try as I might, I simply cannot sleep. Letting my mind go blank, counting sheep, nothing is working! Nevermind on this idea I guess.<</speech>>\
 
     <<button [[Stand up | Residence_Starr_PlayerRoom]]>>
     <</button>>
 
 :: Residence_Starr_PlayerRoom_Resting
-    <img class="scene" src='img/nastybed.jpg'>
+    <img class="scene" src='img/locations/residence_starr_resting.jpg'>
     <<Updates>>
     You lay down on the <<roomComments 'bed'>> bed and feel tension and tiredness leave you.
 
@@ -264,36 +299,7 @@
     <<speech plr>>What is that?!? $critters.aggressiveSquirrel.description<</speech>>
 
 :: Residence_Starr_Courtyard_Janessa[outdoors minorEvent day2]
-    <<speech 'janessa'>>Hey, can I ask you for something?<</speech>>
-    <<nobr>>
-        <<dlg 'dlg' 0 >>
-            <<level 0>>
-                <<line 'Of course'>>
-                    <<speech plr>> What can I do for for you?<</speech>><br>
-                    <<speech 'janessa'>>I'm sure you noticed the state of the residence. Part of it misfortune, the other is a lack of time in the day. Between classes, studying, tutoring, and everything else...<</speech>>
-                <</line>><br>
-
-                <<line 'I\'m a little busy right now.'>>
-                    <<speech plr>>Not right now, kinda busy.<</speech>><br>
-                    <<speech 'janessa'>>Ya, fine.<</speech>>
-                <</line>>
-            <</level>>
-            <<level 1>>
-                <<line 'Ok, what can I do?'>>
-                    <<speech plr>>Makes sense, what can I do to help?<</speech>><br>
-                    <<speech 'janessa'>>Well, cleaning. I know it isn't an amazing request, but I figured since you are staying here maybe you could help out with it. What do you think?<</speech>>
-                <</line>>
-            <</level>>
-            <<level 2>>
-                <<line 'I think I can help with that.'>>
-                    <<speech plr>>Absolutely. I'd be glad to help, I mean, you did give me a place to stay.<</speech>><br>
-                    <<speech 'janessa'>>Awesome! I appreciate that. I'll see you a little later.<</speech>><br>
-                    <<relGain janessa 15>><<printRelGain>>
-                <</line>>
-            <</level>>
-        <</dlg>>
-    <</nobr>>
-    <hr>
+    Fill in event... will do later.
 
 :: Residence_Starr_Courtyard_Shimmer[outdoors minorEvent day3]
     <<speech plr>>There is a shimmer above this place, I can barely see it, but it is there.<</speech>>
