@@ -13,54 +13,125 @@
         <</if>>
     <</nobr>>\
     <<nobr>>
-        <<if $plr.stats.stamina.max != 0>>
-            <div id="staminaBarbkg" class="hzbarbkg"><div id="staminaBar" class="hzbar"></div></div>
-            <span class="cyan">Stamina: </span><span id='ui-stamina'></span>
-            <<run Stamina()>>
-            <br>
-            <<done>>
-                <<statsComments 'stamina'>>
-            <</done>>
-            <span id="stamina-comment"></span>
-            <hr>
-        <</if>>
-    <</nobr>>\
-    <<nobr>>
-        <<if $plr.stats.life.max != 0>>
-            <div id="lifeBarbkg" class="hzbarbkg"><div id="lifeBar" class="hzbar"></div></div>
-            <span class="crimson">Lifeforce: </span><span id='ui-life'></span>
-            <<run Life()>>
-            <br>
-            <<done>>
-                <<statsComments 'life'>>
-            <</done>>
-            <span id='life-comment'></span>
-            <hr>
-        <</if>>
-    <</nobr>>\
-    <<nobr>>
-        <<if $plr.stats.focus.max != 0>>
-            <div id="focusBarbkg" class="hzbarbkg"><div id="focusBar" class="hzbar"></div></div>
-            <span class="greenyellow">Focus: </span><span id='ui-focus'></span>
-            <<run FocusStat()>>
-            <br>
-            <<done>>
-                <<statsComments 'focus'>>
-            <</done>>
-            <span id='focus-comment'></span>
-            <hr>
-        <</if>>
-    <</nobr>>\
-    <<nobr>>
-        <<if $plr.stats.sanity.max != 0>>
-            <div id="sanityBarbkg" class="hzbarbkg"><div id="sanityBar" class="hzbar"></div></div>
-            <span class="purple">Sanity: </span><span id='ui-sanity'></span>
-            <<run Sanity()>>
-            <br>
-            <<done>>
-                <<statsComments 'sanity'>>
-            <</done>>
-            <span id='sanity-comment'></span>
-            <hr>
-        <</if>>
+        <div class='w3-bar'>
+            <button class='w3-bar-item w3-button w3-hover-none w3-text-white w3-hover-text-blue w3-bottombar w3-hover-border-blue' onclick='openTab("plr-stats-tab")'>Stats</button>
+            <button class='w3-bar-item w3-button w3-hover-none w3-text-white w3-hover-text-blue w3-bottombar w3-hover-border-blue' onclick='openTab("plr-rels-tab")'>People</button>
+            <button class='w3-bar-item w3-button w3-hover-none w3-text-white w3-hover-text-blue w3-bottombar w3-hover-border-blue' onclick='openTab("plr-disc-tab")'>Skills</button>
+        </div>
     <</nobr>>
+    <<nobr>>
+        <div id='plr-stats-tab' class='tabElement' style='display: block'>
+            <<nobr>>
+                <<if $plr.stats.stamina.max != 0>>
+                    <div id="staminaBarbkg" class="hzbarbkg"><div id="staminaBar" class="hzbar"></div></div>
+                    <span class="cyan">Stamina: </span><span id='ui-stamina'></span>
+                    <br>
+                    <<done>>
+                        <<statsComments 'stamina'>>
+                        <<run Stamina()>>
+                    <</done>>
+                    <span id="stamina-comment"></span>
+                    <hr>
+                <</if>>
+            <</nobr>>
+            <<nobr>>
+                <<if $plr.stats.life.max != 0>>
+                    <div id="lifeBarbkg" class="hzbarbkg"><div id="lifeBar" class="hzbar"></div></div>
+                    <span class="crimson">Lifeforce: </span><span id='ui-life'></span>
+                    <br>
+                    <<done>>
+                        <<statsComments 'life'>>
+                        <<run Life()>>
+                    <</done>>
+                    <span id='life-comment'></span>
+                    <hr>
+                <</if>>
+            <</nobr>>
+            <<nobr>>
+                <<if $plr.stats.focus.max != 0>>
+                    <div id="focusBarbkg" class="hzbarbkg"><div id="focusBar" class="hzbar"></div></div>
+                    <span class="greenyellow">Focus: </span><span id='ui-focus'></span>
+                    <br>
+                    <<done>>
+                        <<statsComments 'focus'>>
+                        <<run FocusStat()>>
+                    <</done>>
+                    <span id='focus-comment'></span>
+                    <hr>
+                <</if>>
+            <</nobr>>
+            <<nobr>>
+                <<if $plr.stats.sanity.max != 0>>
+                    <div id="sanityBarbkg" class="hzbarbkg"><div id="sanityBar" class="hzbar"></div></div>
+                    <span class="purple">Sanity: </span><span id='ui-sanity'></span>
+                    <br>
+                    <<done>>
+                        <<statsComments 'sanity'>>
+                        <<run Sanity()>>
+                    <</done>>
+                    <span id='sanity-comment'></span>
+                    <hr>
+                <</if>>
+            <</nobr>>
+        </div>
+        <div id='plr-rels-tab' class='tabElement'>
+            <table class='w3-table'>
+                <tr>
+                    <th>Name</th>
+                    <th class='w3-text-green'>+</th>
+                    <th class='w3-text-red'>-</th>
+                    <th class='w3-text-purple'>X</th>
+                    <th class='w3-text-orange'>!</th>
+                </tr>
+                <tr>
+                    <td>
+                        <<link 'Janessa'>>
+                            <<run 
+                                Dialog.setup("Janessa Bio");
+                                Dialog.wiki(Story.get("Bio_Janessa").text);
+                                Dialog.open();
+                            >>
+                        <</link>>
+                    </td>
+                    <td>$plr.relations.janessa.positive</td>
+                    <td>$plr.relations.janessa.negative</td>
+                    <td>$plr.relations.janessa.intimate</td>
+                    <td>$plr.relations.janessa.suspicion</td>
+                </tr>
+                <tr>
+                    <td>
+                        <<link 'Amy'>>
+                            <<run 
+                                Dialog.setup("Amy Bio");
+                                Dialog.wiki(Story.get("Bio_Amy").text);
+                                Dialog.open();
+                            >>
+                        <</link>>
+                    </td>
+                    <td>$plr.relations.amy.positive</td>
+                    <td>$plr.relations.amy.negative</td>
+                    <td>$plr.relations.amy.intimate</td>
+                    <td>$plr.relations.amy.suspicion</td>
+                </tr>
+                <tr>
+                    <td>
+                        <<link 'Barden'>>
+                            <<run 
+                                Dialog.setup("Barden Bio");
+                                Dialog.wiki(Story.get("Bio_Barden").text);
+                                Dialog.open();
+                            >>
+                        <</link>>
+                    </td>
+                    <td>$plr.relations.barden.positive</td>
+                    <td>$plr.relations.barden.negative</td>
+                    <td>$plr.relations.barden.intimate</td>
+                    <td>$plr.relations.barden.suspicion</td>
+                </tr>
+            </table>
+        </div>
+        <div id='plr-disc-tab' class='tabElement'>
+            Disciplines here
+        </div>
+    <</nobr>>
+    

@@ -600,19 +600,19 @@
         <<widget 'Updates'>>
             <<statsChange>>
             <<discChange>>
-            <<TimeCheck 0700 0800 weekday>>
+            <<TimeCheck 0700 0800 weekdays>>
                 <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts soon<</ClassWarning>>
             <</TimeCheck>>
-            <<TimeCheck 0800 0900 weekday>>
+            <<TimeCheck 0800 0900 weekdays>>
                 <<ClassWarning Floor1_Class_Room106>>Conservation of Magic class starts soon<</ClassWarning>>
             <</TimeCheck>>
-            <<TimeCheck 0900 1000 weekday>>
+            <<TimeCheck 0900 1000 weekdays>>
                 <<ClassWarning Floor1_Class_Room107>>Arcane Disciplines class starts soon<</ClassWarning>>
             <</TimeCheck>>
-            <<TimeCheck 1000 1100 weekday>>
+            <<TimeCheck 1000 1100 weekdays>>
                 <<ClassWarning Floor2_Class_Room205>>Arcane Law class starts soon<</ClassWarning>>
             <</TimeCheck>>
-            <<TimeCheck 1100 1200 weekday>>
+            <<TimeCheck 1100 1200 weekdays>>
                 <<ClassWarning Basement_Class_RoomB3>>Incursion Histories class starts soon<</ClassWarning>>
             <</TimeCheck>>
         <</widget>>
@@ -935,7 +935,7 @@
             <<if _args[0] == 'stamina'>>
                 <<if _dispV >= 80>>
                     <<replace '#stamina-comment'>>
-                        <span class = "green">I am feeling energized and ready to take on the world.</span>
+                        <span class = "green">I am feeling energized and ready for anything.</span>
                     <</replace>>
                 <</if>>
                 <<if _dispV >= 50 && _dispV < 80>>
@@ -957,7 +957,7 @@
             <<if _args[0] == 'life'>>
                 <<if _dispV >= 80>>
                     <<replace '#life-comment'>>
-                        <span class = "green">I don't have so much as a scratch on me.</span>
+                        <span class = "green">I don't have a scratch on me.</span>
                     <</replace>>
                 <</if>>
                 <<if _dispV >= 50 && _dispV < 80>>
@@ -1224,7 +1224,7 @@
     /* Adjusts npc conversation comments according to relationship stats. <<NpcRelationCmt janessa>> */
     <<nobr>>
         <<widget 'NpcRelationCmt'>>
-        
+            
         <</widget>>
     <</nobr>>
 
@@ -1259,12 +1259,10 @@
         <</widget>>
     <</nobr>>
 
-    /*Allows content based on start and/or end time, day, month, year or false for anything but start/end times i.e. <<TimeCheck 1100 1300 thursday april 3 2024>>Its time!<</TimeCheck>> 
-
-    */
+    /*Allows content based on start and/or end time, day, month, year or false for anything but start/end times i.e. <<TimeCheck 1100 1300 thursday april 3 2024>>Its time!<</TimeCheck>>*/
     <<nobr>>
         <<widget "TimeCheck" container>>
-            <<consolelog '-----TimeCheck Start-----'>>
+            <<consolelog '---TimeCheck Start---'>>
             <<set _start = _args[0] / 100>>
             <<set _end = _args[1] / 100>>
             
@@ -1322,7 +1320,7 @@
                     <<consolelog 'Check: Time Only'>>
                 <</if>>
             <</if>>
-            <<consolelog '---TimeCheck End---'>>
+            <<consolelog '-----TimeCheck End-----'>>
         <</widget>>
     <</nobr>>
 

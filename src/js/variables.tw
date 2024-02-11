@@ -86,6 +86,36 @@
                 negative: 0,
                 intimate: 0,
                 suspicion: 0
+            },
+            elliot: {
+                positive: 0,
+                negative: 0,
+                intimate: 0,
+                suspicion: 0
+            },
+            juliette: {
+                positive: 0,
+                negative: 0,
+                intimate: 0,
+                suspicion: 0
+            },
+            jonathan: {
+                positive: 0,
+                negative: 0,
+                intimate: 0,
+                suspicion: 0
+            },
+            celeste: {
+                positive: 0,
+                negative: 0,
+                intimate: 0,
+                suspicion: 0
+            },
+            adhya: {
+                positive: 0,
+                negative: 0,
+                intimate: 0,
+                suspicion: 0
             }
         },
         disciplines: {
@@ -600,7 +630,7 @@
             img: function() {
                 let Container = document
                 let element = $(Container).find('#enemyAvatar')
-                element.attr('style', 'background-image: url("img/creatures/greenimp.png")')
+                element.attr('style', 'background-image: url("img/creatures/imp_green.webp")')
             },
             name: {
                 firstName: 'Tiny Green Imp'
@@ -654,9 +684,9 @@
         amy: {
             name: {
                 firstName: 'Amy',
-                lastName: 'Everett',
+                lastName: 'Levette',
                 title: 'Mendicant',
-                formal: 'Mrs. Everett'
+                formal: 'Mrs. Levette'
             },
             stats: {
                 life: {
@@ -670,10 +700,13 @@
             },
             body: {
                 sex: 'female',
+                race: 'White',
                 eyes: 'amber',
                 hair: 'blonde'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: 'Runs the clinic at the college. She is professional and kind. Amy is rarely seen outside of the clinic aside from when she responds to an emergency call.',
+            hasMet: false
         },
         janessa: {
             name: {
@@ -694,10 +727,13 @@
             },
             body: {
                 sex: 'female',
+                race: 'White',
                 eyes: 'gray',
                 hair: 'blonde'
             },
-            personality: 'unfriendly'
+            personality: 'unfriendly',
+            bio: 'The Starr family was once a moderately powerful family with their hands in many different industries and were well placed politically. A series of betrayals and miscalculations resulted in most of the family, and all the men, being killed, executed, or assassinated. Leaving only Janessa, the heir to the family, her mother, very elderly grandmother, and one or two servants.',
+            hasMet: false
         },
         barden: {
             name: {
@@ -718,10 +754,13 @@
             },
             body: {
                 sex: 'male',
+                race: 'White',
                 eyes: 'dark blue',
                 hair: 'white'
             },
-            personality: 'stern'
+            personality: 'stern',
+            bio: 'Runs the school. He can often be seen walking the grounds and speaking to attendees. He is known to occasionally take special interest in a student, but why exactly he does is unknown.',
+            hasMet: false
         },
         elliot: {
             name: {
@@ -742,6 +781,7 @@
             },
             body: {
                 sex: 'male',
+                race: 'Black',
                 eyes: 'blue',
                 hair: 'brown'
             },
@@ -766,6 +806,7 @@
             },
             body: {
                 sex: 'female',
+                race: 'White',
                 eyes: 'green',
                 hair: 'red'
             },
@@ -790,6 +831,7 @@
             },
             body: {
                 sex: 'male',
+                race: 'White',
                 eyes: 'brown',
                 hair: 'brown'
             },
@@ -814,6 +856,7 @@
             },
             body: {
                 sex: 'female',
+                race: 'Chinese',
                 eyes: 'brown',
                 hair: 'black'
             },
@@ -838,11 +881,289 @@
             },
             body: {
                 sex: 'female',
+                race: 'Indian',
                 eyes: 'black',
                 hair: 'black'
             },
             personality: 'stern'
+        },
+        bailey: {
+            name: {
+                firstName: 'Bailey',
+                lastName: 'Cooper',
+                title: 'student',
+                formal: 'Ms. Cooper'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                race: 'Black',
+                eyes: 'brown',
+                hair: 'black',
+
+            },
+            personality: 'neutral'
+        },
+        jason: {
+            name: {
+                firstName: 'Jason',
+                lastName: 'Silbersteine',
+                title: 'student',
+                formal: 'Mr. Silbersteine'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'male',
+                race: 'White',
+                eyes: 'green',
+                hair: 'brown'
+            },
+            personality: 'arrogant'
+        },
+        harper: {
+            name: {
+                firstName: 'Harper',
+                lastName: 'Brooke',
+                title: 'student',
+                formal: 'Ms. Brooke'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                race: 'White',
+                eyes: 'grey',
+                hair: 'blonde'
+            },
+            personality: 'friendly'
+        },
+        kinsley: {
+            name: {
+                firstName: 'Kinsley',
+                lastName: 'Reeves',
+                title: 'student',
+                formal: 'Ms. Reeves'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                race: 'Black',
+                eyes: 'brown',
+                hair: 'brown'
+            },
+            personality: 'friendly'
+        },
+        athena: {
+            name: {
+                firstName: 'Athena',
+                lastName: 'Braden',
+                title: 'student',
+                formal: 'Ms. Braden'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                race: 'White',
+                eyes: 'green',
+                hair: 'blonde'
+            },
+            personality: 'friendly'
+        },
+        airi: {
+            name: {
+                firstName: 'Airi',
+                lastName: 'Kaneire',
+                title: 'student',
+                formal: 'Ms. Kaneire'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                race: 'Japanese',
+                eyes: 'brown',
+                hair: 'black'
+            },
+            personality: 'arrogant'
+        },
+        liliana: {
+            name: {
+                firstName: 'Liliana',
+                lastName: 'Haskell',
+                title: 'student',
+                formal: 'Ms. Haskell'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'female',
+                race: 'White',
+                eyes: 'brown',
+                hair: 'black'
+            },
+            personality: 'neutral'
+        },
+        wyatt: {
+            name: {
+                firstName: 'Wyatt',
+                lastName: 'Haskell',
+                title: 'student',
+                formal: 'Mr. Haskell'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'male',
+                race: 'White',
+                eyes: 'brown',
+                hair: 'black'
+            },
+            personality: 'friendly'
+        },
+        caleb: {
+            name: {
+                firstName: 'Caleb',
+                lastName: 'Wells',
+                title: 'student',
+                formal: 'Mr. Wells'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'male',
+                race: 'White',
+                eyes: 'brown',
+                hair: 'red'
+            },
+            personality: 'neutral'
+        },
+        javier: {
+            name: {
+                firstName: 'Javier',
+                lastName: 'Jenner',
+                title: 'student',
+                formal: 'Mr. Jenner'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'male',
+                race: 'Hispanic',
+                eyes: 'brown',
+                hair: 'black'
+            },
+            personality: 'friendly'
+        },
+        evan: {
+            name: {
+                firstName: 'Evan',
+                lastName: 'Ambrose',
+                title: 'student',
+                formal: 'Mr. Ambrose'
+            },
+            stats: {
+                life: {
+                    max: 500,
+                    cur: 500
+                },
+                stamina: {
+                    max: 500,
+                    cur: 500
+                }
+            },
+            body: {
+                sex: 'male',
+                race: 'White',
+                eyes: 'hazel',
+                hair: 'brown'
+            },
+            personality: 'friendly'
         }
+
     }>>
     <<set $personalityList = {
         friendly: {
@@ -894,6 +1215,13 @@
                 'What it do?',
                 'Zub zub!',
                 'Oi!'
+            ]
+        },
+        arrogant: {
+            description: 'arrogant attitude',
+            greetings: [
+                'What?',
+                'Hmph.'
             ]
         }
     }>>

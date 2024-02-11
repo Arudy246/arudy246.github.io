@@ -28,7 +28,7 @@
     <</nobr>>
 
 :: Residence_Starr_BanquetHall[room]
-    <img class='scene' src='img/locations/residence_starr_banquethall.jpg'>
+    <img class='scene' src='img/locations/residence_starr_banquethall.webp'>
     <<Updates>>
     <<speech plr>>The banquet hall is impressive, or at least it would be, if someone had used a broom on it in the last century. Or two. It's <<roomComments 'clean'>><</speech>>
     <<nobr>>
@@ -40,9 +40,9 @@
     <</nobr>>
 
 :: Residence_Starr_Bathroom[room]
-    <img class='scene' src='img/locations/residence_starr_bathroom.gif'>
+    <img class='scene' src='img/locations/residence_starr_bathroom.jpg'>
     <<Updates>>
-    <<speech plr>>The bathroom is bright and suprisingly modern. But it looks completely unused. Judging the condition, it's <<roomComments 'clean'>><</speech>>
+    <<speech plr>>It is definitely a bathroom. Judging by the state of it, it's <<roomComments 'clean'>><</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
             <<button [[Bedroom Hallway | Residence_Starr_BedroomHall]]>>
@@ -74,7 +74,7 @@
     <</nobr>>
 
 :: Residence_Starr_BedroomHall
-    <img class='scene' src='img/locations/residence_starr_hallway.jpg'>
+    <img class='scene' src='img/locations/residence_starr_bedroomhall.jpg'>
     <<Updates>>
     Looks like the bedroom hallway.
 
@@ -138,7 +138,7 @@
     <</nobr>>
 
 :: Residence_Starr_PlayerRoom[room playerHome]
-    <img class="scene" src='img/locations/residence_starr_playerroom.jpg'>
+    <img class="scene" src='img/locations/residence_starr_playerroom.webp'>
     <<Updates>>
     <<nobr>>
         <<if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur != $roomVars.Residence_Starr_PlayerRoom.bookspell.max || $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur != $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur>>

@@ -1,6 +1,75 @@
 :: University_MainRoad
     <img class='scene' src='img/locations/university_mainroad.jpg'>
+    <<Updates>>
     The road is long, but lined with many small and some large houses.
+    <h2>Staff</h2>\
+    <<speech amy>>
+        I'm Amy Levette.
+    <</speech>>
+    <<speech barden>>
+        I'm Barden Sullivan.
+    <</speech>>
+    <<speech elliot>>
+        I'm Elliot Corbin.
+    <</speech>>
+    <<speech juliette>>
+        I'm Juliette Gatlin.
+    <</speech>>
+    <<speech jonathan>>
+        I'm Jonathan Levee.
+    <</speech>>
+    <<speech celeste>>
+        I'm Celeste Chao.
+    <</speech>>
+    <<speech adhya>>
+        I'm Adhya Rivera.
+    <</speech>>
+    <hr>
+    <h2>Students</h2>\
+    <<speech plr>>
+        I am you!
+    <</speech>>
+    <<speech janessa>>
+        I'm Janessa Starr.
+    <</speech>>
+    <<speech bailey>>
+        I'm Bailey Cooper
+    <</speech>>
+    <<speech jason>>
+        I'm Jason Silversteine
+    <</speech>>
+    <<speech harper>>
+        I'm Harper Brooke.
+    <</speech>>
+    <<speech kinsley>>
+        I'm Kinsley Reeves.
+    <</speech>>
+    <<speech athena>>
+        I'm Athena Braden.
+    <</speech>>
+    <<speech airi>>
+        I'm Airi Kaneire.
+    <</speech>>
+    <<speech liliana>>
+        I'm Liliana Haskell.
+    <</speech>>
+    <<speech wyatt>>
+        I'm Wyatt Haskell.
+    <</speech>>
+    <<speech caleb>>
+        I'm Caleb Wells.
+    <</speech>>
+    <<speech javier>>
+        I'm Javier Jenner.
+    <</speech>>
+    <<speech evan>>
+        I'm Evan Ambrose.
+    <</speech>>
+    <hr>
+    <h2>Others</h2>\
+    <<speech ghost>>
+        I'm the ghost event.
+    <</speech>>
 
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -18,6 +87,7 @@
 
 :: University_MainCourtyard
     <img class='scene' src='img/locations/university_maincourtyard.webp'>
+    <<Updates>>
     <<speech 'plr'>>Yup, that's a magical looking courtyard alright.<</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -32,6 +102,7 @@
 
 :: University_Gate
     <img class='scene' src='img/locations/university_gate.jpg'>
+    <<Updates>>
     <<speech 'plr'>>Now that is a gate! Sadly, it looks very much locked. And the air seems to shimmer along the outer wall. An illusion? Maybe a shield? Not sure yet.<</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
@@ -43,6 +114,7 @@
 
 :: University_Entrance
     <img class='scene' src='img/locations/university_entrance.jpg'>
+    <<Updates>>
     <<speech 'plr'>>In we go...<</speech>>
     <<nobr>>
         <div class='passage-links-grid-3'>
@@ -74,15 +146,19 @@
     <</nobr>>
 :: University_Hall_Admin
     <img class='scene' src='img/locations/university_hall_admin.jpg'>
+    <<Updates>>
 
 :: University_Hall_Labs
     <img class='scene' src='img/locations/university_hall_labs.jpg'>
+    <<Updates>>
 
 :: University_Hall_Shops
     <img class='scene' src='img/locations/university_hall_shops.jpg'>
+    <<Updates>>
 
 :: University_Hall_Classes
     <img class='scene' src='img/locations/university_hall_classes.jpg'>
+    <<Updates>>
     <<speech plr>>
         Here be classrooms!
     <</speech>>
@@ -111,15 +187,16 @@
 
 :: University_Hall_Crafts
     <img class='scene' src='img/locations/university_hall_crafts.jpg'>
-
+    <<Updates>>
 :: University_Hall_Professors
     <img class='scene' src='img/locations/university_hall_professors.jpg'>
-
+    <<Updates>>
 :: University_Librarium
     <img class='scene' src='img/locations/university_librarium.jpg'>
-
+    <<Updates>>
 :: University_Hall_Basement
     <img class='scene' src='img/locations/university_hall_basement.webp'>
+    <<Updates>>
     <<speech plr>>
         Only a little eerie, at least it's not an actual dungeon.
     <</speech>>

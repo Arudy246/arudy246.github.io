@@ -230,8 +230,8 @@
         <<calcAttractiveness>>
     <</silently>>\
     <img class="scene" src="img/hallway.jpg"/>
-    <<speech plr>><<print $plrSpkChoice>><</speech>>\
     <<printRelGain>>
+    <<speech plr>><<print $plrSpkChoice>><</speech>>\
 
     $npcs.janessa.name.firstName rolls her eyes and walks towards the door.
 
@@ -264,9 +264,8 @@
 
 :: WakingUp6
     <img class="scene" src="img/headmasterstudy.jpg" alt="dean's study"/>\
-
+    <<printRelGain>>
     <<speech "plr">><<print $plrSpkChoice>><</speech>>
-    <<printRelGain>>\
     $npcs.janessa.name.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself "What is going on here?"
 
     The two of you approach a heavily reinforced door. The ancient thick oak planks encased in a heavy layer of iron and, gilded with some kind of lapis, maybe? Whatever it is, it has a blue iridescent sheen to it. The center of the door is adorned with a small iron bird figurine. $npcs.janessa.name.firstName looks at the metal bird and knocks on the door while whispering something.
@@ -380,10 +379,8 @@
     <img class="scene" src="img/locations/residence_starr_entryhall.jpg"/>\
 
     <<nobr>>
+        <<printRelGain>>
         <<speech plr>><<print $plrSpkChoice>><</speech>>
-        <<done>>
-            <<printRelGain>>
-        <</done>>
     <</nobr>>\
     <<if $relAmtTemp < 0>>
         <<speech janessa>>Get a grip. Being pathetic or weak will not help you. And seriously, I don't care. Go talk to $npcs.amy.name.formal if you need to "talk" to someone. But leave me out of it.<</speech>>\
@@ -442,7 +439,7 @@
     <</button>>\
 
 :: WakingUp13
-    <img class="scene" src='img/plrroom.jpg'>\
+    <img class="scene" src='img/locations/residence_starr_playerroom.webp'>\
 
     You follow $npcs.janessa.name.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it's hard to tell. The only light comes from the candles in the hallway.
 
@@ -461,11 +458,11 @@
     <</button>>\
 
 :: WakingUp14
-    <img class="scene" src='img/plrroom.jpg'>\
+    <img class="scene" src='img/locations/residence_starr_playerroom.webp'>\
 
-    <<speech janessa>>Now in regards Monday and your first week. Your schedule is now my schedule, which means I will be following you around for a few days. If it seems like you will survive on your own without causing any trouble. If you manage that, we aren't attached at the hip anymore and I can go back to my lessons. Keep in mind, I am losing valuable instruction time to stick around with you, so please try not to do anything stupid that might extend this unfortunate arrangement.<</speech>>\
+    <<speech janessa>>Now regarding Monday and your first week of courses. Your schedule is now my schedule, which means I will be following you around for a few days. If it seems like you will survive on your own without causing any trouble, then we aren't attached at the hip anymore and I can go back to my lessons. Keep in mind, I am losing valuable instruction time to supervise you, so please try not to do anything stupid that might extend this annoying arrangement.<</speech>>\
 
-    <<speech janessa>>The courses you will be taking are all basic 101 level courses, meaning there will be a lot of children. This should actually be motivating for you, children will be more educated and competent than you are now.<</speech>>\
+    <<speech janessa>>The courses you will be taking are all basic 101 level courses, meaning there will be a lot of amateur practitioners. This should actually be motivating for you, as they will all be more educated and competent than you are.<</speech>>\
     <<tone pos>>This is the first time you see $npcs.janessa.name.firstName smile and give a short chuckle<</tone>>
 
     <<speech janessa>>I will explain your courses tomorrow, but for now I'm going to bed.<</speech>>\

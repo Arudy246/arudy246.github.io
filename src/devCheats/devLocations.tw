@@ -80,10 +80,28 @@
         <<run Dialog.close()>>
     <</button>>
 
-    <<button "Debug View Toggle">><<script>>DebugView.toggle()<</script>><</button>>
-    <<button "Debug Mode On">><<run Config.debug = true>><</button>>
-    <<button "Debug Mode Off">><<run Config.debug = false>><</button>>
+    <<nobr>>
+        <div class='w3-tab'>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-debugs")'>Debug Buttons</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-chapter-1")'>Chapter 1: Reawakening</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-chapter-2")'>Chapter 2: Rebirth</button>
+        </div>
+    <</nobr>>
+    <<nobr>>
+        <div id='devlinks-debugs' class='tabElement'>
+            <<button "Debug View Toggle">><<script>>DebugView.toggle()<</script>><</button>>
+            <<button "Debug Mode On">><<run Config.debug = true>><</button>>
+            <<button "Debug Mode Off">><<run Config.debug = false>><</button>>
+        </div>
+        <div id='devlinks-chapter-1' class='tabElement'>
+            <<include "Devlinks_Chapter_1">>
+        </div>
+        <div id='devlinks-chapter-2' class='tabElement'>
+            <<include "Devlinks_Chapter_2">>
+        </div>
+    <</nobr>>
 
+:: Devlinks_Chapter_1
     [[Start]]
     [[WakingUp1]]
     [[WakingUp2]]
@@ -99,4 +117,6 @@
     [[WakingUp12]]
     [[WakingUp13]]
     [[WakingUp14]]
+
+:: Devlinks_Chapter_2
     [[Residence_Starr_PlayerRoom]]

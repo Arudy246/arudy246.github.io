@@ -1,17 +1,22 @@
 :: Gymnasium
     <img class='scene' src='img/locations/gymnasium.jpg'>
+    <<Updates>>
 
 :: Floor1_Class_Room105
     <img class='scene' src='img/locations/floor1_class_room105.jpg'>
+    <<Updates>>
 
 :: Floor1_Class_Room106
     <img class='scene' src='img/locations/floor1_class_room106.jpg'>
+    <<Updates>>
 
 :: Floor1_Class_Room107
     <img class='scene' src='img/locations/floor1_class_room107.jpg'>
+    <<Updates>>
 
 :: Hall_Floor2
     <img class='scene' src='img/locations/hall_floor2.jpg'>
+    <<Updates>>
     <<speech plr>>
         This is the second floor of the classroom wing.
     <</speech>>
@@ -27,3 +32,4 @@
     <</nobr>>
 :: Floor2_Class_Room205
     <img class='scene' src='img/locations/floor2_class_room205.jpg'>
+    <<Updates>>

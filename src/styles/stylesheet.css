@@ -54,11 +54,11 @@ body {
 html body{
     font-size: 16px
 }
-th {
+.course-table th {
     border-left: 1px solid white;
     border-bottom: 1px dashed white;
 }
-td {
+.course-table td {
     border-left: 1px solid white;
 }
 .emphasis {
@@ -265,14 +265,111 @@ ul.simple-inventory-list {
     background-color: #000d1a;
 }
 .barden .avatar {
-    background-image: URL("img/characters/npcs/thumb_sullivan.jpg");
+    background-image: URL("img/characters/npcs/thumb_barden.jpg");
 }
 .ghost {
     background-color: #000d1a;
 }
 .ghost .avatar {
-    background-image: URL('img/characters/thumb_ghost.png');
+    background-image: URL('img/characters/npcs/thumb_ghost.jpg');
 }
+.elliot {
+    background-color: midnightblue;
+}
+.elliot .avatar {
+    background-image: URL('img/characters/npcs/thumb_elliot.jpg');
+}
+.juliette {
+    background-color: #330000;
+}
+.juliette .avatar {
+    background-image: URL('img/characters/npcs/thumb_juliette.jpg');
+}
+.jonathan {
+    background-color: rgba(0, 255, 255, 0.25);
+}
+.jonathan .avatar {
+    background-image: URL('img/characters/npcs/thumb_jonathan.jpg');
+}
+.celeste {
+    background-color: #331a00;
+}
+.celeste .avatar {
+    background-image: URL('img/characters/npcs/thumb_celeste.jpg');
+}
+.adhya {
+    background-color: #0d3300;
+}
+.adhya .avatar {
+    background-image: URL('img/characters/npcs/thumb_adhya.jpg');
+}
+.bailey {
+    background-color: #00264d;
+}
+.bailey .avatar {
+    background-image: URL('img/characters/npcs/thumb_bailey.jpg');
+}
+.jason {
+    background-color: #00331a;
+}
+.jason .avatar {
+    background-image: URL('img/characters/npcs/thumb_jason.jpg');
+}
+.harper {
+    background-color: #260033;
+}
+.harper .avatar {
+    background-image: URL('img/characters/npcs/thumb_harper.jpg');
+}
+.kinsley {
+    background-color: #330026;
+}
+.kinsley .avatar {
+    background-image: URL('img/characters/npcs/thumb_kinsley.jpg');
+}
+.athena {
+    background-color: #4d0026;
+}
+.athena .avatar {
+    background-image: URL('img/characters/npcs/thumb_athena.jpg');
+}
+.airi {
+    background-color: #00264d;
+}
+.airi .avatar {
+    background-image: URL('img/characters/npcs/thumb_airi.jpg');
+}
+.liliana {
+    background-color: #134d00;
+}
+.liliana .avatar {
+    background-image: URL('img/characters/npcs/thumb_liliana.jpg');
+}
+.wyatt {
+    background-color: #4d4d00;
+}
+.wyatt .avatar {
+    background-image: URL('img/characters/npcs/thumb_wyatt.jpg');
+}
+.caleb {
+    background-color: #00394d;
+}
+.caleb .avatar {
+    background-image: URL('img/characters/npcs/thumb_caleb.jpg');
+}
+.javier {
+    background-color: #4d0000;
+}
+.javier .avatar {
+    background-image: URL('img/characters/npcs/thumb_javier.jpg');
+}
+.evan {
+    background-color: #004d39;
+}
+.evan .avatar {
+    background-image: URL('img/characters/npcs/thumb_evan.jpg');
+}
+
 /* Speech Box System - End */
 
 /* Enemy Box System - Start */
@@ -404,7 +501,7 @@ ul.simple-inventory-list {
     z-index: 50;
     top: 0;
     right: 0;
-    width: 17.5em;
+    width: 20em;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -535,7 +632,7 @@ ul.simple-inventory-list {
     background-color: #161616;
 }
 #ui-dialog {
-    max-width: 100%;
+    max-width: 90%;
     max-height: 90%;
     border: 10px solid transparent;
     border-image: url("img/passage-border.png") 80 repeat;
@@ -705,4 +802,40 @@ ul.simple-inventory-list {
     position: absolute;
     left: 10px;
     bottom: -5px;
+}
+#plr-rels-tab a {
+    padding: 0;
+    border: none;
+    background: transparent;
+    text-transform: none;
+}
+#plr-rels-tab a:hover {
+    background: transparent;
+    color: #2d98da;
+}
+.header-lines {
+    text-align: center;
+    max-width: 24em;
+    margin: auto auto;
+    position: relative;
+}
+.header-lines:before {
+    content:" ";
+    height: 2px;
+    width: 8em;
+    background: white;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.header-lines:after {
+    content:" ";
+    height: 2px;
+    width: 8em;
+    background: white;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
 }

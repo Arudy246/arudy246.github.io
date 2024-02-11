@@ -17,7 +17,7 @@ Save.onSave.add(function (save, details) {
 //Config.loadDelay = 1000;
 
 window.charInfoTbl = function(obj, header) {
-    let html = "<table class='w3-table w3-bordered w3-black'><tbody><tr><th class='w3-indigo'>"+ header +"</th><th class='w3-indigo'>Value</th></tr>";
+    let html = "<table class='w3-table w3-bordered w3-black course-table'><tbody><tr><th class='w3-indigo'>"+ header +"</th><th class='w3-indigo'>Value</th></tr>";
     for (var key in obj) {
         html += "<tr><th>" + key + "</th><td>" + obj[key] + "</td></tr>";
     };
