@@ -1294,8 +1294,19 @@
             personality: 'friendly',
             bio: '',
             hasMet: false
+        },
+        ghost: {
+            name: {
+                firstName: 'Ghost',
+                lastName: '',
+                title: '',
+                formal: '',
+                fullName: function() {
+                    var f = State.getVar('$npcs.ghost.name.firstName');
+                    return f;
+                }
+            }
         }
-
     }>>
     <<set $personalityList = {
         friendly: {
@@ -1686,7 +1697,9 @@
             roomNum: '105',
             instructor: 'elliot',
             startTime: 800,
-            endTime: 900
+            endTime: 900,
+            passage: 'ArcaneArts101',
+            passageNum: 1
         },
         conservation101: {
             title: 'Conservation of Magic 101',
@@ -1694,7 +1707,9 @@
             roomNum: '106',
             instructor: 'juliette',
             startTime: 905,
-            endTime: 1000
+            endTime: 1000,
+            passage: 'ConservationMagic101',
+            passageNum: 1
         },
         arcanedisciplines101: {
             title: 'Arcane Disciplines 101',
@@ -1702,7 +1717,9 @@
             roomNum: '107',
             instructor: 'jonathan',
             startTime: 1005,
-            endTime: 1100
+            endTime: 1100,
+            passage: 'ArcaneDisciplines101',
+            passageNum: 1
         },
         arcanelaw101: {
             title: 'Arcane Law 101',
@@ -1710,7 +1727,9 @@
             roomNum: '205',
             instructor: 'celeste',
             startTime: 1105,
-            endTime: 1200
+            endTime: 1200,
+            passage: 'ArcaneLaw101',
+            passageNum: 1
         },
         incursionhistory: {
             title: 'Intro to Incursion Histories',
@@ -1718,6 +1737,8 @@
             roomNum: 'B3',
             instructor: 'adhya',
             startTime: 1205,
-            endTime: 1300
+            endTime: 1300,
+            passage: 'IncursionHistory',
+            passageNum: 1
         }
     }>>

@@ -1,3 +1,192 @@
-:: Course_ArcaneArts_1
+:: Course_ArcaneArts101_1
+    <<speech elliot>>
+        Morning everyone. <<Player formal>> will be joining us as the newest inductee to our college. <<Player formal>> find an empty seat and I'll begin.
+    <</speech>>
+    <<nobr>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'Yes, sir'>>
+                    <<speech plr>>
+                        Yes, sir.
+                    <</speech>><br>
+                    <<speech elliot>>
+                        Your respect is appreciated, <<Player formal p>>
+                    <</speech>>
+                    <<relGain elliot 5>>
+                    <<printRelGain>><br>
+                <</line>>
+                <<line 'Aight'>>
+                    <<speech plr>>
+                        Aight.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        <<tone neg>>
+                            Based on the glare, he does not appear pleased.
+                        <</tone>>
+                    <</speech>>
+                    <<relGain elliot -5>>
+                    <<printRelGain>><br>
+                <</line>>
+            <</level>>
+            <<level 1>><br>
+                <<line 'Listen'>>
+                    <<speech elliot>>
+                        Just as a refresher for everyone, this is Arcane Arts 101. Here we will discuss the basics and essentials of spellwork, including the use of the Words.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        <<Player formal>> tell me, have you had a chance to learn any of the Words yet?
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 2>><br>
+                <<line 'Yes'>>
+                    <<speech plr>>
+                        Yes I have. I read them in a book I found.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        Good for you. Have you tried using them to cast a spell?
+                    <</speech>>
+                <</line>>
+                <<line 'No' 5>>
+                    <<speech plr>>
+                        Not yet, I don't even know where to find them.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        Ah, in that case stop by the Librarium after your classes today. There should be an assortment of tomes appropriate to your skill level.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 3>><br>
+                <<line 'Yes'>>
+                    <<speech plr>>
+                        I sure did.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        Hmm. That was ill-advised. Performing spellwork prior to being taught the fundamentals can result in dire consequences... But since you're still here with us, I assume you were successful?
+                    <</speech>>
+                <</line>>
+                <<line 'No' 5>>
+                    <<speech plr>>
+                        No, I haven't.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        That is a wise decision. Performing spellwork prior to being taught the fundamentals can result in dire consequences...
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 4>><br>
+                <<line 'Yes'>>
+                    <<speech plr>>
+                        I was quite successful, no problems.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        Interesting. Either you are naturally gifted, which is rare. Or you are unaturally lucky, which is also rare. I urge caution in the future, tapping into the power source of our world is not an action to be taken lightly.
+                    <</speech>>
+                <</line>>
+                <<line 'No'>>
+                    <<speech plr>>
+                        No, I couldn't figure it out.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        Hmm, I'm sure it was for the best. But you are very fortunate that you did not kill yourself or someone else.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 5>><br>
+                <<line 'Listen'>>
+                    <<speech elliot>>
+                        Moving on. The Words must be cast in a sequence, not unlike how we speak a regular sentence verbally. We start with the target of the spell. This could be yourself, someone else, a room, a large area, or an item of some sort.
+                    <</speech>>
+                    <<if $spellWords.target.self.unlocked == false>>
+                        <<speech elliot>>
+                            <<Player formal>> since you said you haven't learned a Word yet, here is your first. <i>Ego.</i>
+                        <</speech>>
+                        <br>
+                        <<speech elliot>>
+                            <i>Ego</i> tells the spell to target yourself, so to speak. The mechanisms of how the Words weave the spell together is a more complicated explanation and will be saved for a later time.
+                        <</speech>>
+                        <<set $spellWords.target.self.unlocked == true>>
+                    <</if>>
+                <</line>>
+            <</level>>
+            <<level 6>><br>
+                <<line 'Keep listening'>>
+                    <<speech elliot>>
+                        The next part of the sequence is the actual effect of the spell. You might think this is the dangerous part, but you would be quite wrong. A dangerous effect is only as dangerous as how long it lasts and how much "oomph" it is cast with. Effects can be almost anything, from lighting a fire, healing injuries, enhancing your calm, etc. For almost any problem you might face, there is assuredly an effect that can help you solve it.
+                    <</speech>>
+                    <<if $spellWords.effect.clean.unlocked == false>>
+                        <<speech elliot>>
+                            <<Player formal>> the next Word I will teach you is <i>Vulnus.</i>
+                        <</speech>>
+                        <br>
+                        <<speech elliot>>
+                            <i>Vulnus</i> is healing spell and is only one of many. It can heal an assortment of wounds, anything from a scratch to a stab wound. But it is weak and will take a great deal of effort to heal serious injuries.
+                        <</speech>>
+                    <</if>>
+                <</line>>
+            <</level>>
+            <<level 7>><br>
+                <<line 'Keep listening'>>
+                    <<speech elliot>>
+                        Next in the spell casting sequence, the time element. This allows you make the spell last anywhere from an instant to a month. Anything longer than a month requires more skill and power than is available to any practitioner. To put it into context, one would have to suck the planet's ley lines dry to even have a chance of being successful.
+                    <</speech>>
+                    <<if $spellWords.duration.immediate.unlocked == false>>
+                        <<speech elliot>>
+                            The next one for you, <<Player formal>> is <i>Nunc</i>. Nunc allows the spell's effect to occur immediately. Simple as can be.
+                        <</speech>>
+                    <</if>>
+                <</line>>
+            <</level>>
+            <<level 8>><br>
+                <<line 'Keep listening'>>
+                    <<speech elliot>>
+                        Last, but perhaps most importantly, in the sequence is the power of your spell. It is a simple concept, but very difficult to pull off. Essentially, the more power you pour into your spell, the far stronger the effect will be. However, and this is important, the more power you pour into your spell, the more of your own energy is drained in the process. And this drain can be exponential. A rough estimate is for every doubling of your spell's strength, the energy you need nearly quadruples.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        That concludes today's lesson. I know for many of you this was a refresher, but magic is dangerous. And I would not be doing my duty to all of you if I didn't remind you of this fact. Oh, one last thing. DO NOT EVER try to cast an incomplete spell. If you listen to nothing else, then head me on this. Just don't do it.
+                    <</speech>>
+                    <br>
+                    <<speech elliot>>
+                        Tomorrow we will go over a few more advanced concepts, including a bit of spell practice. Off you all go to your next classes. Good day.
+                    <</speech>>
+                    <br>
+                    <<nobr>>
+                        <div class='passage-links-grid-1'>
+                            <<button [[Leave | University_Hall_Classes]]>>
+                                <<SetTime 9>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
+                <</line>>
+            <</level>>
+        <</dlg>>
+    <</nobr>>
 
-:: Course_ArcaneArts_Random
+:: Course_ArcaneArts101_2
+
+    This is Arcane Arts 2
+
+:: Course_ArcaneArts101_3
+
+    This is Arcane Arts 3
+
+:: Course_ArcaneArts101_4
+
+    This is Arcane Arts 4
+
+:: Course_ArcaneArts101_5
+
+    This is Arcane Arts 5
+
+:: Course_ArcaneArts101_Random
+
+    This is Arcane Arts Random

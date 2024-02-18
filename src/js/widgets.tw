@@ -194,16 +194,16 @@
                 <</if>>
 
                 <<if _args[3] != 'nodebug'>>
-                    <<consolelog '-----$dateTime Start-----'>>
-                    <<consolelog '$dateTime Hour' $dateTime.hour>>
-                    <<consolelog '$dateTime Minute' $dateTime.min>>
-                    <<consolelog '$dateTime Day' $dateTime.day>>
-                    <<consolelog '$dateTime Dayname' $dateTime.dayName>>
-                    <<consolelog '$dateTime Month' $dateTime.month>>
-                    <<consolelog '$dateTime Year' $dateTime.year>>
+                    <<consolelog '---calcTime Start---'>>
+                    <<consolelog 'Hour' $dateTime.hour>>
+                    <<consolelog 'Minute' $dateTime.min>>
+                    <<consolelog 'Day' $dateTime.day>>
+                    <<consolelog 'Dayname' $dateTime.dayName>>
+                    <<consolelog 'Month' $dateTime.month>>
+                    <<consolelog 'Year' $dateTime.year>>
                     <<consolelog 'minPassed' $dateTime.minPassed>>
                     <<consolelog 'staminaLoss' _staminaLoss>>
-                    <<consolelog '-----$dateTime End-----'>>
+                    <<consolelog '-----calcTime End-----'>>
                 <</if>>
 
                 <<run Stamina()>>
@@ -603,19 +603,19 @@
             <<discChange>>
             <<if _args[0] != 'noClass'>>
                 <<TimeCheck 0700 0800 weekdays>>
-                    <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts soon<br><</ClassWarning>>
+                    <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
                 <<TimeCheck 0800 0900 weekdays>>
-                    <<ClassWarning Floor1_Class_Room106>>Conservation of Magic class starts soon<br><</ClassWarning>>
+                    <<ClassWarning Floor1_Class_Room106>>Conservation of Magic class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
                 <<TimeCheck 0900 1000 weekdays>>
-                    <<ClassWarning Floor1_Class_Room107>>Arcane Disciplines class starts soon<br><</ClassWarning>>
+                    <<ClassWarning Floor1_Class_Room107>>Arcane Disciplines class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
                 <<TimeCheck 1000 1100 weekdays>>
-                    <<ClassWarning Floor2_Class_Room205>>Arcane Law class starts soon<br><</ClassWarning>>
+                    <<ClassWarning Floor2_Class_Room205>>Arcane Law class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
                 <<TimeCheck 1100 1200 weekdays>>
-                    <<ClassWarning Basement_Class_RoomB3>>Incursion Histories class starts soon<br><</ClassWarning>>
+                    <<ClassWarning Basement_Class_RoomB3>>Incursion Histories class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
             <</if>>
         <</widget>>
@@ -1269,7 +1269,7 @@
             <<set _start = _args[0] / 100>>
             <<set _end = _args[1] / 100>>
             
-            <<if _args[2] != false && (_args[2] != 'weekdays' || _args[2] != 'weekend')>>
+            <<if _args[2] != false>>
                 <<set _dayName = _args[2]>>
             <</if>>
             <<if _args[3] != false>>
@@ -1293,13 +1293,13 @@
                     <<consolelog 'Check: Month/Date'>>
                 <</if>>
 
-            <<elseif _month && _dayName>>
+            <<elseif _month && _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
                 <<if _month == $dateTime.monthName && _dayName == $dateTime.dayName && $dateTime.hour >= _start && $dateTime.hour < _end>>
                     _contents
                     <<consolelog 'Check: Month/DayName'>>
                 <</if>>
             
-            <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle'>>
+            <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
                 <<if _dayName == $dateTime.dayName && $dateTime.hour >= _start && $dateTime.hour < _end>>
                     _contents
                     <<consolelog 'Check: DayName'>>
@@ -1322,6 +1322,12 @@
                     _contents
                     <<consolelog 'Check: Cycle'>>
                 <</if>>
+            
+            <<elseif _dayName == 'cycleNoWeekend'>>
+                <<if ($dateTime.hour < _start && $dateTime.hour >= 0) || ($dateTime.hour >= _end && $dateTime.hour < 24) || $dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday'>>
+                    _contents
+                    <<consolelog 'Check: Cycle w/ No Weekend'>>
+                <</if>>
                 
             <<elseif $dateTime.hour >= _start && $dateTime.hour < _end>>
                     _contents
@@ -1340,9 +1346,66 @@
         <</widget>>
     <</nobr>>
 
+    /* <<ClassLectures arcanelaw101>> */
+    <<nobr>>
+        <<widget "ClassLectures">>
+            <<consolelog '---ClassLectures Start---'>>
+
+            <<set _course = $courses[_args[0]].passage>>
+            <<set _courseNum = $courses[_args[0]].passageNum>>
+            <<set _coursePas = 'Course_' + _course + '_' + _courseNum>>
+
+            <<consolelog 'Passage #' _courseNum>>
+            <<consolelog 'Passage ID' _coursePas>>
+
+            <<include _coursePas>>
+
+            <<set $courses[_args[0]].passageNum += 1>>
+
+            <<consolelog '-----ClassLectures End-----'>>
+        <</widget>>
+    <</nobr>>
+
+    /* Calculates difference in time to move an exact future hour, i.e. <<SetTime 8>> */
+    <<nobr>>
+        <<widget "SetTime">>
+            <<consolelog '---SetTime Start---'>>
+            <<set _hourSet = _args[0]>>
+            <<set _currentMin = $dateTime.min>>
+            <<set _preHr = _args[0] - $dateTime.hour>>
+            <<set _preMin = 60 * _preHr>>
+            <<set _result = _preMin - _currentMin>>
+
+            <<calcTime _result 0 false>>
+
+            <<consolelog '_preHr' _preHr>>
+            <<consolelog '_preMin' _preMin>>
+            <<consolelog '_result' _result>>
+            <<consolelog '-----SetTime End-----'>>
+        <</widget>>
+    <</nobr>>
+
+    /* Prints player name with one args, i.e. <<Player formal || first || full>> */
+    <<nobr>>
+        <<widget "Player">>
+            <<if _args[1] == 'p'>>
+                <<set _period = '.'>>
+            <<else>>
+                <<set _period = ''>>
+            <</if>>
+            <<if _args[0] == 'formal'>>
+               <<print $plr.name.formal + _period>>
+            <<elseif _args[0] == 'first'>>
+                <<print $plr.name.firstName + _period>>
+            <<elseif _args[0] == 'full'>>
+                <<print $plr.name.fullName() + _period>>
+            <</if>>
+        <</widget>>
+    <</nobr>>
+
     /* Things To-Do
-        4. Adjust event strength based on power score.
-        8. Implement relationship system.
+        4. Adjust combat event strength based on power score.
+        8. Implement relationship dialogue system.
         9. Write first set of classes.
         10. Write 'I will not be contained!!!! events.'
         11. Add in more Words and spell combos.

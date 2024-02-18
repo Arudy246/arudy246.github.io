@@ -101,7 +101,7 @@
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 0700 0900 cycle>>
+            <<TimeCheck 0700 0900 cycleNoWeekend>>
                 <<button [[Room 105 (locked) | Floor1_Class_Room105_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>
@@ -112,7 +112,7 @@
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 0800 1000 cycle>>
+            <<TimeCheck 0800 1000 cycleNoWeekend>>
                 <<button [[Room 106 (locked) | Floor1_Class_Room106_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>
@@ -123,7 +123,7 @@
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 0900 1100 cycle>>
+            <<TimeCheck 0900 1100 cycleNoWeekend>>
                 <<button [[Room 107 (locked) | Floor1_Class_Room107_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>
@@ -166,7 +166,7 @@
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 1100 1300 cycle>>
+            <<TimeCheck 1100 1300 cycleNoWeekend>>
                 <<button [[Room B-3 (locked) | Basement_Class_RoomB3_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>

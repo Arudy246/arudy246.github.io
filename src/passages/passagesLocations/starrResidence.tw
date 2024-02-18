@@ -1,7 +1,6 @@
 :: Residence_Starr_Courtyard[outdoors]
     <img class='scene' src='img/locations/residence_starr_courtyard.jpg'>
     <<Updates>>
-    
     <<nobr>>
         <<if $eventVar.inCombat == false>>
             <<randomEvent Residence_Starr_Courtyard_Standard>>
@@ -336,7 +335,7 @@
     <<speech plr>>What the fuck am I looking at? $critters.tinyImp.description<</speech>>
 
 :: Residence_Starr_Courtyard_Whisper[outdoors minorEvent night2]
-    <<speech 'ghost'>>
+    <<speech ghost>>
         <span class='blur'>You must learn. Master. Will and reality entwined.</span>
     <</speech>>
     <<speech plr>>There's that familiar chill running down my spine....<</speech>>

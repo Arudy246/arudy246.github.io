@@ -76,7 +76,22 @@ sugarcube-2:
       container: true
       description: "Takes multiple possible args to determine if something should happen according to time."
       parameters:
-       - number &+ number |+ text |+ text |+ text +| text
+       - number &+ number |+ text |+ text |+ text |+ text
+
+    Player:
+      description: "Takes one arg, first, formal, or full and prints the appropriate style of the player's name. Arg two is p, to add a period after the name"
+      parameters:
+       - text |+ text
+      
+    SetTime:
+      description: "Takes one arg, for the exact hour to move time forward to. Uses calcTime w/o stamina drain."
+      parameters:
+       - text
+
+    ClassLectures:
+      description: "Takes on arg, the variable name for a course then <<include>> the course passage. Also increments for the next lecture."
+      parameters:
+       - text
 
     # simple inventory macros
     item:

@@ -1,6 +1,0 @@
-:: Testing_Spells[room playerHome]
-    <<speech plr>>This is the spell testing grounds. Good luck dude...<</speech>>
-    
-    <h3>Spell Test Buttons</h3>\
-
-

@@ -19,16 +19,20 @@
 	"Main Dialogue Wrapper": {
 		"prefix": "dlg",
 		"body": [
-			"<<dlg '${1:label}' ${2:levelstart}>>",
-			"	$0",
+			"<<dlg 'dlg' 0>>",
+			"	<<level 0>>",
+			"		<<line '${4:Short Comment}' ${5:levellink(optional)}>>",
+			"			$0",
+			"		<</line>>"
+			"	<</level>>",
 			"<</dlg>>"
 		],
-		"description": "The main stepped dialogue wrapper, contains the levels."
+		"description": "The main stepped dialogue wrapper, contains the levels. args1 is label, args2 is where to jump the level start to."
 	},
 	"Dialogue Level": {
 		"prefix": "level",
 		"body": [
-			"<<level ${1:level}>>",
+			"<<level ${1:level}>><br>",
 			"	$0",
 			"<</level>>"
 		],
@@ -57,5 +61,12 @@
 			"<<NpcAvailable ${1:Starttime} ${2:Endtime} ${3:Npcname} ${4:Dayname_opt} ${5:Eventname_opt} ${6:random_opt}>>"
 		],
 		"description": "Allows npc to be available according to time/day args and allow random convos after event completed."
+	},
+	"Player Name": {
+		"prefix": "player",
+		"body": [
+			"<<Player ${1:Formal, first, or full}>>$0"
+		],
+		"description": "Prints player name with first, formal or full length."
 	}
 }
