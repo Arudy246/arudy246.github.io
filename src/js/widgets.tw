@@ -596,25 +596,28 @@
         <</widget>>
     <</nobr>>
 
+/* To be included on every passage, one stop call all update functions. Accepts _args[0] as noClass, etc etc. i.e. <<Updates noClass>> */
     <<nobr>>
         <<widget 'Updates'>>
             <<statsChange>>
             <<discChange>>
-            <<TimeCheck 0700 0800 weekdays>>
-                <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts soon<</ClassWarning>>
-            <</TimeCheck>>
-            <<TimeCheck 0800 0900 weekdays>>
-                <<ClassWarning Floor1_Class_Room106>>Conservation of Magic class starts soon<</ClassWarning>>
-            <</TimeCheck>>
-            <<TimeCheck 0900 1000 weekdays>>
-                <<ClassWarning Floor1_Class_Room107>>Arcane Disciplines class starts soon<</ClassWarning>>
-            <</TimeCheck>>
-            <<TimeCheck 1000 1100 weekdays>>
-                <<ClassWarning Floor2_Class_Room205>>Arcane Law class starts soon<</ClassWarning>>
-            <</TimeCheck>>
-            <<TimeCheck 1100 1200 weekdays>>
-                <<ClassWarning Basement_Class_RoomB3>>Incursion Histories class starts soon<</ClassWarning>>
-            <</TimeCheck>>
+            <<if _args[0] != 'noClass'>>
+                <<TimeCheck 0700 0800 weekdays>>
+                    <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts soon<br><</ClassWarning>>
+                <</TimeCheck>>
+                <<TimeCheck 0800 0900 weekdays>>
+                    <<ClassWarning Floor1_Class_Room106>>Conservation of Magic class starts soon<br><</ClassWarning>>
+                <</TimeCheck>>
+                <<TimeCheck 0900 1000 weekdays>>
+                    <<ClassWarning Floor1_Class_Room107>>Arcane Disciplines class starts soon<br><</ClassWarning>>
+                <</TimeCheck>>
+                <<TimeCheck 1000 1100 weekdays>>
+                    <<ClassWarning Floor2_Class_Room205>>Arcane Law class starts soon<br><</ClassWarning>>
+                <</TimeCheck>>
+                <<TimeCheck 1100 1200 weekdays>>
+                    <<ClassWarning Basement_Class_RoomB3>>Incursion Histories class starts soon<br><</ClassWarning>>
+                <</TimeCheck>>
+            <</if>>
         <</widget>>
     <</nobr>>
 
@@ -1158,7 +1161,7 @@
     <</nobr>>
 
     /* If time and day lines up, then npc is available for conversation with the optional declared event in the location the func is called in. 
-    i.e. <<NpcAvailable 0:janessa 1:Janessa_SomeEvent 2:true>> 
+    i.e. <<NpcAvailable 0:janessa 1:Janessa_SomeEvent 2:true(allows random convos)>> 
     i.e. <<NpcAvailable janessa Janessa_CleanResidence>>
     */
     <<nobr>>
@@ -1259,14 +1262,14 @@
         <</widget>>
     <</nobr>>
 
-    /*Allows content based on start and/or end time, day, month, year or false for anything but start/end times i.e. <<TimeCheck 1100 1300 thursday april 3 2024>>Its time!<</TimeCheck>>*/
+    /*Allows content based on start time, end time, day, month, year or false for anything but start/end times i.e. <<TimeCheck 1100 1300 thursday april 3 2024>>Its time!<</TimeCheck>>*/
     <<nobr>>
         <<widget "TimeCheck" container>>
             <<consolelog '---TimeCheck Start---'>>
             <<set _start = _args[0] / 100>>
             <<set _end = _args[1] / 100>>
             
-            <<if _args[2] != false && _args[2] != 'weekdays' && _args[2] != 'weekend'>>
+            <<if _args[2] != false && (_args[2] != 'weekdays' || _args[2] != 'weekend')>>
                 <<set _dayName = _args[2]>>
             <</if>>
             <<if _args[3] != false>>
@@ -1278,7 +1281,6 @@
             <<if _args[5] != false>>
                 <<set _year = _args[5]>>
             <</if>>
-            
             <<if _year && _month && _day>>
                 <<if _year == $dateTime.year && _month == $dateTime.monthName && _day == $dateTime.date && $dateTime.hour >= _start && $dateTime.hour < _end>>
                     _contents
@@ -1297,28 +1299,33 @@
                     <<consolelog 'Check: Month/DayName'>>
                 <</if>>
             
-            <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend'>>
+            <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle'>>
                 <<if _dayName == $dateTime.dayName && $dateTime.hour >= _start && $dateTime.hour < _end>>
                     _contents
                     <<consolelog 'Check: DayName'>>
                 <</if>>
 
             <<elseif _dayName == 'weekdays'>>
-                <<if $dateTime.dayName == 'Monday' || $dateTime.dayName == 'Tuesday' || $dateTime.dayName == 'Wednesday' || $dateTime.dayName == 'Thursday' || $dateTime.dayName == 'Friday'>>
+                <<if $dateTime.hour >= _start && $dateTime.hour < _end && ($dateTime.dayName == 'Monday' || $dateTime.dayName == 'Tuesday' || $dateTime.dayName == 'Wednesday' || $dateTime.dayName == 'Thursday' || $dateTime.dayName == 'Friday')>>
                     _contents
                     <<consolelog 'Check: Weekdays'>>
                 <</if>>
 
             <<elseif _dayName == 'weekend'>>
-                <<if $dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday'>>
+                <<if $dateTime.hour >= _start && $dateTime.hour < _end && ($dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday')>>
                     _contents
                     <<consolelog 'Check: Weekend'>>
                 <</if>>
-            <<else>>
-                <<if $dateTime.hour >= _start && $dateTime.hour < _end>>
+
+            <<elseif _dayName == 'cycle'>>
+                <<if ($dateTime.hour < _start && $dateTime.hour >= 0) || ($dateTime.hour >= _end && $dateTime.hour < 24)>>
+                    _contents
+                    <<consolelog 'Check: Cycle'>>
+                <</if>>
+                
+            <<elseif $dateTime.hour >= _start && $dateTime.hour < _end>>
                     _contents
                     <<consolelog 'Check: Time Only'>>
-                <</if>>
             <</if>>
             <<consolelog '-----TimeCheck End-----'>>
         <</widget>>
@@ -1335,7 +1342,6 @@
 
     /* Things To-Do
         4. Adjust event strength based on power score.
-        7. Add in professor and student npcs.
         8. Implement relationship system.
         9. Write first set of classes.
         10. Write 'I will not be contained!!!! events.'

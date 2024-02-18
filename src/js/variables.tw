@@ -51,7 +51,12 @@
             firstName: '',
             lastName: '',
             prefix: '',
-            formal: ''
+            formal: '',
+            fullName: function() {
+                    var f = State.getVar('$plr.name.firstName');
+                    var l = State.getVar('$plr.name.lastName');
+                    return f + ' ' + l;
+                }
         },
         body: {
             static: {
@@ -686,7 +691,12 @@
                 firstName: 'Amy',
                 lastName: 'Levette',
                 title: 'Mendicant',
-                formal: 'Mrs. Levette'
+                formal: 'Mrs. Levette',
+                fullName: function() {
+                    var f = State.getVar('$npcs.amy.name.firstName');
+                    var l = State.getVar('$npcs.amy.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -713,7 +723,12 @@
                 firstName: 'Janessa',
                 lastName: 'Starr',
                 title: 'student',
-                formal: 'Ms. Starr'
+                formal: 'Ms. Starr',
+                fullName: function() {
+                    var f = State.getVar('$npcs.janessa.name.firstName');
+                    var l = State.getVar('$npcs.janessa.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -740,7 +755,12 @@
                 firstName: 'Barden',
                 lastName: 'Sullivan',
                 title: 'Dean',
-                formal: 'Dean Sullivan'
+                formal: 'Dean Sullivan',
+                fullName: function() {
+                    var f = State.getVar('$npcs.barden.name.firstName');
+                    var l = State.getVar('$npcs.barden.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -767,7 +787,12 @@
                 firstName: 'Elliot',
                 lastName: 'Corbin',
                 title: 'Instructor',
-                formal: 'Instructor Corbin'
+                formal: 'Instructor Corbin',
+                fullName: function() {
+                    var f = State.getVar('$npcs.elliot.name.firstName');
+                    var l = State.getVar('$npcs.elliot.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -785,14 +810,21 @@
                 eyes: 'blue',
                 hair: 'brown'
             },
-            personality: 'stern'
+            personality: 'stern',
+            bio: '',
+            hasMet: false
         },
         juliette: {
             name: {
                 firstName: 'Juliette',
                 lastName: 'Gatlin',
                 title: 'Instructor',
-                formal: 'Instructor Gatlin'
+                formal: 'Instructor Gatlin',
+                fullName: function() {
+                    var f = State.getVar('$npcs.juliette.name.firstName');
+                    var l = State.getVar('$npcs.juliette.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -810,14 +842,21 @@
                 eyes: 'green',
                 hair: 'red'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         },
         jonathan: {
             name: {
                 firstName: 'Jonathan',
                 lastName: 'Levee',
                 title: 'Instructor',
-                formal: 'Intructor Levee'
+                formal: 'Intructor Levee',
+                fullName: function() {
+                    var f = State.getVar('$npcs.jonathan.name.firstName');
+                    var l = State.getVar('$npcs.jonathan.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -835,14 +874,21 @@
                 eyes: 'brown',
                 hair: 'brown'
             },
-            personality: 'neutral'
+            personality: 'neutral',
+            bio: '',
+            hasMet: false
         },
         celeste: {
             name: {
                 firstName: 'Celeste',
                 lastName: 'Chao',
                 title: 'Counselor',
-                formal: 'Counselor Chao'
+                formal: 'Counselor Chao',
+                fullName: function() {
+                    var f = State.getVar('$npcs.celeste.name.firstName');
+                    var l = State.getVar('$npcs.celeste.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -860,14 +906,21 @@
                 eyes: 'brown',
                 hair: 'black'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         },
         adhya: {
             name: {
                 firstName: 'Adhya',
                 lastName: 'Rivera',
                 title: 'Master',
-                formal: 'Master Rivera'
+                formal: 'Master Rivera',
+                fullName: function() {
+                    var f = State.getVar('$npcs.adhya.name.firstName');
+                    var l = State.getVar('$npcs.adhya.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -885,14 +938,21 @@
                 eyes: 'black',
                 hair: 'black'
             },
-            personality: 'stern'
+            personality: 'stern',
+            bio: '',
+            hasMet: false
         },
         bailey: {
             name: {
                 firstName: 'Bailey',
                 lastName: 'Cooper',
                 title: 'student',
-                formal: 'Ms. Cooper'
+                formal: 'Ms. Cooper',
+                fullName: function() {
+                    var f = State.getVar('$npcs.bailey.name.firstName');
+                    var l = State.getVar('$npcs.bailey.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -911,14 +971,21 @@
                 hair: 'black',
 
             },
-            personality: 'neutral'
+            personality: 'neutral',
+            bio: '',
+            hasMet: false
         },
         jason: {
             name: {
                 firstName: 'Jason',
                 lastName: 'Silbersteine',
                 title: 'student',
-                formal: 'Mr. Silbersteine'
+                formal: 'Mr. Silbersteine',
+                fullName: function() {
+                    var f = State.getVar('$npcs.jason.name.firstName');
+                    var l = State.getVar('$npcs.jason.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -936,14 +1003,21 @@
                 eyes: 'green',
                 hair: 'brown'
             },
-            personality: 'arrogant'
+            personality: 'arrogant',
+            bio: '',
+            hasMet: false
         },
         harper: {
             name: {
                 firstName: 'Harper',
                 lastName: 'Brooke',
                 title: 'student',
-                formal: 'Ms. Brooke'
+                formal: 'Ms. Brooke',
+                fullName: function() {
+                    var f = State.getVar('$npcs.harper.name.firstName');
+                    var l = State.getVar('$npcs.harper.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -961,14 +1035,21 @@
                 eyes: 'grey',
                 hair: 'blonde'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         },
         kinsley: {
             name: {
                 firstName: 'Kinsley',
                 lastName: 'Reeves',
                 title: 'student',
-                formal: 'Ms. Reeves'
+                formal: 'Ms. Reeves',
+                fullName: function() {
+                    var f = State.getVar('$npcs.kinsley.name.firstName');
+                    var l = State.getVar('$npcs.kinsley.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -986,14 +1067,21 @@
                 eyes: 'brown',
                 hair: 'brown'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         },
         athena: {
             name: {
                 firstName: 'Athena',
                 lastName: 'Braden',
                 title: 'student',
-                formal: 'Ms. Braden'
+                formal: 'Ms. Braden',
+                fullName: function() {
+                    var f = State.getVar('$npcs.athena.name.firstName');
+                    var l = State.getVar('$npcs.athena.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -1011,14 +1099,21 @@
                 eyes: 'green',
                 hair: 'blonde'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         },
         airi: {
             name: {
                 firstName: 'Airi',
                 lastName: 'Kaneire',
                 title: 'student',
-                formal: 'Ms. Kaneire'
+                formal: 'Ms. Kaneire',
+                fullName: function() {
+                    var f = State.getVar('$npcs.airi.name.firstName');
+                    var l = State.getVar('$npcs.airi.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -1036,14 +1131,21 @@
                 eyes: 'brown',
                 hair: 'black'
             },
-            personality: 'arrogant'
+            personality: 'arrogant',
+            bio: '',
+            hasMet: false
         },
         liliana: {
             name: {
                 firstName: 'Liliana',
                 lastName: 'Haskell',
                 title: 'student',
-                formal: 'Ms. Haskell'
+                formal: 'Ms. Haskell',
+                fullName: function() {
+                    var f = State.getVar('$npcs.liliana.name.firstName');
+                    var l = State.getVar('$npcs.liliana.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -1061,14 +1163,21 @@
                 eyes: 'brown',
                 hair: 'black'
             },
-            personality: 'neutral'
+            personality: 'neutral',
+            bio: '',
+            hasMet: false
         },
         wyatt: {
             name: {
                 firstName: 'Wyatt',
                 lastName: 'Haskell',
                 title: 'student',
-                formal: 'Mr. Haskell'
+                formal: 'Mr. Haskell',
+                fullName: function() {
+                    var f = State.getVar('$npcs.wyatt.name.firstName');
+                    var l = State.getVar('$npcs.wyatt.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -1086,14 +1195,21 @@
                 eyes: 'brown',
                 hair: 'black'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         },
         caleb: {
             name: {
                 firstName: 'Caleb',
                 lastName: 'Wells',
                 title: 'student',
-                formal: 'Mr. Wells'
+                formal: 'Mr. Wells',
+                fullName: function() {
+                    var f = State.getVar('$npcs.caleb.name.firstName');
+                    var l = State.getVar('$npcs.caleb.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -1111,14 +1227,21 @@
                 eyes: 'brown',
                 hair: 'red'
             },
-            personality: 'neutral'
+            personality: 'neutral',
+            bio: '',
+            hasMet: false
         },
         javier: {
             name: {
                 firstName: 'Javier',
                 lastName: 'Jenner',
                 title: 'student',
-                formal: 'Mr. Jenner'
+                formal: 'Mr. Jenner',
+                fullName: function() {
+                    var f = State.getVar('$npcs.javier.name.firstName');
+                    var l = State.getVar('$npcs.javier.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -1136,14 +1259,21 @@
                 eyes: 'brown',
                 hair: 'black'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         },
         evan: {
             name: {
                 firstName: 'Evan',
                 lastName: 'Ambrose',
                 title: 'student',
-                formal: 'Mr. Ambrose'
+                formal: 'Mr. Ambrose',
+                fullName: function() {
+                    var f = State.getVar('$npcs.evan.name.firstName');
+                    var l = State.getVar('$npcs.evan.name.lastName');
+                    return f + ' ' + l;
+                }
             },
             stats: {
                 life: {
@@ -1161,7 +1291,9 @@
                 eyes: 'hazel',
                 hair: 'brown'
             },
-            personality: 'friendly'
+            personality: 'friendly',
+            bio: '',
+            hasMet: false
         }
 
     }>>
@@ -1545,7 +1677,6 @@
         },
         inCombat: false,
         combatPass: '',
-        courseOverview: false
     }>>
 
     <<set $courses = {

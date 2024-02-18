@@ -245,7 +245,7 @@ window.EnemyLife = function (CurHP, MaxHP) {
         tags : null,
         handler : function () {
             if (this.args[0] == "plr"){
-                var id = this.args[0], name = State.getVar("$plr.name.firstName");     
+                var id = this.args[0], name = State.getVar("$plr.name.fullName()");     
                 var img = State.getVar("$plr.img");
                 
                 var output = '<div class="speech ' + id + '">';
@@ -253,7 +253,9 @@ window.EnemyLife = function (CurHP, MaxHP) {
                 output += name + '<hr>' + this.payload[0].contents + '</div>';
                 
             } else {
-                var id = this.args[0], name = id[0].toUpperCase() + id.substring(1);
+                var id = this.args[0];
+				let fl = '$npcs.' + id + '.name.fullName()';
+				let name = State.getVar(fl);
 
                 var output = '<div class="speech ' + id + '">';
                 output += '<span class="avatar"></span>';
@@ -261,7 +263,7 @@ window.EnemyLife = function (CurHP, MaxHP) {
             };
             $(this.output).wiki(output);
         }
-    });
+	});
 // Speech Box System - END
 
 /* hovertip v2.0 - START */

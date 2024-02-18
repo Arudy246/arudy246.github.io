@@ -1,0 +1,70 @@
+:: Dev_SpeechBoxes
+
+    <h2>Staff</h2>\
+    <<speech amy>>
+        I'm Amy Levette.
+    <</speech>>
+    <<speech barden>>
+        I'm Barden Sullivan.
+    <</speech>>
+    <<speech elliot>>
+        I'm Elliot Corbin.
+    <</speech>>
+    <<speech juliette>>
+        I'm Juliette Gatlin.
+    <</speech>>
+    <<speech jonathan>>
+        I'm Jonathan Levee.
+    <</speech>>
+    <<speech celeste>>
+        I'm Celeste Chao.
+    <</speech>>
+    <<speech adhya>>
+        I'm Adhya Rivera.
+    <</speech>>
+    <hr>
+    <h2>Students</h2>\
+    <<speech plr>>
+        I am you!
+    <</speech>>
+    <<speech janessa>>
+        I'm Janessa Starr.
+    <</speech>>
+    <<speech bailey>>
+        I'm Bailey Cooper
+    <</speech>>
+    <<speech jason>>
+        I'm Jason Silversteine
+    <</speech>>
+    <<speech harper>>
+        I'm Harper Brooke.
+    <</speech>>
+    <<speech kinsley>>
+        I'm Kinsley Reeves.
+    <</speech>>
+    <<speech athena>>
+        I'm Athena Braden.
+    <</speech>>
+    <<speech airi>>
+        I'm Airi Kaneire.
+    <</speech>>
+    <<speech liliana>>
+        I'm Liliana Haskell.
+    <</speech>>
+    <<speech wyatt>>
+        I'm Wyatt Haskell.
+    <</speech>>
+    <<speech caleb>>
+        I'm Caleb Wells.
+    <</speech>>
+    <<speech javier>>
+        I'm Javier Jenner.
+    <</speech>>
+    <<speech evan>>
+        I'm Evan Ambrose.
+    <</speech>>
+    <hr>
+    <h2>Others</h2>\
+    <<speech ghost>>
+        I'm the ghost event.
+    <</speech>>

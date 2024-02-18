@@ -4,15 +4,89 @@
 
 :: Floor1_Class_Room105
     <img class='scene' src='img/locations/floor1_class_room105.jpg'>
+    <<Updates noClass>>
+
+:: Floor1_Class_Room105_Closed
+    <img class='scene' src='img/locations/closed_wood_door.jpg'>
     <<Updates>>
+    <<speech plr>>
+        The door is locked.
+    <</speech>>
+    <<nobr>>
+        <<if $dateTime.hour < 8>>
+            <<speech elliot>>
+                We start at 08:00 $plr.name.formal, come back then.
+            <</speech>>
+            <br>
+            <<nobr>>
+                <div class='passage-links-grid-1'>
+                    <<button [[Go Back | University_Hall_Classes]]>>
+                        <<calcTime 0 5>>
+                    <</button>>
+                </div>
+            <</nobr>>
+
+            <<else>>
+                <<speech elliot>>
+                    Hallo!
+                <</speech>>
+        <</if>>
+    <</nobr>>
 
 :: Floor1_Class_Room106
     <img class='scene' src='img/locations/floor1_class_room106.jpg'>
+    <<Updates noClass>>
+
+:: Floor1_Class_Room106_Closed
+    <img class='scene' src='img/locations/closed_wood_door.jpg'>
     <<Updates>>
+    <<speech plr>>
+        The door is locked.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Go Back | University_Hall_Classes]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: Floor1_Class_Room107
     <img class='scene' src='img/locations/floor1_class_room107.jpg'>
+    <<Updates noClass>>
+    <<nobr>>
+        <<if $dateTime.hour < 10>>
+            <<speech jonathan>>
+                Class starts at 10:00, might you have somewhere else to be?
+            <</speech>>
+            <br>
+            <<nobr>>
+                <div class='passage-links-grid-1'>
+                    <<button [[Go Back | University_Hall_Classes]]>>
+                        <<calcTime 0 5>>
+                    <</button>>
+                </div>
+            <</nobr>>
+            <<else>>
+                <<speech jonathan>>
+                    Hello everyone, and welcome $plr.name.formal to Arcane Disciplines 101.
+                <</speech>>
+        <</if>>
+    <</nobr>>
+
+:: Floor1_Class_Room107_Closed
+    <img class='scene' src='img/locations/closed_wood_door.jpg'>
     <<Updates>>
+    <<speech plr>>
+        The door is locked.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Go Back | University_Hall_Classes]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: Hall_Floor2
     <img class='scene' src='img/locations/hall_floor2.jpg'>
@@ -22,9 +96,17 @@
     <</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
-            <<button [[Room 205 | Floor2_Class_Room205]]>>
-                <<calcTime 0 5>>
-            <</button>>
+            <<TimeCheck 1000 1200 weekdays>>
+                <<button [[Room 205 | Floor2_Class_Room205]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+            <<TimeCheck 1000 1200 cycle>>
+                <<button [[Room 205 (locked) | Floor2_Class_Room205_Closed]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+
             <<button [[First Floor Hall | University_Hall_Classes]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -32,4 +114,18 @@
     <</nobr>>
 :: Floor2_Class_Room205
     <img class='scene' src='img/locations/floor2_class_room205.jpg'>
+    <<Updates noClass>>
+
+:: Floor2_Class_Room205_Closed
+    <img class='scene' src='img/locations/closed_wood_door.jpg'>
     <<Updates>>
+    <<speech plr>>
+        The door is locked.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Go Back | Hall_Floor2]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>

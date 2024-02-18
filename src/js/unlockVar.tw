@@ -100,6 +100,13 @@
         conversations: {
             Janessa_CourseOverview: false,
             Janessa_CleanResidence: false
+        },
+        courses: {
+            Course_ArcaneArts_1: false,
+            Course_ConservationMagic_1: false,
+            Course_ArcaneDisciplines_1: false,
+            Course_ArcaneLaw_1: false,
+            Course_IncursionHistory_1: false
         }
     }>>
 

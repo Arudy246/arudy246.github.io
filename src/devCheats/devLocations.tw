@@ -85,6 +85,7 @@
             <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-debugs")'>Debug Buttons</button>
             <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-chapter-1")'>Chapter 1: Reawakening</button>
             <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-chapter-2")'>Chapter 2: Rebirth</button>
+            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-other")'>Other</button>
         </div>
     <</nobr>>
     <<nobr>>
@@ -98,6 +99,9 @@
         </div>
         <div id='devlinks-chapter-2' class='tabElement'>
             <<include "Devlinks_Chapter_2">>
+        </div>
+        <div id='devlinks-other' class='tabElement'>
+            <<include 'Devlinks_Other'>>
         </div>
     <</nobr>>
 
@@ -120,3 +124,6 @@
 
 :: Devlinks_Chapter_2
     [[Residence_Starr_PlayerRoom]]
+
+:: Devlinks_Other
+    [[Dev_SpeechBoxes]]

@@ -1,2 +1,17 @@
 :: Basement_Class_RoomB3
     <img class='scene' src='img/locations/basement_class_roomb3.jpg'>
+    <<Updates noClass>>
+
+:: Basement_Class_RoomB3_Closed
+<img class='scene' src='img/locations/closed_wood_door.jpg'>
+    <<Updates>>
+    <<speech plr>>
+        The door is locked.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Go Back | University_Hall_Basement]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>

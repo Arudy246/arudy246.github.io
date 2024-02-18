@@ -1,76 +1,8 @@
 :: University_MainRoad
     <img class='scene' src='img/locations/university_mainroad.jpg'>
     <<Updates>>
-    The road is long, but lined with many small and some large houses.
-    <h2>Staff</h2>\
-    <<speech amy>>
-        I'm Amy Levette.
-    <</speech>>
-    <<speech barden>>
-        I'm Barden Sullivan.
-    <</speech>>
-    <<speech elliot>>
-        I'm Elliot Corbin.
-    <</speech>>
-    <<speech juliette>>
-        I'm Juliette Gatlin.
-    <</speech>>
-    <<speech jonathan>>
-        I'm Jonathan Levee.
-    <</speech>>
-    <<speech celeste>>
-        I'm Celeste Chao.
-    <</speech>>
-    <<speech adhya>>
-        I'm Adhya Rivera.
-    <</speech>>
-    <hr>
-    <h2>Students</h2>\
-    <<speech plr>>
-        I am you!
-    <</speech>>
-    <<speech janessa>>
-        I'm Janessa Starr.
-    <</speech>>
-    <<speech bailey>>
-        I'm Bailey Cooper
-    <</speech>>
-    <<speech jason>>
-        I'm Jason Silversteine
-    <</speech>>
-    <<speech harper>>
-        I'm Harper Brooke.
-    <</speech>>
-    <<speech kinsley>>
-        I'm Kinsley Reeves.
-    <</speech>>
-    <<speech athena>>
-        I'm Athena Braden.
-    <</speech>>
-    <<speech airi>>
-        I'm Airi Kaneire.
-    <</speech>>
-    <<speech liliana>>
-        I'm Liliana Haskell.
-    <</speech>>
-    <<speech wyatt>>
-        I'm Wyatt Haskell.
-    <</speech>>
-    <<speech caleb>>
-        I'm Caleb Wells.
-    <</speech>>
-    <<speech javier>>
-        I'm Javier Jenner.
-    <</speech>>
-    <<speech evan>>
-        I'm Evan Ambrose.
-    <</speech>>
-    <hr>
-    <h2>Others</h2>\
-    <<speech ghost>>
-        I'm the ghost event.
-    <</speech>>
-
+    The road is lined with many houses, some small and some really big.
+    
     <<nobr>>
         <div class='passage-links-grid-1'>
             <<button [[University Courtyard | University_MainCourtyard]]>>
@@ -164,15 +96,39 @@
     <</speech>>
     <<nobr>>
         <div class='passage-links-grid-2'>
-            <<button [[Room 105 | Floor1_Class_Room105]]>>
-                <<calcTime 0 5>>
-            <</button>>
-            <<button [[Room 106 | Floor1_Class_Room106]]>>
-                <<calcTime 0 5>>
-            <</button>>
-            <<button [[Room 107 | Floor1_Class_Room107]]>>
-                <<calcTime 0 5>>
-            <</button>>
+            <<TimeCheck 0700 0900 weekdays>>
+                <<button [[Room 105 | Floor1_Class_Room105]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+            <<TimeCheck 0700 0900 cycle>>
+                <<button [[Room 105 (locked) | Floor1_Class_Room105_Closed]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+
+            <<TimeCheck 0800 1000 weekdays>>
+                <<button [[Room 106 | Floor1_Class_Room106]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+            <<TimeCheck 0800 1000 cycle>>
+                <<button [[Room 106 (locked) | Floor1_Class_Room106_Closed]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+
+            <<TimeCheck 0900 1100 weekdays>>
+                <<button [[Room 107 | Floor1_Class_Room107]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+            <<TimeCheck 0900 1100 cycle>>
+                <<button [[Room 107 (locked) | Floor1_Class_Room107_Closed]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+
             <<button [[Second Floor | Hall_Floor2]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -188,12 +144,15 @@
 :: University_Hall_Crafts
     <img class='scene' src='img/locations/university_hall_crafts.jpg'>
     <<Updates>>
+
 :: University_Hall_Professors
     <img class='scene' src='img/locations/university_hall_professors.jpg'>
     <<Updates>>
+
 :: University_Librarium
     <img class='scene' src='img/locations/university_librarium.jpg'>
     <<Updates>>
+
 :: University_Hall_Basement
     <img class='scene' src='img/locations/university_hall_basement.webp'>
     <<Updates>>
@@ -202,9 +161,17 @@
     <</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
-            <<button [[Room B-3 | Basement_Class_RoomB3]]>>
-                <<calcTime 0 5>>
-            <</button>>
+            <<TimeCheck 1100 1300 weekdays>>
+                <<button [[Room B-3 | Basement_Class_RoomB3]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+            <<TimeCheck 1100 1300 cycle>>
+                <<button [[Room B-3 (locked) | Basement_Class_RoomB3_Closed]]>>
+                    <<calcTime 0 5>>
+                <</button>>
+            <</TimeCheck>>
+
             <<button [[Entry Hall | University_Entrance]]>>
                 <<calcTime 0 5>>
             <</button>>

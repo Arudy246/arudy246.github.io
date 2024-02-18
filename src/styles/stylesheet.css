@@ -645,27 +645,27 @@ ul.simple-inventory-list {
 
 }
 .schedule {
-    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bg_dialogue3.jpg);
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/dialogue_bg/bg_schedule.jpg);
     background-size: 110%;
     background-repeat: no-repeat;
 }
 .locations {
-    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bg_locations.jpg);
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/dialogue_bg/bg_locations.jpg);
     background-size: 130%;
     background-repeat: no-repeat;
 }
 .char-info {
-    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/bg_locations.jpg);
+    background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/dialogue_bg/bg_locations.jpg);
     background-size: 130%;
     background-repeat: no-repeat;
 }
 .spellwork {
-    background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(img/bg_spellwork.jpg);
+    background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(img/dialogue_bg/bg_spellwork.jpg);
     background-size: 160%;
     background-repeat: no-repeat;
 }
 .achieve {
-    background: url('img/bg_achieve.jpg');
+    background: url('img/dialogue_bg/bg_achieve.jpg');
     background-size: 30%;
     font-size: 4.5em;
     margin-top: 0;
@@ -680,7 +680,7 @@ ul.simple-inventory-list {
     text-shadow: 5px 5px rgba(229, 255, 0, 0.103);
 }
 .achievebg {
-    background-image: url("img/bg_smoke_achieve.jpg");
+    background-image: url("img/dialogue_bg/bg_smoke_achieve.jpg");
     background-size: 100% 100%;
     margin: auto -0.5em;
     line-height: 1.2;
