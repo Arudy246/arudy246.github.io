@@ -34,6 +34,28 @@ window.charInfoTblSub = function(obj, header) {
     return html;
 };
 
+// window.GenerateRelList = function () {
+// 	let npcObj = State.getVar('$npcs')
+	
+// 	for (var key in npcObj) {
+// 		let hasMet = State.getVar('$npcs.' + key + '.hasMet');
+// 		if(hasMet) {
+// 			let npcName = State.getVar('$npcs.' + key + '.name.firstName');
+// 			let relPos = State.getVar('$plr.relations.' + key + '.positive');
+// 			let relNeg = State.getVar('$plr.relations.' + key + '.negative');
+// 			let relInt = State.getVar('$plr.relations.' + key + '.intimate');
+// 			let relSus = State.getVar('$plr.relations.' + key + '.suspicion');
+// 			let modalTitle = npcName + ' Bio';
+// 			let modalPas = 'Bio_' + npcName;
+
+// 			let html = "<tr><td><<link " + npcName + ">><<run Dialog.setup(" + modalTitle + ") Dialog.wiki(Story.get(" + modalPas + ").text) Dialog.open()>><</link>></td><td>" + relPos + "</td><td>" + relNeg + "</td><td>" + relInt + "</td><td>" + relSus + "</td></tr>";
+// 			return html
+// 		} else
+// 			return ''
+// 	}
+
+// };
+
 window.openTab = function (name) {
 	var i;
 	var x = document.getElementsByClassName("tabElement");

@@ -165,7 +165,21 @@
                         state.setVar('$spellWords.effect.clean.unlocked', true);
                         let x = state.getVar('$spellWords.effect.clean');
                         return x
-                    },
+                    }
+            }
+        },
+        manusciptHeal: {
+            title: 'Vulnus and its Uses',
+            description: 'A single page manuscript containing just a few paragraphs.',
+            costMult: 0.4,
+            pagesRead: 0,
+            pagesTotal: 1,
+            pageUnlocks: {
+                1: function() {
+                        state.setVar('$spellWords.effect.heal.unlocked', true);
+                        let x = state.getVar('$spellWords.effect.heal');
+                        return x
+                    }
             }
         }
     }>>

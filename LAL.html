@@ -347,7 +347,7 @@ ul.simple-inventory-list {
     background-position: center;
 }
 .plr {
-    background-color: #252525;
+    background-color: #202020;
 }
 .janessa {
     background-color: #1d003f;
@@ -974,6 +974,28 @@ window.charInfoTblSub = function(obj, header) {
     return html;
 };
 
+// window.GenerateRelList = function () {
+// 	let npcObj = State.getVar('$npcs')
+	
+// 	for (var key in npcObj) {
+// 		let hasMet = State.getVar('$npcs.' + key + '.hasMet');
+// 		if(hasMet) {
+// 			let npcName = State.getVar('$npcs.' + key + '.name.firstName');
+// 			let relPos = State.getVar('$plr.relations.' + key + '.positive');
+// 			let relNeg = State.getVar('$plr.relations.' + key + '.negative');
+// 			let relInt = State.getVar('$plr.relations.' + key + '.intimate');
+// 			let relSus = State.getVar('$plr.relations.' + key + '.suspicion');
+// 			let modalTitle = npcName + ' Bio';
+// 			let modalPas = 'Bio_' + npcName;
+
+// 			let html = "<tr><td><<link " + npcName + ">><<run Dialog.setup(" + modalTitle + ") Dialog.wiki(Story.get(" + modalPas + ").text) Dialog.open()>><</link>></td><td>" + relPos + "</td><td>" + relNeg + "</td><td>" + relInt + "</td><td>" + relSus + "</td></tr>";
+// 			return html
+// 		} else
+// 			return ''
+// 	}
+
+// };
+
 window.openTab = function (name) {
 	var i;
 	var x = document.getElementsByClassName("tabElement");
@@ -1595,10 +1617,10 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     [[WakingUp13]]
     [[WakingUp14]]</tw-passagedata><tw-passagedata pid="3" name="Devlinks_Chapter_2" tags="" position="350,100" size="100,100">[[Residence_Starr_PlayerRoom]]</tw-passagedata><tw-passagedata pid="4" name="Devlinks_Other" tags="" position="475,100" size="100,100">[[Dev_SpeechBoxes]]
     &lt;&lt;button &quot;Increment Time - 1hr&quot;&gt;&gt;
-        &lt;&lt;calcTime 60 0&gt;&gt;
+        &lt;&lt;calcTime 60 0 false&gt;&gt;
     &lt;&lt;/button&gt;&gt;
     &lt;&lt;button &quot;Increment Time - 5hr&quot;&gt;&gt;
-        &lt;&lt;calcTime 300 0&gt;&gt;
+        &lt;&lt;calcTime 300 0 false&gt;&gt;
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Dev_SpeechBoxes" tags="" position="600,100" size="100,100">&lt;h2&gt;Staff&lt;/h2&gt;\
     &lt;&lt;speech amy&gt;&gt;
         I&#39;m Amy Levette.
@@ -1828,7 +1850,21 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                         state.setVar(&#39;$spellWords.effect.clean.unlocked&#39;, true);
                         let x = state.getVar(&#39;$spellWords.effect.clean&#39;);
                         return x
-                    },
+                    }
+            }
+        },
+        manusciptHeal: {
+            title: &#39;Vulnus and its Uses&#39;,
+            description: &#39;A single page manuscript containing just a few paragraphs.&#39;,
+            costMult: 0.4,
+            pagesRead: 0,
+            pagesTotal: 1,
+            pageUnlocks: {
+                1: function() {
+                        state.setVar(&#39;$spellWords.effect.heal.unlocked&#39;, true);
+                        let x = state.getVar(&#39;$spellWords.effect.heal&#39;);
+                        return x
+                    }
             }
         }
     }&gt;&gt;
@@ -1848,79 +1884,98 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         locations: {
             starrresidence: {
                 name: &quot;Starr Residence&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             librarium: {
                 name: &quot;Librarium&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             cafeteria: {
                 name: &quot;Cafeteria&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universityentrance: {
                 name: &quot;University Entrance Hall&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universityshops: {
                 name: &quot;University Shops Hall&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universityclasses: {
                 name: &quot;University Class Hall&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universitybasement: {
                 name: &quot;University Basement Hall&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             clinic: {
                 name: &quot;Clinic&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             professoroffices: {
                 name: &quot;Professors&#39; Hall&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             tradingpost: {
                 name: &quot;Herrington&#39;s Trading Post&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             cinema: {
                 name: &quot;Bering Cinema&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             hospital: {
                 name: &quot;Nome Regional Hospital&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             cemetary: {
                 name: &quot;Nome City Cemetary&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             salooninn: {
                 name: &quot;Goldpan Saloon and Inn&quot;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor1_Class_Room105: {
                 name: &#39;Classroom #105&#39;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor1_Class_Room106: {
                 name: &#39;Classroom #106&#39;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor1_Class_Room107: {
                 name: &#39;Classroom #107&#39;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor2_Class_Room205: {
                 name: &#39;Classroom #205&#39;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Basement_Class_RoomB3: {
                 name: &#39;Classroom #B3&#39;,
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             }
         },
         userInterface: {
@@ -1950,6 +2005,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             Course_ArcaneDisciplines_1: false,
             Course_ArcaneLaw_1: false,
             Course_IncursionHistory_1: false
+        },
+        skills: {
+            meditation: false
         }
     }&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="StoryInit" tags="" position="1100,100" size="100,100">&lt;&lt;set $devMode = true&gt;&gt;
 
@@ -2258,7 +2316,12 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 walking: {
                     level: 0,
                     pre: 0,
-                    desc: &quot;&quot;
+                    desc: &#39;&#39;
+                },
+                meditation: {
+                    level: 0,
+                    pre: 0,
+                    desc: &#39;&#39;
                 }
             },
             mental: {
@@ -2668,7 +2731,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             },
             personality: &#39;friendly&#39;,
             bio: &#39;Runs the clinic at the college. She is professional and kind. Amy is rarely seen outside of the clinic aside from when she responds to an emergency call.&#39;,
-            hasMet: false
+            hasMet: false        
         },
         janessa: {
             name: {
@@ -2700,7 +2763,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             },
             personality: &#39;unfriendly&#39;,
             bio: &#39;The Starr family was once a moderately powerful family with their hands in many different industries and were well placed politically. A series of betrayals and miscalculations resulted in most of the family, and all the men, being killed, executed, or assassinated. Leaving only Janessa, the heir to the family, her mother, very elderly grandmother, and one or two servants.&#39;,
-            hasMet: false
+            hasMet: false        
         },
         barden: {
             name: {
@@ -2763,7 +2826,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 hair: &#39;brown&#39;
             },
             personality: &#39;stern&#39;,
-            bio: &#39;&#39;,
+            bio: &#39;XXXXX&#39;,
             hasMet: false
         },
         juliette: {
@@ -2795,7 +2858,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 hair: &#39;red&#39;
             },
             personality: &#39;friendly&#39;,
-            bio: &#39;&#39;,
+            bio: &#39;XXXXX&#39;,
             hasMet: false
         },
         jonathan: {
@@ -2827,7 +2890,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 hair: &#39;brown&#39;
             },
             personality: &#39;neutral&#39;,
-            bio: &#39;&#39;,
+            bio: &#39;XXXXX&#39;,
             hasMet: false
         },
         celeste: {
@@ -3693,13 +3756,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             passage: &#39;IncursionHistory&#39;,
             passageNum: 1
         }
-    }&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Widgets" tags="widget" position="1225,100" size="100,100">/* base widget template */
-    &lt;&lt;nobr&gt;&gt;
-        &lt;&lt;widget &quot;templ&quot;&gt;&gt;
-        &lt;&lt;/widget&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;
-
-    /* relGain Amy 10 (int | sus)*/
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Widgets" tags="widget" position="1225,100" size="100,100">/* relGain amy 10 (int | sus)*/
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;relGain&quot;&gt;&gt;
             &lt;&lt;if _args[1] &gt; 0 &amp;&amp; !_args[2]&gt;&gt;
@@ -4245,7 +4302,6 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                     &#39;animancy&#39;,
                     &#39;alchemy&#39;,
                     &#39;abjuration&#39;
-
                 ]&gt;&gt;
 
                 &lt;&lt;set _disc = _discArray[_rando]&gt;&gt;
@@ -4289,25 +4345,42 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;widget &quot;SkillChange&quot;&gt;&gt;
+            &lt;&lt;for _i, _name range $plr.skills&gt;&gt;
+                &lt;&lt;for &gt;&gt;
+                    &lt;&lt;if $plr.skills[_i].pre != 0&gt;&gt;
+                        &lt;&lt;set _discDiff = ($plr.disciplines[_i].level - $plr.disciplines[_i].pre)&gt;&gt;
+                        &lt;&lt;print
+                            &#39;&lt;div class=&quot;green&quot;&gt;I gained &#39; + _discDiff.toFixed(2) + &#39; points in the &lt;i&gt;&#39; + $plr.disciplines[_i].title + &#39;&lt;/i&gt; discipline.&lt;/div&gt;&#39;
+                        &gt;&gt;
+                        &lt;&lt;set $plr.disciplines[_i].pre = 0&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
+                    &lt;&lt;run _i + 1&gt;&gt;
+                &lt;&lt;/for&gt;&gt;
+            &lt;&lt;/for&gt;&gt;
+        &lt;&lt;/widget&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
+
 /* To be included on every passage, one stop call all update functions. Accepts _args[0] as noClass, etc etc. i.e. &lt;&lt;Updates noClass&gt;&gt; */
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &#39;Updates&#39;&gt;&gt;
             &lt;&lt;statsChange&gt;&gt;
             &lt;&lt;discChange&gt;&gt;
             &lt;&lt;if _args[0] != &#39;noClass&#39;&gt;&gt;
-                &lt;&lt;TimeCheck 0700 0800 weekdays&gt;&gt;
+                &lt;&lt;TimeCheck &#39;0700&#39; &#39;0800&#39; weekdays&gt;&gt;
                     &lt;&lt;ClassWarning Floor1_Class_Room105&gt;&gt;Arcane Arts class starts in less than an hour&lt;br&gt;&lt;&lt;/ClassWarning&gt;&gt;
                 &lt;&lt;/TimeCheck&gt;&gt;
-                &lt;&lt;TimeCheck 0800 0900 weekdays&gt;&gt;
+                &lt;&lt;TimeCheck &#39;0800&#39; &#39;0900&#39; weekdays&gt;&gt;
                     &lt;&lt;ClassWarning Floor1_Class_Room106&gt;&gt;Conservation of Magic class starts in less than an hour&lt;br&gt;&lt;&lt;/ClassWarning&gt;&gt;
                 &lt;&lt;/TimeCheck&gt;&gt;
-                &lt;&lt;TimeCheck 0900 1000 weekdays&gt;&gt;
+                &lt;&lt;TimeCheck &#39;0900&#39; &#39;1000&#39; weekdays&gt;&gt;
                     &lt;&lt;ClassWarning Floor1_Class_Room107&gt;&gt;Arcane Disciplines class starts in less than an hour&lt;br&gt;&lt;&lt;/ClassWarning&gt;&gt;
                 &lt;&lt;/TimeCheck&gt;&gt;
-                &lt;&lt;TimeCheck 1000 1100 weekdays&gt;&gt;
+                &lt;&lt;TimeCheck &#39;1000&#39; &#39;1100&#39; weekdays&gt;&gt;
                     &lt;&lt;ClassWarning Floor2_Class_Room205&gt;&gt;Arcane Law class starts in less than an hour&lt;br&gt;&lt;&lt;/ClassWarning&gt;&gt;
                 &lt;&lt;/TimeCheck&gt;&gt;
-                &lt;&lt;TimeCheck 1100 1200 weekdays&gt;&gt;
+                &lt;&lt;TimeCheck &#39;1100&#39; &#39;1200&#39; weekdays&gt;&gt;
                     &lt;&lt;ClassWarning Basement_Class_RoomB3&gt;&gt;Incursion Histories class starts in less than an hour&lt;br&gt;&lt;&lt;/ClassWarning&gt;&gt;
                 &lt;&lt;/TimeCheck&gt;&gt;
             &lt;&lt;/if&gt;&gt;
@@ -4568,7 +4641,6 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
                 &lt;&lt;/if&gt;&gt;
 
-                /* &lt;&lt;set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2&gt;&gt; */
                 &lt;&lt;set _disc = $spellCastVar.spellDiscipline&gt;&gt;
                 &lt;&lt;set _discChange = $spellCastVar.spellCost * 0.2&gt;&gt;
                 &lt;&lt;setDisc &#39;plr&#39; _disc _discChange&gt;&gt;
@@ -4942,7 +5014,6 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 }
             &gt;&gt;
             &lt;&lt;set _details =&#39;Room &#39; + _roomNum + &#39;&lt;br&gt;&#39; + _courseStart + &#39;-&#39; + _courseEnd + &#39;&lt;br&gt;&#39; + $npcs[_courseInstructor].name.formal&gt;&gt;
-            &lt;&lt;consolelog &#39;_location unlocked?&#39;_courseRoom&gt;&gt;
             &lt;&lt;hovertip _details&gt;&gt;
                 &lt;&lt;if $unlockVar.locations[_courseRoom].unlocked == true&gt;&gt;
                     &lt;&lt;link _courseTitle&gt;&gt;
@@ -4959,9 +5030,27 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;widget &quot;TimeCheck&quot; container&gt;&gt;
             &lt;&lt;consolelog &#39;---TimeCheck Start---&#39;&gt;&gt;
-            &lt;&lt;set _start = _args[0] / 100&gt;&gt;
-            &lt;&lt;set _end = _args[1] / 100&gt;&gt;
+
+            &lt;&lt;set _start = Number(_args[0].slice(0, 2))&gt;&gt;
+            &lt;&lt;set _end = Number(_args[1].slice(0, 2))&gt;&gt;
+
+            &lt;&lt;set _startCombo = Number(_args[0])&gt;&gt;
+            &lt;&lt;set _endCombo = Number(_args[1])&gt;&gt;
+
+            &lt;&lt;if $dateTime.min &gt;= 10&gt;&gt;
+                &lt;&lt;set _sysTime = Number($dateTime.hour.toString() + $dateTime.min.toString())&gt;&gt;
+            &lt;&lt;elseif $dateTime.min &lt; 10&gt;&gt;
+                &lt;&lt;set _sysTime = Number($dateTime.hour.toString() + &#39;0&#39; + $dateTime.min.toString())&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
             
+            &lt;&lt;consolelog &#39;_args[0]&#39; _args[0]&gt;&gt;
+            &lt;&lt;consolelog &#39;_args[1]&#39; _args[1]&gt;&gt;
+            &lt;&lt;consolelog &#39;_start&#39; _start&gt;&gt;
+            &lt;&lt;consolelog &#39;_end&#39; _end&gt;&gt;
+            &lt;&lt;consolelog &#39;_sysTime&#39; _sysTime&gt;&gt;
+            &lt;&lt;consolelog &#39;_startCombo&#39; _startCombo&gt;&gt;
+            &lt;&lt;consolelog &#39;_endCombo&#39; _endCombo&gt;&gt;
+
             &lt;&lt;if _args[2] != false&gt;&gt;
                 &lt;&lt;set _dayName = _args[2]&gt;&gt;
             &lt;&lt;/if&gt;&gt;
@@ -4974,57 +5063,58 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;if _args[5] != false&gt;&gt;
                 &lt;&lt;set _year = _args[5]&gt;&gt;
             &lt;&lt;/if&gt;&gt;
+
             &lt;&lt;if _year &amp;&amp; _month &amp;&amp; _day&gt;&gt;
-                &lt;&lt;if _year == $dateTime.year &amp;&amp; _month == $dateTime.monthName &amp;&amp; _day == $dateTime.date &amp;&amp; $dateTime.hour &gt;= _start &amp;&amp; $dateTime.hour &lt; _end&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Year/Month/Date&#39;&gt;&gt;
+                &lt;&lt;if _year == $dateTime.year &amp;&amp; _month == $dateTime.monthName &amp;&amp; _day == $dateTime.date &amp;&amp; _sysTime &gt;= _startCombo &amp;&amp; _sysTime &lt; _endCombo&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Year/Month/Date&#39;&gt;&gt;
                 &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;elseif _month &amp;&amp; _day&gt;&gt;
-                &lt;&lt;if _month == $dateTime.monthName &amp;&amp; _day == $dateTime.date &amp;&amp; $dateTime.hour &gt;= _start &amp;&amp; $dateTime.hour &lt; _end&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Month/Date&#39;&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;elseif _month &amp;&amp; _day&gt;&gt;
+                    &lt;&lt;if _month == $dateTime.monthName &amp;&amp; _day == $dateTime.date &amp;&amp; _sysTime &gt;= _startCombo &amp;&amp; _sysTime &lt; _endCombo&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Month/Date&#39;&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;elseif _month &amp;&amp; _dayName &amp;&amp; _dayName != &#39;weekdays&#39; &amp;&amp; _dayName != &#39;weekend&#39; &amp;&amp; _dayName != &#39;cycle&#39; &amp;&amp; _dayName != &#39;cycleNoWeekend&#39;&gt;&gt;
-                &lt;&lt;if _month == $dateTime.monthName &amp;&amp; _dayName == $dateTime.dayName &amp;&amp; $dateTime.hour &gt;= _start &amp;&amp; $dateTime.hour &lt; _end&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Month/DayName&#39;&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;elseif _month &amp;&amp; _dayName &amp;&amp; _dayName != &#39;weekdays&#39; &amp;&amp; _dayName != &#39;weekend&#39; &amp;&amp; _dayName != &#39;cycle&#39; &amp;&amp; _dayName != &#39;cycleNoWeekend&#39;&gt;&gt;
+                    &lt;&lt;if _month == $dateTime.monthName &amp;&amp; _dayName == $dateTime.dayName &amp;&amp; _sysTime &gt;= _startCombo &amp;&amp; _sysTime &lt; _endCombo&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Month/DayName&#39;&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
             
-            &lt;&lt;elseif _dayName &amp;&amp; _dayName != &#39;weekdays&#39; &amp;&amp; _dayName != &#39;weekend&#39; &amp;&amp; _dayName != &#39;cycle&#39; &amp;&amp; _dayName != &#39;cycleNoWeekend&#39;&gt;&gt;
-                &lt;&lt;if _dayName == $dateTime.dayName &amp;&amp; $dateTime.hour &gt;= _start &amp;&amp; $dateTime.hour &lt; _end&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: DayName&#39;&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;elseif _dayName &amp;&amp; _dayName != &#39;weekdays&#39; &amp;&amp; _dayName != &#39;weekend&#39; &amp;&amp; _dayName != &#39;cycle&#39; &amp;&amp; _dayName != &#39;cycleNoWeekend&#39;&gt;&gt;
+                    &lt;&lt;if _dayName == $dateTime.dayName &amp;&amp; _sysTime &gt;= _startCombo &amp;&amp; _sysTime &lt; _endCombo&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: DayName&#39;&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;elseif _dayName == &#39;weekdays&#39;&gt;&gt;
-                &lt;&lt;if $dateTime.hour &gt;= _start &amp;&amp; $dateTime.hour &lt; _end &amp;&amp; ($dateTime.dayName == &#39;Monday&#39; || $dateTime.dayName == &#39;Tuesday&#39; || $dateTime.dayName == &#39;Wednesday&#39; || $dateTime.dayName == &#39;Thursday&#39; || $dateTime.dayName == &#39;Friday&#39;)&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Weekdays&#39;&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;elseif _dayName == &#39;weekdays&#39;&gt;&gt;
+                    &lt;&lt;if _sysTime &gt;= _startCombo &amp;&amp; _sysTime &lt; _endCombo &amp;&amp; ($dateTime.dayName == &#39;Monday&#39; || $dateTime.dayName == &#39;Tuesday&#39; || $dateTime.dayName == &#39;Wednesday&#39; || $dateTime.dayName == &#39;Thursday&#39; || $dateTime.dayName == &#39;Friday&#39;)&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Weekdays&#39;&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;elseif _dayName == &#39;weekend&#39;&gt;&gt;
-                &lt;&lt;if $dateTime.hour &gt;= _start &amp;&amp; $dateTime.hour &lt; _end &amp;&amp; ($dateTime.dayName == &#39;Saturday&#39; || $dateTime.dayName == &#39;Sunday&#39;)&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Weekend&#39;&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;elseif _dayName == &#39;weekend&#39;&gt;&gt;
+                    &lt;&lt;if _sysTime &gt;= _startCombo &amp;&amp; _sysTime &lt; _endCombo &amp;&amp; ($dateTime.dayName == &#39;Saturday&#39; || $dateTime.dayName == &#39;Sunday&#39;)&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Weekend&#39;&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
 
-            &lt;&lt;elseif _dayName == &#39;cycle&#39;&gt;&gt;
-                &lt;&lt;if ($dateTime.hour &lt; _start &amp;&amp; $dateTime.hour &gt;= 0) || ($dateTime.hour &gt;= _end &amp;&amp; $dateTime.hour &lt; 24)&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Cycle&#39;&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;elseif _dayName == &#39;cycle&#39;&gt;&gt;
+                    &lt;&lt;if (_sysTime &lt;= _startCombo &amp;&amp; $dateTime.hour &gt;= 0) || (_sysTime &gt;= _endCombo &amp;&amp; $dateTime.hour &lt; 24)&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Cycle&#39;&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
             
-            &lt;&lt;elseif _dayName == &#39;cycleNoWeekend&#39;&gt;&gt;
-                &lt;&lt;if ($dateTime.hour &lt; _start &amp;&amp; $dateTime.hour &gt;= 0) || ($dateTime.hour &gt;= _end &amp;&amp; $dateTime.hour &lt; 24) || $dateTime.dayName == &#39;Saturday&#39; || $dateTime.dayName == &#39;Sunday&#39;&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Cycle w/ No Weekend&#39;&gt;&gt;
-                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;elseif _dayName == &#39;cycleNoWeekend&#39;&gt;&gt;
+                    &lt;&lt;if (_sysTime &lt; _startCombo &amp;&amp; $dateTime.hour &gt;= 0) || (_sysTime &gt;= _endCombo &amp;&amp; $dateTime.hour &lt; 24) || $dateTime.dayName == &#39;Saturday&#39; || $dateTime.dayName == &#39;Sunday&#39;&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Cycle w/ No Weekend&#39;&gt;&gt;
+                    &lt;&lt;/if&gt;&gt;
                 
-            &lt;&lt;elseif $dateTime.hour &gt;= _start &amp;&amp; $dateTime.hour &lt; _end&gt;&gt;
-                    _contents
-                    &lt;&lt;consolelog &#39;Check: Time Only&#39;&gt;&gt;
+                &lt;&lt;elseif _sysTime &gt;= _startCombo &amp;&amp; _sysTime &lt; _endCombo&gt;&gt;
+                        _contents
+                        &lt;&lt;consolelog &#39;Check: Time Only&#39;&gt;&gt;
             &lt;&lt;/if&gt;&gt;
             &lt;&lt;consolelog &#39;-----TimeCheck End-----&#39;&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
@@ -5093,6 +5183,42 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;elseif _args[0] == &#39;full&#39;&gt;&gt;
                 &lt;&lt;print $plr.name.fullName() + _period&gt;&gt;
             &lt;&lt;/if&gt;&gt;
+        &lt;&lt;/widget&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
+
+    /* Uses a skill, i.e. &lt;&lt;UseSkill mundane meditation&gt;&gt; */
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;widget &quot;UseSkill&quot;&gt;&gt;
+            &lt;&lt;consolelog &#39;---&lt;&lt;UseSkill Start&gt;&gt;---&#39;&gt;&gt;
+            &lt;&lt;set _lvl = $plr.skills[_args[0]][_args[1]].level&gt;&gt;
+            &lt;&lt;set _skillName = $skillVars[_args[1]].title&gt;&gt;
+            &lt;&lt;set _skillDesc = $skillVars[_args[1]].description&gt;&gt;
+            &lt;&lt;if _lvl == 0&gt;&gt;
+                &lt;&lt;set _lvl = 5&gt;&gt;
+                &lt;&lt;set $plr.skills[_args[0]][_args[1]].level = 5&gt;&gt;
+                &lt;&lt;else&gt;&gt;
+                    &lt;&lt;set _r = (30 / _lvl) * (1 / 2)&gt;&gt;
+                    &lt;&lt;set $plr.skills[_args[0]][_args[1]].level += _r&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+
+            &lt;&lt;switch _args[1]&gt;&gt;
+                &lt;&lt;case &#39;meditation&#39;&gt;&gt;
+                    &lt;&lt;set _s = $plr.stats.stamina.cur + (_lvl * 0.5)&gt;&gt;
+                    &lt;&lt;set _f = $plr.stats.focus.cur + (_lvl * 0.2)&gt;&gt;
+                    &lt;&lt;set _n = $plr.stats.sanity.cur + (_lvl * 0.2)&gt;&gt;
+                    &lt;&lt;calcTime 5 0 false&gt;&gt;
+                
+                    &lt;&lt;setStats plr stamina _s&gt;&gt;
+                    &lt;&lt;setStats plr focus _f&gt;&gt;
+                    &lt;&lt;setStats plr sanity _n&gt;&gt;
+
+                    &lt;&lt;goto Skills_Meditation_Use&gt;&gt;
+
+                    &lt;&lt;consolelog &#39;UseSkill: Meditation&#39;&gt;&gt;
+                &lt;&lt;default&gt;&gt;
+                    &lt;&lt;consolelog &#39;UseSkill: Default Case&#39;&gt;&gt;
+            &lt;&lt;/switch&gt;&gt;
+            &lt;&lt;consolelog &#39;-----&lt;&lt;UseSkill End&gt;&gt;-----&#39;&gt;&gt;
         &lt;&lt;/widget&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
 
@@ -5267,7 +5393,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;speech janessa&gt;&gt;&lt;&lt;NpcRelationGreet janessa&gt;&gt;I don&#39;t recall inviting you in.&lt;&lt;/speech&gt;&gt;&lt;br&gt;
             &lt;&lt;default&gt;&gt;
         &lt;&lt;/switch&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="Conversation_Jason_FirstMeet" tags="" position="850,225" size="100,100">First time meeting Jason Silbersteine</tw-passagedata><tw-passagedata pid="18" name="Conversation_Javier_FirstMeet" tags="" position="975,225" size="100,100">First time meeting Javier Jenner.</tw-passagedata><tw-passagedata pid="19" name="Course_ArcaneArts101_1" tags="" position="1100,225" size="100,100">&lt;&lt;speech elliot&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="Conversation_Jason_FirstMeet" tags="" position="850,225" size="100,100">First time meeting Jason Silbersteine</tw-passagedata><tw-passagedata pid="18" name="Conversation_Javier_FirstMeet" tags="" position="975,225" size="100,100">First time meeting Javier Jenner.</tw-passagedata><tw-passagedata pid="19" name="Course_ArcaneArts101_1" tags="" position="1100,225" size="100,100">&lt;div class=&quot;green&quot;&gt;I just learned how to quickly travel to Room 105.&lt;/div&gt;
+    &lt;&lt;speech plr&gt;&gt;
+        I think I will remember how to get here from now on. I can skip having to walk all the way here from now on by looking at my &lt;b&gt;Classes&lt;/b&gt; schedule, if I want to.
+    &lt;&lt;/speech&gt;&gt;
+    &lt;&lt;speech elliot&gt;&gt;
         Morning everyone. &lt;&lt;Player formal&gt;&gt; will be joining us as the newest inductee to our college. &lt;&lt;Player formal&gt;&gt; find an empty seat and I&#39;ll begin.
     &lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
@@ -5290,7 +5420,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                     &lt;br&gt;
                     &lt;&lt;speech elliot&gt;&gt;
                         &lt;&lt;tone neg&gt;&gt;
-                            Based on the glare, he does not appear pleased.
+                            Based on the glare, he does not appear pleased with your response.
                         &lt;&lt;/tone&gt;&gt;
                     &lt;&lt;/speech&gt;&gt;
                     &lt;&lt;relGain elliot -5&gt;&gt;
@@ -5420,7 +5550,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                     &lt;&lt;/speech&gt;&gt;
                     &lt;br&gt;
                     &lt;&lt;speech elliot&gt;&gt;
-                        That concludes today&#39;s lesson. I know for many of you this was a refresher, but magic is dangerous. And I would not be doing my duty to all of you if I didn&#39;t remind you of this fact. Oh, one last thing. DO NOT EVER try to cast an incomplete spell. If you listen to nothing else, then head me on this. Just don&#39;t do it.
+                        That concludes today&#39;s lesson. I know for many of you this was a refresher, but magic is dangerous. And I would not be doing my job if I didn&#39;t remind you of this fact. Oh, one last thing. DO NOT EVER try to cast an incomplete spell. If you listen to nothing else, then head me on this. Just don&#39;t do it.
                     &lt;&lt;/speech&gt;&gt;
                     &lt;br&gt;
                     &lt;&lt;speech elliot&gt;&gt;
@@ -5431,14 +5561,242 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
                             &lt;&lt;button [[Leave | University_Hall_Classes]]&gt;&gt;
                                 &lt;&lt;SetTime 9&gt;&gt;
+                                &lt;&lt;set $unlockVar.locations.Floor1_Class_Room105.unlocked = true&gt;&gt;
+                                &lt;&lt;set $npcs.elliot.hasMet = true&gt;&gt;
                             &lt;&lt;/button&gt;&gt;
                         &lt;/div&gt;
                     &lt;&lt;/nobr&gt;&gt;
                 &lt;&lt;/line&gt;&gt;
             &lt;&lt;/level&gt;&gt;
         &lt;&lt;/dlg&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="Course_ArcaneArts101_2" tags="" position="1225,225" size="100,100">This is Arcane Arts 2</tw-passagedata><tw-passagedata pid="21" name="Course_ArcaneArts101_3" tags="" position="100,350" size="100,100">This is Arcane Arts 3</tw-passagedata><tw-passagedata pid="22" name="Course_ArcaneArts101_4" tags="" position="225,350" size="100,100">This is Arcane Arts 4</tw-passagedata><tw-passagedata pid="23" name="Course_ArcaneArts101_5" tags="" position="350,350" size="100,100">This is Arcane Arts 5</tw-passagedata><tw-passagedata pid="24" name="Course_ArcaneArts101_Random" tags="" position="475,350" size="100,100">This is Arcane Arts Random</tw-passagedata><tw-passagedata pid="25" name="Course_ArcaneDisciplines101_1" tags="" position="600,350" size="100,100"></tw-passagedata><tw-passagedata pid="26" name="Course_ArcaneDisciplines101_Random" tags="" position="725,350" size="100,100"></tw-passagedata><tw-passagedata pid="27" name="Course_ArcaneLaw101_1" tags="" position="850,350" size="100,100"></tw-passagedata><tw-passagedata pid="28" name="Course_ArcaneLaw101_Random" tags="" position="975,350" size="100,100"></tw-passagedata><tw-passagedata pid="29" name="Course_ConservationMagic101_1" tags="" position="1100,350" size="100,100"></tw-passagedata><tw-passagedata pid="30" name="Course_ConservationMagic101_Random" tags="" position="1225,350" size="100,100"></tw-passagedata><tw-passagedata pid="31" name="Course_IncursionHistory_1" tags="" position="100,475" size="100,100"></tw-passagedata><tw-passagedata pid="32" name="Course_IncursionHistory_Random" tags="" position="225,475" size="100,100"></tw-passagedata><tw-passagedata pid="33" name="WakingUp1" tags="" position="350,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_admin_clinic.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
-
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="Course_ArcaneArts101_2" tags="" position="1225,225" size="100,100">This is Arcane Arts 2</tw-passagedata><tw-passagedata pid="21" name="Course_ArcaneArts101_3" tags="" position="100,350" size="100,100">This is Arcane Arts 3</tw-passagedata><tw-passagedata pid="22" name="Course_ArcaneArts101_4" tags="" position="225,350" size="100,100">This is Arcane Arts 4</tw-passagedata><tw-passagedata pid="23" name="Course_ArcaneArts101_5" tags="" position="350,350" size="100,100">This is Arcane Arts 5</tw-passagedata><tw-passagedata pid="24" name="Course_ArcaneArts101_Random" tags="" position="475,350" size="100,100">This is Arcane Arts Random</tw-passagedata><tw-passagedata pid="25" name="Course_ArcaneDisciplines101_1" tags="" position="600,350" size="100,100">&lt;div class=&quot;green&quot;&gt;I just learned how to quickly travel to Room 107.&lt;/div&gt;
+    &lt;&lt;speech jonathan&gt;&gt;
+        Come on in everyone and take your seats. Welcome to Arcane Disciplines, &lt;&lt;Player first p&gt;&gt;
+    &lt;&lt;/speech&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;dlg &#39;dlg&#39; 0&gt;&gt;
+            &lt;&lt;level 0&gt;&gt;
+                &lt;&lt;line &#39;Find a desk&#39;&gt;&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        For our new arrival, a bit of review for today.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Magic comes in many different forms. Some are useful in our daily lives, while others are situational. And the rest are either strictly forbidden or highly restricted.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 1&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Keep listening&#39;&gt;&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Take for example the Transmutation discipline. Through the various effects it offers you can do anything from clean a room to change lead into gold. As I am sure $npcs.juliette.name.formal has already taught everyone, different effects come with wildly different energy costs. Cleaning a room is pretty easy to do, so to it is by using magic. Transmuting lead into gold? Good luck doing that with your hands.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Other disciplines, like Restoration, are more useful when solving specific and relativily rare problems. Need to clean a room, you use Transmutation. Need to patch yourself up after an imp attack, use Restoration. Common sense applies in the use of magic as easily as it does during the rest of your life. Try to clean the blood from your wound is rather pointless. Trying to &quot;heal&quot; a room of its dirt is also rather pointless.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Speaking of healing, &lt;&lt;Player first&gt;&gt; have you learned the &lt;i&gt;$spellWords.effect.heal.latin&lt;/i&gt; Word yet?
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 2&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;No, not yet&#39;&gt;&gt;
+                    &lt;&lt;speech plr&gt;&gt;
+                        No instructor, I haven&#39;t.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Ah, well I will provide you with a manuscript of the &lt;i&gt;$spellWords.effect.heal.latin&lt;/i&gt; at the end of class. See me then. Few things in life are more critical than your health.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;&lt;tone negTone&gt;&gt;
+                        He looked so bored saying that. It is doubtful he could have said that with any less enthusiasm.
+                    &lt;&lt;/tone&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        I will explain a few of the other disciplines before I excuse all of you for your next classes.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 3&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Keep listening&#39;&gt;&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        One discipline is Conjuration. Effects in this discipline will allow you call items to you or, if the item is simple enough, to create from nothing but energy. Think an apple, or summoning a stone to your hand. Now that kind of summoning is very different from the Summoning discipline, which is a completely different concept. And quite restricted. Common sense says no one wants a bunch of untethered souls and ghosts floating all over the place.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Then you have Elemental magic. Keep in mind, individual elements are rarely used. Instead they tend to intertwine with themselves creating Elemental effects. Think harmful spells in general. But sometimes an individual element is useful, like when starting a fire. The water, air, or earth elements would all be quite detrimental to your efforts if you didn&#39;t separate them from fire.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Another example would be the Divination discipline. Notoriously difficult to master in any useful way, but still incredibly powerful if you do. The ability to predict near future events, even if just small ones, has a value that is hard to overestimate. But like a few other disciplines, it takes a great deal of practice to finally be able to use it in any meaningful way. The same idea applies to disciplines like Astromancy, star based magic, or Clockwork, the creation and enchantment of mechanical constructs.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 4&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Listen a bit more&#39;&gt;&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Then there is Animancy, giving the illusion of life to inanimate objects. Or how about Illusion, which allows you to alter appearances which includes your body and clothing.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Final example for today is Abjuration, who&#39;s effects include things like shields and making yourself more resistant to any number of things.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        And with that we will call it for today. I&#39;ll see you all tomorrow.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;&lt;tone negTone&gt;&gt;
+                        Without another he sits down in his chair and faces away from you and the other students.
+                    &lt;&lt;/tone&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 5&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Approach respectfully&#39;&gt;&gt;
+                    &lt;&lt;speech plr&gt;&gt;
+                        $npcs.jonathan.name.formal you said to see you after class?
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        Yes, of course. Here you are. This shouldn&#39;t take you too long to read. Have a good one.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;&lt;relGain jonathan 5&gt;&gt;
+                    &lt;&lt;printRelGain&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+                &lt;&lt;line &#39;Approach rudely&#39;&gt;&gt;
+                    &lt;&lt;speech plr&gt;&gt;
+                        You seem bored out of your mind. And your teaching shows it. You had something for me?
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech jonathan&gt;&gt;
+                        ...interesting choice of words when you have no clue who you&#39;re talking to or what you&#39;re talking about. It seems I missplaced the manuscipt, perhaps I will find before tomorrow&#39;s class. You may leave.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 6&gt;&gt;&lt;br&gt;
+                &lt;&lt;nobr&gt;&gt;
+                        &lt;div class=&#39;passage-links-grid-1&#39;&gt;
+                            &lt;&lt;button [[Leave | University_Hall_Classes]]&gt;&gt;
+                                &lt;&lt;set $unlockVar.locations.Floor1_Class_Room107.unlocked = true&gt;&gt;
+                                &lt;&lt;foundItem bookSpell spellHeal&gt;&gt;
+                                &lt;&lt;set $npcs.jonathan.hasMet = true&gt;&gt;
+                                &lt;&lt;SetTime 11&gt;&gt;
+                            &lt;&lt;/button&gt;&gt;
+                        &lt;/div&gt;
+                    &lt;&lt;/nobr&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+        &lt;&lt;/dlg&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="Course_ArcaneDisciplines101_Random" tags="" position="725,350" size="100,100"></tw-passagedata><tw-passagedata pid="27" name="Course_ArcaneLaw101_1" tags="" position="850,350" size="100,100"></tw-passagedata><tw-passagedata pid="28" name="Course_ArcaneLaw101_Random" tags="" position="975,350" size="100,100"></tw-passagedata><tw-passagedata pid="29" name="Course_ConservationMagic101_1" tags="" position="1100,350" size="100,100">&lt;div class=&quot;green&quot;&gt;I just learned how to quickly travel to Room 106.&lt;/div&gt;
+    &lt;&lt;speech juliette&gt;&gt;
+        Good morning everyone! Please sit down and drink a chill potion!
+    &lt;&lt;/speech&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;dlg &#39;dlg&#39; 0&gt;&gt;
+            &lt;&lt;level 0&gt;&gt;
+                &lt;&lt;line &#39;Take a seat&#39;&gt;&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        Alright everyone, we have a new practitioner to welcome to our humble little school. &lt;&lt;Player first&gt;&gt; would you mind introducing yourself to the class?
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 1&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Sure&#39; &gt;&gt;
+                    &lt;&lt;speech plr&gt;&gt;
+                        Sure, I&#39;m &lt;&lt;Player full&gt;&gt; and I just started here Saturday. Not much else to say really.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        Ah, not one for many words I see? Well thank you &lt;&lt;Player first&gt;&gt; and let us begin today&#39;s lesson.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+                &lt;&lt;line &#39;Pass&#39;&gt;&gt;
+                    &lt;&lt;speech plr&gt;&gt;
+                        I think I&#39;ll pass. Thank you though.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        Well public speaking isn&#39;t for everyone, so as you wish. Let us begin today&#39;s instruction.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 2&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Keep listening&#39;&gt;&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        As always, I am &lt;&lt;print $npcs.juliette.name.fullName()&gt;&gt; your neighborhood friendly Conservation of Magic instructor. Here, in this class, I will teach many of you how to control the amount of energy you force into your spells. And for some of you I help you avoid passing out, only to never wake again. Especially you &lt;&lt;Player formal p&gt;&gt; I will teach how to avoid draining yourself to death!
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;&lt;tone pos&gt;&gt;
+                        She is constantly smiling. It&#39;s kind of infectious, mainly because she keeps looking at and talking to me
+                    &lt;&lt;/tone&gt;&gt;
+                    &lt;br&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 3&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Watch and listen&#39;&gt;&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        The primary concept behind the conservation of magic means that there is always a price. For every spell you cast, there is a cost. Almost all of the time the cost is you get physically drained. Picture running two miles, at a full sprint no less, just to get an apple. You&#39;de be quite tired, right? Well now picture casting a spell to retrieve that apple from two miles away and to have it appear in your hand. Either way, your energy must be spent to accomplish the task.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        The good news is that draining yourself to power a spell is a lot short lived than that two mile run. If you aren&#39;t someone that normally works out, you are going to feel that run for days. But with magic, a short rest will do the trick. A quick nap also works. But my personal favorite? Meditation! But I will get to that in a minute.
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        You can also have a decent meal, drink certain potions, or, as some of you swear by, a consume energy drink. Honestly though, I tried one once. For the life of me, I didn&#39;t understand what all the hype is about. Blaghk!
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 4&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Good to know&#39;&gt;&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        Now then, meditation! Oh this exciting!! Meditation is a millennia old technique designed to help you get in touch with your inner self, or in other words your connection to magic. Now, unlike the unpracticed, meditation is not just used to calm yourself. It actually rejuvinates your mind and body by absorbing the magical essence that flows through and around us. 
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        Since I have already taught most of you the basics, today I will focus on you, &lt;&lt;Player first p&gt;&gt; The key to mediatating is to focus on, well nothing! Try to picture yourself on a tiny island surrounded by a roilling and rolling ocean. This ocean is your mind. Each wave, whether massive or small, is a thought or emotion. Your job is not get swept away. Stay on the island and just look around, don&#39;t reach out and don&#39;t stare at any one wave. Just watch them all pass on by with you remaining still, calm, and untouched by the turbulence.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 5&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Keep listening&#39;&gt;&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        If you succeed, even if only for a few moments, you will begin noticing two things. One, the waves get smaller. Eventually, with enough practice, the ocean will become smooth as glass. And you will have not a care in the world as you sit on your own little island. The second thing you will notice, is your exhaustion will drain away. The soreness in your muscles, the pain from a scratch or burn, the stress in your mind, all of them will lessen. Master this skill fully and you will see how just five minutes of meditation will leave you feeling like you slept for days on a bed made of clouds!
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;br&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        You might even be inclined to think such recovery in so short a period of time is miraculous. Alas, it is simply you mastering the ability to control your self and draw in the naturally rejuvinating magical essences that surround you.
+                    &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+            &lt;&lt;level 6&gt;&gt;&lt;br&gt;
+                &lt;&lt;line &#39;Keep listening&#39;&gt;&gt;
+                    &lt;&lt;speech juliette&gt;&gt;
+                        And with that, we are done for the day my practitioners! I hope you all have a great rest of your day and I will see you tomorrow!
+                    &lt;&lt;/speech&gt;&gt;
+                    &lt;&lt;tone pos&gt;&gt;
+                        She gives you one last glance and a smile before turning towards her desk. For some reason, she seems to like you.
+                    &lt;&lt;/tone&gt;&gt;
+                    &lt;&lt;relGain juliette 5&gt;&gt;
+                    &lt;br&gt;
+                    &lt;br&gt;
+                    &lt;&lt;printRelGain&gt;&gt;
+                    &lt;br&gt;
+                    &lt;br&gt;
+                    &lt;&lt;nobr&gt;&gt;
+                        &lt;div class=&#39;passage-links-grid-1&#39;&gt;
+                            &lt;&lt;button [[Leave | Skill_Meditation_Unlock]]&gt;&gt;
+                                &lt;&lt;set $skillVars.meditation.unlocked = true&gt;&gt;
+                                &lt;&lt;set $unlockVar.userInterface.actions = true&gt;&gt;
+                                &lt;&lt;set $unlockVar.locations.Floor1_Class_Room106.unlocked = true&gt;&gt;
+                                &lt;&lt;set $npcs.juliette.hasMet = true&gt;&gt;
+                                &lt;&lt;SetTime 10&gt;&gt;
+                            &lt;&lt;/button&gt;&gt;
+                        &lt;/div&gt;
+                    &lt;&lt;/nobr&gt;&gt;
+                &lt;&lt;/line&gt;&gt;
+            &lt;&lt;/level&gt;&gt;
+        &lt;&lt;/dlg&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Course_ConservationMagic101_Random" tags="" position="1225,350" size="100,100"></tw-passagedata><tw-passagedata pid="31" name="Course_IncursionHistory_1" tags="" position="100,475" size="100,100"></tw-passagedata><tw-passagedata pid="32" name="Course_IncursionHistory_Random" tags="" position="225,475" size="100,100"></tw-passagedata><tw-passagedata pid="33" name="WakingUp1" tags="" position="350,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_admin_clinic.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
     You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren&#39;t anywhere you remember ever being before. The smell is unfamiliar. The bed you are laying in, is different. Even the air feels different. Thicker, maybe?
 
     You slowly open your eyes, feeling groggy and disoriented.
@@ -5452,7 +5810,6 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;Oh good, you are awake!&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Continue | WakingUp2]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="WakingUp2" tags="" position="475,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_admin_clinic.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
-
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;
         My name is $npcs.amy.name.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn&#39;t here when you woke, no doubt you are rather confused.
     &lt;&lt;/speech&gt;&gt;\
@@ -5465,14 +5822,14 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.name.formal is right, you are just confused. Very, very confused.
 
-    &lt;&lt;button [[Continue | WakingUp3]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="WakingUp3" tags="" position="600,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_admin_clinic.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
-
+    &lt;&lt;button [[Continue | WakingUp3]]&gt;&gt;
+        &lt;&lt;set $npcs.amy.hasMet = true&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="WakingUp3" tags="" position="600,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_admin_clinic.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
     $npcs.amy.name.formal sees you staring at the candles.
 
-    &lt;&lt;speech &quot;amy&quot;&gt;&gt;I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on forehead and maybe some grogginess, you will be just fine.&lt;&lt;/speech&gt;&gt;\
+    &lt;&lt;speech &quot;amy&quot;&gt;&gt;I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on your forehead and maybe some grogginess, you will be just fine.&lt;&lt;/speech&gt;&gt;\
 
-    &lt;&lt;button [[Someone enters the room | WakingUp4]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="WakingUp4" tags="" position="725,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_admin_clinic.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;\
-
+    &lt;&lt;button [[Someone enters the room | WakingUp4]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="WakingUp4" tags="" position="725,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_admin_clinic.jpg&quot; alt=&quot;medical wing photo&quot;/&gt;
     You see $npcs.amy.name.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
 
     &lt;&lt;speech &quot;amy&quot;&gt;&gt;
@@ -5647,6 +6004,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;set $plrSpkChoice = &quot;I am so confused... What am I wearing and what is going on?&quot;&gt;&gt;
 
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="WakingUp5" tags="" position="850,475" size="100,100">&lt;&lt;silently&gt;&gt;
+        &lt;&lt;set $npcs.janessa.hasMet = true&gt;&gt;
         &lt;&lt;if $plr.body.static.sex == &quot;female&quot;&gt;&gt;
             &lt;&lt;set $plr.name.prefix = &quot;Ms.&quot;&gt;&gt;
         &lt;&lt;elseif $plr.body.static.sex == &quot;male&quot;&gt;&gt;
@@ -5750,7 +6108,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;speech &quot;janessa&quot;&gt;&gt;Let&#39;s go.&lt;&lt;/speech&gt;&gt;\
 
-    &lt;&lt;button [[Follow her | WakingUp8]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="WakingUp8" tags="" position="1225,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_mainroad.jpg&quot;/&gt;\
+    &lt;&lt;button [[Follow her | WakingUp8]]&gt;&gt;
+        &lt;&lt;set $npcs.barden.hasMet = true&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="WakingUp8" tags="" position="1225,475" size="100,100">&lt;img class=&quot;scene&quot; src=&quot;img/locations/university_mainroad.jpg&quot;/&gt;\
 
     $npcs.janessa.name.firstName leads you out of the dean&#39;s study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
     
@@ -5928,33 +6288,39 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="Out_of_Stamina" tags="" position="350,725" size="100,100">&lt;&lt;speech plr&gt;&gt;I am so tired...maybe I can manage to get back to my bed...&lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;setStats plr stamina 1&gt;&gt;
         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
             &lt;&lt;button [[Space out | Residence_Starr_PlayerRoom_Resting]]&gt;&gt;
-                &lt;&lt;setStats plr stamina 1&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
     &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="Out_of_Life" tags="" position="475,725" size="100,100">&lt;&lt;speech plr&gt;&gt;Holy shit, there is so much blood...is that really all mine? I had no idea there....could.....be......so.......muchhh..........&lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;setStats plr life 5&gt;&gt;
         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
             &lt;&lt;button [[The life ebbs from your broken body | University_Admin_Clinic]]&gt;&gt;
-                &lt;&lt;setStats plr life 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="Out_of_Sanity" tags="" position="600,725" size="100,100">&lt;&lt;speech plr&gt;&gt;ARGHHHGHHHHHHHH!!!! IT&#39;S ALL A LIE!?!?!?&lt;&lt;/speech&gt;&gt;
-
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="Out_of_Sanity" tags="" position="600,725" size="100,100">&lt;&lt;speech plr&gt;&gt;ARGHHHGHHHHHHHH!!!! IT&#39;S ALL A LIE!?!?!? THE CAKE!! THE CAKEEE!!!!!&lt;&lt;/speech&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;setStats plr sanity 2&gt;&gt;
+        &lt;div class=&#39;passage-links-grid-1&#39;&gt;
+            &lt;&lt;button [[(mental break) | University_MainRoad]]&gt;&gt;
+            &lt;&lt;/button&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="Skill_Meditation_Unlock" tags="" position="725,725" size="100,100">&lt;&lt;speech plr&gt;&gt;
+        I just learned how to use the Meditation skill! This will allow me to renew and recharge myself at the cost of just a few minutes of my time. I think this will prove to be much more efficient than just laying down and hoping to fall asleep. And as the Instructor stated, I should get better at it over time.
+    &lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
-            &lt;&lt;button &#39;(mental break)&#39;&gt;&gt;
-                &lt;&lt;goto &#39;University_MainRoad&#39;&gt;&gt;
-                &lt;&lt;setStats plr sanity 2&gt;&gt;
+            &lt;&lt;button [[Leave | University_Hall_Classes]]&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="Spell_Success" tags="" position="725,725" size="100,100">&lt;&lt;set $unlockVar.userInterface.spells = false&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="Spell_Success" tags="" position="850,725" size="100,100">&lt;&lt;set $unlockVar.userInterface.spells = false&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;My &lt;i&gt;$spellCastVar.spellEffect&lt;/i&gt; spell was cast successfully on the present room.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Continue | previous()]]&gt;&gt;
         &lt;&lt;set $unlockVar.userInterface.spells = true&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="Event_Unlock_Spell" tags="" position="850,725" size="100,100">&lt;&lt;if visited() &lt; 2&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Event_Unlock_Spell" tags="" position="975,725" size="100,100">&lt;&lt;if visited() &lt; 2&gt;&gt;
         &lt;div class=&quot;achievebg&quot;&gt;
             &lt;h1 class=&#39;achieve text-center&#39;&gt;Huge Advancement!&lt;/h1&gt;
         &lt;/div&gt;
@@ -5969,7 +6335,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;speech plr&gt;&gt;The book describes &lt;i&gt;$eventVar.spell.name&lt;/i&gt; as &lt;i&gt;&quot;$eventVar.spell.description&quot;&lt;/i&gt;&lt;&lt;/speech&gt;&gt;
     &lt;&lt;/if&gt;&gt;\
     &lt;&lt;button [[Continue | previous()]]&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Residence_Starr_Courtyard" tags="outdoors" position="975,725" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_courtyard.jpg&#39;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="Residence_Starr_Courtyard" tags="outdoors" position="1100,725" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_courtyard.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $eventVar.inCombat == false&gt;&gt;
@@ -5995,7 +6361,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;goto &#39;Spell_Combat&#39;&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="Residence_Starr_BanquetHall" tags="room" position="1100,725" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_banquethall.webp&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="Residence_Starr_BanquetHall" tags="room" position="1225,725" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_banquethall.webp&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $roomVars.Residence_Starr_BanquetHall.clean &gt;= 20&gt;&gt;
@@ -6018,7 +6384,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="Residence_Starr_Bathroom" tags="room" position="1225,725" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_bathroom.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="Residence_Starr_Bathroom" tags="room" position="100,850" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_bathroom.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;It is definitely a bathroom. Judging by the state of it, it&#39;s &lt;&lt;roomComments &#39;clean&#39;&gt;&gt;&lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
@@ -6027,7 +6393,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="Residence_Starr_EntryHall" tags="" position="100,850" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_entryhall.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="Residence_Starr_EntryHall" tags="" position="225,850" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_entryhall.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
 
     You are in the entryway of the residence.
@@ -6047,12 +6413,12 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="Residence_Starr_BedroomHall" tags="" position="225,850" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_bedroomhall.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="Residence_Starr_BedroomHall" tags="" position="350,850" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_bedroomhall.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
 
     Looks like the bedroom hallway.
     &lt;&lt;nobr&gt;&gt;
-        &lt;&lt;TimeCheck 0000 2400&gt;&gt;
+        &lt;&lt;TimeCheck &#39;0000&#39; &#39;2400&#39;&gt;&gt;
             &lt;&lt;NpcAvailable janessa Janessa_CourseOverview&gt;&gt;
         &lt;&lt;/TimeCheck&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
@@ -6071,7 +6437,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="Residence_Starr_JanessaRoom" tags="room" position="350,850" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Residence_Starr_JanessaRoom" tags="room" position="475,850" size="100,100">&lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.rooms.roomJanessa == false&gt;&gt;
             &lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_janessaroom.jpg&#39;&gt;&lt;br&gt;
 
@@ -6093,7 +6459,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
 
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Residence_Starr_Kitchen" tags="room" position="475,850" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_kitchen.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="Residence_Starr_Kitchen" tags="room" position="600,850" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/residence_starr_kitchen.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;She was right, this place hasn&#39;t been used in years. As far as it&#39;s condition is concerned, it&#39;s &lt;&lt;roomComments &#39;clean&#39;&gt;&gt;&lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
@@ -6102,7 +6468,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="Residence_Starr_PlayerRoom" tags="room playerHome" position="600,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/residence_starr_playerroom.webp&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="Residence_Starr_PlayerRoom" tags="room playerHome" position="725,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/residence_starr_playerroom.webp&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur != $roomVars.Residence_Starr_PlayerRoom.bookspell.max || $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur != $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur&gt;&gt;
@@ -6173,7 +6539,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;/if&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="Residence_Starr_PlayerRoom_Cleaning" tags="minorEvent" position="725,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/plrroom.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="Residence_Starr_PlayerRoom_Cleaning" tags="minorEvent" position="850,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/plrroom.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $roomVars.Residence_Starr_PlayerRoom.clean &gt;= 21&gt;&gt;
@@ -6195,7 +6561,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
             &lt;&lt;button [[Continue | Residence_Starr_PlayerRoom]]&gt;&gt;&lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="Residence_Starr_PlayerRoom_Searching" tags="minorEvent" position="850,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/searchclutter.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Residence_Starr_PlayerRoom_Searching" tags="minorEvent" position="975,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/searchclutter.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         /* &lt;&lt;if visited() == 1&gt;&gt;
@@ -6210,11 +6576,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;button [[Look back at your room | Residence_Starr_PlayerRoom]]&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Residence_Starr_PlayerRoom_Sleeping" tags="" position="975,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/residence_starr_resting.jpg&#39;&gt;\
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Residence_Starr_PlayerRoom_Sleeping" tags="" position="1100,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/residence_starr_resting.jpg&#39;&gt;\
     &lt;&lt;speech plr&gt;&gt;Try as I might, I simply cannot sleep. Letting my mind go blank, counting sheep, nothing is working! Nevermind on this idea I guess.&lt;&lt;/speech&gt;&gt;\
 
     &lt;&lt;button [[Stand up | Residence_Starr_PlayerRoom]]&gt;&gt;
-    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Residence_Starr_PlayerRoom_Resting" tags="" position="1100,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/residence_starr_resting.jpg&#39;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="Residence_Starr_PlayerRoom_Resting" tags="" position="1225,850" size="100,100">&lt;img class=&quot;scene&quot; src=&#39;img/locations/residence_starr_resting.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     You lay down on the &lt;&lt;roomComments &#39;bed&#39;&gt;&gt; bed and feel tension and tiredness leave you.
 
@@ -6223,7 +6589,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
             &lt;&lt;button [[Stand up | Residence_Starr_PlayerRoom]]&gt;&gt;&lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="Residence_Starr_Courtyard_Standard" tags="outdoors" position="1225,850" size="100,100">&lt;&lt;speech plr&gt;&gt;It sure is imposing, even if it is in complete disrepair.&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="Residence_Starr_Courtyard_Squirrel" tags="outdoors combat day1" position="100,975" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="Residence_Starr_Courtyard_Standard" tags="outdoors" position="100,975" size="100,100">&lt;&lt;speech plr&gt;&gt;It sure is imposing, even if it is in complete disrepair.&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="Residence_Starr_Courtyard_Squirrel" tags="outdoors combat day1" position="225,975" size="100,100">&lt;&lt;nobr&gt;&gt;
         &lt;&lt;done&gt;&gt;
             &lt;&lt;run $spellCastVar.availableTargets.critters.pushUnique(&#39;$critters.aggressiveSquirrel&#39;)&gt;&gt;
             &lt;&lt;enemyStatBars &#39;aggressiveSquirrel&#39;&gt;&gt;
@@ -6239,8 +6605,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;span class=&quot;cyan&quot;&gt;Stamina: &lt;/span&gt;&lt;span id=&#39;enemystamina&#39;&gt;&lt;/span&gt;\
             &lt;/div&gt;\
     &lt;/div&gt;
-    &lt;&lt;speech plr&gt;&gt;What is that?!? $critters.aggressiveSquirrel.description&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="Residence_Starr_Courtyard_Janessa" tags="outdoors minorEvent day2" position="225,975" size="100,100">Fill in event... will do later.</tw-passagedata><tw-passagedata pid="73" name="Residence_Starr_Courtyard_Shimmer" tags="outdoors minorEvent day3" position="350,975" size="100,100">&lt;&lt;speech plr&gt;&gt;There is a shimmer above this place, I can barely see it, but it is there.&lt;&lt;/speech&gt;&gt;
-    &lt;&lt;setDisc plr random 0.1&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="Residence_Starr_Courtyard_Imp" tags="outdoors combat night1" position="475,975" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;speech plr&gt;&gt;What is that?!? $critters.aggressiveSquirrel.description&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="Residence_Starr_Courtyard_Janessa" tags="outdoors minorEvent day2" position="350,975" size="100,100">Fill in event... will do later.</tw-passagedata><tw-passagedata pid="74" name="Residence_Starr_Courtyard_Shimmer" tags="outdoors minorEvent day3" position="475,975" size="100,100">&lt;&lt;speech plr&gt;&gt;There is a shimmer above this place, I can barely see it, but it is there.&lt;&lt;/speech&gt;&gt;
+    &lt;&lt;setDisc plr random 0.1&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="Residence_Starr_Courtyard_Imp" tags="outdoors combat night1" position="600,975" size="100,100">&lt;&lt;nobr&gt;&gt;
         &lt;&lt;done&gt;&gt;
             &lt;&lt;CombatStart &#39;tinyImp&#39;&gt;&gt;
         &lt;&lt;/done&gt;&gt;
@@ -6254,11 +6620,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;span class=&quot;cyan&quot;&gt;Stamina: &lt;/span&gt;&lt;span id=&#39;enemystamina&#39;&gt;&lt;/span&gt;\
             &lt;/div&gt;\
     &lt;/div&gt;
-    &lt;&lt;speech plr&gt;&gt;What the fuck am I looking at? $critters.tinyImp.description&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="Residence_Starr_Courtyard_Whisper" tags="outdoors minorEvent night2" position="600,975" size="100,100">&lt;&lt;speech ghost&gt;&gt;
+    &lt;&lt;speech plr&gt;&gt;What the fuck am I looking at? $critters.tinyImp.description&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Residence_Starr_Courtyard_Whisper" tags="outdoors minorEvent night2" position="725,975" size="100,100">&lt;&lt;speech ghost&gt;&gt;
         &lt;span class=&#39;blur&#39;&gt;You must learn. Master. Will and reality entwined.&lt;/span&gt;
     &lt;&lt;/speech&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;There&#39;s that familiar chill running down my spine....&lt;&lt;/speech&gt;&gt;
-    &lt;&lt;setDisc plr random 0.2&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Residence_Starr_Courtyard_Feeling" tags="outdoors minorEvent night3" position="725,975" size="100,100">&lt;&lt;speech plr&gt;&gt;The front of this place always leaves me feeling, small.&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="University_MainRoad" tags="" position="850,975" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_mainroad.jpg&#39;&gt;
+    &lt;&lt;setDisc plr random 0.2&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="Residence_Starr_Courtyard_Feeling" tags="outdoors minorEvent night3" position="850,975" size="100,100">&lt;&lt;speech plr&gt;&gt;The front of this place always leaves me feeling, small.&lt;&lt;/speech&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="University_MainRoad" tags="" position="975,975" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_mainroad.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     The road is lined with many houses, some small and some really big.
     
@@ -6274,7 +6640,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 10 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="University_MainCourtyard" tags="" position="975,975" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_maincourtyard.webp&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="University_MainCourtyard" tags="" position="1100,975" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_maincourtyard.webp&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech &#39;plr&#39;&gt;&gt;Yup, that&#39;s a magical looking courtyard alright.&lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
@@ -6286,7 +6652,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 5 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="University_Gate" tags="" position="1100,975" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_gate.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="University_Gate" tags="" position="1225,975" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_gate.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech &#39;plr&#39;&gt;&gt;Now that is a gate! Sadly, it looks very much locked. And the air seems to shimmer along the outer wall. An illusion? Maybe a shield? Not sure yet.&lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
@@ -6295,7 +6661,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="University_Entrance" tags="" position="1225,975" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_entrance.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="University_Entrance" tags="" position="100,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_entrance.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech &#39;plr&#39;&gt;&gt;In we go...&lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
@@ -6325,44 +6691,44 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 5 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="University_Hall_Admin" tags="" position="100,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_admin.jpg&#39;&gt;
-    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="University_Hall_Labs" tags="" position="225,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_labs.jpg&#39;&gt;
-    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="University_Hall_Shops" tags="" position="350,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_shops.jpg&#39;&gt;
-    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="University_Hall_Classes" tags="" position="475,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_classes.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="University_Hall_Admin" tags="" position="225,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_admin.jpg&#39;&gt;
+    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="University_Hall_Labs" tags="" position="350,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_labs.jpg&#39;&gt;
+    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="University_Hall_Shops" tags="" position="475,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_shops.jpg&#39;&gt;
+    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="University_Hall_Classes" tags="" position="600,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_classes.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         Here be classrooms!
     &lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;passage-links-grid-2&#39;&gt;
-            &lt;&lt;TimeCheck 0700 0900 weekdays&gt;&gt;
+            &lt;&lt;TimeCheck &#39;0700&#39; &#39;0900&#39; weekdays&gt;&gt;
                 &lt;&lt;button [[Room 105 | Floor1_Class_Room105]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/TimeCheck&gt;&gt;
-            &lt;&lt;TimeCheck 0700 0900 cycleNoWeekend&gt;&gt;
+            &lt;&lt;TimeCheck &#39;0700&#39; &#39;0900&#39; cycleNoWeekend&gt;&gt;
                 &lt;&lt;button [[Room 105 (locked) | Floor1_Class_Room105_Closed]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/TimeCheck&gt;&gt;
 
-            &lt;&lt;TimeCheck 0800 1000 weekdays&gt;&gt;
+            &lt;&lt;TimeCheck &#39;0800&#39; &#39;1000&#39; weekdays&gt;&gt;
                 &lt;&lt;button [[Room 106 | Floor1_Class_Room106]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/TimeCheck&gt;&gt;
-            &lt;&lt;TimeCheck 0800 1000 cycleNoWeekend&gt;&gt;
+            &lt;&lt;TimeCheck &#39;0800&#39; &#39;1000&#39; cycleNoWeekend&gt;&gt;
                 &lt;&lt;button [[Room 106 (locked) | Floor1_Class_Room106_Closed]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/TimeCheck&gt;&gt;
 
-            &lt;&lt;TimeCheck 0900 1100 weekdays&gt;&gt;
+            &lt;&lt;TimeCheck &#39;0900&#39; &#39;1100&#39; weekdays&gt;&gt;
                 &lt;&lt;button [[Room 107 | Floor1_Class_Room107]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/TimeCheck&gt;&gt;
-            &lt;&lt;TimeCheck 0900 1100 cycleNoWeekend&gt;&gt;
+            &lt;&lt;TimeCheck &#39;0900&#39; &#39;1100&#39; cycleNoWeekend&gt;&gt;
                 &lt;&lt;button [[Room 107 (locked) | Floor1_Class_Room107_Closed]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
@@ -6378,22 +6744,22 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="University_Hall_Crafts" tags="" position="600,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_crafts.jpg&#39;&gt;
-    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="University_Hall_Professors" tags="" position="725,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_professors.jpg&#39;&gt;
-    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="University_Librarium" tags="" position="850,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_librarium.jpg&#39;&gt;
-    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="University_Hall_Basement" tags="" position="975,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_basement.webp&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="University_Hall_Crafts" tags="" position="725,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_crafts.jpg&#39;&gt;
+    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="University_Hall_Professors" tags="" position="850,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_professors.jpg&#39;&gt;
+    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="University_Librarium" tags="" position="975,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_librarium.jpg&#39;&gt;
+    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="University_Hall_Basement" tags="" position="1100,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_hall_basement.webp&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         Only a little eerie, at least it&#39;s not an actual dungeon.
     &lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
-            &lt;&lt;TimeCheck 1100 1300 weekdays&gt;&gt;
+            &lt;&lt;TimeCheck &#39;1100&#39; &#39;1300&#39; weekdays&gt;&gt;
                 &lt;&lt;button [[Room B-3 | Basement_Class_RoomB3]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/TimeCheck&gt;&gt;
-            &lt;&lt;TimeCheck 1100 1300 cycleNoWeekend&gt;&gt;
+            &lt;&lt;TimeCheck &#39;1100&#39; &#39;1300&#39; cycleNoWeekend&gt;&gt;
                 &lt;&lt;button [[Room B-3 (locked) | Basement_Class_RoomB3_Closed]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
@@ -6403,8 +6769,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="University_Admin_Deanstudy" tags="" position="1100,1100" size="100,100"></tw-passagedata><tw-passagedata pid="90" name="University_Admin_Clinic" tags="" position="1225,1100" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_admin_clinic.jpg&#39;&gt;</tw-passagedata><tw-passagedata pid="91" name="University_Admin_ProfessorHall" tags="" position="100,1225" size="100,100"></tw-passagedata><tw-passagedata pid="92" name="Basement_Class_RoomB3" tags="" position="225,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/basement_class_roomb3.jpg&#39;&gt;
-    &lt;&lt;Updates noClass&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="Basement_Class_RoomB3_Closed" tags="" position="350,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="90" name="University_Admin_Deanstudy" tags="" position="1225,1100" size="100,100"></tw-passagedata><tw-passagedata pid="91" name="University_Admin_Clinic" tags="" position="100,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/university_admin_clinic.jpg&#39;&gt;</tw-passagedata><tw-passagedata pid="92" name="University_Admin_ProfessorHall" tags="" position="225,1225" size="100,100"></tw-passagedata><tw-passagedata pid="93" name="Basement_Class_RoomB3" tags="" position="350,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/basement_class_roomb3.jpg&#39;&gt;
+    &lt;&lt;Updates noClass&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="Basement_Class_RoomB3_Closed" tags="" position="475,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         The door is locked.
@@ -6415,8 +6781,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="Gymnasium" tags="" position="475,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/gymnasium.jpg&#39;&gt;
-    &lt;&lt;Updates&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="Floor1_Class_Room105" tags="" position="600,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor1_class_room105.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="Gymnasium" tags="" position="600,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/gymnasium.jpg&#39;&gt;
+    &lt;&lt;Updates&gt;&gt;
+    &lt;&lt;button [[Go Back | University_Hall_Classes]]&gt;&gt;
+        &lt;&lt;calcTime 5 0&gt;&gt;
+    &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="Floor1_Class_Room105" tags="" position="725,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor1_class_room105.jpg&#39;&gt;
     &lt;&lt;Updates noClass&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $dateTime.hour &lt; 8&gt;&gt;
@@ -6438,7 +6807,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;else&gt;&gt;
                 &lt;&lt;ClassLectures arcanearts101&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="Floor1_Class_Room105_Closed" tags="" position="725,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="Floor1_Class_Room105_Closed" tags="" position="850,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         The door is locked.
@@ -6449,8 +6818,29 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="Floor1_Class_Room106" tags="" position="850,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor1_class_room106.jpg&#39;&gt;
-    &lt;&lt;Updates noClass&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="Floor1_Class_Room106_Closed" tags="" position="975,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="Floor1_Class_Room106" tags="" position="975,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor1_class_room106.jpg&#39;&gt;
+    &lt;&lt;Updates noClass&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;if $dateTime.hour &lt; 9&gt;&gt;
+            &lt;&lt;speech juliette&gt;&gt;
+                We start at 09:00 $plr.name.formal, but you know what they say, early bird eats the mouse! Yes, I know, that isn&#39;t quite the right saying. Anyways, feel free to take a seat if you have nowhere else to go and class will start soon!
+            &lt;&lt;/speech&gt;&gt;
+            &lt;br&gt;
+            &lt;&lt;nobr&gt;&gt;
+                &lt;div class=&#39;passage-links-grid-1&#39;&gt;
+                    &lt;&lt;button [[Sit down | Floor1_Class_Room106]]&gt;&gt;
+                        &lt;&lt;SetTime 9&gt;&gt;
+                    &lt;&lt;/button&gt;&gt;
+                    &lt;&lt;button [[Go Back | University_Hall_Classes]]&gt;&gt;
+                        &lt;&lt;calcTime 0 5&gt;&gt;
+                    &lt;&lt;/button&gt;&gt;
+                &lt;/div&gt;
+            &lt;&lt;/nobr&gt;&gt;
+
+            &lt;&lt;else&gt;&gt;
+                &lt;&lt;ClassLectures conservation101&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="Floor1_Class_Room106_Closed" tags="" position="1100,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         The door is locked.
@@ -6461,7 +6851,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="Floor1_Class_Room107" tags="" position="1100,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor1_class_room107.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="Floor1_Class_Room107" tags="" position="1225,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor1_class_room107.jpg&#39;&gt;
     &lt;&lt;Updates noClass&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $dateTime.hour &lt; 10&gt;&gt;
@@ -6477,11 +6867,9 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;/div&gt;
             &lt;&lt;/nobr&gt;&gt;
             &lt;&lt;else&gt;&gt;
-                &lt;&lt;speech jonathan&gt;&gt;
-                    Hello everyone, and welcome $plr.name.formal to Arcane Disciplines 101.
-                &lt;&lt;/speech&gt;&gt;
+                &lt;&lt;ClassLectures arcanedisciplines101&gt;&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="Floor1_Class_Room107_Closed" tags="" position="1225,1225" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="Floor1_Class_Room107_Closed" tags="" position="100,1350" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         The door is locked.
@@ -6492,19 +6880,19 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="Hall_Floor2" tags="" position="100,1350" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/hall_floor2.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="Hall_Floor2" tags="" position="225,1350" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/hall_floor2.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         This is the second floor of the classroom wing.
     &lt;&lt;/speech&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;passage-links-grid-1&#39;&gt;
-            &lt;&lt;TimeCheck 1000 1200 weekdays&gt;&gt;
+            &lt;&lt;TimeCheck &#39;1000&#39; &#39;1200&#39; weekdays&gt;&gt;
                 &lt;&lt;button [[Room 205 | Floor2_Class_Room205]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/TimeCheck&gt;&gt;
-            &lt;&lt;TimeCheck 1000 1200 cycleNoWeekend&gt;&gt;
+            &lt;&lt;TimeCheck &#39;1000&#39; &#39;1200&#39; cycleNoWeekend&gt;&gt;
                 &lt;&lt;button [[Room 205 (locked) | Floor2_Class_Room205_Closed]]&gt;&gt;
                     &lt;&lt;calcTime 0 5&gt;&gt;
                 &lt;&lt;/button&gt;&gt;
@@ -6514,8 +6902,8 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="Floor2_Class_Room205" tags="" position="225,1350" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor2_class_room205.jpg&#39;&gt;
-    &lt;&lt;Updates noClass&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="Floor2_Class_Room205_Closed" tags="" position="350,1350" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="Floor2_Class_Room205" tags="" position="350,1350" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/floor2_class_room205.jpg&#39;&gt;
+    &lt;&lt;Updates noClass&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="Floor2_Class_Room205_Closed" tags="" position="475,1350" size="100,100">&lt;img class=&#39;scene&#39; src=&#39;img/locations/closed_wood_door.jpg&#39;&gt;
     &lt;&lt;Updates&gt;&gt;
     &lt;&lt;speech plr&gt;&gt;
         The door is locked.
@@ -6526,7 +6914,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;calcTime 0 5&gt;&gt;
             &lt;&lt;/button&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="Artificer" tags="" position="475,1350" size="100,100"></tw-passagedata><tw-passagedata pid="105" name="Sigilarium" tags="" position="600,1350" size="100,100"></tw-passagedata><tw-passagedata pid="106" name="University_Labs_Conservatorium" tags="" position="725,1350" size="100,100"></tw-passagedata><tw-passagedata pid="107" name="University_Labs_Leynode" tags="" position="850,1350" size="100,100"></tw-passagedata><tw-passagedata pid="108" name="University_Labs_Pentadendrix" tags="" position="975,1350" size="100,100"></tw-passagedata><tw-passagedata pid="109" name="University_Shops_Exchange" tags="" position="1100,1350" size="100,100"></tw-passagedata><tw-passagedata pid="110" name="University_Shops_Cafeteria" tags="" position="1225,1350" size="100,100"></tw-passagedata><tw-passagedata pid="111" name="BackgroundCar1" tags="" position="100,1475" size="100,100">A few images find their way into your mind, but they are blurry. Almost like they&#39;re old memories mostly faded with time.
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="Artificer" tags="" position="600,1350" size="100,100"></tw-passagedata><tw-passagedata pid="106" name="Sigilarium" tags="" position="725,1350" size="100,100"></tw-passagedata><tw-passagedata pid="107" name="University_Labs_Conservatorium" tags="" position="850,1350" size="100,100"></tw-passagedata><tw-passagedata pid="108" name="University_Labs_Leynode" tags="" position="975,1350" size="100,100"></tw-passagedata><tw-passagedata pid="109" name="University_Labs_Pentadendrix" tags="" position="1100,1350" size="100,100"></tw-passagedata><tw-passagedata pid="110" name="University_Shops_Exchange" tags="" position="1225,1350" size="100,100"></tw-passagedata><tw-passagedata pid="111" name="University_Shops_Cafeteria" tags="" position="100,1475" size="100,100"></tw-passagedata><tw-passagedata pid="112" name="BackgroundCar1" tags="" position="225,1475" size="100,100">A few images find their way into your mind, but they are blurry. Almost like they&#39;re old memories mostly faded with time.
 
     You can remember a car, a windy road, and the bright sun in the sky. 
     
@@ -6539,7 +6927,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was driving with my family | WakingUp7]]&gt;&gt;
         &lt;&lt;set $plrSpkChoice = &quot;All I remember was driving with three other people. I think they were my family. But that&#39;s it.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="BackgroundCar2" tags="" position="225,1475" size="100,100"></tw-passagedata><tw-passagedata pid="113" name="BackgroundCar3" tags="" position="350,1475" size="100,100"></tw-passagedata><tw-passagedata pid="114" name="BackgroundFire1" tags="" position="475,1475" size="100,100">As you think to yourself and try to remember you can&#39;t help but feel like so many of your previous memories are out of reach. Like time has washed them away.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="BackgroundCar2" tags="" position="350,1475" size="100,100"></tw-passagedata><tw-passagedata pid="114" name="BackgroundCar3" tags="" position="475,1475" size="100,100"></tw-passagedata><tw-passagedata pid="115" name="BackgroundFire1" tags="" position="600,1475" size="100,100">As you think to yourself and try to remember you can&#39;t help but feel like so many of your previous memories are out of reach. Like time has washed them away.
 
     But you do remember a huge party and there were dozens of people in a really nice house.
 
@@ -6550,7 +6938,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was at a party with my friends | WakingUp7]]&gt;&gt;
         &lt;&lt;set $plrSpkChoice = &quot;I think I was at a party and I&#39;m pretty sure they were all friends of mine. But I can&#39;t remember anything else.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="BackgroundFire2" tags="" position="600,1475" size="100,100"></tw-passagedata><tw-passagedata pid="116" name="BackgroundFire3" tags="" position="725,1475" size="100,100"></tw-passagedata><tw-passagedata pid="117" name="BackgroundHostage1" tags="" position="850,1475" size="100,100">You can barely recall anything, the memories are so faded. You remember being at a house that seems familiar to you.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="BackgroundFire2" tags="" position="725,1475" size="100,100"></tw-passagedata><tw-passagedata pid="117" name="BackgroundFire3" tags="" position="850,1475" size="100,100"></tw-passagedata><tw-passagedata pid="118" name="BackgroundHostage1" tags="" position="975,1475" size="100,100">You can barely recall anything, the memories are so faded. You remember being at a house that seems familiar to you.
 
     And smelling something delicious in the air. The only other thing you can pick-out is seeing a figure, not stranger, but someone you loved.
 
@@ -6561,7 +6949,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I think I was at home | WakingUp7]]&gt;&gt;
     &lt;&lt;set $plrSpkChoice = &quot;I can barely remember, but I think I was at home with my spouse. Beyond that, I don&#39;t know.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="BackgroundHostage2" tags="" position="975,1475" size="100,100"></tw-passagedata><tw-passagedata pid="119" name="BackgroundHostage3" tags="" position="1100,1475" size="100,100"></tw-passagedata><tw-passagedata pid="120" name="BackgroundChase1" tags="" position="1225,1475" size="100,100">You take a second and think. You can remember a few things, but its almost like the rest of the memories are out of reach.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="BackgroundHostage2" tags="" position="1100,1475" size="100,100"></tw-passagedata><tw-passagedata pid="120" name="BackgroundHostage3" tags="" position="1225,1475" size="100,100"></tw-passagedata><tw-passagedata pid="121" name="BackgroundChase1" tags="" position="100,1600" size="100,100">You take a second and think. You can remember a few things, but its almost like the rest of the memories are out of reach.
 
     You recall a forest, a campfire, and tents in a clearing. You were sitting at the campfire holding a cup of something. Coffee! It was coffee.
 
@@ -6574,7 +6962,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was camping in the woods | WakingUp7]]&gt;&gt;
         &lt;&lt;set $plrSpkChoice = &quot;I was in the woods, camping. There might have been others there, but I don&#39;t remember anything else.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="BackgroundChase2" tags="" position="100,1600" size="100,100"></tw-passagedata><tw-passagedata pid="122" name="BackgroundChase3" tags="" position="225,1600" size="100,100"></tw-passagedata><tw-passagedata pid="123" name="BackgroundInsanity1" tags="" position="350,1600" size="100,100">As you think hard to yourself, searching for memories of what might have happened you recall a few weak images.
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="BackgroundChase2" tags="" position="225,1600" size="100,100"></tw-passagedata><tw-passagedata pid="123" name="BackgroundChase3" tags="" position="350,1600" size="100,100"></tw-passagedata><tw-passagedata pid="124" name="BackgroundInsanity1" tags="" position="475,1600" size="100,100">As you think hard to yourself, searching for memories of what might have happened you recall a few weak images.
 
     You remember being on a couch watching something on a TV. And there was someone sitting next to you. You were both eating something...popcorn!
 
@@ -6585,7 +6973,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;button[[I was watching a TV with someone| WakingUp7]]&gt;&gt;
     &lt;&lt;set $plrSpkChoice = &quot;I think I was watching TV with someone. And we were eating popcorn. But I don&#39;t remember anything else after that.&quot;&gt;&gt;
     &lt;&lt;/button&gt;&gt;
-    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="BackgroundInsanity2" tags="" position="475,1600" size="100,100"></tw-passagedata><tw-passagedata pid="125" name="BackgroundInsanity3" tags="" position="600,1600" size="100,100"></tw-passagedata><tw-passagedata pid="126" name="Bio_Barden" tags="" position="725,1600" size="100,100">&lt;div class=&#39;w3-cell-row&#39;&gt;
+    &lt;&lt;button [[Actually, I remember something completely different | WakingUp6]]&gt;&gt;&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="BackgroundInsanity2" tags="" position="600,1600" size="100,100"></tw-passagedata><tw-passagedata pid="126" name="BackgroundInsanity3" tags="" position="725,1600" size="100,100"></tw-passagedata><tw-passagedata pid="127" name="Bio_Barden" tags="" position="850,1600" size="100,100">&lt;div class=&#39;w3-cell-row&#39;&gt;
         &lt;img class=&#39;w3-round w3-container w3-cell&#39; src=&#39;img/characters/npcs/thumb_barden.jpg&#39;&gt;
 
         &lt;div class=&#39;w3-container w3-cell&#39;&gt;
@@ -6594,7 +6982,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;h3 class=&#39;header-lines&#39;&gt;Biography&lt;/h3&gt;
             $npcs.barden.bio&lt;hr&gt;
         &lt;/div&gt;
-    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="127" name="Bio_Amy" tags="" position="850,1600" size="100,100">&lt;div class=&#39;w3-cell-row&#39;&gt;
+    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="128" name="Bio_Amy" tags="" position="975,1600" size="100,100">&lt;div class=&#39;w3-cell-row&#39;&gt;
         &lt;img class=&#39;w3-round w3-container w3-cell&#39; src=&#39;img/characters/npcs/thumb_amy.jpg&#39;&gt;
 
         &lt;div class=&#39;w3-container w3-cell&#39;&gt;
@@ -6603,7 +6991,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;h3 class=&#39;header-lines&#39;&gt;Biography&lt;/h3&gt;
             $npcs.amy.bio&lt;hr&gt;
         &lt;/div&gt;
-    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="128" name="Bio_Janessa" tags="" position="975,1600" size="100,100">&lt;div class=&#39;w3-cell-row&#39;&gt;
+    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="129" name="Bio_Janessa" tags="" position="1100,1600" size="100,100">&lt;div class=&#39;w3-cell-row&#39;&gt;
         &lt;img class=&#39;w3-round w3-container w3-cell&#39; src=&#39;img/characters/npcs/thumb_janessa.jpg&#39;&gt;
 
         &lt;div class=&#39;w3-container w3-cell&#39;&gt;
@@ -6612,14 +7000,23 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;h3 class=&#39;header-lines&#39;&gt;Biography&lt;/h3&gt;
             $npcs.janessa.bio&lt;hr&gt;
         &lt;/div&gt;
-    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="129" name="StoryCaption" tags="" position="1100,1600" size="100,100">@@#timeplusdate;&lt;&lt;calcTime &#39;&#39; &#39;&#39; &#39;&#39; &#39;nodebug&#39;&gt;&gt;@@\
+    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="130" name="Bio_Elliot" tags="" position="1225,1600" size="100,100">&lt;div class=&#39;w3-cell-row&#39;&gt;
+        &lt;img class=&#39;w3-round w3-container w3-cell&#39; src=&#39;img/characters/npcs/thumb_elliot.jpg&#39;&gt;
+
+        &lt;div class=&#39;w3-container w3-cell&#39;&gt;
+            &lt;h3 class=&#39;header-lines&#39;&gt;Description&lt;/h3&gt;
+            A description of the npcs goes here.&lt;hr&gt;
+            &lt;h3 class=&#39;header-lines&#39;&gt;Biography&lt;/h3&gt;
+            $npcs.elliot.bio&lt;hr&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="131" name="StoryCaption" tags="" position="100,1725" size="100,100">@@#timeplusdate;&lt;&lt;calcTime &#39;&#39; &#39;&#39; &#39;&#39; &#39;nodebug&#39;&gt;&gt;@@\
     &lt;hr&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $plr.name.firstName != &quot;&quot; &amp;&amp; $plr.name.firstName != &quot;First&quot;&gt;&gt;
             &lt;u&gt;My Name: $plr.name.firstName $plr.name.lastName&lt;/u&gt;
             &lt;hr&gt;
         &lt;&lt;/if&gt;&gt;
-    &lt;&lt;/nobr&gt;&gt;\</tw-passagedata><tw-passagedata pid="130" name="StoryBanner" tags="" position="1225,1600" size="100,100">&lt;img class=&quot;banner&quot; src=&#39;img/logo.png&#39;/&gt;</tw-passagedata><tw-passagedata pid="131" name="StoryMenu" tags="" position="100,1725" size="100,100">&lt;&lt;if $devMode == true&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\</tw-passagedata><tw-passagedata pid="132" name="StoryBanner" tags="" position="225,1725" size="100,100">&lt;img class=&quot;banner&quot; src=&#39;img/logo.png&#39;/&gt;</tw-passagedata><tw-passagedata pid="133" name="StoryMenu" tags="" position="350,1725" size="100,100">&lt;&lt;if $devMode == true&gt;&gt;
         &lt;&lt;link &quot;!Dev Wand&quot;&gt;&gt;
             &lt;&lt;run
                 Dialog.setup(&quot;Dev Wand&quot;, &quot;dev wand&quot;);
@@ -6638,16 +7035,6 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 
     &lt;&lt;if $unlockVar.userInterface.stats == true&gt;&gt;
         &lt;&lt;link [[Your Status]]&gt;&gt;&lt;&lt;/link&gt;&gt;
-    &lt;&lt;/if&gt;&gt;
-
-    &lt;&lt;if $unlockVar.userInterface.actions == true&gt;&gt;
-        &lt;&lt;link &quot;Actions&quot;&gt;&gt;
-            &lt;&lt;run 
-                Dialog.setup(&quot;Actions&quot;, &quot;actions&quot;);
-                Dialog.wiki(Story.get(&quot;Actions&quot;).text);
-                Dialog.open();
-            &gt;&gt;
-        &lt;&lt;/link&gt;&gt;
     &lt;&lt;/if&gt;&gt;
 
     &lt;&lt;if $unlockVar.userInterface.locations == true&gt;&gt;
@@ -6678,7 +7065,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 Dialog.open();
             &gt;&gt;
         &lt;&lt;/link&gt;&gt;
-    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="132" name="Character Info" tags="" position="225,1725" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="134" name="Character Info" tags="" position="475,1725" size="100,100">&lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;w3-bar&#39;&gt;
             &lt;button class=&#39;w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black&#39; onclick=&#39;openTab(&quot;PlrName&quot;)&#39;&gt;Player Name&lt;/button&gt;
             &lt;button class=&#39;w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black&#39; onclick=&#39;openTab(&quot;PlrBodyStatic&quot;)&#39;&gt;Player Body S&lt;/button&gt;
@@ -6711,7 +7098,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
         &lt;div id=&#39;AmyRelation&#39; class=&#39;tabElement&#39;&gt;
             &lt;&lt;= charInfoTbl($plr.relations.amy, &quot;Amy Relation&quot;)&gt;&gt;
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="133" name="Schedule" tags="" position="350,1725" size="100,100">&lt;i&gt;If I have read about the classrooms in a certain book, I can just go straight there.&lt;/i&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="Schedule" tags="" position="600,1725" size="100,100">&lt;i&gt;If I have read about the classrooms in a certain book, I can just go straight there.&lt;/i&gt;
     &lt;table class=&#39;w3-table w3-margin-top w3-centered w3-border w3-black w3-round-large&#39;&gt;
         &lt;tr&gt;
             &lt;th&gt;&lt;/th&gt;
@@ -6773,7 +7160,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;td&gt;Weekend&lt;/td&gt;
             &lt;td&gt;Weekend&lt;/td&gt;
         &lt;/tr&gt;
-    &lt;/table&gt;</tw-passagedata><tw-passagedata pid="134" name="Inventory" tags="nobr" position="475,1725" size="100,100">&lt;h3&gt;Currency&lt;/h3&gt;\
+    &lt;/table&gt;</tw-passagedata><tw-passagedata pid="136" name="Inventory" tags="nobr" position="725,1725" size="100,100">&lt;h3&gt;Currency&lt;/h3&gt;\
     &lt;&lt;inv $plrCurrencies inspect&gt;&gt;
     &lt;hr&gt;
     &lt;h3&gt;Books&lt;/h3&gt;\
@@ -6783,7 +7170,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
     &lt;&lt;inv $plrinvmaterials use inspect&gt;&gt;
     &lt;hr&gt;
     &lt;h3&gt;Miscellanious&lt;/h3&gt;\
-    &lt;&lt;inv $plrinvmisc use inspect&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="Actions" tags="" position="600,1725" size="100,100">Work in Progress</tw-passagedata><tw-passagedata pid="136" name="Locations" tags="" position="725,1725" size="100,100">&lt;h3&gt;School&lt;/h3&gt;\
+    &lt;&lt;inv $plrinvmisc use inspect&gt;&gt;</tw-passagedata><tw-passagedata pid="137" name="Locations" tags="" position="850,1725" size="100,100">&lt;h3&gt;School&lt;/h3&gt;\
     &lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;passage-links-grid-5c&#39;&gt;
             &lt;&lt;if $unlockVar.locations.starrresidence.unlocked == true&gt;&gt;
@@ -6873,7 +7260,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                 &lt;&lt;/button&gt;&gt;
             &lt;&lt;/if&gt;&gt;
         &lt;&lt;/nobr&gt;&gt; */
-    &lt;&lt;/nobr&gt;&gt;\</tw-passagedata><tw-passagedata pid="137" name="StoryRightSidebar" tags="" position="850,1725" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;\</tw-passagedata><tw-passagedata pid="138" name="StoryRightSidebar" tags="" position="975,1725" size="100,100">&lt;&lt;nobr&gt;&gt;
         &lt;&lt;if $unlockVar.userInterface.spells == true&gt;&gt;
             &lt;&lt;link &quot;Spellwork&quot;&gt;&gt;
                 &lt;&lt;run
@@ -6882,9 +7269,20 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                     Dialog.open();
                 &gt;&gt;
             &lt;&lt;/link&gt;&gt;
-            &lt;hr&gt;
         &lt;&lt;/if&gt;&gt;
     &lt;&lt;/nobr&gt;&gt;\
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;if $unlockVar.userInterface.actions == true&gt;&gt;
+            &lt;&lt;link &quot;Actions &amp; Skills&quot; &gt;&gt;
+                &lt;&lt;run
+                    Dialog.setup(&#39;Perform an Action?&#39;, &#39;actions&#39;);
+                    Dialog.wiki(Story.get(&quot;Actions_Modal&quot;).processText());
+                    Dialog.open();
+                &gt;&gt;
+            &lt;&lt;/link&gt;&gt;
+            &lt;hr&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
     &lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;w3-bar&#39;&gt;
             &lt;button class=&#39;w3-bar-item w3-button w3-hover-none w3-text-white w3-hover-text-blue w3-bottombar w3-hover-border-blue&#39; onclick=&#39;openTab(&quot;plr-stats-tab&quot;)&#39;&gt;Stats&lt;/button&gt;
@@ -6948,7 +7346,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;/nobr&gt;&gt;
         &lt;/div&gt;
         &lt;div id=&#39;plr-rels-tab&#39; class=&#39;tabElement&#39;&gt;
-            &lt;table class=&#39;w3-table&#39;&gt;
+            &lt;table id=&#39;rel-table&#39; class=&#39;w3-table&#39;&gt;
                 &lt;tr&gt;
                     &lt;th&gt;Name&lt;/th&gt;
                     &lt;th class=&#39;w3-text-green&#39;&gt;+&lt;/th&gt;
@@ -6956,57 +7354,165 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
                     &lt;th class=&#39;w3-text-purple&#39;&gt;X&lt;/th&gt;
                     &lt;th class=&#39;w3-text-orange&#39;&gt;!&lt;/th&gt;
                 &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;
-                        &lt;&lt;link &#39;Janessa&#39;&gt;&gt;
-                            &lt;&lt;run 
-                                Dialog.setup(&quot;Janessa Bio&quot;);
-                                Dialog.wiki(Story.get(&quot;Bio_Janessa&quot;).text);
-                                Dialog.open();
-                            &gt;&gt;
-                        &lt;&lt;/link&gt;&gt;
-                    &lt;/td&gt;
-                    &lt;td&gt;$plr.relations.janessa.positive&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.janessa.negative&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.janessa.intimate&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.janessa.suspicion&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;
-                        &lt;&lt;link &#39;Amy&#39;&gt;&gt;
-                            &lt;&lt;run 
-                                Dialog.setup(&quot;Amy Bio&quot;);
-                                Dialog.wiki(Story.get(&quot;Bio_Amy&quot;).text);
-                                Dialog.open();
-                            &gt;&gt;
-                        &lt;&lt;/link&gt;&gt;
-                    &lt;/td&gt;
-                    &lt;td&gt;$plr.relations.amy.positive&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.amy.negative&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.amy.intimate&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.amy.suspicion&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;
-                        &lt;&lt;link &#39;Barden&#39;&gt;&gt;
-                            &lt;&lt;run 
-                                Dialog.setup(&quot;Barden Bio&quot;);
-                                Dialog.wiki(Story.get(&quot;Bio_Barden&quot;).text);
-                                Dialog.open();
-                            &gt;&gt;
-                        &lt;&lt;/link&gt;&gt;
-                    &lt;/td&gt;
-                    &lt;td&gt;$plr.relations.barden.positive&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.barden.negative&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.barden.intimate&lt;/td&gt;
-                    &lt;td&gt;$plr.relations.barden.suspicion&lt;/td&gt;
-                &lt;/tr&gt;
+                &lt;&lt;if $npcs.janessa.hasMet&gt;&gt;
+                    &lt;&lt;set _npcRef = &#39;janessa&#39;&gt;&gt;
+                    &lt;&lt;set _npcName = $npcs.janessa.name.firstName&gt;&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;&lt;link _npcName&gt;&gt;
+                                &lt;&lt;run
+                                    Dialog.setup(&#39;Janessa Bio&#39;);
+                                    Dialog.wiki(Story.get(&#39;Bio_Janessa&#39;).text);
+                                    Dialog.open();
+                                &gt;&gt;
+                            &lt;&lt;/link&gt;&gt;
+                        &lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].positive&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].negative&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].intimate&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].suspicion&gt;&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;&lt;unset _npcRef, _npcName&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;if $npcs.amy.hasMet&gt;&gt;
+                    &lt;&lt;set _npcRef = &#39;amy&#39;&gt;&gt;
+                    &lt;&lt;set _npcName = $npcs.amy.name.firstName&gt;&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;&lt;link _npcName&gt;&gt;
+                                &lt;&lt;run
+                                    Dialog.setup(&#39;Amy Bio&#39;);
+                                    Dialog.wiki(Story.get(&#39;Bio_Amy&#39;).text);
+                                    Dialog.open();
+                                &gt;&gt;
+                            &lt;&lt;/link&gt;&gt;
+                        &lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].positive&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].negative&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].intimate&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].suspicion&gt;&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;&lt;unset _npcRef, _npcName&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;if $npcs.barden.hasMet&gt;&gt;
+                    &lt;&lt;set _npcRef = &#39;barden&#39;&gt;&gt;
+                    &lt;&lt;set _npcName = $npcs.barden.name.firstName&gt;&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;&lt;link _npcName&gt;&gt;
+                                &lt;&lt;run
+                                    Dialog.setup(&#39;Barden Bio&#39;);
+                                    Dialog.wiki(Story.get(&#39;Bio_Barden&#39;).text);
+                                    Dialog.open();
+                                &gt;&gt;
+                            &lt;&lt;/link&gt;&gt;
+                        &lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].positive&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].negative&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].intimate&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].suspicion&gt;&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;&lt;unset _npcRef, _npcName&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;if $npcs.elliot.hasMet&gt;&gt;
+                    &lt;&lt;set _npcRef = &#39;elliot&#39;&gt;&gt;
+                    &lt;&lt;set _npcName = $npcs.elliot.name.firstName&gt;&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;&lt;link _npcName&gt;&gt;
+                                &lt;&lt;run
+                                    Dialog.setup(&#39;Elliot Bio&#39;);
+                                    Dialog.wiki(Story.get(&#39;Bio_Elliot&#39;).text);
+                                    Dialog.open();
+                                &gt;&gt;
+                            &lt;&lt;/link&gt;&gt;
+                        &lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].positive&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].negative&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].intimate&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].suspicion&gt;&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;&lt;unset _npcRef, _npcName&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;if $npcs.juliette.hasMet&gt;&gt;
+                    &lt;&lt;set _npcRef = &#39;juliette&#39;&gt;&gt;
+                    &lt;&lt;set _npcName = $npcs.juliette.name.firstName&gt;&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;&lt;link _npcName&gt;&gt;
+                                &lt;&lt;run
+                                    Dialog.setup(&#39;Juliette Bio&#39;);
+                                    Dialog.wiki(Story.get(&#39;Bio_Juliette&#39;).text);
+                                    Dialog.open();
+                                &gt;&gt;
+                            &lt;&lt;/link&gt;&gt;
+                        &lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].positive&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].negative&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].intimate&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].suspicion&gt;&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;&lt;unset _npcRef, _npcName&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;if $npcs.jonathan.hasMet&gt;&gt;
+                    &lt;&lt;set _npcRef = &#39;jonathan&#39;&gt;&gt;
+                    &lt;&lt;set _npcName = $npcs.jonathan.name.firstName&gt;&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;&lt;link _npcName&gt;&gt;
+                                &lt;&lt;run
+                                    Dialog.setup(&#39;Jonathan Bio&#39;);
+                                    Dialog.wiki(Story.get(&#39;Bio_Jonathan&#39;).text);
+                                    Dialog.open();
+                                &gt;&gt;
+                            &lt;&lt;/link&gt;&gt;
+                        &lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].positive&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].negative&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].intimate&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].suspicion&gt;&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;&lt;unset _npcRef, _npcName&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
+                &lt;&lt;if $npcs.celeste.hasMet&gt;&gt;
+                    &lt;&lt;set _npcRef = &#39;celeste&#39;&gt;&gt;
+                    &lt;&lt;set _npcName = $npcs.celeste.name.firstName&gt;&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;&lt;link _npcName&gt;&gt;
+                                &lt;&lt;run
+                                    Dialog.setup(&#39;Celeste Bio&#39;);
+                                    Dialog.wiki(Story.get(&#39;Bio_Celeste&#39;).text);
+                                    Dialog.open();
+                                &gt;&gt;
+                            &lt;&lt;/link&gt;&gt;
+                        &lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].positive&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].negative&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].intimate&gt;&gt;&lt;/td&gt;
+                        &lt;td&gt;&lt;&lt;= $plr.relations[_npcRef].suspicion&gt;&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;&lt;unset _npcRef, _npcName&gt;&gt;
+                &lt;&lt;/if&gt;&gt;
             &lt;/table&gt;
         &lt;/div&gt;
         &lt;div id=&#39;plr-disc-tab&#39; class=&#39;tabElement&#39;&gt;
             Disciplines here
         &lt;/div&gt;
-    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="138" name="Spell_Words_Modal" tags="" position="975,1725" size="100,100">&lt;div id=&#39;spell-result&#39; class=&#39;green&#39;&gt;&lt;/div&gt;\
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="139" name="Actions_Modal" tags="" position="1100,1725" size="100,100">&lt;br&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;div class= &#39;spell-word-grid&#39;&gt;
+            &lt;&lt;if $skillVars.meditation.unlocked == true&gt;&gt;
+                &lt;&lt;hovertip $skillVars.meditation.description&gt;&gt;
+                    &lt;div class=&#39;spell-word-grid-item&#39;&gt;
+                        &lt;&lt;button [[Meditation | Skills_Meditation_Use]]&gt;&gt;
+                            &lt;&lt;UseSkill mundane meditation&gt;&gt;
+                        &lt;&lt;/button&gt;&gt;
+                    &lt;/div&gt;
+                &lt;&lt;/hovertip&gt;&gt;
+            &lt;&lt;/if&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="140" name="Spell_Words_Modal" tags="" position="1225,1725" size="100,100">&lt;div id=&#39;spell-result&#39; class=&#39;green&#39;&gt;&lt;/div&gt;\
     &lt;h3&gt;Choose your target&lt;/h3&gt;\
     &lt;&lt;nobr&gt;&gt;
         &lt;div class=&#39;spell-word-grid&#39;&gt;
@@ -7291,7 +7797,58 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             &lt;&lt;castSpell _target _duration _effect _enhancement&gt;&gt;
             &lt;&lt;setStats &#39;plr&#39;&gt;&gt; 
         &lt;&lt;/button&gt;&gt;
-    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="139" name="Spell-Variables" tags="init" position="1100,1725" size="100,100">&lt;&lt;set $spellCastVar = {
+    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="141" name="Skills_Variables" tags="init" position="100,1850" size="100,100">&lt;&lt;set $skillVars = {
+        meditation: {
+            title: &#39;Meditation&#39;,
+            description: &#39;Relax and renew yourself for a few minutes&#39;,
+            unlocked: false
+        }
+    }&gt;&gt;</tw-passagedata><tw-passagedata pid="142" name="Skills_Meditation_Use" tags="" position="225,1850" size="100,100">&lt;&lt;Updates&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;&lt;set _meditLvl = $plr.skills.mundane.meditation.level&gt;&gt;
+        &lt;&lt;if _meditLvl &lt; 10&gt;&gt;
+            &lt;&lt;speech plr&gt;&gt;
+                (I close my eyes and try to control my breathing.)
+            &lt;&lt;/speech&gt;&gt;
+            &lt;br&gt;
+            &lt;&lt;speech plr&gt;&gt;
+                Ya, I am not very good at this yet...
+            &lt;&lt;/speech&gt;&gt;
+
+            &lt;&lt;elseif _meditLvl &gt;= 10 &amp;&amp; _meditLvl &lt; 20&gt;&gt;
+                &lt;&lt;speech plr&gt;&gt;
+                    (I close my eyes, control my breathing, and try to watch as my thoughts and feelings float on by.)
+                &lt;&lt;/speech&gt;&gt;
+                &lt;br&gt;
+                &lt;&lt;speech plr&gt;&gt;
+                    I am getting better, but not by much.
+                &lt;&lt;/speech&gt;&gt;
+
+            &lt;&lt;elseif _meditLvl &gt;= 20 &amp;&amp; _meditLvl &lt; 30&gt;&gt;
+                &lt;&lt;speech plr&gt;&gt;
+                    (I close my eyes, focus on my breathing, and watch as my first few thoughts and feelings float on by.)
+                &lt;&lt;/speech&gt;&gt;
+                &lt;br&gt;
+                &lt;&lt;speech plr&gt;&gt;
+                    I am definitely improving, but there is a long ways to go before I think I master this.
+                &lt;&lt;/speech&gt;&gt;
+
+            &lt;&lt;elseif _meditLvl &gt;= 30 &amp;&amp; _meditLvl &lt; 40&gt;&gt;
+                &lt;&lt;speech plr&gt;&gt;
+                    (I close my eyes, focus on my breathing, and watch as several of my thoughts and feelings float on by.)
+                &lt;&lt;/speech&gt;&gt;
+                &lt;br&gt;
+                &lt;&lt;speech plr&gt;&gt;
+                    I am getting better and better at this. But I wonder if there is a better way sometimes... Maybe a different technique?
+                &lt;&lt;/speech&gt;&gt;
+        &lt;&lt;/if&gt;&gt;
+    &lt;&lt;/nobr&gt;&gt;
+    &lt;&lt;nobr&gt;&gt;
+        &lt;div class=&#39;passage-links-grid-1&#39;&gt;
+            &lt;&lt;button [[Continue | previous()]]&gt;&gt;
+            &lt;&lt;/button&gt;&gt;
+        &lt;/div&gt;
+    &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="143" name="Spell-Variables" tags="init" position="350,1850" size="100,100">&lt;&lt;set $spellCastVar = {
         spellTarget: &#39;&#39;,
         spellDuration: &#39;&#39;,
         spellEffect: &#39;&#39;,

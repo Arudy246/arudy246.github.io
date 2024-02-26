@@ -76,7 +76,7 @@ sugarcube-2:
       container: true
       description: "Takes multiple possible args to determine if something should happen according to time."
       parameters:
-       - number &+ number |+ text |+ text |+ text |+ text
+       - text &+ text |+ text |+ text |+ text |+ text
 
     Player:
       description: "Takes one arg, first, formal, or full and prints the appropriate style of the player's name. Arg two is p, to add a period after the name"
@@ -92,6 +92,11 @@ sugarcube-2:
       description: "Takes on arg, the variable name for a course then <<include>> the course passage. Also increments for the next lecture."
       parameters:
        - text
+
+    UseSkill:
+      description: "Two args, first is skill sub-object and second is skill object itself. I.e. <<UseSkill mundane meditation>>"
+      parameters:
+       - text &+ text
 
     # simple inventory macros
     item:

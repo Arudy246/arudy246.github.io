@@ -1,4 +1,8 @@
 :: Course_ArcaneArts101_1
+    <div class="green">I just learned how to quickly travel to Room 105.</div>
+    <<speech plr>>
+        I think I will remember how to get here from now on. I can skip having to walk all the way here from now on by looking at my <b>Classes</b> schedule, if I want to.
+    <</speech>>
     <<speech elliot>>
         Morning everyone. <<Player formal>> will be joining us as the newest inductee to our college. <<Player formal>> find an empty seat and I'll begin.
     <</speech>>
@@ -22,7 +26,7 @@
                     <br>
                     <<speech elliot>>
                         <<tone neg>>
-                            Based on the glare, he does not appear pleased.
+                            Based on the glare, he does not appear pleased with your response.
                         <</tone>>
                     <</speech>>
                     <<relGain elliot -5>>
@@ -152,7 +156,7 @@
                     <</speech>>
                     <br>
                     <<speech elliot>>
-                        That concludes today's lesson. I know for many of you this was a refresher, but magic is dangerous. And I would not be doing my duty to all of you if I didn't remind you of this fact. Oh, one last thing. DO NOT EVER try to cast an incomplete spell. If you listen to nothing else, then head me on this. Just don't do it.
+                        That concludes today's lesson. I know for many of you this was a refresher, but magic is dangerous. And I would not be doing my job if I didn't remind you of this fact. Oh, one last thing. DO NOT EVER try to cast an incomplete spell. If you listen to nothing else, then head me on this. Just don't do it.
                     <</speech>>
                     <br>
                     <<speech elliot>>
@@ -163,6 +167,8 @@
                         <div class='passage-links-grid-1'>
                             <<button [[Leave | University_Hall_Classes]]>>
                                 <<SetTime 9>>
+                                <<set $unlockVar.locations.Floor1_Class_Room105.unlocked = true>>
+                                <<set $npcs.elliot.hasMet = true>>
                             <</button>>
                         </div>
                     <</nobr>>

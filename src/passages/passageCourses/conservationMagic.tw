@@ -1,3 +1,112 @@
 :: Course_ConservationMagic101_1
-
+    <div class="green">I just learned how to quickly travel to Room 106.</div>
+    <<speech juliette>>
+        Good morning everyone! Please sit down and drink a chill potion!
+    <</speech>>
+    <<nobr>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'Take a seat'>>
+                    <<speech juliette>>
+                        Alright everyone, we have a new practitioner to welcome to our humble little school. <<Player first>> would you mind introducing yourself to the class?
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 1>><br>
+                <<line 'Sure' >>
+                    <<speech plr>>
+                        Sure, I'm <<Player full>> and I just started here Saturday. Not much else to say really.
+                    <</speech>>
+                    <br>
+                    <<speech juliette>>
+                        Ah, not one for many words I see? Well thank you <<Player first>> and let us begin today's lesson.
+                    <</speech>>
+                <</line>>
+                <<line 'Pass'>>
+                    <<speech plr>>
+                        I think I'll pass. Thank you though.
+                    <</speech>>
+                    <br>
+                    <<speech juliette>>
+                        Well public speaking isn't for everyone, so as you wish. Let us begin today's instruction.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 2>><br>
+                <<line 'Keep listening'>>
+                    <<speech juliette>>
+                        As always, I am <<print $npcs.juliette.name.fullName()>> your neighborhood friendly Conservation of Magic instructor. Here, in this class, I will teach many of you how to control the amount of energy you force into your spells. And for some of you I help you avoid passing out, only to never wake again. Especially you <<Player formal p>> I will teach how to avoid draining yourself to death!
+                    <</speech>>
+                    <<tone pos>>
+                        She is constantly smiling. It's kind of infectious, mainly because she keeps looking at and talking to me
+                    <</tone>>
+                    <br>
+                <</line>>
+            <</level>>
+            <<level 3>><br>
+                <<line 'Watch and listen'>>
+                    <<speech juliette>>
+                        The primary concept behind the conservation of magic means that there is always a price. For every spell you cast, there is a cost. Almost all of the time the cost is you get physically drained. Picture running two miles, at a full sprint no less, just to get an apple. You'de be quite tired, right? Well now picture casting a spell to retrieve that apple from two miles away and to have it appear in your hand. Either way, your energy must be spent to accomplish the task.
+                    <</speech>>
+                    <br>
+                    <<speech juliette>>
+                        The good news is that draining yourself to power a spell is a lot short lived than that two mile run. If you aren't someone that normally works out, you are going to feel that run for days. But with magic, a short rest will do the trick. A quick nap also works. But my personal favorite? Meditation! But I will get to that in a minute.
+                    <</speech>>
+                    <br>
+                    <<speech juliette>>
+                        You can also have a decent meal, drink certain potions, or, as some of you swear by, a consume energy drink. Honestly though, I tried one once. For the life of me, I didn't understand what all the hype is about. Blaghk!
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 4>><br>
+                <<line 'Good to know'>>
+                    <<speech juliette>>
+                        Now then, meditation! Oh this exciting!! Meditation is a millennia old technique designed to help you get in touch with your inner self, or in other words your connection to magic. Now, unlike the unpracticed, meditation is not just used to calm yourself. It actually rejuvinates your mind and body by absorbing the magical essence that flows through and around us. 
+                    <</speech>>
+                    <br>
+                    <<speech juliette>>
+                        Since I have already taught most of you the basics, today I will focus on you, <<Player first p>> The key to mediatating is to focus on, well nothing! Try to picture yourself on a tiny island surrounded by a roilling and rolling ocean. This ocean is your mind. Each wave, whether massive or small, is a thought or emotion. Your job is not get swept away. Stay on the island and just look around, don't reach out and don't stare at any one wave. Just watch them all pass on by with you remaining still, calm, and untouched by the turbulence.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 5>><br>
+                <<line 'Keep listening'>>
+                    <<speech juliette>>
+                        If you succeed, even if only for a few moments, you will begin noticing two things. One, the waves get smaller. Eventually, with enough practice, the ocean will become smooth as glass. And you will have not a care in the world as you sit on your own little island. The second thing you will notice, is your exhaustion will drain away. The soreness in your muscles, the pain from a scratch or burn, the stress in your mind, all of them will lessen. Master this skill fully and you will see how just five minutes of meditation will leave you feeling like you slept for days on a bed made of clouds!
+                    <</speech>>
+                    <br>
+                    <<speech juliette>>
+                        You might even be inclined to think such recovery in so short a period of time is miraculous. Alas, it is simply you mastering the ability to control your self and draw in the naturally rejuvinating magical essences that surround you.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 6>><br>
+                <<line 'Keep listening'>>
+                    <<speech juliette>>
+                        And with that, we are done for the day my practitioners! I hope you all have a great rest of your day and I will see you tomorrow!
+                    <</speech>>
+                    <<tone pos>>
+                        She gives you one last glance and a smile before turning towards her desk. For some reason, she seems to like you.
+                    <</tone>>
+                    <<relGain juliette 5>>
+                    <br>
+                    <br>
+                    <<printRelGain>>
+                    <br>
+                    <br>
+                    <<nobr>>
+                        <div class='passage-links-grid-1'>
+                            <<button [[Leave | Skill_Meditation_Unlock]]>>
+                                <<set $skillVars.meditation.unlocked = true>>
+                                <<set $unlockVar.userInterface.actions = true>>
+                                <<set $unlockVar.locations.Floor1_Class_Room106.unlocked = true>>
+                                <<set $npcs.juliette.hasMet = true>>
+                                <<SetTime 10>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
+                <</line>>
+            <</level>>
+        <</dlg>>
+    <</nobr>>
 :: Course_ConservationMagic101_Random

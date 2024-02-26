@@ -502,7 +502,4 @@ discLvl:        <<numberbox '$discLvl' $discLvl>>
 
 Equation Result: <<print $eqResult.toFixed(2)>>
 
-<<button [[Process Cost Equation | Testing_Spells]]>>
-    <<set $eqResult = $targetCost * $typeCost * $durationCost * $strCost * ($effectCost / ($discLvl * 0.4))>>
-<</button>>
 <hr>\

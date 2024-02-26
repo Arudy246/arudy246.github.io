@@ -1,6 +1,9 @@
 :: Gymnasium
     <img class='scene' src='img/locations/gymnasium.jpg'>
     <<Updates>>
+    <<button [[Go Back | University_Hall_Classes]]>>
+        <<calcTime 5 0>>
+    <</button>>
 
 :: Floor1_Class_Room105
     <img class='scene' src='img/locations/floor1_class_room105.jpg'>
@@ -45,7 +48,27 @@
 :: Floor1_Class_Room106
     <img class='scene' src='img/locations/floor1_class_room106.jpg'>
     <<Updates noClass>>
+    <<nobr>>
+        <<if $dateTime.hour < 9>>
+            <<speech juliette>>
+                We start at 09:00 $plr.name.formal, but you know what they say, early bird eats the mouse! Yes, I know, that isn't quite the right saying. Anyways, feel free to take a seat if you have nowhere else to go and class will start soon!
+            <</speech>>
+            <br>
+            <<nobr>>
+                <div class='passage-links-grid-1'>
+                    <<button [[Sit down | Floor1_Class_Room106]]>>
+                        <<SetTime 9>>
+                    <</button>>
+                    <<button [[Go Back | University_Hall_Classes]]>>
+                        <<calcTime 0 5>>
+                    <</button>>
+                </div>
+            <</nobr>>
 
+            <<else>>
+                <<ClassLectures conservation101>>
+        <</if>>
+    <</nobr>>
 :: Floor1_Class_Room106_Closed
     <img class='scene' src='img/locations/closed_wood_door.jpg'>
     <<Updates>>
@@ -77,9 +100,7 @@
                 </div>
             <</nobr>>
             <<else>>
-                <<speech jonathan>>
-                    Hello everyone, and welcome $plr.name.formal to Arcane Disciplines 101.
-                <</speech>>
+                <<ClassLectures arcanedisciplines101>>
         <</if>>
     <</nobr>>
 
@@ -105,12 +126,12 @@
     <</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
-            <<TimeCheck 1000 1200 weekdays>>
+            <<TimeCheck '1000' '1200' weekdays>>
                 <<button [[Room 205 | Floor2_Class_Room205]]>>
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 1000 1200 cycleNoWeekend>>
+            <<TimeCheck '1000' '1200' cycleNoWeekend>>
                 <<button [[Room 205 (locked) | Floor2_Class_Room205_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>

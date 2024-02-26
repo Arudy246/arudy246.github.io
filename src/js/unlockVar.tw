@@ -5,79 +5,98 @@
         locations: {
             starrresidence: {
                 name: "Starr Residence",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             librarium: {
                 name: "Librarium",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             cafeteria: {
                 name: "Cafeteria",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universityentrance: {
                 name: "University Entrance Hall",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universityshops: {
                 name: "University Shops Hall",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universityclasses: {
                 name: "University Class Hall",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             universitybasement: {
                 name: "University Basement Hall",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             clinic: {
                 name: "Clinic",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             professoroffices: {
                 name: "Professors' Hall",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             tradingpost: {
                 name: "Herrington's Trading Post",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             cinema: {
                 name: "Bering Cinema",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             hospital: {
                 name: "Nome Regional Hospital",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             cemetary: {
                 name: "Nome City Cemetary",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             salooninn: {
                 name: "Goldpan Saloon and Inn",
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor1_Class_Room105: {
                 name: 'Classroom #105',
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor1_Class_Room106: {
                 name: 'Classroom #106',
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor1_Class_Room107: {
                 name: 'Classroom #107',
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Floor2_Class_Room205: {
                 name: 'Classroom #205',
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             },
             Basement_Class_RoomB3: {
                 name: 'Classroom #B3',
-                unlocked: false
+                unlocked: false,
+                newUnlock: false
             }
         },
         userInterface: {
@@ -107,6 +126,9 @@
             Course_ArcaneDisciplines_1: false,
             Course_ArcaneLaw_1: false,
             Course_IncursionHistory_1: false
+        },
+        skills: {
+            meditation: false
         }
     }>>
 

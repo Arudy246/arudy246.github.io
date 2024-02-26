@@ -9,9 +9,20 @@
                     Dialog.open();
                 >>
             <</link>>
-            <hr>
         <</if>>
     <</nobr>>\
+    <<nobr>>
+        <<if $unlockVar.userInterface.actions == true>>
+            <<link "Actions & Skills" >>
+                <<run
+                    Dialog.setup('Perform an Action?', 'actions');
+                    Dialog.wiki(Story.get("Actions_Modal").processText());
+                    Dialog.open();
+                >>
+            <</link>>
+            <hr>
+        <</if>>
+    <</nobr>>
     <<nobr>>
         <div class='w3-bar'>
             <button class='w3-bar-item w3-button w3-hover-none w3-text-white w3-hover-text-blue w3-bottombar w3-hover-border-blue' onclick='openTab("plr-stats-tab")'>Stats</button>
@@ -75,7 +86,7 @@
             <</nobr>>
         </div>
         <div id='plr-rels-tab' class='tabElement'>
-            <table class='w3-table'>
+            <table id='rel-table' class='w3-table'>
                 <tr>
                     <th>Name</th>
                     <th class='w3-text-green'>+</th>
@@ -83,51 +94,146 @@
                     <th class='w3-text-purple'>X</th>
                     <th class='w3-text-orange'>!</th>
                 </tr>
-                <tr>
-                    <td>
-                        <<link 'Janessa'>>
-                            <<run 
-                                Dialog.setup("Janessa Bio");
-                                Dialog.wiki(Story.get("Bio_Janessa").text);
-                                Dialog.open();
-                            >>
-                        <</link>>
-                    </td>
-                    <td>$plr.relations.janessa.positive</td>
-                    <td>$plr.relations.janessa.negative</td>
-                    <td>$plr.relations.janessa.intimate</td>
-                    <td>$plr.relations.janessa.suspicion</td>
-                </tr>
-                <tr>
-                    <td>
-                        <<link 'Amy'>>
-                            <<run 
-                                Dialog.setup("Amy Bio");
-                                Dialog.wiki(Story.get("Bio_Amy").text);
-                                Dialog.open();
-                            >>
-                        <</link>>
-                    </td>
-                    <td>$plr.relations.amy.positive</td>
-                    <td>$plr.relations.amy.negative</td>
-                    <td>$plr.relations.amy.intimate</td>
-                    <td>$plr.relations.amy.suspicion</td>
-                </tr>
-                <tr>
-                    <td>
-                        <<link 'Barden'>>
-                            <<run 
-                                Dialog.setup("Barden Bio");
-                                Dialog.wiki(Story.get("Bio_Barden").text);
-                                Dialog.open();
-                            >>
-                        <</link>>
-                    </td>
-                    <td>$plr.relations.barden.positive</td>
-                    <td>$plr.relations.barden.negative</td>
-                    <td>$plr.relations.barden.intimate</td>
-                    <td>$plr.relations.barden.suspicion</td>
-                </tr>
+                <<if $npcs.janessa.hasMet>>
+                    <<set _npcRef = 'janessa'>>
+                    <<set _npcName = $npcs.janessa.name.firstName>>
+                    <tr>
+                        <td>
+                            <<link _npcName>>
+                                <<run
+                                    Dialog.setup('Janessa Bio');
+                                    Dialog.wiki(Story.get('Bio_Janessa').text);
+                                    Dialog.open();
+                                >>
+                            <</link>>
+                        </td>
+                        <td><<= $plr.relations[_npcRef].positive>></td>
+                        <td><<= $plr.relations[_npcRef].negative>></td>
+                        <td><<= $plr.relations[_npcRef].intimate>></td>
+                        <td><<= $plr.relations[_npcRef].suspicion>></td>
+                    </tr>
+                    <<unset _npcRef, _npcName>>
+                <</if>>
+                <<if $npcs.amy.hasMet>>
+                    <<set _npcRef = 'amy'>>
+                    <<set _npcName = $npcs.amy.name.firstName>>
+                    <tr>
+                        <td>
+                            <<link _npcName>>
+                                <<run
+                                    Dialog.setup('Amy Bio');
+                                    Dialog.wiki(Story.get('Bio_Amy').text);
+                                    Dialog.open();
+                                >>
+                            <</link>>
+                        </td>
+                        <td><<= $plr.relations[_npcRef].positive>></td>
+                        <td><<= $plr.relations[_npcRef].negative>></td>
+                        <td><<= $plr.relations[_npcRef].intimate>></td>
+                        <td><<= $plr.relations[_npcRef].suspicion>></td>
+                    </tr>
+                    <<unset _npcRef, _npcName>>
+                <</if>>
+                <<if $npcs.barden.hasMet>>
+                    <<set _npcRef = 'barden'>>
+                    <<set _npcName = $npcs.barden.name.firstName>>
+                    <tr>
+                        <td>
+                            <<link _npcName>>
+                                <<run
+                                    Dialog.setup('Barden Bio');
+                                    Dialog.wiki(Story.get('Bio_Barden').text);
+                                    Dialog.open();
+                                >>
+                            <</link>>
+                        </td>
+                        <td><<= $plr.relations[_npcRef].positive>></td>
+                        <td><<= $plr.relations[_npcRef].negative>></td>
+                        <td><<= $plr.relations[_npcRef].intimate>></td>
+                        <td><<= $plr.relations[_npcRef].suspicion>></td>
+                    </tr>
+                    <<unset _npcRef, _npcName>>
+                <</if>>
+                <<if $npcs.elliot.hasMet>>
+                    <<set _npcRef = 'elliot'>>
+                    <<set _npcName = $npcs.elliot.name.firstName>>
+                    <tr>
+                        <td>
+                            <<link _npcName>>
+                                <<run
+                                    Dialog.setup('Elliot Bio');
+                                    Dialog.wiki(Story.get('Bio_Elliot').text);
+                                    Dialog.open();
+                                >>
+                            <</link>>
+                        </td>
+                        <td><<= $plr.relations[_npcRef].positive>></td>
+                        <td><<= $plr.relations[_npcRef].negative>></td>
+                        <td><<= $plr.relations[_npcRef].intimate>></td>
+                        <td><<= $plr.relations[_npcRef].suspicion>></td>
+                    </tr>
+                    <<unset _npcRef, _npcName>>
+                <</if>>
+                <<if $npcs.juliette.hasMet>>
+                    <<set _npcRef = 'juliette'>>
+                    <<set _npcName = $npcs.juliette.name.firstName>>
+                    <tr>
+                        <td>
+                            <<link _npcName>>
+                                <<run
+                                    Dialog.setup('Juliette Bio');
+                                    Dialog.wiki(Story.get('Bio_Juliette').text);
+                                    Dialog.open();
+                                >>
+                            <</link>>
+                        </td>
+                        <td><<= $plr.relations[_npcRef].positive>></td>
+                        <td><<= $plr.relations[_npcRef].negative>></td>
+                        <td><<= $plr.relations[_npcRef].intimate>></td>
+                        <td><<= $plr.relations[_npcRef].suspicion>></td>
+                    </tr>
+                    <<unset _npcRef, _npcName>>
+                <</if>>
+                <<if $npcs.jonathan.hasMet>>
+                    <<set _npcRef = 'jonathan'>>
+                    <<set _npcName = $npcs.jonathan.name.firstName>>
+                    <tr>
+                        <td>
+                            <<link _npcName>>
+                                <<run
+                                    Dialog.setup('Jonathan Bio');
+                                    Dialog.wiki(Story.get('Bio_Jonathan').text);
+                                    Dialog.open();
+                                >>
+                            <</link>>
+                        </td>
+                        <td><<= $plr.relations[_npcRef].positive>></td>
+                        <td><<= $plr.relations[_npcRef].negative>></td>
+                        <td><<= $plr.relations[_npcRef].intimate>></td>
+                        <td><<= $plr.relations[_npcRef].suspicion>></td>
+                    </tr>
+                    <<unset _npcRef, _npcName>>
+                <</if>>
+                <<if $npcs.celeste.hasMet>>
+                    <<set _npcRef = 'celeste'>>
+                    <<set _npcName = $npcs.celeste.name.firstName>>
+                    <tr>
+                        <td>
+                            <<link _npcName>>
+                                <<run
+                                    Dialog.setup('Celeste Bio');
+                                    Dialog.wiki(Story.get('Bio_Celeste').text);
+                                    Dialog.open();
+                                >>
+                            <</link>>
+                        </td>
+                        <td><<= $plr.relations[_npcRef].positive>></td>
+                        <td><<= $plr.relations[_npcRef].negative>></td>
+                        <td><<= $plr.relations[_npcRef].intimate>></td>
+                        <td><<= $plr.relations[_npcRef].suspicion>></td>
+                    </tr>
+                    <<unset _npcRef, _npcName>>
+                <</if>>
             </table>
         </div>
         <div id='plr-disc-tab' class='tabElement'>
@@ -135,3 +241,18 @@
         </div>
     <</nobr>>
     
+:: Actions_Modal
+    <br>
+    <<nobr>>
+        <div class= 'spell-word-grid'>
+            <<if $skillVars.meditation.unlocked == true>>
+                <<hovertip $skillVars.meditation.description>>
+                    <div class='spell-word-grid-item'>
+                        <<button [[Meditation | Skills_Meditation_Use]]>>
+                            <<UseSkill mundane meditation>>
+                        <</button>>
+                    </div>
+                <</hovertip>>
+            <</if>>
+        </div>
+    <</nobr>>

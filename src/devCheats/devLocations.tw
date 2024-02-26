@@ -128,8 +128,8 @@
 :: Devlinks_Other
     [[Dev_SpeechBoxes]]
     <<button "Increment Time - 1hr">>
-        <<calcTime 60 0>>
+        <<calcTime 60 0 false>>
     <</button>>
     <<button "Increment Time - 5hr">>
-        <<calcTime 300 0>>
+        <<calcTime 300 0 false>>
     <</button>>

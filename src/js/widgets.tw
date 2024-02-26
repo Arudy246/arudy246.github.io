@@ -1,12 +1,6 @@
 :: Widgets[widget]
 
-    /* base widget template */
-    <<nobr>>
-        <<widget "templ">>
-        <</widget>>
-    <</nobr>>
-
-    /* relGain Amy 10 (int | sus)*/
+    /* relGain amy 10 (int | sus)*/
     <<nobr>>
         <<widget "relGain">>
             <<if _args[1] > 0 && !_args[2]>>
@@ -552,7 +546,6 @@
                     'animancy',
                     'alchemy',
                     'abjuration'
-
                 ]>>
 
                 <<set _disc = _discArray[_rando]>>
@@ -596,25 +589,42 @@
         <</widget>>
     <</nobr>>
 
+    <<nobr>>
+        <<widget "SkillChange">>
+            <<for _i, _name range $plr.skills>>
+                <<for >>
+                    <<if $plr.skills[_i].pre != 0>>
+                        <<set _discDiff = ($plr.disciplines[_i].level - $plr.disciplines[_i].pre)>>
+                        <<print
+                            '<div class="green">I gained ' + _discDiff.toFixed(2) + ' points in the <i>' + $plr.disciplines[_i].title + '</i> discipline.</div>'
+                        >>
+                        <<set $plr.disciplines[_i].pre = 0>>
+                    <</if>>
+                    <<run _i + 1>>
+                <</for>>
+            <</for>>
+        <</widget>>
+    <</nobr>>
+
 /* To be included on every passage, one stop call all update functions. Accepts _args[0] as noClass, etc etc. i.e. <<Updates noClass>> */
     <<nobr>>
         <<widget 'Updates'>>
             <<statsChange>>
             <<discChange>>
             <<if _args[0] != 'noClass'>>
-                <<TimeCheck 0700 0800 weekdays>>
+                <<TimeCheck '0700' '0800' weekdays>>
                     <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
-                <<TimeCheck 0800 0900 weekdays>>
+                <<TimeCheck '0800' '0900' weekdays>>
                     <<ClassWarning Floor1_Class_Room106>>Conservation of Magic class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
-                <<TimeCheck 0900 1000 weekdays>>
+                <<TimeCheck '0900' '1000' weekdays>>
                     <<ClassWarning Floor1_Class_Room107>>Arcane Disciplines class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
-                <<TimeCheck 1000 1100 weekdays>>
+                <<TimeCheck '1000' '1100' weekdays>>
                     <<ClassWarning Floor2_Class_Room205>>Arcane Law class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
-                <<TimeCheck 1100 1200 weekdays>>
+                <<TimeCheck '1100' '1200' weekdays>>
                     <<ClassWarning Basement_Class_RoomB3>>Incursion Histories class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
             <</if>>
@@ -875,7 +885,6 @@
 
                 <</if>>
 
-                /* <<set $plr.disciplines[$spellCastVar.spellDiscipline].level += $spellCastVar.spellCost * 0.2>> */
                 <<set _disc = $spellCastVar.spellDiscipline>>
                 <<set _discChange = $spellCastVar.spellCost * 0.2>>
                 <<setDisc 'plr' _disc _discChange>>
@@ -1249,7 +1258,6 @@
                 }
             >>
             <<set _details ='Room ' + _roomNum + '<br>' + _courseStart + '-' + _courseEnd + '<br>' + $npcs[_courseInstructor].name.formal>>
-            <<consolelog '_location unlocked?'_courseRoom>>
             <<hovertip _details>>
                 <<if $unlockVar.locations[_courseRoom].unlocked == true>>
                     <<link _courseTitle>>
@@ -1266,9 +1274,27 @@
     <<nobr>>
         <<widget "TimeCheck" container>>
             <<consolelog '---TimeCheck Start---'>>
-            <<set _start = _args[0] / 100>>
-            <<set _end = _args[1] / 100>>
+
+            <<set _start = Number(_args[0].slice(0, 2))>>
+            <<set _end = Number(_args[1].slice(0, 2))>>
+
+            <<set _startCombo = Number(_args[0])>>
+            <<set _endCombo = Number(_args[1])>>
+
+            <<if $dateTime.min >= 10>>
+                <<set _sysTime = Number($dateTime.hour.toString() + $dateTime.min.toString())>>
+            <<elseif $dateTime.min < 10>>
+                <<set _sysTime = Number($dateTime.hour.toString() + '0' + $dateTime.min.toString())>>
+            <</if>>
             
+            <<consolelog '_args[0]' _args[0]>>
+            <<consolelog '_args[1]' _args[1]>>
+            <<consolelog '_start' _start>>
+            <<consolelog '_end' _end>>
+            <<consolelog '_sysTime' _sysTime>>
+            <<consolelog '_startCombo' _startCombo>>
+            <<consolelog '_endCombo' _endCombo>>
+
             <<if _args[2] != false>>
                 <<set _dayName = _args[2]>>
             <</if>>
@@ -1281,57 +1307,58 @@
             <<if _args[5] != false>>
                 <<set _year = _args[5]>>
             <</if>>
+
             <<if _year && _month && _day>>
-                <<if _year == $dateTime.year && _month == $dateTime.monthName && _day == $dateTime.date && $dateTime.hour >= _start && $dateTime.hour < _end>>
-                    _contents
-                    <<consolelog 'Check: Year/Month/Date'>>
+                <<if _year == $dateTime.year && _month == $dateTime.monthName && _day == $dateTime.date && _sysTime >= _startCombo && _sysTime < _endCombo>>
+                        _contents
+                        <<consolelog 'Check: Year/Month/Date'>>
                 <</if>>
 
-            <<elseif _month && _day>>
-                <<if _month == $dateTime.monthName && _day == $dateTime.date && $dateTime.hour >= _start && $dateTime.hour < _end>>
-                    _contents
-                    <<consolelog 'Check: Month/Date'>>
-                <</if>>
+                <<elseif _month && _day>>
+                    <<if _month == $dateTime.monthName && _day == $dateTime.date && _sysTime >= _startCombo && _sysTime < _endCombo>>
+                        _contents
+                        <<consolelog 'Check: Month/Date'>>
+                    <</if>>
 
-            <<elseif _month && _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
-                <<if _month == $dateTime.monthName && _dayName == $dateTime.dayName && $dateTime.hour >= _start && $dateTime.hour < _end>>
-                    _contents
-                    <<consolelog 'Check: Month/DayName'>>
-                <</if>>
+                <<elseif _month && _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
+                    <<if _month == $dateTime.monthName && _dayName == $dateTime.dayName && _sysTime >= _startCombo && _sysTime < _endCombo>>
+                        _contents
+                        <<consolelog 'Check: Month/DayName'>>
+                    <</if>>
             
-            <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
-                <<if _dayName == $dateTime.dayName && $dateTime.hour >= _start && $dateTime.hour < _end>>
-                    _contents
-                    <<consolelog 'Check: DayName'>>
-                <</if>>
+                <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
+                    <<if _dayName == $dateTime.dayName && _sysTime >= _startCombo && _sysTime < _endCombo>>
+                        _contents
+                        <<consolelog 'Check: DayName'>>
+                    <</if>>
 
-            <<elseif _dayName == 'weekdays'>>
-                <<if $dateTime.hour >= _start && $dateTime.hour < _end && ($dateTime.dayName == 'Monday' || $dateTime.dayName == 'Tuesday' || $dateTime.dayName == 'Wednesday' || $dateTime.dayName == 'Thursday' || $dateTime.dayName == 'Friday')>>
-                    _contents
-                    <<consolelog 'Check: Weekdays'>>
-                <</if>>
+                <<elseif _dayName == 'weekdays'>>
+                    <<if _sysTime >= _startCombo && _sysTime < _endCombo && ($dateTime.dayName == 'Monday' || $dateTime.dayName == 'Tuesday' || $dateTime.dayName == 'Wednesday' || $dateTime.dayName == 'Thursday' || $dateTime.dayName == 'Friday')>>
+                        _contents
+                        <<consolelog 'Check: Weekdays'>>
+                    <</if>>
 
-            <<elseif _dayName == 'weekend'>>
-                <<if $dateTime.hour >= _start && $dateTime.hour < _end && ($dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday')>>
-                    _contents
-                    <<consolelog 'Check: Weekend'>>
-                <</if>>
+                <<elseif _dayName == 'weekend'>>
+                    <<if _sysTime >= _startCombo && _sysTime < _endCombo && ($dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday')>>
+                        _contents
+                        <<consolelog 'Check: Weekend'>>
+                    <</if>>
 
-            <<elseif _dayName == 'cycle'>>
-                <<if ($dateTime.hour < _start && $dateTime.hour >= 0) || ($dateTime.hour >= _end && $dateTime.hour < 24)>>
-                    _contents
-                    <<consolelog 'Check: Cycle'>>
-                <</if>>
+                <<elseif _dayName == 'cycle'>>
+                    <<if (_sysTime <= _startCombo && $dateTime.hour >= 0) || (_sysTime >= _endCombo && $dateTime.hour < 24)>>
+                        _contents
+                        <<consolelog 'Check: Cycle'>>
+                    <</if>>
             
-            <<elseif _dayName == 'cycleNoWeekend'>>
-                <<if ($dateTime.hour < _start && $dateTime.hour >= 0) || ($dateTime.hour >= _end && $dateTime.hour < 24) || $dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday'>>
-                    _contents
-                    <<consolelog 'Check: Cycle w/ No Weekend'>>
-                <</if>>
+                <<elseif _dayName == 'cycleNoWeekend'>>
+                    <<if (_sysTime < _startCombo && $dateTime.hour >= 0) || (_sysTime >= _endCombo && $dateTime.hour < 24) || $dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday'>>
+                        _contents
+                        <<consolelog 'Check: Cycle w/ No Weekend'>>
+                    <</if>>
                 
-            <<elseif $dateTime.hour >= _start && $dateTime.hour < _end>>
-                    _contents
-                    <<consolelog 'Check: Time Only'>>
+                <<elseif _sysTime >= _startCombo && _sysTime < _endCombo>>
+                        _contents
+                        <<consolelog 'Check: Time Only'>>
             <</if>>
             <<consolelog '-----TimeCheck End-----'>>
         <</widget>>
@@ -1400,6 +1427,42 @@
             <<elseif _args[0] == 'full'>>
                 <<print $plr.name.fullName() + _period>>
             <</if>>
+        <</widget>>
+    <</nobr>>
+
+    /* Uses a skill, i.e. <<UseSkill mundane meditation>> */
+    <<nobr>>
+        <<widget "UseSkill">>
+            <<consolelog '---<<UseSkill Start>>---'>>
+            <<set _lvl = $plr.skills[_args[0]][_args[1]].level>>
+            <<set _skillName = $skillVars[_args[1]].title>>
+            <<set _skillDesc = $skillVars[_args[1]].description>>
+            <<if _lvl == 0>>
+                <<set _lvl = 5>>
+                <<set $plr.skills[_args[0]][_args[1]].level = 5>>
+                <<else>>
+                    <<set _r = (30 / _lvl) * (1 / 2)>>
+                    <<set $plr.skills[_args[0]][_args[1]].level += _r>>
+            <</if>>
+
+            <<switch _args[1]>>
+                <<case 'meditation'>>
+                    <<set _s = $plr.stats.stamina.cur + (_lvl * 0.5)>>
+                    <<set _f = $plr.stats.focus.cur + (_lvl * 0.2)>>
+                    <<set _n = $plr.stats.sanity.cur + (_lvl * 0.2)>>
+                    <<calcTime 5 0 false>>
+                
+                    <<setStats plr stamina _s>>
+                    <<setStats plr focus _f>>
+                    <<setStats plr sanity _n>>
+
+                    <<goto Skills_Meditation_Use>>
+
+                    <<consolelog 'UseSkill: Meditation'>>
+                <<default>>
+                    <<consolelog 'UseSkill: Default Case'>>
+            <</switch>>
+            <<consolelog '-----<<UseSkill End>>-----'>>
         <</widget>>
     <</nobr>>
 

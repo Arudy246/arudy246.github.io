@@ -12,7 +12,6 @@
     <img class="banner" src='img/logo.png'/>
 
 :: StoryMenu
-
     <<if $devMode == true>>
         <<link "!Dev Wand">>
             <<run
@@ -32,16 +31,6 @@
 
     <<if $unlockVar.userInterface.stats == true>>
         <<link [[Your Status]]>><</link>>
-    <</if>>
-
-    <<if $unlockVar.userInterface.actions == true>>
-        <<link "Actions">>
-            <<run 
-                Dialog.setup("Actions", "actions");
-                Dialog.wiki(Story.get("Actions").text);
-                Dialog.open();
-            >>
-        <</link>>
     <</if>>
 
     <<if $unlockVar.userInterface.locations == true>>
@@ -187,9 +176,6 @@
     <hr>
     <h3>Miscellanious</h3>\
     <<inv $plrinvmisc use inspect>>
-
-:: Actions
-    Work in Progress
 
 :: Locations
     <h3>School</h3>\

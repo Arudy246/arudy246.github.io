@@ -1,0 +1,57 @@
+:: Skills_Variables [init]
+
+    <<set $skillVars = {
+        meditation: {
+            title: 'Meditation',
+            description: 'Relax and renew yourself for a few minutes',
+            unlocked: false
+        }
+    }>>
+
+:: Skills_Meditation_Use
+    <<Updates>>
+    <<nobr>>
+        <<set _meditLvl = $plr.skills.mundane.meditation.level>>
+        <<if _meditLvl < 10>>
+            <<speech plr>>
+                (I close my eyes and try to control my breathing.)
+            <</speech>>
+            <br>
+            <<speech plr>>
+                Ya, I am not very good at this yet...
+            <</speech>>
+
+            <<elseif _meditLvl >= 10 && _meditLvl < 20>>
+                <<speech plr>>
+                    (I close my eyes, control my breathing, and try to watch as my thoughts and feelings float on by.)
+                <</speech>>
+                <br>
+                <<speech plr>>
+                    I am getting better, but not by much.
+                <</speech>>
+
+            <<elseif _meditLvl >= 20 && _meditLvl < 30>>
+                <<speech plr>>
+                    (I close my eyes, focus on my breathing, and watch as my first few thoughts and feelings float on by.)
+                <</speech>>
+                <br>
+                <<speech plr>>
+                    I am definitely improving, but there is a long ways to go before I think I master this.
+                <</speech>>
+
+            <<elseif _meditLvl >= 30 && _meditLvl < 40>>
+                <<speech plr>>
+                    (I close my eyes, focus on my breathing, and watch as several of my thoughts and feelings float on by.)
+                <</speech>>
+                <br>
+                <<speech plr>>
+                    I am getting better and better at this. But I wonder if there is a better way sometimes... Maybe a different technique?
+                <</speech>>
+        <</if>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Continue | previous()]]>>
+            <</button>>
+        </div>
+    <</nobr>>

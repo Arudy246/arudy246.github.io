@@ -1,6 +1,5 @@
 :: WakingUp1
     <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
-
     You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren't anywhere you remember ever being before. The smell is unfamiliar. The bed you are laying in, is different. Even the air feels different. Thicker, maybe?
 
     You slowly open your eyes, feeling groggy and disoriented.
@@ -17,7 +16,6 @@
 
 :: WakingUp2
     <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
-
     <<speech "amy">>
         My name is $npcs.amy.name.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn't here when you woke, no doubt you are rather confused.
     <</speech>>\
@@ -30,20 +28,20 @@
 
     To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.name.formal is right, you are just confused. Very, very confused.
 
-    <<button [[Continue | WakingUp3]]>><</button>>
+    <<button [[Continue | WakingUp3]]>>
+        <<set $npcs.amy.hasMet = true>>
+    <</button>>
 
 :: WakingUp3
     <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
-
     $npcs.amy.name.formal sees you staring at the candles.
 
-    <<speech "amy">>I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on forehead and maybe some grogginess, you will be just fine.<</speech>>\
+    <<speech "amy">>I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on your forehead and maybe some grogginess, you will be just fine.<</speech>>\
 
     <<button [[Someone enters the room | WakingUp4]]>><</button>>
 
 :: WakingUp4
-    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>\
-
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
     You see $npcs.amy.name.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
 
     <<speech "amy">>
@@ -221,6 +219,7 @@
 
 :: WakingUp5
     <<silently>>
+        <<set $npcs.janessa.hasMet = true>>
         <<if $plr.body.static.sex == "female">>
             <<set $plr.name.prefix = "Ms.">>
         <<elseif $plr.body.static.sex == "male">>
@@ -330,7 +329,9 @@
 
     <<speech "janessa">>Let's go.<</speech>>\
 
-    <<button [[Follow her | WakingUp8]]>><</button>>
+    <<button [[Follow her | WakingUp8]]>>
+        <<set $npcs.barden.hasMet = true>>
+    <</button>>
 
 :: WakingUp8
     <img class="scene" src="img/locations/university_mainroad.jpg"/>\

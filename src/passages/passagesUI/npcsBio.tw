@@ -33,3 +33,15 @@
             $npcs.janessa.bio<hr>
         </div>
     </div>
+
+:: Bio_Elliot
+    <div class='w3-cell-row'>
+        <img class='w3-round w3-container w3-cell' src='img/characters/npcs/thumb_elliot.jpg'>
+
+        <div class='w3-container w3-cell'>
+            <h3 class='header-lines'>Description</h3>
+            A description of the npcs goes here.<hr>
+            <h3 class='header-lines'>Biography</h3>
+            $npcs.elliot.bio<hr>
+        </div>
+    </div>

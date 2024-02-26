@@ -306,7 +306,12 @@
                 walking: {
                     level: 0,
                     pre: 0,
-                    desc: ""
+                    desc: ''
+                },
+                meditation: {
+                    level: 0,
+                    pre: 0,
+                    desc: ''
                 }
             },
             mental: {
@@ -716,7 +721,7 @@
             },
             personality: 'friendly',
             bio: 'Runs the clinic at the college. She is professional and kind. Amy is rarely seen outside of the clinic aside from when she responds to an emergency call.',
-            hasMet: false
+            hasMet: false        
         },
         janessa: {
             name: {
@@ -748,7 +753,7 @@
             },
             personality: 'unfriendly',
             bio: 'The Starr family was once a moderately powerful family with their hands in many different industries and were well placed politically. A series of betrayals and miscalculations resulted in most of the family, and all the men, being killed, executed, or assassinated. Leaving only Janessa, the heir to the family, her mother, very elderly grandmother, and one or two servants.',
-            hasMet: false
+            hasMet: false        
         },
         barden: {
             name: {
@@ -811,7 +816,7 @@
                 hair: 'brown'
             },
             personality: 'stern',
-            bio: '',
+            bio: 'XXXXX',
             hasMet: false
         },
         juliette: {
@@ -843,7 +848,7 @@
                 hair: 'red'
             },
             personality: 'friendly',
-            bio: '',
+            bio: 'XXXXX',
             hasMet: false
         },
         jonathan: {
@@ -875,7 +880,7 @@
                 hair: 'brown'
             },
             personality: 'neutral',
-            bio: '',
+            bio: 'XXXXX',
             hasMet: false
         },
         celeste: {

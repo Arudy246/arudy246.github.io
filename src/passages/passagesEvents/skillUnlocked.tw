@@ -1,0 +1,10 @@
+:: Skill_Meditation_Unlock
+    <<speech plr>>
+        I just learned how to use the Meditation skill! This will allow me to renew and recharge myself at the cost of just a few minutes of my time. I think this will prove to be much more efficient than just laying down and hoping to fall asleep. And as the Instructor stated, I should get better at it over time.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Leave | University_Hall_Classes]]>>
+            <</button>>
+        </div>
+    <</nobr>>

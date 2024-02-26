@@ -96,34 +96,34 @@
     <</speech>>
     <<nobr>>
         <div class='passage-links-grid-2'>
-            <<TimeCheck 0700 0900 weekdays>>
+            <<TimeCheck '0700' '0900' weekdays>>
                 <<button [[Room 105 | Floor1_Class_Room105]]>>
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 0700 0900 cycleNoWeekend>>
+            <<TimeCheck '0700' '0900' cycleNoWeekend>>
                 <<button [[Room 105 (locked) | Floor1_Class_Room105_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
 
-            <<TimeCheck 0800 1000 weekdays>>
+            <<TimeCheck '0800' '1000' weekdays>>
                 <<button [[Room 106 | Floor1_Class_Room106]]>>
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 0800 1000 cycleNoWeekend>>
+            <<TimeCheck '0800' '1000' cycleNoWeekend>>
                 <<button [[Room 106 (locked) | Floor1_Class_Room106_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
 
-            <<TimeCheck 0900 1100 weekdays>>
+            <<TimeCheck '0900' '1100' weekdays>>
                 <<button [[Room 107 | Floor1_Class_Room107]]>>
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 0900 1100 cycleNoWeekend>>
+            <<TimeCheck '0900' '1100' cycleNoWeekend>>
                 <<button [[Room 107 (locked) | Floor1_Class_Room107_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>
@@ -161,12 +161,12 @@
     <</speech>>
     <<nobr>>
         <div class='passage-links-grid-1'>
-            <<TimeCheck 1100 1300 weekdays>>
+            <<TimeCheck '1100' '1300' weekdays>>
                 <<button [[Room B-3 | Basement_Class_RoomB3]]>>
                     <<calcTime 0 5>>
                 <</button>>
             <</TimeCheck>>
-            <<TimeCheck 1100 1300 cycleNoWeekend>>
+            <<TimeCheck '1100' '1300' cycleNoWeekend>>
                 <<button [[Room B-3 (locked) | Basement_Class_RoomB3_Closed]]>>
                     <<calcTime 0 5>>
                 <</button>>

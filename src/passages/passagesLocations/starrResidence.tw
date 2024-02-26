@@ -94,7 +94,7 @@
 
     Looks like the bedroom hallway.
     <<nobr>>
-        <<TimeCheck 0000 2400>>
+        <<TimeCheck '0000' '2400'>>
             <<NpcAvailable janessa Janessa_CourseOverview>>
         <</TimeCheck>>
     <</nobr>>

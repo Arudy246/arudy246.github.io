@@ -1,3 +1,122 @@
 :: Course_ArcaneDisciplines101_1
+    <div class="green">I just learned how to quickly travel to Room 107.</div>
+    <<speech jonathan>>
+        Come on in everyone and take your seats. Welcome to Arcane Disciplines, <<Player first p>>
+    <</speech>>
+    <<nobr>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'Find a desk'>>
+                    <<speech jonathan>>
+                        For our new arrival, a bit of review for today.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Magic comes in many different forms. Some are useful in our daily lives, while others are situational. And the rest are either strictly forbidden or highly restricted.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 1>><br>
+                <<line 'Keep listening'>>
+                    <<speech jonathan>>
+                        Take for example the Transmutation discipline. Through the various effects it offers you can do anything from clean a room to change lead into gold. As I am sure $npcs.juliette.name.formal has already taught everyone, different effects come with wildly different energy costs. Cleaning a room is pretty easy to do, so to it is by using magic. Transmuting lead into gold? Good luck doing that with your hands.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Other disciplines, like Restoration, are more useful when solving specific and relativily rare problems. Need to clean a room, you use Transmutation. Need to patch yourself up after an imp attack, use Restoration. Common sense applies in the use of magic as easily as it does during the rest of your life. Try to clean the blood from your wound is rather pointless. Trying to "heal" a room of its dirt is also rather pointless.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Speaking of healing, <<Player first>> have you learned the <i>$spellWords.effect.heal.latin</i> Word yet?
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 2>><br>
+                <<line 'No, not yet'>>
+                    <<speech plr>>
+                        No instructor, I haven't.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Ah, well I will provide you with a manuscript of the <i>$spellWords.effect.heal.latin</i> at the end of class. See me then. Few things in life are more critical than your health.
+                    <</speech>>
+                    <<tone negTone>>
+                        He looked so bored saying that. It is doubtful he could have said that with any less enthusiasm.
+                    <</tone>>
+                    <br>
+                    <<speech jonathan>>
+                        I will explain a few of the other disciplines before I excuse all of you for your next classes.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 3>><br>
+                <<line 'Keep listening'>>
+                    <<speech jonathan>>
+                        One discipline is Conjuration. Effects in this discipline will allow you call items to you or, if the item is simple enough, to create from nothing but energy. Think an apple, or summoning a stone to your hand. Now that kind of summoning is very different from the Summoning discipline, which is a completely different concept. And quite restricted. Common sense says no one wants a bunch of untethered souls and ghosts floating all over the place.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Then you have Elemental magic. Keep in mind, individual elements are rarely used. Instead they tend to intertwine with themselves creating Elemental effects. Think harmful spells in general. But sometimes an individual element is useful, like when starting a fire. The water, air, or earth elements would all be quite detrimental to your efforts if you didn't separate them from fire.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Another example would be the Divination discipline. Notoriously difficult to master in any useful way, but still incredibly powerful if you do. The ability to predict near future events, even if just small ones, has a value that is hard to overestimate. But like a few other disciplines, it takes a great deal of practice to finally be able to use it in any meaningful way. The same idea applies to disciplines like Astromancy, star based magic, or Clockwork, the creation and enchantment of mechanical constructs.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 4>><br>
+                <<line 'Listen a bit more'>>
+                    <<speech jonathan>>
+                        Then there is Animancy, giving the illusion of life to inanimate objects. Or how about Illusion, which allows you to alter appearances which includes your body and clothing.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Final example for today is Abjuration, who's effects include things like shields and making yourself more resistant to any number of things.
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        And with that we will call it for today. I'll see you all tomorrow.
+                    <</speech>>
+                    <<tone negTone>>
+                        Without another he sits down in his chair and faces away from you and the other students.
+                    <</tone>>
+                <</line>>
+            <</level>>
+            <<level 5>><br>
+                <<line 'Approach respectfully'>>
+                    <<speech plr>>
+                        $npcs.jonathan.name.formal you said to see you after class?
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        Yes, of course. Here you are. This shouldn't take you too long to read. Have a good one.
+                    <</speech>>
+                    <<relGain jonathan 5>>
+                    <<printRelGain>>
+                <</line>>
+                <<line 'Approach rudely'>>
+                    <<speech plr>>
+                        You seem bored out of your mind. And your teaching shows it. You had something for me?
+                    <</speech>>
+                    <br>
+                    <<speech jonathan>>
+                        ...interesting choice of words when you have no clue who you're talking to or what you're talking about. It seems I missplaced the manuscipt, perhaps I will find before tomorrow's class. You may leave.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 6>><br>
+                <<nobr>>
+                        <div class='passage-links-grid-1'>
+                            <<button [[Leave | University_Hall_Classes]]>>
+                                <<set $unlockVar.locations.Floor1_Class_Room107.unlocked = true>>
+                                <<foundItem bookSpell spellHeal>>
+                                <<set $npcs.jonathan.hasMet = true>>
+                                <<SetTime 11>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
+            <</level>>
+        <</dlg>>
+    <</nobr>>
 
 :: Course_ArcaneDisciplines101_Random
