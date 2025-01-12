@@ -1,3 +1,103 @@
 :: Course_ArcaneLaw101_1
+    <<speech celeste>>
+        Hello everyone, come come, let's get started!
+    <</speech>>
+    <<speech celeste>>
+        As all but one of you knows, I am $npcs.celeste.name.formal and I will be teaching you about the laws of the land. <<Player formal>> I teach fast and you are at quite a disadvantage by starting now. Please, do try to keep up.
+    <</speech>>
+    <<nobr>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'Yes, ma\'am'>>
+                    <<speech plr>>
+                        Yes ma'am.
+                    <</speech>>
+                    <br>
+                    <<speech celeste>>
+                        Excellent, I'm sure we will get along famously.
+                    <</speech>>
+                    <<relGain celeste 10>>
+                    <<printRelGain>><br>
+                <</line>>
+                <<line 'Ya, ok.'>>
+                    <<speech plr>>
+                        Uh, ya ok.
+                    <</speech>>
+                    <br>
+                    <<speech celeste>>
+                        Well aren't you inspiring.
+                    <</speech>>
+                    <<relGain celeste -5>>
+                    <<printRelGain>><br>
+                <</line>>
+            <</level>>
+            <<level 1>><br>
+                <<line 'Sit down'>>
+                    <<speech celeste>>
+                        Now then. Arcane Law 101 is as much about legal theory as it is about the practical aspects. Today I will continue last week's topic of basic laws that apply to us all.
+                    <</speech>>
+                    <br>
+                    <<speech celeste>>
+                        I assume everyone knows there are certain disciplines that are outright illegal. Disciplines like Chronomancy, which is the use of magic to alter time. Then there are disciplines that are restricted in there use, usually you need government permission to use them. One such discipline is Biomancy, using magic to alter your physical self or that of another or a creature.
+                    <</speech>>
+                    <br>
+                    <<speech celeste>>
+                        The punishments for using forbidden disciplines are usually not minor and for good reason. Throughout history, practitioners have tried to use, or succeeded in using, these illegal disciplines and frequently we can point to one specific incident that changed the legal landscape and made a specific discipline a forbidden one.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 2>><br>
+                <<line 'Listen'>>
+                    <<speech celeste>>
+                        Take Blood magic for example, while it is not forbidden, it is restricted. And why? Because Kinley Northen decided to use it on an entire town of people. A town of both uninitiated and practitioners. The sudden influx of energy Northen took in caused him to explode, taking a third of the town with him. Needless to say, many died not just from the detonation, but several more from complete exsanguination. Un-it history, which is the unitiated, or non-magical part of our world, documented this as an explosives accident in New Jersey back in the 1910s. But in reality, it was no explosives accident, it was one practitioner radically abusing his abilities.
+                    <</speech>>
+                    <br>
+                    <<speech celeste>>
+                        And because of the abuse, Blood magic is now highly restricted. Even being suspected of it will very likely result in a visit from law enforcement.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 3>><br>
+                <<line 'Listen'>>
+                    <<speech celeste>>
+                        Before I get into other critical incidents, let us talk about how our law enforcement works. Our use of magic leaves evidence behind. Cast a spell and some residual energy is left where you cast it. Actually, we can all sense it, but doing it reliably takes training and practice. Think about when you walk through snow, you leave footprints right? Same idea as leaving residual magic behind.
+                    <</speech>>
+                    <br>
+                    <<speech celeste>>
+                        Now, while there is no vast magical detection net across the world, not that it hasn't been tried many times, if you are seen, or if someone hears about anyone of us using magic we shouldn't, you can bet your butts that the Bureau of Internal Arcane Affairs will be notified. Law enforcement will arrive, ask questions, seek out residual magic in the area, and in pretty much every case, arrest you.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 4>><br>
+                <<line 'Keep listening'>>
+                    <<speech celeste>>
+                        As I said, punishments are not minor. The un-it idea of prison, or locking someone into a cage or building for a period of time, is not generally something we do. And again, for good reason. If a practitioner knows how to use such dangerous magics, and has actually used them, and was caught using them, how are we supposed to contain them? Each one of you has access to magics that could, theoretically, alter the tectonic plates of our planet. There are no foolproof ways to contain that kind of power. So instead, we execute the guilty.
+                    <</speech>>
+                    <br>
+                    <<speech celeste>>
+                        Many have argued throughout the years about finding a more "humane" approach. But honestly, why? Most of our laws are pretty clear. Don't hurt people, don't rape, don't bleed entire towns dry and don't then nuke yourself with the rest of the town and its inhabitants. If someone can't follow these pretty basic precepts, and then if we can't reliably contain them in a prison or cage, what options are left? So far, we haven't found any alternatives.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 5>><br>
+                <<line 'Wow...'>>
+                    <<speech celeste>>
+                        And with that, that is all the time we have for today. See you all tomorrow.
+                    <</speech>>
+                    <br>
+                    <<nobr>>
+                            <div class='passage-links-grid-1'>
+                                <<button [[Leave | Hall_Floor2]]>>
+                                    <<set $unlockVar.locations.Floor2_Class_Room205.unlocked = true>>
+                                    <<set $npcs.celeste.hasMet = true>>
+                                    <<run console.log('roomunlock: ' + $unlockVar.locations.Floor2_Class_Room205)>>
+                                    <<SetTime 11 55>>
+                                <</button>>
+                            </div>
+                        <</nobr>>
+                <</line>>
+            <</level>>
+        <</dlg>>
+    <</nobr>>
 
 :: Course_ArcaneLaw101_Random

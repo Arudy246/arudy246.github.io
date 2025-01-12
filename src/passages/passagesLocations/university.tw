@@ -1,10 +1,13 @@
 :: University_MainRoad
-    <img class='scene' src='img/locations/university_mainroad.jpg'>
-    <<Updates>>
-    The road is lined with many houses, some small and some really big.
-    
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations university_mainroad>>
+            <<speech plr thought>>
+                Well this is quaint.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[University Courtyard | University_MainCourtyard]]>>
             <<calcTime 10 5>>
             <</button>>
@@ -18,11 +21,15 @@
     <</nobr>>
 
 :: University_MainCourtyard
-    <img class='scene' src='img/locations/university_maincourtyard.webp'>
-    <<Updates>>
-    <<speech 'plr'>>Yup, that's a magical looking courtyard alright.<</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations university_maincourtyard>>
+            <<speech plr thought>>
+                Yup, that's a magical looking courtyard.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[University Entry Hall | University_Entrance]]>>
                 <<calcTime 5 5>>
             <</button>>
@@ -33,11 +40,15 @@
     <</nobr>>
 
 :: University_Gate
-    <img class='scene' src='img/locations/university_gate.jpg'>
-    <<Updates>>
-    <<speech 'plr'>>Now that is a gate! Sadly, it looks very much locked. And the air seems to shimmer along the outer wall. An illusion? Maybe a shield? Not sure yet.<</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations university_gate>>
+            <<speech plr thought>>
+                Woh, now that's a gate. Sadly, it looks very much locked. And the air seems to shimmer along the outerwall. An illusion? Or maybe a shield of some sort. Not sure yet...
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[University Main Road | University_MainRoad]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -45,11 +56,15 @@
     <</nobr>>
 
 :: University_Entrance
-    <img class='scene' src='img/locations/university_entrance.jpg'>
-    <<Updates>>
-    <<speech 'plr'>>In we go...<</speech>>
     <<nobr>>
-        <div class='passage-links-grid-3'>
+        <<passagehead locations university_entrance>>
+            <<speech plr thought>>
+                In we go...
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Classrooms | University_Hall_Classes]]>>
                 <<calcTime 5 5>>
             <</button>>
@@ -77,23 +92,55 @@
         </div>
     <</nobr>>
 :: University_Hall_Admin
-    <img class='scene' src='img/locations/university_hall_admin.jpg'>
-    <<Updates>>
+    <<nobr>>
+        <<passagehead locations university_hall_admin>>
+
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[University Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Hall_Labs
-    <img class='scene' src='img/locations/university_hall_labs.jpg'>
-    <<Updates>>
+    <<nobr>>
+        <<passagehead locations university_hall_labs>>
+
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[University Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Hall_Shops
-    <img class='scene' src='img/locations/university_hall_shops.jpg'>
-    <<Updates>>
+    <<nobr>>
+        <<passagehead locations university_hall_shops>>
+
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[University Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Hall_Classes
-    <img class='scene' src='img/locations/university_hall_classes.jpg'>
-    <<Updates>>
-    <<speech plr>>
-        Here be classrooms!
-    <</speech>>
+    <<nobr>>
+        <<passagehead locations university_hall_classes>>
+            <<speech plr thought>>
+                Thats a lot of classrooms!
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
     <<nobr>>
         <div class='passage-links-grid-2'>
             <<TimeCheck '0700' '0900' weekdays>>
@@ -142,25 +189,57 @@
     <</nobr>>
 
 :: University_Hall_Crafts
-    <img class='scene' src='img/locations/university_hall_crafts.jpg'>
-    <<Updates>>
+    <<nobr>>
+        <<passagehead locations university_hall_crafts>>
+
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[University Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Hall_Professors
-    <img class='scene' src='img/locations/university_hall_professors.jpg'>
-    <<Updates>>
+    <<nobr>>
+        <<passagehead locations university_hall_professors>>
+
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[University Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Librarium
-    <img class='scene' src='img/locations/university_librarium.jpg'>
-    <<Updates>>
+    <<nobr>>
+        <<passagehead locations university_librarium>>
+
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[University Entry Hall | University_Entrance]]>>
+                <<calcTime 0 5>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: University_Hall_Basement
-    <img class='scene' src='img/locations/university_hall_basement.webp'>
-    <<Updates>>
-    <<speech plr>>
-        Only a little eerie, at least it's not an actual dungeon.
-    <</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations university_hall_basement>>
+            <<speech plr thought>>
+                Only a little creepy, it least it doesn't look like an actual dungeon.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<TimeCheck '1100' '1300' weekdays>>
                 <<button [[Room B-3 | Basement_Class_RoomB3]]>>
                     <<calcTime 0 5>>

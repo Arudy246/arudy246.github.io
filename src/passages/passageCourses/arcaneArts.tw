@@ -166,7 +166,7 @@
                     <<nobr>>
                         <div class='passage-links-grid-1'>
                             <<button [[Leave | University_Hall_Classes]]>>
-                                <<SetTime 9>>
+                                <<SetTime 8 55>>
                                 <<set $unlockVar.locations.Floor1_Class_Room105.unlocked = true>>
                                 <<set $npcs.elliot.hasMet = true>>
                             <</button>>

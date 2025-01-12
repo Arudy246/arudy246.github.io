@@ -1,0 +1,160 @@
+:: NewSpellVars[init]
+
+    <<set $spells = {
+        heal: {
+            title: 'Self-Heal',
+            description: 'A spell designed to heal the aspiring practitioner.',
+            school: 'restoration',
+            unlock: 'true',
+            cost: 1,
+            onCast: function(){
+
+            }
+        }
+        /* damage: {
+            title:,
+            description:,
+            school:,
+            unlock:,
+            onCast: function(){
+
+            }
+        },
+        lightroom: {
+            title:,
+            description:,
+            school:,
+            unlock:,
+            onCast: function(){
+
+            }
+        },
+        cleanroom: {
+            title:,
+            description:,
+            school:,
+            unlock:,
+            onCast: function(){
+
+            }
+        },
+        spell: {
+            title:,
+            description:,
+            school:,
+            unlock:,
+            onCast: function(){
+
+            }
+        },
+        spell: {
+            title:,
+            description:,
+            school:,
+            unlock:,
+            onCast: function(){
+
+            }
+        } */
+    }>>
+
+:: NewSpellSystem
+
+    Here I am creating a new spell system for testing. A slightly dumbed down version to speed up the design and flavor of the magic system. I will be keeping the custom spell system, but its uses will be limited to crafting your own spells at "home", saving them, and then being able to make use of them in the field. Let us get started then...
+
+    You know, I'm still not sure about this. Looking over the code I have already built for the spell crafting system, the interconnectivity of it, the amount of system checks that lead everywhere... It is complex, but the foundation is complete. I am sure there is a better and more centralized way to manage a ton of its checks/balances, even if I'm not seeing it yet, but still, its all there. I need to make a decision on this, its holding up developement.
+
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button 'Experiment Button'>>
+                <<spellcast 'heal'>>
+            <</button>>
+
+            <<button 'Spell1'>>
+
+            <</button>>
+            <<button 'Spell2'>>
+
+            <</button>>
+            <<button 'Spell3'>>
+
+            <</button>>
+            <<button 'Spell4'>>
+
+            <</button>>
+            <<button 'Spell5'>>
+
+            <</button>>
+        </div>
+    <</nobr>>
+    <hr>
+    <<nobr>>
+    <div class='w3-container'>
+        <h3 class='header-lines'>Spellbook</h3>
+        <br>
+        <div class='w3-bar w3-black'>
+            <div class='w3-bar-item w3-button w3-hover-gray'>
+                Spell Crafting
+            </div>
+            <div class='w3-dropdown-hover'>
+                <button class='w3-button w3-hover-gray'>Spells</button>
+                <div class='w3-dropdown-content w3-bar-block w3-black'>
+                    <button class='w3-bar-item w3-button no-link'>
+                        <<link 'Self-Heal'>>
+                            <<spellcast 'heal'>>
+                        <</link>>
+                    </button>
+                    <button class='w3-bar-item w3-button'>
+                        Damage
+                    </button>
+                    <button class='w3-bar-item w3-button'>
+                        Light Room
+                    </button>
+                    <button class='w3-bar-item w3-button'>
+                        Clean Room
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <</nobr>>
+    <hr>
+    <<nobr>>
+        <h3 class='header-lines'>Media Testing</h3>
+        <br>
+        <div class='passage-links-grid-2'>
+            <<button 'Show GIF Link1'>>
+                <<replace "#media-spot">>
+                    <img src='https://el.phncdn.com/gif/5882421.gif' alt='Cock sucking'>
+                <</replace>>
+                <<autoscroll>>
+            <</button>>
+            <<button 'Show GIF Link2'>>
+                <<replace '#media-spot'>>
+                    <img src='https://el.phncdn.com/gif/51029621.gif' alt='Cock sucking'>
+                <</replace>>
+            <</button>>
+            <<button 'Show GIF Link3'>>
+                <<replace '#media-spot'>>
+                    <img src='https://el.phncdn.com/gif/43842901.gif' alt='Cock sucking'>
+                <</replace>>
+            <</button>>
+            <<button 'Show GIF Link4'>>
+                <<replace '#media-spot'>>
+                    <img src='https://el.phncdn.com/gif/44047031.gif' alt='Cock sucking'>
+                <</replace>>
+            <</button>>
+            <<button 'Show GIF Link5'>>
+                <<replace '#media-spot'>>
+                    <img src='https://el.phncdn.com/gif/48692721.gif' alt='Cock sucking'>
+                <</replace>>
+            <</button>>
+            <<button 'Show GIF Link6'>>
+                <<replace '#media-spot'>>
+                    <img src='https://el.phncdn.com/gif/28953781.gif' alt='Cock sucking'>
+                <</replace>>
+            <</button>>
+        </div>
+    <</nobr>>
+    <div id='media-spot' class='media-spot'></div>

@@ -1,3 +1,86 @@
 :: Course_IncursionHistory_1
+    <div class="green">I just learned how to quickly travel to Room B-3.</div>
+    <<speech adhya>>
+        Everyone find your seats. <<Player formal>> pick an open desk. That will be your desk for the rest of the term.
+    <</speech>>
+    <<speech adhya>>
+        For <<Player formal>> I am $npcs.adhya.name.formal and I will be instructing you the history of demonic incursions. I assume you have at least a passing knowledge of the incursions?
+    <</speech>>
+    <<nobr>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'No'>>
+                    <<speech plr>>
+                        No ma'am, I don't.
+                    <</speech>>
+                    <br>
+                    <<speech adhya>>
+                        Interesting...
+                    <</speech>>
+                    <<tone pos>>
+                        She looks at you with a critical, but inquisitive look.
+                    <</tone>>
+                <</line>>
+                <<line 'Yes'>>
+                    <<speech plr>>
+                        Yes ma'am, I do.
+                    <</speech>>
+                    <br>
+                    <<speech adhya>>
+                        But of course you do, but what you know versus the truth are likely two very different things.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 1>><br>
+                <<line 'Listen'>>
+                    <<speech adhya>>
+                        As most of you know, there have been thousands of incursions spanning tens of thousands of years. Some of these incursions have released only a couple dozen minor demons, imps for example, into our world. Some have introduced many thousand lesser demons and tens of greater demons. A few times, including twice during the current era, we have even seen demon lords.
+                    <</speech>>
+                    <br>
+                    <<speech adhya>>
+                        Demons comes in several different forms. Minor demons include creatures like imps, goblins, and cambions. They act as harrasment or shock troops during an incursion and are their efforts are focused on disrupting our ability to wage an effect offense or defense. I know some of you have already dealt with an imp or two. Imps are rather disobedient and frequently after an incursion is beat back, they will run off and continue causing trouble for years or decades to come. Luckily, they are very easy to kill, requiring only a basic elemental spell or two.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 2>><br>
+                <<line 'Keep listening'>>
+                    <<speech adhya>>
+                        Next up are lesser demons. They are far stronger and much more varied than minor demons. You won't usually see these unless a moderate or larger incursion occurs. These include entities like incubi, succubi, and romas. Since the first two are usually well known, I'll describe romas. They are bright white piles of tentacles, aside from their large eyes. The moment you see one of these, turn away and run. If you lock eyes with their's, you'll freeze in place as it crawls towards you and paralyzes you with their poisonous arms. Then they will either eat you or impregnate you. To be honest, the former is probably preferable. I've seen both happen and I don't want anyone of you to. So look away and run.
+                    <</speech>>
+                    <br>
+                    <<speech adhya>>
+                        Then we come to greater demons. These are the "middle management" class of demons. Take alps for example, they send out the incubi and succubi to collect energy from victims, then deliver that energy to the alp, which they either send back to Hell or to a demon lord. Or the jinn, who are essentially administrators to demon lords, issuing commands to their front lines and keeping the horde on mission. Greater demons are normally only encountered during large scale incursions.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 3>><br>
+                <<line 'Listen'>>
+                    <<speech adhya>>
+                        Lastly, you have demon lords. These are the masterminds, the kings, sometimes even the gods of their realm. Each one is named and each has incredible abilities. They have been seen only a few times throughout known history and each time they walked our world, the world was irrevocably changed. And never for the better. Take Ayperos for example, a demon prince who has had his hands in mortal affairs since time immemorial. Ayperos commands dozens of legions in Hell and has been individually responsible for at least four massive incursions. Old writings even seem to point blame at him for the splitting apart Pangea, turning it into the continents we now know as North America, South America, Africa, and Europe.
+                    <</speech>>
+                    <br>
+                    <<speech adhya>>
+                        Some demon lords are even known to approach practitioners and will offer them great rewards for what seem like small favors. I pray to all that is arcane that I don't have to explain why even speaking to a demon lord is the single greatest mistake any of us could make. Anyone remember the name Archibald the Loser? Or how about Childeric the Idiot? Maybe Ugolina the Cannibal? If not, read about them in the librarium. Each one played a part in allowing a lord of Hell to sunder our world.
+                    <</speech>>
+                <</line>>
+            <</level>>
+            <<level 4>><br>
+                <<line 'Keep listening'>>
+                    <<speech adhya>>
+                        I will leave you all with that. Tomorrow I will describe the different types of minor demons and their abilities, since those are the ones you will encounter most often. Be safe everyone.
+                    <</speech>>
+                    <br>
+                    <<nobr>>
+                        <div class='passage-links-grid-1'>
+                            <<button [[Leave | University_Hall_Basement]]>>
+                                <<set $unlockVar.locations.Basement_Class_RoomB3.unlocked = true>>
+                                <<SetTime 13>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
+                <</line>>
+            <</level>>
+        <</dlg>>
+    <</nobr>>
 
 :: Course_IncursionHistory_Random

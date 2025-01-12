@@ -1,16 +1,12 @@
 :: Residence_Starr_Courtyard[outdoors]
-    <img class='scene' src='img/locations/residence_starr_courtyard.jpg'>
-    <<Updates>>
     <<nobr>>
-        <<if $eventVar.inCombat == false>>
-            <<randomEvent Residence_Starr_Courtyard_Standard>>
-            <<else>>
-                <<include $eventVar.combatPass>>
-        <</if>>
+        <<passagehead 'locations' 'residence_starr_courtyard'>>
+            <<spawnevent location Residence_Starr_Courtyard_Random allowrandom '0000' '2400'>>
+        <</passagehead>>
     <</nobr>>
     <<nobr>>
         <<if $eventVar.inCombat == false>>
-            <div class='passage-links-grid-1'>
+            <div class='passage-links-grid-2'>
                 <<button[[Enter the Starr Residence | Residence_Starr_EntryHall]]>>
                     <<calcTime 0 5>>
                 <</button>>
@@ -28,37 +24,40 @@
     <</nobr>>
 
 :: Residence_Starr_BanquetHall[room]
-    <img class='scene' src='img/locations/residence_starr_banquethall.webp'>
-    <<Updates>>
     <<nobr>>
-        <<if $roomVars.Residence_Starr_BanquetHall.clean >= 20>>
-            <<speech plr>>
-                The banquet hall is impressive, or at least it would be, if someone had used a broom on it in the last century. Or two. It's <<roomComments 'clean'>>
-            <</speech>>
-        <<elseif $roomVars.Residence_Starr_BanquetHall.clean >= 10 && $roomVars.Residence_Starr_BanquetHall.clean < 20>>
-            <<speech plr>>
-                This is quite the hall, although it's a little dirty and could use some attention. It's <<roomComments 'clean'>>
-            <</speech>>
-        <<elseif $roomVars.Residence_Starr_BanquetHall.clean <= 10 >>
-            <<speech plr>>
-                Now this a good looking banquet hall, orderly and polished! It's <<roomComments 'clean'>>
-            <</speech>>
-        <</if>>
+        <<passagehead 'locations' 'residence_starr_banquethall'>>
+            <<if $roomVars.Residence_Starr_BanquetHall.clean >= 20>>
+                <<speech plr>>
+                    The banquet hall is impressive, or at least it would be, if someone had used a broom on it in the last century. Or two. It's <<roomComments 'clean'>>
+                <</speech>>
+            <<elseif $roomVars.Residence_Starr_BanquetHall.clean >= 10 && $roomVars.Residence_Starr_BanquetHall.clean < 20>>
+                <<speech plr>>
+                    This is quite the hall, although it's a little dirty and could use some attention. It's <<roomComments 'clean'>>
+                <</speech>>
+            <<elseif $roomVars.Residence_Starr_BanquetHall.clean <= 10 >>
+                <<speech plr>>
+                    Now this a good looking banquet hall, orderly and polished! It's <<roomComments 'clean'>>
+                <</speech>>
+            <</if>>
+        <</passagehead>>
     <</nobr>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <div class='passage-links-grid-2'>
             <<button [[Entry Hall | Residence_Starr_EntryHall]]>>
                 <<calcTime 0 5>>
             <</button>>
         </div>
     <</nobr>>
 
-:: Residence_Starr_Bathroom[room]
-    <img class='scene' src='img/locations/residence_starr_bathroom.jpg'>
-    <<Updates>>
-    <<speech plr>>It is definitely a bathroom. Judging by the state of it, it's <<roomComments 'clean'>><</speech>>
+:: Residence_Starr_Bathroom[room bathroom]
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead 'locations' 'residence_starr_bathroom'>>
+            <<speech plr thought>>It is definitely a bathroom. Judging by the state of it, it's <<roomComments 'clean'>><</speech>>
+            <<spawnevent npc Janessa_Random allowrandom '0500' '0600'>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Bedroom Hallway | Residence_Starr_BedroomHall]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -66,11 +65,13 @@
     <</nobr>>
 
 :: Residence_Starr_EntryHall
-    <img class='scene' src='img/locations/residence_starr_entryhall.jpg'>
-    <<Updates>>
-
-    You are in the entryway of the residence.
-
+    <<nobr>>
+        <<passagehead locations residence_starr_entryhall>>
+            <<speech plr thought>>
+                This is the entryway into the rest of the residence.                
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
     <<nobr>>
         <div class='passage-links-grid-2'>
             <<button [[Kitchen | Residence_Starr_Kitchen]]>>
@@ -88,15 +89,14 @@
         </div>
     <</nobr>>
 
-:: Residence_Starr_BedroomHall
-    <img class='scene' src='img/locations/residence_starr_bedroomhall.jpg'>
-    <<Updates>>
-
-    Looks like the bedroom hallway.
+:: Residence_Starr_BedroomHall[room]
     <<nobr>>
-        <<TimeCheck '0000' '2400'>>
-            <<NpcAvailable janessa Janessa_CourseOverview>>
-        <</TimeCheck>>
+        <<passagehead 'locations' 'residence_starr_bedroomhall'>>
+            <<speech plr thought>>Looks like a bedroom hallway.<</speech>>
+            <br>
+            <<spawnevent npc Janessa_CourseOverview forbidrandom '0000' '2400'>>
+            <<spawnevent npc Janessa_FirstClass forbidrandom '0600' '0800'>>
+        <</passagehead>>
     <</nobr>>
     <<nobr>>
         <div class='passage-links-grid-2'>
@@ -117,35 +117,27 @@
 
 :: Residence_Starr_JanessaRoom[room]
     <<nobr>>
-        <<if $unlockVar.rooms.roomJanessa == false>>
-            <img class='scene' src='img/locations/residence_starr_janessaroom.jpg'><br>
-
-            <<Updates>><br>
-
-            <<speech plr>>$npcs.janessa.name.firstName said to stay out. For now, I should do just that.<</speech>>
-            <<else>>
-                <img class='scene' src='img/locations/residence_starr_janessaroom_unlock.jpg'><br>
-
-                <<Updates>><br>
-                <<NpcAvailable 2000 2200 janessa>><br>
-            
-        <</if>>
+        <<passagehead locations residence_starr_janessaroom>>
+            <<speech plr thought>>$npcs.janessa.name.firstName said to stay out. For now, I should do just that.<</speech>>
+            <<spawnevent npc Janessa_Random allowrandom '1900' '2300'>>
+        <</passagehead>>
     <</nobr>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <div class='passage-links-grid-2'>
             <<button [[Bedroom Hallway | Residence_Starr_BedroomHall]]>>
                 <<calcTime 0 5>>
             <</button>>
         </div>
-
     <</nobr>>
 
 :: Residence_Starr_Kitchen[room]
-    <img class='scene' src='img/locations/residence_starr_kitchen.jpg'>
-    <<Updates>>
-    <<speech plr>>She was right, this place hasn't been used in years. As far as it's condition is concerned, it's <<roomComments 'clean'>><</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations residence_starr_kitchen>>
+            <<speech plr thought>>She was right, this place hasn't been used in years. As far as it's condition is concerned, it's <<roomComments 'clean'>><</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Entry Hall | Residence_Starr_EntryHall]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -153,8 +145,11 @@
     <</nobr>>
 
 :: Residence_Starr_PlayerRoom[room playerHome]
-    <img class="scene" src='img/locations/residence_starr_playerroom.webp'>
-    <<Updates>>
+    <<nobr>>
+        <<passagehead locations residence_starr_playerroom>>
+            <<speech plr>>I'm in my room. Glancing at the state of the place, it's <<roomComments 'clean'>> The floor is of <<roomComments 'floor'>> quality. I see my <<roomComments 'chair'>> chair and <<roomComments 'desk'>> desk in the corner. On the far wall is my <<roomComments 'bed'>> bed. The room is <<roomComments 'light'>> lit.<</speech>>
+        <</passagehead>>
+    <</nobr>>
     <<nobr>>
         <<if $roomVars.Residence_Starr_PlayerRoom.bookspell.cur != $roomVars.Residence_Starr_PlayerRoom.bookspell.max || $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur != $roomVars.Residence_Starr_PlayerRoom.bookmisc.cur>>
             <<speech plr>>For starters, I should probably take a look around and see if there is anything useful or interesting here.<</speech>>
@@ -167,9 +162,6 @@
             <<speech plr>>After finishing $bookSpell.spellsBasic.title, I think I know how to clean this place up. And a cleaning spell is exactly what the doctor ordered!<</speech>>
         <</if>>
     <</nobr>>
-    <<speech plr>>
-        I'm in my room. Glancing at the state of the place, it's <<roomComments 'clean'>> The floor is of <<roomComments 'floor'>> quality. I see my <<roomComments 'chair'>> chair and <<roomComments 'desk'>> desk in the corner. On the far wall is my <<roomComments 'bed'>> bed. The room is <<roomComments 'light'>> lit.
-    <</speech>>
     <<nobr>>
         <div class='passage-links-grid-2'>
             <<button [[Search your room | Residence_Starr_PlayerRoom_Searching]]>><</button>>
@@ -226,72 +218,56 @@
         </div>
     <</nobr>>
 
-:: Residence_Starr_PlayerRoom_Cleaning[minorEvent]
-    <img class="scene" src='img/locations/plrroom.jpg'>
-    <<Updates>>
+:: Residence_Starr_PlayerRoom_Searching[minorEvent]
     <<nobr>>
-        <<if $roomVars.Residence_Starr_PlayerRoom.clean >= 21>>
-            <<speech plr>>It's slow progress, but it's definitely looking cleaner. Still disgusting though...<</speech>>
-        <<elseif $roomVars.Residence_Starr_PlayerRoom.clean >= 10 && $roomVars.Residence_Starr_PlayerRoom.clean < 21>>
-            <<speech plr>>It's certainly cleaner, spending a little more time should get it looking pretty good.<</speech>>
-        <<elseif $roomVars.Residence_Starr_PlayerRoom.clean <= 0>>
-            <<speech plr>>It's as good as it can get for now.<</speech>>
-        <</if>>
+        <<passagehead locations residence_starr_searchclutter>>
+            <<nobr>>
+                <<if visited() == 2>>
+                    <<searchForItem 'Residence_Starr_PlayerRoom' 'bookmisc' 'mapSchool' 30>>
+                <</if>>
+                <<if visited() == 1>>
+                    <<searchForItem 'Residence_Starr_PlayerRoom' 'bookspell' 'spellsBasic' 30>>
+                    <<set $unlockVar.userInterface.inventory = true>>
+                <</if>>
+                <<if visited() > 2>>
+                    <<speech plr thought>>This place is picked clean of anything interesting or useful.<</speech>>
+                <</if>>
+            <</nobr>>
+        <</passagehead>>
     <</nobr>>
     <<nobr>>
-        <<if $spellWords.effect.clean.unlocked == true>>
-            <<speech plr>>This is a waste of time, I should probably use <i>$spellWords.effect.clean.latin</i> instead.<</speech>>
-            <<else>>
-                <<speech plr>>It takes so much time cleaning by hand, I wonder if I could find a spell in this house to make this easier on myself?<</speech>>
-        <</if>>
-    <</nobr>>
-    <<nobr>>
-        <div class='passage-links-grid-1'>
-            <<button [[Continue | Residence_Starr_PlayerRoom]]>><</button>>
+        <div class='passage-links-grid-2'>
+            <<button [[Look back at your room | Residence_Starr_PlayerRoom]]>>
+            <</button>>
         </div>
     <</nobr>>
 
-:: Residence_Starr_PlayerRoom_Searching[minorEvent]
-    <img class="scene" src='img/locations/searchclutter.jpg'>
-    <<Updates>>
-    <<nobr>>
-        /* <<if visited() == 1>>
-            <<searchForItem 'Residence_Starr_PlayerRoom' 'bookmisc' 'mapSchool' 30>>
-        <</if>> */
-        <<if visited() == 1>>
-            <<searchForItem 'Residence_Starr_PlayerRoom' 'bookspell' 'spellsBasic' 30>>
-            <<set $unlockVar.userInterface.inventory = true>>
-        <</if>>
-        <<if visited() > 1>>
-            <<speech 'plr'>>This place is picked clean of anything interesting or useful.<</speech>>
-        <</if>>
-    <</nobr>>
-    <<button [[Look back at your room | Residence_Starr_PlayerRoom]]>>
-    <</button>>
-
 :: Residence_Starr_PlayerRoom_Sleeping
-    <img class="scene" src='img/locations/residence_starr_resting.jpg'>\
-    <<speech plr>>Try as I might, I simply cannot sleep. Letting my mind go blank, counting sheep, nothing is working! Nevermind on this idea I guess.<</speech>>\
-
-    <<button [[Stand up | Residence_Starr_PlayerRoom]]>>
-    <</button>>
-
-:: Residence_Starr_PlayerRoom_Resting
-    <img class="scene" src='img/locations/residence_starr_resting.jpg'>
-    <<Updates>>
-    You lay down on the <<roomComments 'bed'>> bed and feel tension and tiredness leave you.
-
-    <<speech plr>>I feel a bit more rested.<</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations residence_starr_resting>>
+            <<speech plr thought>>Try as I might, I simply cannot sleep. Letting my mind go blank, counting sheep, nothing is working! Nevermind on this idea I guess.<</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[Stand up | Residence_Starr_PlayerRoom]]>>
+            <</button>>
+        </div>
+    <</nobr>>
+:: Residence_Starr_PlayerRoom_Resting
+    <<nobr>>
+        <<passagehead locations residence_starr_resting>>
+            <<speech plr thought>>I feel a bit more rested. And this <<roomComments 'bed'>> bed...<</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Stand up | Residence_Starr_PlayerRoom]]>><</button>>
         </div>
     <</nobr>>
 
-:: Residence_Starr_Courtyard_Standard[outdoors]
-    <<speech plr>>It sure is imposing, even if it is in complete disrepair.<</speech>>
-
-:: Residence_Starr_Courtyard_Squirrel[outdoors combat day1]
+:: Trash_Passage
+/* :: Residence_Starr_Courtyard_Squirrel[outdoors combat day1]
     <<nobr>>
         <<done>>
             <<run $spellCastVar.availableTargets.critters.pushUnique('$critters.aggressiveSquirrel')>>
@@ -310,36 +286,20 @@
     </div>
     <<speech plr>>What is that?!? $critters.aggressiveSquirrel.description<</speech>>
 
-:: Residence_Starr_Courtyard_Janessa[outdoors minorEvent day2]
-    Fill in event... will do later.
+/* :: Residence_Starr_Courtyard_Imp[outdoors combat night1]
 
-:: Residence_Starr_Courtyard_Shimmer[outdoors minorEvent day3]
-    <<speech plr>>There is a shimmer above this place, I can barely see it, but it is there.<</speech>>
-    <<setDisc plr random 0.1>>
-
-:: Residence_Starr_Courtyard_Imp[outdoors combat night1]
     <<nobr>>
         <<done>>
             <<CombatStart 'tinyImp'>>
         <</done>>
     <</nobr>>\
     <div class='enemy-box'>\
-            <div id='enemyName' class='enemy-name'></div><hr>
-            <span id='enemyAvatar' class='enemy-avatar'></span><div class='enemy-bars'>\
-                <div id="enemylifeBarbkg" class="hzbarbkg"><div id="enemylifeBar" class="hzbar"></div></div>\
-                <span class="crimson">Life: </span><span id='enemylife'></span>
-                <div id="enemystaminaBarbkg" class="hzbarbkg"><div id="enemystaminaBar" class="hzbar"></div></div>\
-                <span class="cyan">Stamina: </span><span id='enemystamina'></span>\
-            </div>\
+        <div id='enemyName' class='enemy-name'></div><hr>
+        <span id='enemyAvatar' class='enemy-avatar'></span><div class='enemy-bars'>\
+            <div id="enemylifeBarbkg" class="hzbarbkg"><div id="enemylifeBar" class="hzbar"></div></div>\
+            <span class="crimson">Life: </span><span id='enemylife'></span>
+            <div id="enemystaminaBarbkg" class="hzbarbkg"><div id="enemystaminaBar" class="hzbar"></div></div>\
+            <span class="cyan">Stamina: </span><span id='enemystamina'></span>\
+        </div>\
     </div>
-    <<speech plr>>What the fuck am I looking at? $critters.tinyImp.description<</speech>>
-
-:: Residence_Starr_Courtyard_Whisper[outdoors minorEvent night2]
-    <<speech ghost>>
-        <span class='blur'>You must learn. Master. Will and reality entwined.</span>
-    <</speech>>
-    <<speech plr>>There's that familiar chill running down my spine....<</speech>>
-    <<setDisc plr random 0.2>>
-
-:: Residence_Starr_Courtyard_Feeling[outdoors minorEvent night3]
-    <<speech plr>>The front of this place always leaves me feeling, small.<</speech>>
+    <<speech plr>>What the fuck am I looking at? $critters.tinyImp.description<</speech>> */

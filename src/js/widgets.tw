@@ -1,5 +1,50 @@
 :: Widgets[widget]
 
+    /*  <<passagehead args0:locations args:1residence_starr_bathroom ?args2:noclass>>
+            <<speech>><</speech>>
+        <</passagehead>>
+    */
+    <<nobr>>
+        <<widget "passagehead" container>>
+            <<set _scene = 'img/' + _args[0] + '/' +_args[1] + '.jpg'>>
+            <<print '<div id="passage-scene">' + '<img class="scene" src=' + _scene + '>' + '</div>'>>
+            <div class='w3-panel w3-border w3-border w3-border-teal w3-round-large w3-padding' style='background-color:#1a0000'>
+                <<if $systemVar.logs == true>>
+                    <i class='w3-text-blue'>
+                        <<print 'PASSAGE: ' + passage() + ' ||| TAGS: ' + tags()>>
+                    </i>
+                <</if>>
+                <<if _args[2] == 'noclass'>>
+                    <<Updates noclass>>
+                <<else>>
+                    <<Updates>>
+                <</if>>
+                <<printRelGain>>
+            </div>
+            <div id='passage-desc'>
+                _contents
+            </div>
+        <</widget>>
+    <</nobr>>
+
+    <<nobr>>
+        <<widget "passagestart">>
+            <div class='w3-panel w3-border w3-border w3-border-teal w3-round-large w3-padding' style='background-color:#1a0000'>
+                <<if $systemVar.logs == true>>
+                    <i class='w3-text-blue'>
+                        <<print 'PASSAGE: ' + passage()>>
+                    </i>
+                <</if>>
+                <<if _args[0] == 'noclass'>>
+                    <<Updates noclass>>
+                <<else>>
+                    <<Updates>>
+                <</if>>
+                <<printRelGain>>
+            </div>
+        <</widget>>
+    <</nobr>>
+
     /* relGain amy 10 (int | sus)*/
     <<nobr>>
         <<widget "relGain">>
@@ -10,7 +55,7 @@
                 <<set $plr.relations[_args[0]].negative += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
 
             <<elseif _args[2]>>
-                <<set $relTypeTemp = _args[2]>>
+                <<set $tempVar.relType = _args[2]>>
                 <<if _args[2] == 'int'>>
                     <<set $plr.relations[_args[0]].intimate += _args[1] + ($plr.body.dynamic.atttractiveness / 10)>>
 
@@ -19,27 +64,29 @@
                 <</if>>
             <</if>>
 
-            <<set $relNpcTemp = _args[0]>>
-            <<set $relAmtTemp = _args[1]>>
+            <<set $tempVar.relNPC = _args[0]>>
+            <<set $tempVar.relAmt = _args[1]>>
         <</widget>>
     <</nobr>>
 
     <<nobr>>
         <<widget "printRelGain">>
-            <<if $relAmtTemp>>
-                <<if $relAmtTemp > 0 && !$relTypeTemp>>
-                    <<print '<span class="green">Your relationship with ' +  $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has improved!</span>'>>
+            <<if $tempVar.relAmt>>
+                <<if $tempVar.relAmt > 0 && !$tempVar.relType>>
+                    <<print '<span class="green">Your relationship with ' +  $npcs[$tempVar.relNPC].name.firstName + ' ' + $npcs[$tempVar.relNPC].name.lastName + ' has improved!</span>'>>
 
-                <<elseif $relAmtTemp < 0 && !$relTypeTemp>>
-                    <<print '<span class="w3-text-red">Your relationship with ' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' has deteriorated.</span>'>>
+                <<elseif $tempVar.relAmt < 0 && !$tempVar.relType>>
+                    <<print '<span class="w3-text-red">Your relationship with ' + $npcs[$tempVar.relNPC].name.firstName + ' ' + $npcs[$tempVar.relNPC].name.lastName + ' has deteriorated.</span>'>>
 
-                <<elseif $relTypeTemp == 'int'>>
-                    <<print '<span class="w3-text-purple">' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' is now more interested in you...</span>'>>
+                <<elseif $tempVar.relType == 'int'>>
+                    <<print '<span class="w3-text-purple">' + $npcs[$tempVar.relNPC].name.firstName + ' ' + $npcs[$tempVar.relNPC].name.lastName + ' is now more interested in you...</span>'>>
 
-                <<elseif $relTypeTemp == 'sus'>>
-                    <<print '<span class="w3-text-red">' + $npcs[$relNpcTemp].name.firstName + ' ' + $npcs[$relNpcTemp].name.lastName + ' is now more suspicious of you.</span>'>>
+                <<elseif $tempVar.relType == 'sus'>>
+                    <<print '<span class="w3-text-red">' + $npcs[$tempVar.relNPC].name.firstName + ' ' + $npcs[$tempVar.relNPC].name.lastName + ' is now more suspicious of you.</span>'>>
                 <</if>>
-                <<unset $relAmtTemp, $relNpcTemp, $relTypeTemp>>
+                <<set $tempVar.relAmt = 0>>
+                <<set $tempVar.relType = 0>>
+                <<set $tempVar.relNPC = 0>>
             <</if>>
         <</widget>>
     <</nobr>>
@@ -187,7 +234,7 @@
                     <<setStats 'plr' 'stamina' _staminaLoss>>
                 <</if>>
 
-                <<if _args[3] != 'nodebug'>>
+                <<if $systemVar.timecheck == true>>
                     <<consolelog '---calcTime Start---'>>
                     <<consolelog 'Hour' $dateTime.hour>>
                     <<consolelog 'Minute' $dateTime.min>>
@@ -458,15 +505,15 @@
         <<widget 'statsChange'>>
             <<if $plr.stats.stamina.pre>>
                 <<set _stamDiff = ($plr.stats.stamina.cur - $plr.stats.stamina.pre)>>
-                <<if _stamDiff >= 0.01 || _stamDiff <= -0.01>>
+                <<if _stamDiff >= 0.005 || _stamDiff <= -0.005>>
                     <<if $plr.stats.stamina.pre < $plr.stats.stamina.cur>>
                         <<print
-                            '<div class="green">I gained ' + _stamDiff.toFixed(2) + ' stamina.</div>'
+                            '<div class="w3-text-green">I gained ' + _stamDiff.toFixed(2) + ' stamina.</div>'
                         >>
                             
                         <<elseif $plr.stats.stamina.pre > $plr.stats.stamina.cur>>
                             <<print
-                                '<div class="orange">I\'ve lost ' + (_stamDiff.toFixed(2) * -1) + ' stamina.</div>'
+                                '<div class="w3-text-orange">I\'ve lost ' + (_stamDiff.toFixed(2) * -1) + ' stamina.</div>'
                             >>
                     <</if>>
                 <</if>>
@@ -475,15 +522,15 @@
 
             <<if $plr.stats.life.pre>>
                 <<set _lifeDiff = ($plr.stats.life.cur - $plr.stats.life.pre)>>
-                <<if _lifeDiff >= 0.01 || _lifeDiff <= -0.01>>
+                <<if _lifeDiff >= 0.005 || _lifeDiff <= -0.005>>
                     <<if $plr.stats.life.pre < $plr.stats.life.cur>>
                         <<print
-                            '<div class="green">I gained ' + _lifeDiff.toFixed(2) + ' life.</div>'
+                            '<div class="w3-text-green">I gained ' + _lifeDiff.toFixed(2) + ' life.</div>'
                         >>
                             
                         <<elseif $plr.stats.life.pre > $plr.stats.life.cur>>
                             <<print
-                                '<div class="orange">I\'ve lost ' + (_lifeDiff.toFixed(2) * -1) + ' life.</div>'
+                                '<div class="w3-text-orange">I\'ve lost ' + (_lifeDiff.toFixed(2) * -1) + ' life.</div>'
                             >>
                     <</if>>
                 <</if>>
@@ -492,15 +539,15 @@
 
             <<if $plr.stats.focus.pre>>
                 <<set _focusDiff = ($plr.stats.focus.cur - $plr.stats.focus.pre)>>
-                <<if _focusDiff >= 0.01 || _focusDiff <= -0.01>>
+                <<if _focusDiff >= 0.005 || _focusDiff <= -0.005>>
                     <<if $plr.stats.focus.pre < $plr.stats.focus.cur>>
                         <<print
-                            '<div class="green">I gained ' + _focusDiff.toFixed(2) + ' focus.</div>'
+                            '<div class="w3-text-green">I gained ' + _focusDiff.toFixed(2) + ' focus.</div>'
                         >>
                             
                         <<elseif $plr.stats.focus.pre > $plr.stats.focus.cur>>
                             <<print
-                                '<div class="orange">I\'ve lost ' + (_focusDiff.toFixed(2) * -1) + ' focus.</div>'
+                                '<div class="w3-text-orange">I\'ve lost ' + (_focusDiff.toFixed(2) * -1) + ' focus.</div>'
                             >>
                     <</if>>
                 <</if>>
@@ -509,15 +556,15 @@
 
             <<if $plr.stats.sanity.pre>>
                 <<set _sanityDiff = ($plr.stats.sanity.cur - $plr.stats.sanity.pre)>>
-                <<if _sanityDiff >= 0.01 || _sanityDiff <= -0.01>>
+                <<if _sanityDiff >= 0.005 || _sanityDiff <= -0.005>>
                     <<if $plr.stats.sanity.pre < $plr.stats.sanity.cur>>
                         <<print
-                            '<div class="green">I gained ' + _sanityDiff.toFixed(2) + ' sanity.</div>'
+                            '<div class="w3-text-green">I gained ' + _sanityDiff.toFixed(2) + ' sanity.</div>'
                         >>
                             
                         <<elseif $plr.stats.sanity.pre > $plr.stats.sanity.cur>>
                             <<print
-                                '<div class="orange">I\'ve lost ' + (_sanityDiff.toFixed(2) * -1) + ' sanity.</div>'
+                                '<div class="w3-text-orange">I\'ve lost ' + (_sanityDiff.toFixed(2) * -1) + ' sanity.</div>'
                             >>
                     <</if>>
                 <</if>>
@@ -549,7 +596,7 @@
                 ]>>
 
                 <<set _disc = _discArray[_rando]>>
-                <<consolelog 'setDisc Random _disc' _disc>>
+                <<consolelog 'setDisc Random' _disc>>
 
                 <<else>>
                     <<set _disc = _args[1]>>
@@ -606,12 +653,12 @@
         <</widget>>
     <</nobr>>
 
-/* To be included on every passage, one stop call all update functions. Accepts _args[0] as noClass, etc etc. i.e. <<Updates noClass>> */
+/* To be included on every passage, one stop call all update functions. Accepts _args[0] as noclass, etc etc. i.e. <<Updates noclass>> */
     <<nobr>>
         <<widget 'Updates'>>
             <<statsChange>>
             <<discChange>>
-            <<if _args[0] != 'noClass'>>
+            <<if _args[0] != 'noclass'>>
                 <<TimeCheck '0700' '0800' weekdays>>
                     <<ClassWarning Floor1_Class_Room105>>Arcane Arts class starts in less than an hour<br><</ClassWarning>>
                 <</TimeCheck>>
@@ -847,17 +894,17 @@
 
             <<set _bookPerc = (100 *_countCur) / _countMax>>
 
-            <<if _bookPerc >= 0 && _bookPerc < 50>>
+            <<if _bookPerc >= 0 && _bookPerc <= 50>>
                 <<print
-                    '<<speech plr>>There is still a lot of stuff I can look through.<</speech>>'
+                    '<<speech plr thought>>There is still a lot of stuff I can look through.<</speech>>'
                 >>
-                <<elseif _bookPerc >= 50 && _bookPerc < 100>>
+                <<elseif _bookPerc >= 51 && _bookPerc < 100>>
                     <<print
-                        '<<speech plr>>I\'ve searched through most of this place, but there is a little more I can poke around.<</speech>>'
+                        '<<speech plr thought>>I\'ve searched through most of this place, but there may be more to find here.<</speech>>'
                     >>
                 <<elseif _bookPerc == 100>>
                     <<print
-                        '<<speech plr>>I have found everything there is to find here.<</speech>>'
+                        '<<speech plr thought>>I have found everything there is to find here.<</speech>>'
                     >>
             <</if>>
         <</widget>>
@@ -1044,44 +1091,10 @@
         <</widget>>
     <</nobr>>
 
-    /* Sets available random events and runs based on multiple args, i.e. <<randomEvent (standard event) >> */
-    <<nobr>>
-        <<widget 'randomEvent'>>
-            <<set _standardEvent = _args[0]>>
-            <<set _randEventNum = random(1, 3)>>
-            <<set _randNum = random(1, 10)>>
-            <<set _eventArray = $roomVars[passage()].randomEvents>>
-            <<if $dateTime.hour >= 6 && $dateTime.hour <= 19>>
-                <<set _curTime = 'day' + _randEventNum>>
-                <<else>>
-                    <<set _curTime = 'night' + _randEventNum>>
-            <</if>>
-
-            <<for _i = 0; _i < _eventArray.length; _i++>>
-                <<if tags(_eventArray[_i]).includes(_curTime) && _randNum <= 3>>
-                    <<set _curRndEvent = _eventArray[_i]>>
-                    <<if _curRndEvent>>
-                        <<break>>
-                    <</if>>
-
-                    <<else>>
-                        <<set _curRndEvent = _standardEvent>>
-                <</if>>
-            <</for>>
-            <<if tags(_curRndEvent).includes('combat')>>
-                <<set $eventVar.inCombat = true>>
-                <<set $unlockVar.userInterface.locations = false>>
-                <<set $eventVar.combatPass = _curRndEvent>>
-            <</if>>
-            <<include _curRndEvent>>
-
-        <</widget>>
-    <</nobr>>
-
-    /*Console log in a widget, i.e. <<consolelog 'life cur: ' _life */
+    /*Console log in a widget, i.e. <<consolelog lifecur _life */
     <<nobr>>
         <<widget 'consolelog'>>
-            <<if $devMode == true>>
+            <<if $systemVar.logs == true>>
                 <<if _args[0] && _args[1] !== void(0) >>
                     <<run console.log(_args[0] + ': ' + _args[1])>>
                     <<else>>
@@ -1169,34 +1182,36 @@
         <</widget>>
     <</nobr>>
 
-    /* If time and day lines up, then npc is available for conversation with the optional declared event in the location the func is called in. 
-    i.e. <<NpcAvailable 0:janessa 1:Janessa_SomeEvent 2:true(allows random convos)>> 
-    i.e. <<NpcAvailable janessa Janessa_CleanResidence>>
-    */
+    /* -----OBSOLETE NpcAvailable OBSOLETE-----*/
     <<nobr>>
         <<widget 'NpcAvailable'>>
             <<consolelog '-----NpcAvailable Start-----'>>
             <<set _npc = _args[0].charAt(0).toUpperCase() + _args[0].slice(1)>>
-            
-            <<if _args[1]>>
-                <<set _event ='Conversation_' + _args[1]>>
-                <<set _eventCheck = $unlockVar.conversations[_args[1]]>>
-            <</if>>
+            <<if $eventVar.eventactive != true>>
+                <<if _args[1] != 'random'>>
+                    <<set _event ='Conversation_' + _args[1]>>
+                    <<set _eventCheck = $unlockVar.conversations[_args[1]]>>
+                <</if>>
 
-            <<consolelog '_npc' _npc>>
-            <<consolelog '_event' _event>>
-            <<consolelog  '_eventCheck' _eventCheck>>
+                <<consolelog '_npc' _npc>>
+                <<consolelog '_event' _event>>
+                <<consolelog  '_event Completed' _eventCheck>>
 
-            <<if _event && _eventCheck == false>>
-                <<include _event>>
-                <<set $unlockVar.conversations[_args[1]] = true>>
-                <<consolelog 'Event Convo: Selected'>>
-            <<elseif _args[2] == true>>
-                <<set _npcDefault = 'Conversation_' + _npc + '_Random'>>
-                <<include _npcDefault>>
-                <<consolelog 'Random Convo: Selected'>>
+                <<if _event && _eventCheck == false>>
+                    <<include _event>>
+                    <<set $unlockVar.conversations[_args[1]] = true>>
+                    <<consolelog 'Event Convo: Selected'>>
+                    <<set $eventVar.eventactive = true>>
+                <<elseif _args[1] == 'allowrandom' || _args[2] == 'allowrandom'>>
+                    <<set _eventRandom = 'Conversation_' + _npc + '_Random'>>
+                    <<include _eventRandom>>
+                    <<consolelog 'Random Convo: Selected'>>
+                    <<set $eventVar.eventactive = true>>
+                <</if>>
+            <<else>>
+                <<consolelog 'Convo Already in-Progress'>>
             <</if>>
-    
+            <<print '<div class="w3-panel w3-text-red w3-black">Use the new "spawnevent", idiot...</div>'>>
             <<consolelog '---NpcAvailable End---'>>
         <</widget>>
     <</nobr>>
@@ -1240,6 +1255,118 @@
         <</widget>>
     <</nobr>>
 
+    /* Sets available random events and runs based on multiple args, i.e. <<randomEvent (standard event) >> */
+    <<nobr>>
+        <<widget 'randomEvent'>>
+            <<set _standardEvent = _args[0]>>
+            <<set _randEventNum = random(1, 3)>>
+            <<set _randNum = random(1, 10)>>
+            <<set _eventArray = $roomVars[passage()].randomEvents>>
+            <<if $dateTime.hour >= 6 && $dateTime.hour <= 19>>
+                <<set _curTime = 'day' + _randEventNum>>
+                <<else>>
+                    <<set _curTime = 'night' + _randEventNum>>
+            <</if>>
+
+            <<for _i = 0; _i < _eventArray.length; _i++>>
+                <<if tags(_eventArray[_i]).includes(_curTime) && _randNum <= 3>>
+                    <<set _curRndEvent = _eventArray[_i]>>
+                    <<if _curRndEvent>>
+                        <<break>>
+                    <</if>>
+
+                    <<else>>
+                        <<set _curRndEvent = _standardEvent>>
+                <</if>>
+            <</for>>
+            <<if tags(_curRndEvent).includes('combat')>>
+                <<set $eventVar.inCombat = true>>
+                <<set $unlockVar.userInterface.locations = false>>
+                <<set $eventVar.combatPass = _curRndEvent>>
+            <</if>>
+            <<include _curRndEvent>>
+            <<consolelog 'Random Event' _curRndEvent>>
+
+        <</widget>>
+    <</nobr>>
+
+    /* Initiate event with optional random content
+        i.e. <<spawnevent 0:npc 1:Janessa_CourseOverview 2:norandom 3:'0600' 4:'0800'>> 
+        i.e. <<spawnevent 0:location 1:Residence_Starr_Courtyard_KyleIntroduction 2:Residence_Starr_Courtyard_Random 3:'0000' 4:'2400'>>
+        i.e. <<spawnevent 0:npc 1:Janessa_Random 2:Janessa_Random 3:'0000' 4:'2400'>>
+    */
+    <<nobr>>
+        <<widget "spawnevent">>
+            <<set _type = _args[0]>>
+            <<set _event = _args[1]>>
+            <<set _randomevent = _args[2]>>
+            <<set _timestart = _args[3]>>
+            <<set _timeend = _args[4]>>
+            <<if $dateTime.hour > 6 && $dateTime.hour <= 19>>
+                <<set _daynight = 'day'>>
+            <<else>>
+                <<set _daynight = 'night'>>
+            <</if>>
+            <<set $eventVar.timeofday = _daynight>>
+
+            <<TimeCheck _timestart _timeend>>
+                <<switch _type>>
+                    <<case 'npc'>>
+                        <<if $eventVar.eventactive == false>>
+                            <<set _event = 'Conversation_' + _event>>
+
+                            <<if !tags(_event).includes('random')>>
+                                <<set _eventcheck = $unlockVar.conversations[_event]>>
+                            <</if>>
+                            
+                            <<if _event && _eventcheck != true>>
+                                <<include _event>>
+                                <<set $unlockVar.conversations[_event] = true>>
+                                <<set $eventVar.eventactive = true>>
+                                <<consolelog 'Specific NPC Event Fired' _event>>
+
+                            <<elseif _randomevent != 'forbidrandom'>>
+                                <<set _randomevent = 'Conversation_' + _randomevent>>
+                                <<include _randomevent>>
+                                <<set $eventVar.eventactive = true>>
+
+                                <<consolelog 'Random NPC Event Fired' _randomevent>>
+                            <<else>>
+                                <<consolelog 'Random NPC Event: Forbid'>>
+                            <</if>>
+                        <<elseif $eventVar.eventactive == true>>
+                            <<consolelog 'NPC Event Already Fired: Repeat Attempted'>>
+                        <</if>>
+
+                    <<case 'location'>>
+                        <<if $eventVar.eventactive == false>>
+                            <<if !tags(_event).includes('random')>>
+                                <<set _eventcheck = $unlockVar.placeevents[_event]>>
+                            <</if>>
+
+                            <<if _event && _eventcheck != true>>
+                                <<include _event>>
+                                <<set $unlockVar.placeevents[_event] = true>>
+                                <<set $eventVar.eventactive = true>>
+                                <<consolelog 'Specific Location Event Fired' _event>>
+
+                            <<elseif _randomevent != 'forbidrandom'>>
+                                <<include _event>>
+                                <<set $eventVar.eventactive = true>>
+                                <<consolelog 'Random Location Event Fired' _event>>
+                            
+                            <<else>>
+                                <<consolelog 'Random Loc Event: Forbid'>>
+
+                            <</if>>
+                        <<elseif $eventVar.eventactive == true>>
+                            <<consolelog 'Location Event Already Fired: Repeat Attempted'>>
+                        <</if>>
+                <</switch>>
+            <</TimeCheck>>
+        <</widget>>
+    <</nobr>>
+
     <<nobr>>
         <<widget "GenerateCourseTbl">>
             <<set _courseTitle = $courses[_args[0]].title>>
@@ -1260,7 +1387,7 @@
             <<set _details ='Room ' + _roomNum + '<br>' + _courseStart + '-' + _courseEnd + '<br>' + $npcs[_courseInstructor].name.formal>>
             <<hovertip _details>>
                 <<if $unlockVar.locations[_courseRoom].unlocked == true>>
-                    <<link _courseTitle>>
+                    <<link _courseTitle _courseRoom>>
                         <<calcTime 5 10>>
                     <</link>>
                     <<else>>
@@ -1272,8 +1399,7 @@
 
     /*Allows content based on start time, end time, day, month, year or false for anything but start/end times i.e. <<TimeCheck 1100 1300 thursday april 3 2024>>Its time!<</TimeCheck>>*/
     <<nobr>>
-        <<widget "TimeCheck" container>>
-            <<consolelog '---TimeCheck Start---'>>
+        <<widget 'TimeCheck' container>>
 
             <<set _start = Number(_args[0].slice(0, 2))>>
             <<set _end = Number(_args[1].slice(0, 2))>>
@@ -1286,14 +1412,6 @@
             <<elseif $dateTime.min < 10>>
                 <<set _sysTime = Number($dateTime.hour.toString() + '0' + $dateTime.min.toString())>>
             <</if>>
-            
-            <<consolelog '_args[0]' _args[0]>>
-            <<consolelog '_args[1]' _args[1]>>
-            <<consolelog '_start' _start>>
-            <<consolelog '_end' _end>>
-            <<consolelog '_sysTime' _sysTime>>
-            <<consolelog '_startCombo' _startCombo>>
-            <<consolelog '_endCombo' _endCombo>>
 
             <<if _args[2] != false>>
                 <<set _dayName = _args[2]>>
@@ -1311,56 +1429,68 @@
             <<if _year && _month && _day>>
                 <<if _year == $dateTime.year && _month == $dateTime.monthName && _day == $dateTime.date && _sysTime >= _startCombo && _sysTime < _endCombo>>
                         _contents
-                        <<consolelog 'Check: Year/Month/Date'>>
+                        <<set _d = 'Check: Year/Month/Date'>>
                 <</if>>
 
-                <<elseif _month && _day>>
-                    <<if _month == $dateTime.monthName && _day == $dateTime.date && _sysTime >= _startCombo && _sysTime < _endCombo>>
-                        _contents
-                        <<consolelog 'Check: Month/Date'>>
-                    <</if>>
+            <<elseif _month && _day>>
+                <<if _month == $dateTime.monthName && _day == $dateTime.date && _sysTime >= _startCombo && _sysTime < _endCombo>>
+                    _contents
+                    <<set _d = 'Check: Month/Date'>>
+                <</if>>
 
-                <<elseif _month && _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
-                    <<if _month == $dateTime.monthName && _dayName == $dateTime.dayName && _sysTime >= _startCombo && _sysTime < _endCombo>>
-                        _contents
-                        <<consolelog 'Check: Month/DayName'>>
-                    <</if>>
+            <<elseif _month && _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
+                <<if _month == $dateTime.monthName && _dayName == $dateTime.dayName && _sysTime >= _startCombo && _sysTime < _endCombo>>
+                    _contents
+                    <<set _d = 'Check: Month/DayName'>>
+                <</if>>
+        
+            <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
+                <<if _dayName == $dateTime.dayName && _sysTime >= _startCombo && _sysTime < _endCombo>>
+                    _contents
+                    <<set _d = 'Check: DayName'>>
+                <</if>>
+
+            <<elseif _dayName == 'weekdays'>>
+                <<if _sysTime >= _startCombo && _sysTime < _endCombo && ($dateTime.dayName == 'Monday' || $dateTime.dayName == 'Tuesday' || $dateTime.dayName == 'Wednesday' || $dateTime.dayName == 'Thursday' || $dateTime.dayName == 'Friday')>>
+                    _contents
+                    <<set _d = 'Check: Weekdays'>>
+                <</if>>
+
+            <<elseif _dayName == 'weekend'>>
+                <<if _sysTime >= _startCombo && _sysTime < _endCombo && ($dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday')>>
+                    _contents
+                    <<set _d = 'Check: Weekend'>>
+                <</if>>
+
+            <<elseif _dayName == 'cycle'>>
+                <<if (_sysTime <= _startCombo && $dateTime.hour >= 0) || (_sysTime >= _endCombo && $dateTime.hour < 24)>>
+                    _contents
+                    <<set _d = 'Check: Cycle'>>
+                <</if>>
+        
+            <<elseif _dayName == 'cycleNoWeekend'>>
+                <<if (_sysTime < _startCombo && $dateTime.hour >= 0) || (_sysTime >= _endCombo && $dateTime.hour < 24) || $dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday'>>
+                    _contents
+                    <<set _d = 'Check: Cycle w/ No Weekend'>>
+                <</if>>
             
-                <<elseif _dayName && _dayName != 'weekdays' && _dayName != 'weekend' && _dayName != 'cycle' && _dayName != 'cycleNoWeekend'>>
-                    <<if _dayName == $dateTime.dayName && _sysTime >= _startCombo && _sysTime < _endCombo>>
+            <<elseif _sysTime >= _startCombo && _sysTime < _endCombo>>
                         _contents
-                        <<consolelog 'Check: DayName'>>
-                    <</if>>
-
-                <<elseif _dayName == 'weekdays'>>
-                    <<if _sysTime >= _startCombo && _sysTime < _endCombo && ($dateTime.dayName == 'Monday' || $dateTime.dayName == 'Tuesday' || $dateTime.dayName == 'Wednesday' || $dateTime.dayName == 'Thursday' || $dateTime.dayName == 'Friday')>>
-                        _contents
-                        <<consolelog 'Check: Weekdays'>>
-                    <</if>>
-
-                <<elseif _dayName == 'weekend'>>
-                    <<if _sysTime >= _startCombo && _sysTime < _endCombo && ($dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday')>>
-                        _contents
-                        <<consolelog 'Check: Weekend'>>
-                    <</if>>
-
-                <<elseif _dayName == 'cycle'>>
-                    <<if (_sysTime <= _startCombo && $dateTime.hour >= 0) || (_sysTime >= _endCombo && $dateTime.hour < 24)>>
-                        _contents
-                        <<consolelog 'Check: Cycle'>>
-                    <</if>>
-            
-                <<elseif _dayName == 'cycleNoWeekend'>>
-                    <<if (_sysTime < _startCombo && $dateTime.hour >= 0) || (_sysTime >= _endCombo && $dateTime.hour < 24) || $dateTime.dayName == 'Saturday' || $dateTime.dayName == 'Sunday'>>
-                        _contents
-                        <<consolelog 'Check: Cycle w/ No Weekend'>>
-                    <</if>>
-                
-                <<elseif _sysTime >= _startCombo && _sysTime < _endCombo>>
-                        _contents
-                        <<consolelog 'Check: Time Only'>>
+                        <<set _d = 'Check: Time Only'>>
             <</if>>
-            <<consolelog '-----TimeCheck End-----'>>
+
+            <<if $systemVar.timecheck == true>>
+                <<consolelog '---TimeCheck Start---'>>
+                <<consolelog '_args[0]' _args[0]>>
+                <<consolelog '_args[1]' _args[1]>>
+                <<consolelog '_start' _start>>
+                <<consolelog '_end' _end>>
+                <<consolelog '_sysTime' _sysTime>>
+                <<consolelog '_startCombo' _startCombo>>
+                <<consolelog '_endCombo' _endCombo>>
+                <<consolelog 'Selector' _d>>
+                <<consolelog '-----TimeCheck End-----'>>
+            <</if>>
         <</widget>>
     <</nobr>>
 
@@ -1393,17 +1523,28 @@
         <</widget>>
     <</nobr>>
 
-    /* Calculates difference in time to move an exact future hour, i.e. <<SetTime 8>> */
+    /* Calculates difference in time to move an exact future hour and min(optional), i.e. <<SetTime 8 30>> */
     <<nobr>>
         <<widget "SetTime">>
             <<consolelog '---SetTime Start---'>>
+            <<if _args[1]>>
+                <<set _minSet = _args[1]>>
+            <<else>>
+                <<set _minSet = 0>>
+            <</if>>
+            <<consolelog '_minSet' _minSet>>
             <<set _hourSet = _args[0]>>
             <<set _currentMin = $dateTime.min>>
             <<set _preHr = _args[0] - $dateTime.hour>>
-            <<set _preMin = 60 * _preHr>>
+            <<if _preHr != 0>>
+                <<set _preMin = 60 * _preHr + _minSet>>
+            <<else>>
+                <<set _preMin = _minSet>>
+            <</if>>
             <<set _result = _preMin - _currentMin>>
 
-            <<calcTime _result 0 false>>
+
+            <<calcTime _result false>>
 
             <<consolelog '_preHr' _preHr>>
             <<consolelog '_preMin' _preMin>>

@@ -1,106 +1,131 @@
 :: DevWand
-    <<button [[Quick Start | Residence_Starr_PlayerRoom]]>>
-        <<set $plr.name.firstName = "Azure">>
-        <<set $plr.name.lastName = "Paine">>
-        <<set $plr.name.prefix = "Mr.">>
-        <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
-        <<set $plr.body.static.sex = "male">>
-        <<set $plr.body.static.hairColor = "blue">>
-        <<set $plr.body.static.hairStyle = "mohawk">>
-        <<set $plr.body.static.eyeColor = "amber">>
-        <<set $plr.body.static.faceShape = "square">>
-        <<set $plr.body.static.height = "tall">>
-        <<set $plr.body.dynamic.hairLength = 1>>
-        <<set $plr.body.dynamic.weight = 35>>
-        <<calcAttractiveness>>
-
-        <<set $plr.stats.stamina.max = 10>>
-        <<set $plr.stats.stamina.cur = 10>>
-        <<set $plr.stats.life.max = 10>>
-        <<set $plr.stats.life.cur = 10>>
-        <<set $plr.stats.sanity.max = 3>>
-        <<set $plr.stats.sanity.cur = 3>>
-        <<set $plr.stats.focus.max = 5>>
-        <<set $plr.stats.focus.cur = 5>>
-        <<set $plr.img = "img/characters/thumb_male_bro_white.jpg">>
-
-        <<set $unlockVar.userInterface.inventory = true>>
-        <<set $unlockVar.userInterface.spells = true>>
-        <<set $unlockVar.userInterface.locations = true>>
-
-        <<pickup $plrinvbooks "mapSchool" 1>>
-        <<pickup $plrinvbooks "mapTown" 1>>
-        <<pickup $plrinvbooks "spellsBasic" 1>>
-
-        <<for _i, _name range $spellWords.target>>
-            <<set $spellWords.target[_i].unlocked = true>>
-            <<run _i + 1>>
-        <</for>>
-        <<for _i, _name range $spellWords.duration>>
-            <<set $spellWords.duration[_i].unlocked = true>>
-            <<run _i + 1>>
-        <</for>>
-        <<for _i, _name range $spellWords.effect>>
-            <<set $spellWords.effect[_i].unlocked = true>>
-            <<run _i + 1>>
-        <</for>>
-        <<for _i, _name range $spellWords.enhancement>>
-            <<set $spellWords.enhancement[_i].unlocked = true>>
-            <<run _i + 1>>
-        <</for>>
-
-        <<run Dialog.close()>>
-    <</button>>
-
-    <<button [[Realish Start | Residence_Starr_PlayerRoom]]>>
-        <<set $plr.name.firstName = "Azure">>
-        <<set $plr.name.lastName = "Paine">>
-        <<set $plr.name.prefix = "Mr.">>
-        <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
-        <<set $plr.body.static.sex = "male">>
-        <<set $plr.body.static.hairColor = "blue">>
-        <<set $plr.body.static.hairStyle = "mohawk">>
-        <<set $plr.body.static.eyeColor = "amber">>
-        <<set $plr.body.static.faceShape = "square">>
-        <<set $plr.body.static.height = "tall">>
-        <<set $plr.body.dynamic.hairLength = 1>>
-        <<set $plr.body.dynamic.weight = 35>>
-        <<calcAttractiveness>>
-
-        <<set $plr.stats.stamina.max = 10>>
-        <<set $plr.stats.stamina.cur = 6>>
-        <<set $plr.stats.life.max = 10>>
-        <<set $plr.stats.life.cur = 10>>
-        <<set $plr.stats.sanity.max = 3>>
-        <<set $plr.stats.sanity.cur = 2>>
-        <<set $plr.stats.focus.max = 4>>
-        <<set $plr.stats.focus.cur = 3>>
-        <<set $plr.img = "img/characters/thumb_male_bro_white.jpg">>
-
-        <<run Dialog.close()>>
-    <</button>>
-
     <<nobr>>
-        <div class='w3-tab'>
-            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-debugs")'>Debug Buttons</button>
-            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-chapter-1")'>Chapter 1: Reawakening</button>
-            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-chapter-2")'>Chapter 2: Rebirth</button>
-            <button class='w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab("devlinks-other")'>Other</button>
+        <div class='passage-links-grid-2'>
+            <<button [[Quick Start | Residence_Starr_PlayerRoom]]>>
+                <<set $plr.name.firstName = "Azure">>
+                <<set $plr.name.lastName = "Paine">>
+                <<set $plr.name.prefix = "Mr.">>
+                <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
+                <<set $plr.body.static.sex = "male">>
+                <<set $plr.body.static.hairColor = "blue">>
+                <<set $plr.body.static.hairStyle = "mohawk">>
+                <<set $plr.body.static.eyeColor = "amber">>
+                <<set $plr.body.static.faceShape = "square">>
+                <<set $plr.body.static.height = "tall">>
+                <<set $plr.body.dynamic.hairLength = 1>>
+                <<set $plr.body.dynamic.weight = 35>>
+                <<calcAttractiveness>>
+
+                <<set $plr.stats.stamina.max = 10>>
+                <<set $plr.stats.stamina.cur = 10>>
+                <<set $plr.stats.life.max = 10>>
+                <<set $plr.stats.life.cur = 10>>
+                <<set $plr.stats.sanity.max = 3>>
+                <<set $plr.stats.sanity.cur = 3>>
+                <<set $plr.stats.focus.max = 5>>
+                <<set $plr.stats.focus.cur = 5>>
+                <<set $plr.img = "img/characters/thumb_male_bro_white.jpg">>
+
+                <<set $unlockVar.userInterface.inventory = true>>
+                <<set $unlockVar.userInterface.spells = true>>
+                <<set $unlockVar.userInterface.locations = true>>
+
+                <<pickup $plrinvbooks "mapSchool" 1>>
+                <<pickup $plrinvbooks "mapTown" 1>>
+                <<pickup $plrinvbooks "spellsBasic" 1>>
+
+                <<for _i, _name range $spellWords.target>>
+                    <<set $spellWords.target[_i].unlocked = true>>
+                    <<run _i + 1>>
+                <</for>>
+                <<for _i, _name range $spellWords.duration>>
+                    <<set $spellWords.duration[_i].unlocked = true>>
+                    <<run _i + 1>>
+                <</for>>
+                <<for _i, _name range $spellWords.effect>>
+                    <<set $spellWords.effect[_i].unlocked = true>>
+                    <<run _i + 1>>
+                <</for>>
+                <<for _i, _name range $spellWords.enhancement>>
+                    <<set $spellWords.enhancement[_i].unlocked = true>>
+                    <<run _i + 1>>
+                <</for>>
+
+                <<set $npcs.janessa.hasMet = true>>
+                <<set $npcs.barden.hasMet = true>>
+                <<set $npcs.amy.hasMet = true>>
+
+                <<run Dialog.close()>>
+            <</button>>
+            <<button [[Realish Start | Residence_Starr_PlayerRoom]]>>
+                <<set $plr.name.firstName = "Azure">>
+                <<set $plr.name.lastName = "Paine">>
+                <<set $plr.name.prefix = "Mr.">>
+                <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
+                <<set $plr.body.static.sex = "male">>
+                <<set $plr.body.static.hairColor = "blue">>
+                <<set $plr.body.static.hairStyle = "mohawk">>
+                <<set $plr.body.static.eyeColor = "amber">>
+                <<set $plr.body.static.faceShape = "square">>
+                <<set $plr.body.static.height = "tall">>
+                <<set $plr.body.dynamic.hairLength = 1>>
+                <<set $plr.body.dynamic.weight = 35>>
+                <<calcAttractiveness>>
+
+                <<set $plr.stats.stamina.max = 10>>
+                <<set $plr.stats.stamina.cur = 6>>
+                <<set $plr.stats.life.max = 10>>
+                <<set $plr.stats.life.cur = 10>>
+                <<set $plr.stats.sanity.max = 3>>
+                <<set $plr.stats.sanity.cur = 2>>
+                <<set $plr.stats.focus.max = 4>>
+                <<set $plr.stats.focus.cur = 3>>
+                <<set $plr.img = "img/characters/thumb_male_bro_white.jpg">>
+
+                <<set $npcs.janessa.hasMet = true>>
+                <<set $npcs.barden.hasMet = true>>
+                <<set $npcs.amy.hasMet = true>>
+
+                <<run Dialog.close()>>
+            <</button>>
+            <<button "Experiments" "NewSpellSystem">><</button>>
         </div>
     <</nobr>>
     <<nobr>>
-        <div id='devlinks-debugs' class='tabElement'>
+        <div class='w3-tab'>
+            <button id='debug-tablinks' class='tablinks w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab(event, "debug")'>Debug Buttons</button>
+            <button id='devlinkschapter1-tablinks' class='tablinks w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab(event, "devlinkschapter1")'>Chapter 1: Reawakening</button>
+            <button id='devlinkschapter2-tablinks' class='tablinks w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab(event, "devlinkschapter2")'>Chapter 2: Rebirth</button>
+            <button id='devlinksother=tablinks' class='tablinks w3-bar-item w3-button w3-border w3-round-xxlarge w3-border-dark-grey w3-black' onclick='openTab(event, "devlinksother")'>Other</button>
+        </div>
+    <</nobr>>
+    <<nobr>>
+        <div id='debug' class='tabcontent'>
+            <<button 'Toggle Logs'>>
+                <<if $systemVar.logs == true>>
+                    <<set $systemVar.logs = false>>
+                    <<elseif $systemVar.logs == false>>
+                        <<set $systemVar.logs = true>>
+                <</if>>
+            <</button>>
+            <<button 'Toggle Time Logs'>>
+                <<if $systemVar.timecheck == true>>
+                    <<set $systemVar.timecheck = false>>
+                    <<elseif $systemVar.timecheck == false>>
+                        <<set $systemVar.timecheck = true>>
+                <</if>>
+            <</button>>
             <<button "Debug View Toggle">><<script>>DebugView.toggle()<</script>><</button>>
             <<button "Debug Mode On">><<run Config.debug = true>><</button>>
             <<button "Debug Mode Off">><<run Config.debug = false>><</button>>
         </div>
-        <div id='devlinks-chapter-1' class='tabElement'>
+        <div id='devlinkschapter1' class='tabcontent'>
             <<include "Devlinks_Chapter_1">>
         </div>
-        <div id='devlinks-chapter-2' class='tabElement'>
+        <div id='devlinkschapter2' class='tabcontent'>
             <<include "Devlinks_Chapter_2">>
         </div>
-        <div id='devlinks-other' class='tabElement'>
+        <div id='devlinksother' class='tabcontent'>
             <<include 'Devlinks_Other'>>
         </div>
     <</nobr>>

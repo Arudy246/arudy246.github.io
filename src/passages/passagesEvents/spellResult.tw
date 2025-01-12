@@ -1,7 +1,0 @@
-:: Spell_Success
-    <<set $unlockVar.userInterface.spells = false>>
-    <<speech plr>>My <i>$spellCastVar.spellEffect</i> spell was cast successfully on the present room.<</speech>>\
-
-    <<button [[Continue | previous()]]>>
-        <<set $unlockVar.userInterface.spells = true>>
-    <</button>>

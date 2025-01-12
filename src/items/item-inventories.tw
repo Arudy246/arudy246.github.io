@@ -11,21 +11,10 @@
 
     /* Item SimpleStorage Variables */
 
-    /*
-    <<consumable>>
-        <<nobr>>
-
-        <</nobr>>
-        <<description>>\
-
-    <</consumable>>
-    */
-
     <<item 'goldflake' 'Gold Flakes'>>
         <<description>>\
             A bunch of small gold flakes. Looks valuable enough to keep.
     <</item>>
-
     <<consumable "mapSchool" "A Guide to Magnus Schola">>
         <<nobr>>
             <<readBook miscbook mapSchool>>
@@ -33,7 +22,6 @@
         <<description>>\
             $bookMisc.mapSchool.description You have read $bookMisc.mapSchool.pagesRead out of $bookMisc.mapSchool.pagesTotal chapters.
     <</consumable>>
-
     <<consumable "mapTown" "Nome and her Mysteries">>
         <<nobr>>
             <<readBook miscbook mapTown>>
@@ -41,13 +29,19 @@
         <<description>>\
             $bookMisc.mapTown.description You have read $bookMisc.mapTown.pagesRead out of $bookMisc.mapTown.pagesTotal chapters.
     <</consumable>>
-
     <<consumable "spellsBasic" "Basic Spellwork: A Child's Primer">>
         <<nobr>>
             <<readBook spellbook spellsBasic>>
         <</nobr>>
         <<description>>\
             $bookSpell.spellsBasic.description You have read $bookSpell.spellsBasic.pagesRead out of $bookSpell.spellsBasic.pagesTotal chapters.
+    <</consumable>>
+    <<consumable "spellHeal" "Vulnus and its Uses">>
+        <<nobr>>
+            <<readBook spellbook spellHeal>>
+        <</nobr>>
+        <<description>>\
+            $bookSpell.spellHeal.description You have read $bookSpell.spellHeal.pagesRead out of $bookSpell.spellHeal.pagesTotal chapters.
     <</consumable>>
 
     /* Item Detail and Unlock Arrays */
@@ -168,7 +162,7 @@
                     }
             }
         },
-        manusciptHeal: {
+        spellHeal: {
             title: 'Vulnus and its Uses',
             description: 'A single page manuscript containing just a few paragraphs.',
             costMult: 0.4,

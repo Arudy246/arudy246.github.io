@@ -1,17 +1,23 @@
 :: BackgroundInsanity1
-
+    <<passagestart>>\
     As you think hard to yourself, searching for memories of what might have happened you recall a few weak images.
 
     You remember being on a couch watching something on a TV. And there was someone sitting next to you. You were both eating something...popcorn!
 
-    But that is all you can rememeber. For a few seconds, you are frozen in place, your hair is standing up, and can't help but gaze around you as a feeling washes over. It's fear. And it is a level of fear you can't remember ever feeling before.
+    But that is all you can rememeber. 
+    
+    For a few seconds, you are frozen in place, your hair is standing up, and can't help but gaze around you as a feeling washes over. It's fear. And it is a level of fear you can't remember ever feeling before.
 
-    As the overwhelming terror leaves you, with no memory of why you feel this, you tell $npcs.barden.formal:
+    As the overwhelming terror leaves you, with no memory of why you feel this, you tell $npcs.barden.name.formal:
 
-    <<button[[I was watching a TV with someone| WakingUp7]]>>
-    <<set $plrSpkChoice = "I think I was watching TV with someone. And we were eating popcorn. But I don't remember anything else after that.">>
-    <</button>>
-    <<button [[Actually, I remember something completely different | WakingUp6]]>><</button>>
+    <<nobr>>
+        <div class='passage-links-grid-vertical-long'>
+            <<button[[I was watching a TV with someone... | WakingUp7]]>>
+                <<set $plrSpkChoice = "I think I was watching TV with someone. And we were eating popcorn. But I don't remember anything else after that.">>
+            <</button>>
+            <<button [[Actually, I remember something completely different. | WakingUp6]]>><</button>>
+        </div>
+    <</nobr>>
 
 :: BackgroundInsanity2
 

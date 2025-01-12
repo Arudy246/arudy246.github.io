@@ -101,7 +101,7 @@
                                 <<set $unlockVar.userInterface.actions = true>>
                                 <<set $unlockVar.locations.Floor1_Class_Room106.unlocked = true>>
                                 <<set $npcs.juliette.hasMet = true>>
-                                <<SetTime 10>>
+                                <<SetTime 9 55>>
                             <</button>>
                         </div>
                     <</nobr>>

@@ -4,6 +4,7 @@ $(document.head).append("<link rel='icon' href='img/logo.png'>")
 /*-----W3 CSS Link-----*/
 $(document.head).append('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">')
 $(document.head).append('<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">')
+$(document.head).append("<link href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined' rel='stylesheet'/>")
 
 Save.onSave.add(function (save, details) {
 	if (details.type === "slot") {
@@ -13,6 +14,10 @@ Save.onSave.add(function (save, details) {
 		}
 	}
 });
+
+$(document).on(':passagedisplay', function (ev) {
+	State.setVar('$eventVar.eventactive', false)
+})
 
 //Config.loadDelay = 1000;
 
@@ -26,7 +31,7 @@ window.charInfoTbl = function(obj, header) {
 };
 
 window.charInfoTblSub = function(obj, header) {
-    let html = "<table class='w3-table w3-bordered w3-black'><tbody><tr><th class='w3-indigo'>"+ header +"</th><th class='w3-indigo'>Value</th><th class='w3-indigo'>Description</th></tr>";
+    let html = "<table class='w3-table w3-border w3-bordered w3-black course-table'><tbody><tr><th class='w3-indigo'>"+ header +"</th><th class='w3-indigo'>Value</th><th class='w3-indigo'>Description</th></tr>";
     for (var key in obj) {
         html += "<tr><th>" + key + "</th><td>" + obj[key].level + "</td><td>" + obj[key].desc + "</td></tr>";
     };
@@ -56,14 +61,36 @@ window.charInfoTblSub = function(obj, header) {
 
 // };
 
-window.openTab = function (name) {
-	var i;
-	var x = document.getElementsByClassName("tabElement");
-	for (i = 0; i < x.length; i++) {
-	  x[i].style.display = "none";
-	}
-	document.getElementById(name).style.display = "block";
-};
+// window.openTab = function (name) {
+// 	var i;
+// 	var x = document.getElementsByClassName("tabElement");
+// 	for (i = 0; i < x.length; i++) {
+// 	  x[i].style.display = "none";
+// 	}
+// 	document.getElementById(name).style.display = "block";
+// };
+
+/* Tab System - START */
+window.openTab = function (evt, tabName) {
+    let i, tabcontent, tablinks
+
+    tabcontent = document.getElementsByClassName('tabcontent');
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = 'none';
+    }
+
+    tablinks = document.getElementsByClassName('tablinks');
+    for( i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(' active','');
+    }
+
+    document.getElementById(tabName).style.display = 'block';
+    evt.currentTarget.className += ' active';
+
+    State.setVar('$curTab', tabName)
+
+}
+/* Tab System - END */
 
 //Plr Stat Bars
 window.Stamina = function () {
@@ -266,15 +293,22 @@ window.EnemyLife = function (CurHP, MaxHP) {
     Macro.add('speech', {
         tags : null,
         handler : function () {
-            if (this.args[0] == "plr"){
+            if (this.args[0] == "plr" && this.args[1] == 'thought'){
                 var id = this.args[0], name = State.getVar("$plr.name.fullName()");     
                 var img = State.getVar("$plr.img");
                 
                 var output = '<div class="speech ' + id + '">';
                 output += '<span class="avatar" style=\x27background-image: url(\x22' + img + '\x22)\x27></span>';
-                output += name + '<hr>' + this.payload[0].contents + '</div>';
+                output += name + '<hr>' + '<<nobr>><i>' + this.payload[0].contents + '</i><</nobr>>' + '</div>';
                 
-            } else {
+            } else if (this.args[0] == 'plr'){
+				var id = this.args[0], name = State.getVar("$plr.name.fullName()");     
+                var img = State.getVar("$plr.img");
+                
+                var output = '<div class="speech ' + id + '">';
+                output += '<span class="avatar" style=\x27background-image: url(\x22' + img + '\x22)\x27></span>';
+                output += name + '<hr>' + this.payload[0].contents + '</div>';
+			} else {
                 var id = this.args[0];
 				let fl = '$npcs.' + id + '.name.fullName()';
 				let name = State.getVar(fl);
@@ -501,10 +535,11 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             const doTrim = !!macroOptions.trim;
             const doPrepend = !!macroOptions.prepend;
 
-            const link = jQuery('<button class="dlg-line w3-margin-right w3-button w3-border w3-round-xlarge w3-medium w3-flat-midnight-blue w3-border-blue w3-hover-black"></button>');
+            const link = jQuery('<button class="dlg-line w3-block w3-button w3-border w3-round-xlarge w3-medium w3-flat-midnight-blue w3-border-blue w3-hover-black w3-margin-bottom" style="width:33%"></button>');
             link.wiki(`${bullet ? ('<span class="dlg-line-bullet">' + bullet + ' </span>') : ''}${line}`);
             link.ariaClick(() => {
                 const response = doTrim ? this.payload[0].contents.trim() : this.payload[0].contents;
+				$('html,body').animate({scrollTop: 3000}, 500);
                 const result = doPrepend ? (`${line}\n${response}`) : response;
                 jQuery('#' + dlgId).wiki((level > 0 ? '\n' : '') + result);
 
@@ -514,6 +549,7 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
             });
 
             jQuery(this.output).append(link);
+
         },
     });
 
@@ -558,3 +594,44 @@ postrender["Display Right Sidebar Contents"] = function (content, taskName) {
 }({trim: false, prepend: false}));
 
 /* Dialogue Click Next System - END */
+
+/* New Spell System - START */
+Macro.add('spellcast', {
+	handler: function() {
+		if (this.args[0] != ''){
+			let spell = this.args[0];
+			let title = State.getVar('$spells.' + spell + '.title')
+			let school = State.getVar('$spells.' + spell + '.school');
+			let cost = State.getVar('$spells.' + spell + '.cost')
+
+
+
+
+
+			console.log('-----Spell Cast Function-----');
+			console.log('Spell Title: ' + title);
+			console.log('Spell School: ' + school)
+			console.log('Spell Multi: ' + cost)
+		}
+	}
+});
+/* New Spell System - END */
+
+/* Auto Scroll (to bottom) - START */
+Macro.add('autoscroll', {
+	handler: function() {
+		$('html,body').animate({scrollTop: 3000}, 500);
+	}
+});
+/* Auto Scroll - END */
+
+Macro.add('passagescene', {
+	handler: function() {
+		let surl = 'img/' + this.args[0] + '/' + this.args[1] + '.jpg';
+
+		let output = '<div id="passage-scene">';
+		output += '<img class="scene" src=\x22' + surl + '\x22></div>';
+
+		$(this.output).wiki(output);
+	}
+})

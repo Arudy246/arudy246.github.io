@@ -1,6 +1,19 @@
 :: StoryInit
     <<set $devMode = true>>
 
+    <<set $systemVar = {
+        nsfw: true,
+        logs: true,
+        timecheck: false,
+        dev: true
+    }>>
+
+    <<set $tempVar = {
+        relNPC: 0,
+        relAmt: 0,
+        relType: 0
+    }>>
+
     <<set $dateTime = {
         hour: 20,
         min: 30,
@@ -128,157 +141,183 @@
                 title: 'Abjuration',
                 level: 0,
                 pre: 0,
-                desc: "Yeet, I am Abjuration!"
+                desc: "Yeet, I am Abjuration!",
+                descPassage: 'Description_Abjuration'
             },
             alchemy: {
                 title: 'Alchemy',
                 level: 0,
                 pre: 0,
-                desc: "Yeet, I am Alchemy!"
+                desc: "Yeet, I am Alchemy!",
+                descPassage: 'Description_Alchemy'
             },
             animancy: {
                 title: 'Animancy',
                 level: 0,
                 pre: 0,
-                desc: "Yeet, I am Animancy!"
+                desc: "Yeet, I am Animancy!",
+                descPassage: 'Description_Animancy'
             },
             astromancy: {
                 title: 'Astromancy',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Astromancy!",
+                descPassage: 'Description_Astromancy'
             },
             biomancy: {
                 title: 'Biomancy',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Biomancy!",
+                descPassage: 'Description_Biomancy'
             },
             blood: {
                 title: 'Blood',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Blood!",
+                descPassage: 'Description_Blood'
             },
             chloromancy: {
                 title: 'Chloromancy',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Chloromancy!",
+                descPassage: 'Description_Chloromancy'
             },
             chronomancy: {
                 title: 'Chronomancy',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Chronomancy!",
+                descPassage: 'Description_Chronomancy'
             },
             clockwork: {
                 title: 'Clockwork',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Clockwork!",
+                descPassage: 'Description_Clockwork'
             },
             conjuration: {
                 title: 'Conjuration',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "The school of Conjuration involves the creation of something out of nothing. Obviously, the concepts of something and nothing are not quite accurate. A more definitive definition of Conjuration is utilizing energy to create matter where there was none before. Conjuration shares many similarities with the school of Transmutation, but differes in one key respect, the availability of energy. While Transmutation uses the conversion of matter into energy and back into matter, Conjuration does not use a catalyst and instead requires procuring the pure energy first. Most practitioners see Transmutation as the child's version of Conjuration.",
+                descPassage: 'Description_Conjuration'
             },
             demonology: {
                 title: 'Demonology',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Demonology",
+                descPassage: 'Description_Demonology'
             },
             divination: {
                 title: 'Divination',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Divination!",
+                descPassage: 'Description_Divination'
             },
             eldritch: {
                 title: 'Eldritch',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Eldritch!",
+                descPassage: 'Description_Eldritch'
             },
             elemental: {
                 title: 'Elemental',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Pure and simple, the school of Elemental magic is the use of the six basic elements. These include earth, air, fire, water, light, and dark. Elemental magic is notoriously difficult to master due to its varied aspects. And is widely considered one of the most ammoral schools of magic due to its equal ability to create and destroy, feed and starve, harm and heal. Most practitioners specialize in only one, maybe two, aspects of the school. Anything more invites catastrophe...",
+                descPassage: 'Description_Elemental'
             },
             enchantment: {
                 title: 'Enchantment',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Enchantment!",
+                descPassage: 'Description_Enchantment'
             },
             enochian: {
                 title: 'Enochian',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Enochian!",
+                descPassage: 'Description_Enochian'
             },
             gate: {
                 title: 'Gate',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Gate!",
+                descPassage: 'Description_Gate'
             },
             illusion: {
                 title: 'Illusion',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Illusion!",
+                descPassage: 'Description_Illusion'
             },
             lunar: {
                 title: 'Lunar',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Lunar!",
+                descPassage: 'Description_Lunar'
             },
             necromancy: {
                 title: 'Necromancy',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Necromancy!",
+                descPassage: 'Description_Necromancy'
             },
             psionic: {
                 title: 'Psionic',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Psionic!",
+                descPassage: 'Description_Psionic'
             },
             restoration: {
                 title: 'Restoration',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "The quintessential school for anyone who expects to survive in this dangerous world. Restoration is the comprehension and application of healing magics. From a paper cut to a brain bleed, Restoration has the ability to cure it all. This school is actually one of the purest, so to speak, schools of magic. Essentially, Restoration feeds your body immense amounts of raw, localized energy and forces the body to radically increase its own natural healing capabilities, thereby knitting closed a sucking chest wounds in mere moments. The critical importance afforded to Restoration cannot be overstated.",
+                descPassage: 'Description_Restoration'
             },
             sex: {
                 title: 'Sex',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Sex!",
+                descPassage: 'Description_Sex'
             },
             soul: {
                 title: 'Soul',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Soul!",
+                descPassage: 'Description_Soul'
             },
             summoning: {
                 title: 'Summoning',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "Yeet, I am Summoning!",
+                descPassage: 'Description_Summoning'
             },
             transmutation: {
                 title: 'Transmutation',
                 level: 0,
                 pre: 0,
-                desc: ""
+                desc: "To the layman, the school of Transmutation is the study and practice of converting one material into another. It is the essence of what ancient alchemists always sought to do, turn lead into gold. But it does not stop there. Transmutation is actually less about conversion of materials and more the conversion of energy. When a practitioner uses Transmutation, they are converting matter into energy and then energy back into matter. Usually a slightly different design of matter. Some conversions are so easy that children master the practice quickly. It is not uncommon to see a child with a golden pacifier, not due to being in a wealthy family but do to the ease of converting basic elements into others.",
+                descPassage: 'Description_Transmutation'
             }
         },
         skills: {
@@ -1341,7 +1380,7 @@
         unfriendly: {
             description: "unfriendly attitude",
             greetings: [
-                "Of all the people who could talk to me, it had to be you.",
+                "Of all the people I could run into, it had to be you.",
                 "Look what the familiar dragged in.",
                 "Oh, it's you.",
                 "Oh, you're here, great."
@@ -1693,6 +1732,8 @@
         },
         inCombat: false,
         combatPass: '',
+        eventactive: false,
+        timeofday: ''
     }>>
 
     <<set $courses = {

@@ -1,43 +1,52 @@
 :: Gymnasium
-    <img class='scene' src='img/locations/gymnasium.jpg'>
-    <<Updates>>
-    <<button [[Go Back | University_Hall_Classes]]>>
-        <<calcTime 5 0>>
-    <</button>>
+    <<nobr>>
+        <<passagehead locations gymnasium>>
+
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
+            <<button [[Go Back | University_Hall_Classes]]>>
+                <<calcTime 5 0>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: Floor1_Class_Room105
-    <img class='scene' src='img/locations/floor1_class_room105.jpg'>
-    <<Updates noClass>>
     <<nobr>>
-        <<if $dateTime.hour < 8>>
-            <<speech elliot>>
-                We start at 08:00 $plr.name.formal, which makes you a little early. Feel free to wait around for class to start.
-            <</speech>>
-            <br>
-            <<nobr>>
-                <div class='passage-links-grid-1'>
-                    <<button [[Wait | Floor1_Class_Room105]]>>
-                        <<SetTime 8>>
-                    <</button>>
-                    <<button [[Go Back | University_Hall_Classes]]>>
-                        <<calcTime 0 5>>
-                    <</button>>
-                </div>
-            <</nobr>>
+        <<passagehead locations floor1_class_room105 noclass>>
+            <<if $dateTime.hour < 8>>
+                <<speech elliot>>
+                    We start at 08:00 $plr.name.formal, which makes you a little early. Feel free to wait around for class to start.
+                <</speech>>
+                <br>
+                <<nobr>>
+                    <div class='passage-links-grid-2'>
+                        <<button [[Wait | Floor1_Class_Room105]]>>
+                            <<SetTime 8>>
+                        <</button>>
+                        <<button [[Go Back | University_Hall_Classes]]>>
+                            <<calcTime 0 5>>
+                        <</button>>
+                    </div>
+                <</nobr>>
 
-            <<else>>
-                <<ClassLectures arcanearts101>>
-        <</if>>
+                <<else>>
+                    <<ClassLectures arcanearts101>>
+            <</if>>
+        <</passagehead>>
     <</nobr>>
 
 :: Floor1_Class_Room105_Closed
-    <img class='scene' src='img/locations/closed_wood_door.jpg'>
-    <<Updates>>
-    <<speech plr>>
-        The door is locked.
-    <</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations closed_wood_door>>
+            <<speech plr thought>>
+                Looks like the door is locked.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Go Back | University_Hall_Classes]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -46,37 +55,42 @@
     
 
 :: Floor1_Class_Room106
-    <img class='scene' src='img/locations/floor1_class_room106.jpg'>
-    <<Updates noClass>>
     <<nobr>>
-        <<if $dateTime.hour < 9>>
-            <<speech juliette>>
-                We start at 09:00 $plr.name.formal, but you know what they say, early bird eats the mouse! Yes, I know, that isn't quite the right saying. Anyways, feel free to take a seat if you have nowhere else to go and class will start soon!
-            <</speech>>
-            <br>
+        <<passagehead locations floor1_class_room106 noclass>>
             <<nobr>>
-                <div class='passage-links-grid-1'>
-                    <<button [[Sit down | Floor1_Class_Room106]]>>
-                        <<SetTime 9>>
-                    <</button>>
-                    <<button [[Go Back | University_Hall_Classes]]>>
-                        <<calcTime 0 5>>
-                    <</button>>
-                </div>
-            <</nobr>>
+                <<if $dateTime.hour < 9>>
+                    <<speech juliette>>
+                        We start at 09:00 $plr.name.formal, but you know what they say, early bird eats the mouse! Yes, I know, that isn't quite the right saying. Anyways, feel free to take a seat if you have nowhere else to go and class will start soon!
+                    <</speech>>
+                    <br>
+                    <<nobr>>
+                        <div class='passage-links-grid-2'>
+                            <<button [[Sit down | Floor1_Class_Room106]]>>
+                                <<SetTime 9 1>>
+                            <</button>>
+                            <<button [[Go Back | University_Hall_Classes]]>>
+                                <<calcTime 0 5>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
 
-            <<else>>
-                <<ClassLectures conservation101>>
-        <</if>>
+                    <<else>>
+                        <<ClassLectures conservation101>>
+                <</if>>
+            <</nobr>>
+        <</passagehead>>
     <</nobr>>
+    
 :: Floor1_Class_Room106_Closed
-    <img class='scene' src='img/locations/closed_wood_door.jpg'>
-    <<Updates>>
-    <<speech plr>>
-        The door is locked.
-    <</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations closed_wood_door>>
+            <<speech plr thought>>
+                Looks like the door is locked.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Go Back | University_Hall_Classes]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -84,34 +98,41 @@
     <</nobr>>
 
 :: Floor1_Class_Room107
-    <img class='scene' src='img/locations/floor1_class_room107.jpg'>
-    <<Updates noClass>>
     <<nobr>>
-        <<if $dateTime.hour < 10>>
-            <<speech jonathan>>
-                Class starts at 10:00, might you have somewhere else to be?
-            <</speech>>
-            <br>
+        <<passagehead locations floor1_class_room107 noclass>>
             <<nobr>>
-                <div class='passage-links-grid-1'>
-                    <<button [[Go Back | University_Hall_Classes]]>>
-                        <<calcTime 0 5>>
-                    <</button>>
-                </div>
+                <<if $dateTime.hour < 10>>
+                    <<speech jonathan>>
+                        Class starts at 10:00, might you have somewhere else to be? If not, just take a seat and try to be quiet.
+                    <</speech>>
+                    <br>
+                    <<nobr>>
+                        <div class='passage-links-grid-2'>
+                            <<button [[Sit down | Floor1_Class_Room107]]>>
+                                <<SetTime 10 1>>
+                            <</button>>
+                            <<button [[Go Back | University_Hall_Classes]]>>
+                                <<calcTime 0 5>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
+                    <<else>>
+                        <<ClassLectures arcanedisciplines101>>
+                <</if>>
             <</nobr>>
-            <<else>>
-                <<ClassLectures arcanedisciplines101>>
-        <</if>>
+        <</passagehead>>
     <</nobr>>
 
 :: Floor1_Class_Room107_Closed
-    <img class='scene' src='img/locations/closed_wood_door.jpg'>
-    <<Updates>>
-    <<speech plr>>
-        The door is locked.
-    <</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations closed_wood_door>>
+            <<speech plr thought>>
+                Looks like the door is locked.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Go Back | University_Hall_Classes]]>>
                 <<calcTime 0 5>>
             <</button>>
@@ -119,13 +140,15 @@
     <</nobr>>
 
 :: Hall_Floor2
-    <img class='scene' src='img/locations/hall_floor2.jpg'>
-    <<Updates>>
-    <<speech plr>>
-        This is the second floor of the classroom wing.
-    <</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations hall_floor2>>
+            <<speech plr thought>>
+                This is the second floor of the classroom wing.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<TimeCheck '1000' '1200' weekdays>>
                 <<button [[Room 205 | Floor2_Class_Room205]]>>
                     <<calcTime 0 5>>
@@ -143,17 +166,41 @@
         </div>
     <</nobr>>
 :: Floor2_Class_Room205
-    <img class='scene' src='img/locations/floor2_class_room205.jpg'>
-    <<Updates noClass>>
+    <<nobr>>
+        <<passagehead locations floor2_class_room205 noclass>>
+            <<nobr>>
+                <<if $dateTime.hour < 11>>
+                    <<speech celeste>>
+                        I won't start until 11:00, come back then please. Or I suppose you could find a seat and wait awhile. Your choice!
+                    <</speech>>
+                    <br>
+                    <<nobr>>
+                        <div class='passage-links-grid-2'>
+                            <<button [[Sit down | Floor2_Class_Room205]]>>
+                                <<SetTime 11 1>>
+                            <</button>>
+                            <<button [[Go Back | Hall_Floor2]]>>
+                                <<calcTime 0 5>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
+                    <<else>>
+                        <<ClassLectures arcanelaw101>>
+                <</if>>
+            <</nobr>>
+        <</passagehead>>
+    <</nobr>>
 
 :: Floor2_Class_Room205_Closed
-    <img class='scene' src='img/locations/closed_wood_door.jpg'>
-    <<Updates>>
-    <<speech plr>>
-        The door is locked.
-    <</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations closed_wood_door>>
+            <<speech plr thought>>
+                Looks like the door is locked.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Go Back | Hall_Floor2]]>>
                 <<calcTime 0 5>>
             <</button>>

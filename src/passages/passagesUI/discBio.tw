@@ -1,0 +1,93 @@
+:: Description_Abjuration
+
+:: Description_Alchemy
+
+:: Description_Animancy
+
+:: Description_Astromancy
+
+:: Description_Biomancy
+
+:: Description_Blood
+
+:: Description_Chloromancy
+
+:: Description_Chronomancy
+
+:: Description_Clockwork
+
+:: Description_Conjuration
+    <div class='w3-cell-row' style='width:100%'>
+        <img class='w3-circle w3-container w3-cell w3-cell-top oval' style='width:25%' src='img/magic_icons/conjuration.jpg'>
+        <<nobr>>
+            <h3 class='header-lines' style='margin-left:40%'>Description</h3>
+            <br>
+            <div style='text-align:justify'>
+                $plr.disciplines.conjuration.desc
+            </div>
+        <</nobr>>
+    </div>
+    <hr>
+
+:: Description_Demonology
+
+:: Description_Divination
+
+:: Description_Eldritch
+
+:: Description_Elemental
+    <div class='w3-cell-row' style='width:100%'>
+        <img class='w3-circle w3-container w3-cell w3-cell-top oval' style='width:25%' src='img/magic_icons/elemental.jpg'>
+        <<nobr>>
+            <h3 class='header-lines' style='margin-left:40%'>Description</h3>
+            <br>
+            <div style='text-align:justify'>
+                $plr.disciplines.elemental.desc
+            </div>
+        <</nobr>>
+    </div>
+    <hr>
+:: Description_Enchantment
+
+:: Description_Enochian
+
+:: Description_Gate
+
+:: Description_Illusion
+
+:: Description_Lunar
+
+:: Description_Necromancy
+
+:: Description_Psionic
+
+:: Description_Restoration
+    <div class='w3-cell-row'>
+        <img class='w3-circle w3-container w3-cell w3-cell-top oval' style='width:25%' src='img/magic_icons/restoration.jpg'>
+        <<nobr>>
+            <h3 class='header-lines' style='margin-left:40%'>Description</h3>
+            <br>
+            <div style='text-align:justify'>
+                $plr.disciplines.restoration.desc
+            </div>
+        <</nobr>>
+    </div>
+    <hr>
+:: Description_Sex
+
+:: Description_Soul
+
+:: Description_Summoning
+
+:: Description_Transmutation
+    <div class='w3-cell-row' style='width:100%'>
+        <img class='w3-circle w3-container w3-cell w3-cell-top oval' style='width:25%' src='img/magic_icons/transmutation.jpg'>
+        <<nobr>>
+            <h3 class='header-lines' style='margin-left:40%'>Description</h3>
+            <br>
+            <div style='text-align:justify'>
+                $plr.disciplines.transmutation.desc
+            </div>
+        <</nobr>>
+    </div>
+    <hr>

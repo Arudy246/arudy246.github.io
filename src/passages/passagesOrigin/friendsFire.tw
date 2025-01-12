@@ -1,5 +1,5 @@
 :: BackgroundFire1
-
+    <<passagestart>>\
     As you think to yourself and try to remember you can't help but feel like so many of your previous memories are out of reach. Like time has washed them away.
 
     But you do remember a huge party and there were dozens of people in a really nice house.
@@ -8,10 +8,14 @@
 
     You do know this though, you feel a deep sense of loss. Like a pit opened up inside of you, a deep black pit filled nothing but howling despair. It takes you a few seconds to collect yourself before you tell $npcs.barden.formal:
 
-    <<button[[I was at a party with my friends | WakingUp7]]>>
-        <<set $plrSpkChoice = "I think I was at a party and I'm pretty sure they were all friends of mine. But I can't remember anything else.">>
-    <</button>>
-    <<button [[Actually, I remember something completely different | WakingUp6]]>><</button>>
+    <<nobr>>
+        <div class='passage-links-grid-vertical-long'>
+            <<button[[I was at a party with my friends... | WakingUp7]]>>
+                <<set $plrSpkChoice = "I think I was at a party and I'm pretty sure they were all friends of mine. But I can't remember anything else.">>
+            <</button>>
+            <<button [[Actually, I remember something completely different. | WakingUp6]]>><</button>>
+        </div>
+    <</nobr>>
 
 :: BackgroundFire2
 

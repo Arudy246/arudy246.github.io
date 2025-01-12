@@ -1,0 +1,168 @@
+:: Outdoor_Events_Random[outdoor random]
+    <<nobr>>
+        <<set _randomN = random(1,10)>>
+        <<set _timeofday = $eventVar.timeofday>>
+
+        <<switch _timeofday>>
+            <<case 'day'>>
+                <<switch _randomN>>
+                    <<case 1>>
+                    
+                    <<case 2>>
+
+                    <<case 3>>
+
+                    <<case 4>>
+
+                    <<case 5>>
+
+                    <<case default>>
+            <</switch>>
+            <<case 'night'>>
+                <<switch _randomN>>
+                    <<case 1>>
+                    
+                    <<case 2>>
+
+                    <<case 3>>
+
+                    <<case 4>>
+
+                    <<case 5>>
+
+                    <<case default>>
+                <</switch>>
+        
+        <</switch>>
+    <</nobr>>
+
+:: Room_Events_Random[room random]
+    <<nobr>>
+        <<set _randomN = random(1,10)>>
+        <<set _timeofday = $eventVar.timeofday>>
+
+        <<switch _timeofday>>
+            <<case 'day'>>
+                <<switch _randomN>>
+                    <<case 1>>
+                    
+                    <<case 2>>
+
+                    <<case 3>>
+
+                    <<case 4>>
+
+                    <<case 5>>
+
+                    <<case default>>
+            <</switch>>
+            <<case 'night'>>
+                <<switch _randomN>>
+                    <<case 1>>
+                    
+                    <<case 2>>
+
+                    <<case 3>>
+
+                    <<case 4>>
+
+                    <<case 5>>
+
+                    <<case default>>
+                <</switch>>
+        
+        <</switch>>
+    <</nobr>>
+
+:: Residence_Starr_Courtyard_Random[random]
+    <<nobr>>
+        <<set _randomN = random(1,7)>>
+        <<set _timeofday = $eventVar.timeofday>>
+
+        <<switch _timeofday>>
+            <<case 'day'>>
+                <<switch _randomN>>
+                    <<case 1>>
+                        <<speech plr thought>>There is a shimmer above this place, I can barely see it, but it is there.<</speech>>
+                        <<setDisc plr random 0.1>>
+
+                    <<case 2>>
+                        Day event 2
+
+                    <<case 3>>
+                        Day event 3
+
+                    <<case 4>>
+                        Day event 4
+
+                    <<case 5>>
+                        <<nobr>>
+                            <<set $eventVar.inCombat = true>>
+                            <<set $unlockVar.userInterface.locations = false>>
+                            <<set $eventVar.combatPass = _curRndEvent>>
+                            <<done>>
+                                <<CombatStart 'aggressiveSquirrel'>>
+                            <</done>>
+                        <</nobr>>\
+                        <div class='enemy-box'>
+                            <span id='enemyAvatar' class='enemy-avatar'></span><div id='enemyName' class='enemy-name'></div><hr>
+                            <div class='text-center enemy-bars'>
+                                <div id="enemylifeBarbkg" class="hzbarbkg"><div id="enemylifeBar" class="hzbar"></div></div>
+                                <span class="crimson">Life: </span><span id='enemylife'></span>
+                            
+                                <div id="enemystaminaBarbkg" class="hzbarbkg"><div id="enemystaminaBar" class="hzbar"></div></div>
+                                <span class="cyan">Stamina: </span><span id='enemystamina'></span>
+                            </div>
+                        </div>
+                        <<speech plr>>What is that?!? $critters.aggressiveSquirrel.description<</speech>>
+
+                    <<default>>
+                        <<speech plr thought>>It sure is imposing, even if it is in complete disrepair.<</speech>>
+
+                <</switch>>
+            <<case 'night'>>
+                <<switch _randomN>>
+                    <<case 1>>
+                        <<speech ghost>><span class='blur'>You must learn. Master. Fulfill. In time, your will and reality shall be intertwined.</span><</speech>>
+
+                        <<speech plr thought>>Where the hell did that come from. And there's that "I'm being watched" chill running down my spine....<</speech>>
+                        <<setDisc plr random 0.2>>
+
+                    <<case 2>>
+                        Night event 2
+
+                    <<case 3>>
+                        Night event 3
+
+                    <<case 4>>
+                        Night event 4
+
+                    <<case 5>>
+                        <<set $eventVar.inCombat = true>>
+                        <<nobr>>
+                            <<set $eventVar.inCombat = true>>
+                            <<set $unlockVar.userInterface.locations = false>>
+                            <<set $eventVar.combatPass = _curRndEvent>>
+                            <<done>>
+                                <<CombatStart 'tinyImp'>>
+                            <</done>>
+                        <</nobr>>
+                        <div class='enemy-box'>
+                            <div id='enemyName' class='enemy-name'></div><hr>
+                            <span id='enemyAvatar' class='enemy-avatar'></span><div class='enemy-bars'>
+                                <div id="enemylifeBarbkg" class="hzbarbkg"><div id="enemylifeBar" class="hzbar"></div></div>
+                                <span class="crimson">Life: </span><span id='enemylife'></span>
+                                <div id="enemystaminaBarbkg" class="hzbarbkg"><div id="enemystaminaBar" class="hzbar"></div></div>
+                                <span class="cyan">Stamina: </span><span id='enemystamina'></span>
+                            </div>
+                        </div>
+                        <br>
+                        <<speech plr>>What the fuck am I looking at? $critters.tinyImp.description<</speech>>
+
+                    <<default>>
+                        <<speech plr thought>>The front of this place always leaves me feeling small.<</speech>>
+
+                <</switch>>
+        
+        <</switch>>
+    <</nobr>>

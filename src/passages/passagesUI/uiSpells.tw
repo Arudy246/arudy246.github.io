@@ -1,6 +1,6 @@
 :: Spell_Words_Modal
     <div id='spell-result' class='green'></div>\
-    <h3>Choose your target</h3>\
+    <h4>Choose your target</h4>\
     <<nobr>>
         <div class='spell-word-grid'>
             <<if $spellWords.target.self.unlocked == true>>
@@ -67,7 +67,7 @@
         </div>
     <</nobr>>\
     <hr>
-    <h3>Choose an effect</h3>\
+    <h4>Choose an effect</h4>\
     <<nobr>>
         <div class='spell-word-grid'>
             <<if $spellWords.effect.damage.unlocked == true>>
@@ -128,7 +128,7 @@
         </div>
     <</nobr>>\
     <hr>
-    <h3>Choose a duration</h3>\
+    <h4>Choose a duration</h4>\
     <<nobr>>
         <div class='spell-word-grid'>
             <<if $spellWords.duration.immediate.unlocked == true>>
@@ -200,7 +200,7 @@
         </div>
     <</nobr>>\
     <hr>
-    <h3>Enhance the spell?</h3>\
+    <h4>Enhance the spell?</h4>\
     <<nobr>>
         <div class='spell-word-grid'>
             <<hovertip $spellWords.enhancement.none.description>>
@@ -278,10 +278,10 @@
             <span id='durationBox'></span>
             <span id='enhancementBox'></span>
         </div>
-    <</nobr>>
+    <</nobr>>\
     <div class='text-center'>
         <<button 'Speak the Words'>>
             <<castSpell _target _duration _effect _enhancement>>
             <<setStats 'plr'>> 
         <</button>>
-    </div>
+    </div>\

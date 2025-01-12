@@ -1,5 +1,4 @@
 :: Conversation_Janessa_CourseOverview
-
     <<speech janessa>>Let's go over the courses you are expected to attend.<</speech>>
     <<nobr>>
         <<dlg 'dlg' 0>>
@@ -39,7 +38,7 @@
                         The teacher is old old and grumpy. Got it.
                     <</speech>><br>
                     <<speech janessa>>
-                        And then you have an important one, Arcane Law 101. It's taught by Counselor Celeste Chao in Room 205 from 11:05 to 12:0. Arcane Law has to do with what you can and cannot do in our world. It's a complicated topic. And to make it even more challenging, Chao is a strange one. Her tangents alone will put you to sleep. But she definitely knows her stuff. Just don't be the last one to leave class, or she will almost literally kidnap you and force you to listen to her talk about something and anything.
+                        And then you have an important one, Arcane Law 101. It's taught by Counselor Celeste Chao in Room 205 from 11:05 to 12:00. Arcane Law has to do with what you can and cannot do in our world. It's a complicated topic. And to make it even more challenging, Chao is a strange one. Her tangents alone will put you to sleep. But she definitely knows her stuff. Just don't be the last one to leave class, or she will almost literally kidnap you and force you to listen to her talk about something and anything.
                     <</speech>>
                 <</line>>
             <</level>>
@@ -116,22 +115,137 @@
         <</dlg>>
     <</nobr>>\
 
-:: Conversation_Janessa_Random
+:: Conversation_Janessa_FirstClass
+    <<speech janessa>>
+        You ready for class?
+    <</speech>>
     <<nobr>>
-        <<set _randoN = random(1,15)>>
-        <<switch _randoN>>
-            <<case 1>>
-                <<speech janessa>><<NpcRelationGreet janessa>>And what are you doing in the bathroom?<</speech>><br>
-            <<case 2>>
-                <<speech janessa>><<NpcRelationGreet janessa>>Well, care to wash my back for me?<</speech>><br>
-            <<case 3>>
-                <<speech janessa>><<NpcRelationGreet janessa>>Go away.<</speech>><br>
-            <<case 4>>
-                Janessa appears to be...washing certain parts of herself. She would probably not want you to see this.<br><br>
-
-                <<speech janessa>>Auhh, yes... Fuck I love this new wand...<</speech>><br>
-            <<case 5>>
-                <<speech janessa>><<NpcRelationGreet janessa>>I don't recall inviting you in.<</speech>><br>
-            <<default>>
-        <</switch>>
+        <<dlg 'dlg' 0>>
+            <<level 0>>
+                <<line 'Ready'>>
+                    <<speech plr>>
+                        I'm listening.
+                    <</speech>><br>
+                    <<speech janessa>>
+                        Follow me.
+                    <</speech>>
+                    <br>
+                    <div class='passage-links-grid-1'>
+                        <<button [[Follow Janessa | University_Hall_Classes]]>>
+                            <<set $dateTime.hour = 8>>
+                            <<set $dateTime.min = 1>>
+                        <</button>>
+                    </div>
+                <</line>>
+            <</level>>
+        <</dlg>>
     <</nobr>>
+
+:: Conversation_Janessa_Random[random]
+    <<nobr>>
+        <<if tags().includes('bathroom')>>
+            <<set _randoN = random(1,10)>>
+            <<if $systemVar.nsfw == true>>
+                <<set _nsfw = 'nsfw'>>
+            <<else>>
+                <<set _nsfw = 'sfw'>>
+            <</if>>
+
+            <<switch _randoN>>
+                <<case 1>>
+                    <<done>>
+                        <<replace '#passage-desc'>>
+                            <<speech janessa>>
+                                <<NpcRelationGreet janessa>>And what are you doing in the bathroom?
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<case 2>>
+                    <<done>>
+                        <<replace '#passage-desc'>>
+                            <<speech janessa>>
+                                <<NpcRelationGreet janessa>>I don't recall inviting you in.
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<case 3>>
+                    <<done>>
+                        <<replace "#passage-scene">><img class='scene' src='https://el.phncdn.com/gif/35883451.gif'><</replace>>
+                        <<replace '#passage-desc'>>
+                            <<speech plr thought>>
+                                Well that was not what I was expecting to see in here.
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<case 4>>
+                    <<done>>
+                        <<replace "#passage-scene">><img class='scene' src='https://el.phncdn.com/gif/14924532.gif'><</replace>>
+                        <<replace '#passage-desc'>>
+                            <<speech plr thought>>
+                                Oh, damn.
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                    <<case 5>>
+                    <<done>>
+                        <<replace "#passage-scene">><img class='scene' src='https://el.phncdn.com/gif/36030771.gif'><</replace>>
+                        <<replace '#passage-desc'>>
+                            <<speech plr thought>>
+                                Someone is enjoying themselves.
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<default>>
+            <</switch>>
+        <</if>>
+
+        <<if tags().includes('room') && !tags().includes('bathroom')>>
+            <<set _randoN = random(1,5)>>
+            <<switch _randoN>>
+                <<case 1>>
+                    <<done>>
+                        <<replace '#passage-desc'>>
+                            <<speech janessa>>
+                                <<NpcRelationGreet janessa>>
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<case 2>>
+                    <<done>>
+                        <<replace '#passage-desc'>>
+                            <<speech janessa>>
+                                <<NpcRelationGreet janessa>>
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<case 3>>
+                    <<done>>
+                        <<replace '#passage-desc'>>
+                            <<speech janessa>>
+                                <<NpcRelationGreet janessa>>
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<case 4>>
+                    <<done>>
+                        <<replace '#passage-desc'>>
+                            <<speech janessa>>
+                                <<NpcRelationGreet janessa>>
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+                <<case 5>>
+                    <<done>>
+                        <<replace '#passage-desc'>>
+                            <<speech janessa>>
+                                <<NpcRelationGreet janessa>>
+                            <</speech>>
+                        <</replace>>
+                    <</done>>
+            <</switch>>
+        <</if>>
+    <</nobr>>
+
+
+
+

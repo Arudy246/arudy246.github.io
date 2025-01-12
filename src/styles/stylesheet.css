@@ -99,8 +99,8 @@ html body{
     border-image: url("img/passage-border.png") 80 repeat;
     padding: 1.5em;
     background-color: rgba(20, 20, 20, 0.8);
-    margin-left: -5em;
-    margin-right: -5em
+    margin-left: -7em;
+    margin-right: -7em
 }
 #passage-start {
     border: none;
@@ -192,9 +192,13 @@ img.mcselect {
 }
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto auto ;
+    grid-template-columns: auto auto auto auto;
     grid-template-rows: auto auto auto auto;
     justify-content: space-evenly;
+}
+.img-float {
+    float: left;
+
 }
 
 /* Simple Inventory, for SugarCube 2, by Chapel
@@ -384,10 +388,10 @@ ul.simple-inventory-list {
     color: white;
     border: 2px solid #363636;
     border-radius: 10px;
-    padding: 0px 7px 5px 7px;
+    padding: 5px 7px 5px 7px;
     box-shadow: 5px 5px 3px Black;
     background-color: #270000;
-    width: 23em;
+    width: 25em;
 }
 .enemy-avatar {
     display: block;
@@ -395,7 +399,7 @@ ul.simple-inventory-list {
     height: 84px;
     width: 84px;
     float: left;
-    margin: 0px 10px 0px 0px;
+    margin: 0px 15px 0px 0px;
     border: 2px solid white;
     border-radius: 5px;
     background-size: contain;
@@ -405,7 +409,11 @@ ul.simple-inventory-list {
 .enemy-bars {
     width: 15em;
     margin-left: 7em;
-    margin-top: 0.2em;
+    margin-top: 1.5em;
+}
+
+#enemystaminaBarbkg {
+    margin-top: 0.3em;
 }
 
 /* Enemy Box System - End */
@@ -471,6 +479,42 @@ ul.simple-inventory-list {
     max-width: 230px;
 }
 /* hovertip v2.0 - End */
+
+/* Tool Tip - START */
+.tooltip {
+    position: absolute;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgb(32, 32, 32);
+    color: #eee;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    z-index: 500;
+    transition-property: visibility;
+    transition-duration: 0s;
+    transition-delay: 0.5s;
+}
+.cb {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px;
+}
+.lb {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -100px;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+/* Tool Tip - END */
 
 /* Styling and Colours of the Right UI Bar. */
 #right-ui-bar {
@@ -545,7 +589,7 @@ ul.simple-inventory-list {
 
 /* Stowing of the Right UI Bar. */
 #right-ui-bar.stowed {
-    right: -15em;
+    right: -17.5em;
 }
 #right-ui-bar.stowed #right-ui-bar-toggle {
     padding: .3em .55em .25em .35em;
@@ -632,18 +676,23 @@ ul.simple-inventory-list {
     background-color: #161616;
 }
 #ui-dialog {
-    max-width: 90%;
+    max-width: 80%;
     max-height: 90%;
     border: 10px solid transparent;
     border-image: url("img/passage-border.png") 80 repeat;
+    margin-top: -1em;
+    margin-bottom: 0em;
 }
 #ui-dialog-body {
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 1em 2.5em 2.5em 1em;
+    padding: 0.5em 2.5em 2.5em 1em;
     border-top: 5px groove rgb(49, 49, 49);
+    max-height: calc(100vh - 175px);
+    overscroll-behavior: contain;
 
 }
+
 .schedule {
     background: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(img/dialogue_bg/bg_schedule.jpg);
     background-size: 110%;
@@ -700,6 +749,7 @@ ul.simple-inventory-list {
     box-sizing: border-box;
     grid-template-columns: 8em 8em 8em 8em 8em 8em;
     column-gap: 0.4em;
+    margin-left: 1em;
 }
 .spell-word-grid-item {
     border: 2px solid rgb(94, 94, 94);
@@ -718,8 +768,9 @@ ul.simple-inventory-list {
 #spell-box {
     font-style: italic;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 0em;
+    font-size: 1.75rem;
+    margin-bottom: -0.5em;
+    margin-top: 0em;
     color:#2d98da;
     animation: repeat;
     animation-duration: 2.5s;
@@ -739,6 +790,22 @@ ul.simple-inventory-list {
 /* Spell Stuff - End */
 
 /* For pages w/ many links */
+.passage-links-grid-vertical-long {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: auto;
+    grid-auto-rows: 3em;
+    row-gap: 1em;
+}
+
+.passage-links-grid-vertical-short {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 50%;
+    grid-auto-rows: 3em;
+    row-gap: 1em;
+}
+
 .passage-links-grid-5c {
     display: grid;
     box-sizing: border-box;
@@ -747,6 +814,7 @@ ul.simple-inventory-list {
     row-gap: 1em;
     column-gap: 1em;
 }
+
 .passage-links-grid-5c .macro-button {
     padding: 0em;
 }
@@ -766,13 +834,15 @@ ul.simple-inventory-list {
 .passage-links-grid-2 {
     display: grid;
     box-sizing: border-box;
-    grid-template-columns: 11em 11em 11em;
-    grid-template-rows: 4em 4em;
-    row-gap: 1em;
-    column-gap: 1em;
+    grid-template-columns: 33% 33% 33%;
+    grid-auto-rows: 4em;
+    row-gap: 0.5em;
+    column-gap: 0.5em;
+    margin-right: 0.5em;
 }
+
 .passage-links-grid-2 .macro-button {
-    padding: 0em;
+    padding: 0em 1em;
 }
 
 .passage-links-grid-1 {
@@ -798,18 +868,13 @@ ul.simple-inventory-list {
 
 /* End of pages w/ many links */
 
-.w3-tag {
-    position: absolute;
-    left: 10px;
-    bottom: -5px;
-}
-#plr-rels-tab a {
+#plrrels a, #plrdisc a {
     padding: 0;
     border: none;
     background: transparent;
     text-transform: none;
 }
-#plr-rels-tab a:hover {
+#plrrels a:hover, #plrdisc a:hover {
     background: transparent;
     color: #2d98da;
 }
@@ -838,4 +903,63 @@ ul.simple-inventory-list {
     position: absolute;
     top: 50%;
     right: 0;
+}
+
+.stat-icons {
+    margin: -1.2em 0em 0em -0.75em;
+}
+
+/* Tab System */
+.tablinks {
+    border-bottom: 5px #eee solid !important;
+}
+
+.tab button:hover {
+    color: #0066ff;
+    text-decoration: none;
+    border-bottom: 5px #0066ff solid;
+}
+
+.tab button.active {
+    color: #ff3333;
+    border-bottom: 5px #cc0000 solid;
+}
+
+.tabcontent {
+    display: none;
+}
+
+.active {
+    color: #ff3333 !important;
+    border-bottom: 5px #ff3333 solid !important;
+}
+
+/* W3 Adjustments */
+
+.w3-tag {
+    position: absolute;
+    left: 10px;
+    bottom: -5px;
+}
+
+.oval {
+    border-radius: 50%;
+    text-align: center;
+    font-size: 90px;
+    float: left;
+    shape-outside: ellipse();
+    padding: 10px;
+    background-clip: content-box;
+  }
+
+.no-link a:hover {
+color: black;
+text-decoration: none;
+}
+
+.media-spot img {
+    display: block;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }

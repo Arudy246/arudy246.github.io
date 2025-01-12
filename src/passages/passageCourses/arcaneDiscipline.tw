@@ -106,12 +106,12 @@
             <</level>>
             <<level 6>><br>
                 <<nobr>>
-                        <div class='passage-links-grid-1'>
+                        <div class='passage-links-grid-2'>
                             <<button [[Leave | University_Hall_Classes]]>>
                                 <<set $unlockVar.locations.Floor1_Class_Room107.unlocked = true>>
-                                <<foundItem bookSpell spellHeal>>
                                 <<set $npcs.jonathan.hasMet = true>>
-                                <<SetTime 11>>
+                                <<foundItem bookspell spellHeal>>
+                                <<SetTime 10 55>>
                             <</button>>
                         </div>
                     <</nobr>>

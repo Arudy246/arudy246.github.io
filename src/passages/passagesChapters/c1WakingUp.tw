@@ -1,5 +1,6 @@
 :: WakingUp1
-    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>\
+    <<passagestart>>\
     You feel uneasy. Not yet able to make sense of it, you know something is strange. As you slowly wake up, you know you aren't anywhere you remember ever being before. The smell is unfamiliar. The bed you are laying in, is different. Even the air feels different. Thicker, maybe?
 
     You slowly open your eyes, feeling groggy and disoriented.
@@ -12,10 +13,15 @@
 
     <<speech "amy">>Oh good, you are awake!<</speech>>\
 
-    <<button [[Continue | WakingUp2]]>><</button>>
+        <<nobr>>
+            <div class='passage-links-grid-vertical-short'>
+                <<button [[Continue | WakingUp2]]>><</button>>
+            </div>
+        <</nobr>>
 
 :: WakingUp2
-    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>\
+    <<passagestart>>
     <<speech "amy">>
         My name is $npcs.amy.name.formal, and I am the Mendicant for this school. I am terribly sorry I was wasn't here when you woke, no doubt you are rather confused.
     <</speech>>\
@@ -28,20 +34,31 @@
 
     To add to your confusion, there are floating candles. No, like legitimate floating candles just sitting in the middle of the air. Maybe $npcs.amy.name.formal is right, you are just confused. Very, very confused.
 
-    <<button [[Continue | WakingUp3]]>>
-        <<set $npcs.amy.hasMet = true>>
-    <</button>>
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Watch and listen | WakingUp3]]>>
+                <<set $npcs.amy.hasMet = true>>
+            <</button>>
+        </div>
+    <</nobr>>
+
 
 :: WakingUp3
-    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>\
+    <<passagestart>>\
     $npcs.amy.name.formal sees you staring at the candles.
 
     <<speech "amy">>I know, more questions right? Truely, I would love to answer them, but give us just a few minutes longer. I do have some good news though, you are very healthy and aside from that confusion written on your forehead and maybe some grogginess, you will be just fine.<</speech>>\
 
-    <<button [[Someone enters the room | WakingUp4]]>><</button>>
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Someone enters the room | WakingUp4]]>><</button>>
+        </div>
+    <</nobr>>
 
 :: WakingUp4
-    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>
+    <img class="scene" src="img/locations/university_admin_clinic.jpg" alt="medical wing photo"/>\
+    <<passagestart>>\
     You see $npcs.amy.name.formal wave her hands around in a series of small circular motions while speaking that same latin like gibberish again. Suddenly, a barely visible, transparent blue orb appears in front of her and floats out of the room and through the closed door.
 
     <<speech "amy">>
@@ -202,20 +219,23 @@
 
     After reacquainting yourself with well, yourself, you remember the unusual outfit you are wearing. You look at the two women and say:
 
-    <<button [[Umm, where are my clothes? | WakingUp5]]>>
-        <<relGain amy 10>>
-        <<set $plrSpkChoice = "Umm, sorry to ask, but where are my clothes?">>
-    <</button>>
-    <<button [[What the hell am I wearing?! | WakingUp5]]>>
-        <<relGain amy -5>>
-        <<set $plrSpkChoice = "What the hell am I wearing and where are my cloths?!">>
-
-    <</button>>
-    <<button [[I am so confused... What am I wearing? | WakingUp5]]>>
-        <<relGain amy 5>>
-        <<set $plrSpkChoice = "I am so confused... What am I wearing and what is going on?">>
-
-    <</button>> 
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Umm, where are my clothes? | WakingUp5]]>>
+                <<relGain amy 10>>
+                <<set $plrSpkChoice = "Umm, sorry to ask, but where are my clothes?">>
+            <</button>>
+            <<button [[What the hell am I wearing?! | WakingUp5]]>>
+                <<relGain amy -5>>
+                <<set $plrSpkChoice = "What the hell am I wearing and where are my cloths?!">>
+            <</button>>
+            <<button [[I am so confused... What am I wearing? | WakingUp5]]>>
+                <<relGain amy 5>>
+                <<set $plrSpkChoice = "I am so confused... What am I wearing and what is going on?">>
+            <</button>>
+        </div>
+    <</nobr>>
+    
 
 :: WakingUp5
     <<silently>>
@@ -228,14 +248,19 @@
         <<set $plr.name.formal = $plr.name.prefix + " " + $plr.name.lastName>>
         <<calcAttractiveness>>
     <</silently>>\
-    <img class="scene" src="img/hallway.jpg"/>
-    <<printRelGain>>
+    <img class="scene" src="img/hallway.jpg"/>\
+    <<passagestart>>
+
     <<speech plr>><<print $plrSpkChoice>><</speech>>\
 
     $npcs.janessa.name.firstName rolls her eyes and walks towards the door.
 
-    <<speech "amy">>The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you're wearing is normal patient attire. I am sure $npcs.janessa.name.firstName will show you where to get something more comfortable after you meet with the dean.<</speech>>
-    <<speech "janessa">>Let's go.<</speech>>\
+    <<speech "amy">>
+        The clothes you arrived in were, well... a little worse for wear. As were you. So I cleaned you up and dressed you. What you're wearing is normal patient attire. I am sure $npcs.janessa.name.firstName will show you where to get something more comfortable after you meet with the dean.
+    <</speech>>
+    <<speech "janessa">>
+        Let's go.
+    <</speech>>\
 
     $npcs.janessa.name.firstName is standing in the doorway, appearing rather impatient.
 
@@ -250,20 +275,25 @@
 
     You turn back towards $npcs.janessa.name.firstName and say:
 
-    <<button [[Did you not hear that? | WakingUp6]]>>
-        <<set $plrSpkChoice = "Did you not hear that? It sounded like, something?">>
-    <</button>>
-    <<button [[Alright! What is your problem? | WakingUp6]]>>
-        <<relGain janessa -5>>
-        <<set $plrSpkChoice = "Alright, seriously now. What is your problem?">>
-    <</button>>
-    <<button [[Nothing. | WakingUp6]]>>
-        <<set $plrSpkChoice = "Nothing. I'm just... Nevermind.">>
-    <</button>>
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Did you not hear that? | WakingUp6]]>>
+                <<set $plrSpkChoice = "Did you not hear that? It sounded like, something?">>
+            <</button>>
+            <<button [[Alright! What is your problem? | WakingUp6]]>>
+                <<relGain janessa -5>>
+                <<set $plrSpkChoice = "Alright, seriously now. What is your problem?">>
+            <</button>>
+            <<button [[Nothing. | WakingUp6]]>>
+                <<set $plrSpkChoice = "Nothing. I'm just... Nevermind.">>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: WakingUp6
     <img class="scene" src="img/headmasterstudy.jpg" alt="dean's study"/>\
-    <<printRelGain>>
+    <<passagestart>>\
+
     <<speech "plr">><<print $plrSpkChoice>><</speech>>
     $npcs.janessa.name.firstName ignores you and starts walking again, but more quickly this time. You catch up with her and stay within arms reach of her. For perhaps the hundreth time tonight, you think to yourself "What is going on here?"
 
@@ -286,24 +316,24 @@
 
     <<speech "plr">>I remember...<</speech>>\
 
-    <<button [[driving a car with someone you cared about. | BackgroundCar1]]>>
-
-    <</button>>
-    <<button [[the smell of dinner. | BackgroundHostage1]]>>
-
-    <</button>>
-    <<button [[celebrating something. | BackgroundFire1]]>>
-
-    <</button>>
-    <<button [[someone I loved. | BackgroundInsanity1]]>>
-
-    <</button>>
-    <<button [[camping in the woods. | BackgroundChase1]]>>
-
-    <</button>>
+    <<nobr>>
+        <div class='passage-links-grid-vertical-long'>
+            <<button [[Driving a car with someone you cared about. | BackgroundCar1]]>>
+            <</button>>
+            <<button [[The smell of dinner. | BackgroundHostage1]]>>
+            <</button>>
+            <<button [[Celebrating something. | BackgroundFire1]]>>
+            <</button>>
+            <<button [[Someone I loved. | BackgroundInsanity1]]>>
+            <</button>>
+            <<button [[Camping in the woods. | BackgroundChase1]]>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 :: WakingUp7
     <img class="scene" src="img/headmasterstudy.jpg"/>\
+    <<passagestart>>\
 
     <<speech "plr">><<print $plrSpkChoice>><</speech>>
 
@@ -329,13 +359,16 @@
 
     <<speech "janessa">>Let's go.<</speech>>\
 
-    <<button [[Follow her | WakingUp8]]>>
-        <<set $npcs.barden.hasMet = true>>
-    <</button>>
-
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Follow her | WakingUp8]]>>
+                <<set $npcs.barden.hasMet = true>>
+            <</button>>
+        </div>
+    <</nobr>>
 :: WakingUp8
     <img class="scene" src="img/locations/university_mainroad.jpg"/>\
-
+    <<passagestart>>\
     $npcs.janessa.name.firstName leads you out of the dean's study. The two of you walk down another set of hallways, making turns here and there. The two of you walk out of a sidedoor and enter large courtyard with several streets all leading into it. The streets are dimly lit by, not floating candles, but now ghostly floating orbs.
     
     $npcs.janessa.name.firstName turns through the courtyard and walks down a gray cobbled street. You see a sign post labeling the street as Arcend Way. The street is somewhat narrow and surrounded on both sides by small homes. The farther you walk, the larger the houses get. Some even have courtyards of their own.
@@ -344,10 +377,14 @@
     
     The outside of the residence is...a bit rundown. The front has obviously not seen a gardner's touch in many years. Piles of leaves and debris are scattered everywhere. The vines that climb over the iron fence also appear to be actively trying to strangle the side of the house.
 
-    <<button [[Continue | WakingUp9]]>><</button>>
-
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Continue | WakingUp9]]>><</button>>
+        </div>
+    <</nobr>>
 :: WakingUp9
     <img class="scene" src="img/locations/residence_starr_courtyard.jpg"/>\
+    <<passagestart>>\
 
     <<speech "janessa">>This is my residence. It's been in my family for many generations. I'll give you a short tour and then we are done for the night. Classes will start Monday morning.<</speech>>\
 
@@ -363,27 +400,28 @@
 
     <<speech "janessa">>This is the banquet hall. As you can see, it hasn't been used in awhile. Before you go asking, yes it is a bit dirty. And yes, there is much missing. Unfortunately, my family's status has diminished somewhat in the last several years. That's why I am you Secutor and someone else is not. No one else would have had to say yes.<</speech>>\
 
-    <<button [[Stop being a bitch! | WakingUp10]]>>
-        <<relGain janessa -5>>
-        <<set $plrSpkChoice = "Will you knock off the bitch attitude. I have done nothing to you. If it wasn't clear to you, I didn't ask for any of this.">>
-    <</button>>
-    <<button [[Sorry. I just want to understand. | WakingUp10]]>>
-        <<relGain janessa 10>>
-        <<set $plrSpkChoice = "I'm sorry I'm your problem. I just don't understand what is going on. And seriously, I'm trying.">>
-    <</button>>
-    <<button [[(Start crying) | WakingUp10]]>>
-        <<relGain janessa -5>>
-        <<set $plrSpkChoice = "[you cry]">>
-    <</button>>
-
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Stop being a bitch! | WakingUp10]]>>
+                <<relGain janessa -5>>
+                <<set $plrSpkChoice = "Will you knock off the bitch attitude. I have done nothing to you. If it wasn't clear to you, I didn't ask for any of this.">>
+            <</button>>
+            <<button [[Sorry. I just want to understand. | WakingUp10]]>>
+                <<relGain janessa 10>>
+                <<set $plrSpkChoice = "I'm sorry I'm your problem. I just don't understand what is going on. And seriously, I'm trying.">>
+            <</button>>
+            <<button [[(Start crying) | WakingUp10]]>>
+                <<relGain janessa -5>>
+                <<set $plrSpkChoice = "[you cry]">>
+            <</button>>
+        </div>
+    <</nobr>>
 :: WakingUp10
     <img class="scene" src="img/locations/residence_starr_entryhall.jpg"/>\
+    <<passagestart>>
 
-    <<nobr>>
-        <<printRelGain>>
-        <<speech plr>><<print $plrSpkChoice>><</speech>>
-    <</nobr>>\
-    <<if $relAmtTemp < 0>>
+    <<speech plr>><<print $plrSpkChoice>><</speech>>\
+    <<if $tempVar.relAmt < 0>>
         <<speech janessa>>Get a grip. Being pathetic or weak will not help you. And seriously, I don't care. Go talk to $npcs.amy.name.formal if you need to "talk" to someone. But leave me out of it.<</speech>>\
     <<else>>
         <<speech janessa>>I'm sorry you are too. But thanks for seeing that. Just don't use me as your emotional outlet, find someone else. Please.<</speech>>\
@@ -399,13 +437,17 @@
 
     <<speech janessa>>So to sum up, training your body and practicing magic will both improve your <span class='emphasis cyan'><em>Stamina</em></span>. Eating and sleeping will also help you replenish it. I can't tell you how many times I was up late casting with friends and needed to raid the cafeteria for a a huge meal.<</speech>>\
 
-    <<button [[Keep listening | WakingUp11]]>>
-        <<set $plr.stats.stamina.max = 10>>
-        <<setStats 'plr' 'stamina' 9>>
-    <</button>>
-
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Keep listening | WakingUp11]]>>
+                <<set $plr.stats.stamina.max = 10>>
+                <<setStats 'plr' 'stamina' 9>>
+            <</button>>
+        </div>
+    <</nobr>>
 :: WakingUp11
     <img class="scene" src='img/locations/residence_starr_kitchen.jpg'/>\
+    <<passagestart>>\
 
     <<speech janessa>>I'm sure I don't need to describe the kitchen. Obviously, it isn't well used. I don't know anyone who eats at their residence, everyone eats at the cafetaria.<</speech>>\
 
@@ -413,14 +455,17 @@
 
     <<speech janessa>>But anyways, next lesson. You will need to be aware of injuries, most refer to this as <span class='emphasis crimson'><em>Lifeforce</em></span>. Basically, its your health. Getting punched in the head, taking a bolt of fire to the chest, falling off a cliff, well obviously, you're gonna get hurt. You can only take so many injuries before you lose the ability to survive. <span class='emphasis crimson'><em>Lifeforce</em></span> is finite, lose enough of it and you will likely die. If you are even a little bit lucky, someone will take you too $npcs.amy.name.formal at the Clinic. If you're unlucky, well don't be suprised if there are some lasting consequences, if you even survive. To regain your <span class='emphasis crimson'><em>Lifeforce</em></span>, use restoration magics, or certain potions, or just goto the Clinic. Any of those will work.<</speech>>\
 
-    <<button [[Keep listening | WakingUp12]]>>
-        <<set $plr.stats.life.max = 10>>
-        <<setStats 'plr' 'life' 10>>
-    <</button>>\
-
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Keep listening | WakingUp12]]>>
+                <<set $plr.stats.life.max = 10>>
+                <<setStats 'plr' 'life' 10>>
+            <</button>>
+        </div>
+    <</nobr>>
 :: WakingUp12
     <img class="scene" src='img/plrroomdoor.jpg'/>\
-
+    <<passagestart>>\
     You are led out of the kitchen and towards a short hallway with several closed doors. $npcs.janessa.name.firstName points towards one of them.
 
     <<speech janessa>>This room is is mine. Do. Not. Ever. Try to enter my room without permission. You'll learn over the next few days that no still living practitioner tolerates trespassing or unsanctioned violence. I swear, I will turn you into poultry and donate you to the cafeteria cooks.<</speech>>\
@@ -434,14 +479,17 @@
 
     $npcs.janessa.name.firstName leads you into "your" room.
 
-    <<button [[Follow | WakingUp13]]>>
-        <<set $plr.stats.focus.max = 4>>
-        <<setStats 'plr' 'focus' 3>>
-    <</button>>\
-
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Follow | WakingUp13]]>>
+                <<set $plr.stats.focus.max = 4>>
+                <<setStats 'plr' 'focus' 3>>
+            <</button>>
+        </div>
+    <</nobr>>
 :: WakingUp13
     <img class="scene" src='img/locations/residence_starr_playerroom.webp'>\
-
+    <<passagestart>>\
     You follow $npcs.janessa.name.firstName into your room. She wasn't kidding, you'll need some amenities. There is a pile of old couch cushions on the floor and a desk that looks like it is falling apart with a chair just as worse in a corner. And that's it. The room also looks like it had some form of green wallpaper on the walls, but so much of it has fallen to the floor and is rotting that it's hard to tell. The only light comes from the candles in the hallway.
 
     $npcs.janessa.name.firstName notices your concern.
@@ -453,13 +501,17 @@
         
     <<speech janessa>>Think of it this way, if you try to cast something you simply don't understand, it may horribly backfire on you. You could have been trying to coax a plant into growing, but if the spell backfires you may suddenly find yourself being eating by that plant to power its own growth. Or you might just explode, who knows really. Really bad and random things can occurr if you ignore me on this. So try to be mentally stable when doing spell work.<</speech>>\
 
-    <<button [[Keep listening | WakingUp14]]>>
-        <<set $plr.stats.sanity.max = 3>>
-        <<setStats 'plr' 'sanity' 2>>
-    <</button>>\
-
+    <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Keep listening | WakingUp14]]>>
+                <<set $plr.stats.sanity.max = 3>>
+                <<setStats 'plr' 'sanity' 2>>
+            <</button>>
+        </div>
+    <</nobr>>
 :: WakingUp14
     <img class="scene" src='img/locations/residence_starr_playerroom.webp'>\
+    <<passagestart>>\
 
     <<speech janessa>>Now regarding Monday and your first week of courses. Your schedule is now my schedule, which means I will be following you around for a few days. If it seems like you will survive on your own without causing any trouble, then we aren't attached at the hip anymore and I can go back to my lessons. Keep in mind, I am losing valuable instruction time to supervise you, so please try not to do anything stupid that might extend this annoying arrangement.<</speech>>\
 
@@ -470,8 +522,12 @@
 
     With that, $npcs.janessa.name.firstName turns around and walks out, leaving you alone in your decrepit room.
 
-    <<button [[Look around | Residence_Starr_PlayerRoom]]>>
-    <</button>>
+        <<nobr>>
+        <div class='passage-links-grid-vertical-short'>
+            <<button [[Look around | Residence_Starr_PlayerRoom]]>>
+            <</button>>
+        </div>
+    <</nobr>>
 
 
 

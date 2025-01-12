@@ -165,7 +165,7 @@
                         let r = curLife - d;
                         
                         state.setVar('$spellCastVar.spellTarget.stats.life.cur', r);
-                        State.setVar('$spellCastVar.damageDone', d)
+                        state.setVar('$spellCastVar.damageDone', d)
                     }
                 }
             },

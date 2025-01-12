@@ -1,15 +1,39 @@
 :: Basement_Class_RoomB3
-    <img class='scene' src='img/locations/basement_class_roomb3.jpg'>
-    <<Updates noClass>>
+    <<nobr>>
+        <<passagehead locations basement_class_roomb3 noclass>>
+            <<nobr>>
+                <<if $dateTime.hour < 12>>
+                    <<speech celeste>>
+                        Hello, <<Player formal p>> I won't begin until 12:00, so if you have other duties to complete, you should do so.
+                    <</speech>>
+                    <br>
+                    <<nobr>>
+                        <div class='passage-links-grid-2'>
+                            <<button [[Sit down | Basement_Class_RoomB3]]>>
+                                <<SetTime 12>>
+                            <</button>>
+                            <<button [[Go Back | University_Hall_Basement]]>>
+                                <<calcTime 0 5>>
+                            <</button>>
+                        </div>
+                    <</nobr>>
+                    <<else>>
+                        <<ClassLectures incursionhistory>>
+                <</if>>
+            <</nobr>>
+        <</passagehead>>
+    <</nobr>>
 
 :: Basement_Class_RoomB3_Closed
-<img class='scene' src='img/locations/closed_wood_door.jpg'>
-    <<Updates>>
-    <<speech plr>>
-        The door is locked.
-    <</speech>>
     <<nobr>>
-        <div class='passage-links-grid-1'>
+        <<passagehead locations closed_wood_door>>
+            <<speech plr thought>>
+                Looks like the door is locked.
+            <</speech>>
+        <</passagehead>>
+    <</nobr>>
+    <<nobr>>
+        <div class='passage-links-grid-2'>
             <<button [[Go Back | University_Hall_Basement]]>>
                 <<calcTime 0 5>>
             <</button>>

@@ -116,9 +116,13 @@
         rooms: {
             roomJanessa: false
         },
+        placeevents: {
+            Residence_Starr_Courtyard_Example: false
+        },
         conversations: {
             Janessa_CourseOverview: false,
-            Janessa_CleanResidence: false
+            Janessa_CleanResidence: false,
+            Janessa_FirstClass: false
         },
         courses: {
             Course_ArcaneArts_1: false,

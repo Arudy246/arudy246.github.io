@@ -2,6 +2,21 @@ sugarcube-2:
   macros:
 
     # My macros
+    passagehead:
+      description: "Passage head generator. <<passagehead folder_name photo_file_name noclass>>Speech, code, etc.<</passagehead>>"
+      container: true
+      parameters:
+        - text & text |+ text
+
+    spawnevent:
+      description: "Fires events, both location and npc, specific and random. <<spawnevent npc Janessa_Random forbidrandom/allowrandom '0500' '1500'"
+      container: false
+      parameters:
+        - text & text & text & text & text
+
+    autoscroll:
+      description: "Forces viewscreen to bottom of current passage. <<autoscroll>>"
+
     relGain:
       description: "Changes relationships, needs first name (caps matter) and number"
       container: false
@@ -84,9 +99,9 @@ sugarcube-2:
        - text |+ text
       
     SetTime:
-      description: "Takes one arg, for the exact hour to move time forward to. Uses calcTime w/o stamina drain."
+      description: "Takes two arg, for the exact hour and minute(optional) to move time forward to. Uses calcTime w/o stamina drain."
       parameters:
-       - text
+       - text |+ text
 
     ClassLectures:
       description: "Takes on arg, the variable name for a course then <<include>> the course passage. Also increments for the next lecture."

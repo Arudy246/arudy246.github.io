@@ -1,0 +1,130 @@
+:: Out_of_Stamina
+    <<speech plr>>I am so tired...maybe I can manage to get back to my bed...<</speech>>
+    <<nobr>>
+        <<setStats plr stamina 1>>
+        <div class='passage-links-grid-1'>
+            <<button [[Space out | Residence_Starr_PlayerRoom_Resting]]>>
+            <</button>>
+        </div>
+    <</nobr>>
+
+:: Out_of_Life
+    <<speech plr>>Holy shit, there is so much blood...is that really all mine? I had no idea there....could.....be......so.......much..........<</speech>>
+    <<nobr>>
+        <<setStats plr life 5>>
+        <div class='passage-links-grid-1'>
+            <<button [[The life ebbs from your broken body | University_Admin_Clinic]]>>
+            <</button>>
+        </div>
+    <</nobr>>
+
+:: Out_of_Sanity
+    <<speech plr>>ARGHHHGHHHHHHHH!!!! IT'S ALL A LIE!?!?!? THE CAKE!! THE CAKEEE!!!!!<</speech>>
+    <<nobr>>
+        <<setStats plr sanity 2>>
+        <div class='passage-links-grid-1'>
+            <<button [[(mental break) | University_MainRoad]]>>
+            <</button>>
+        </div>
+    <</nobr>>
+
+:: Skill_Meditation_Unlock
+    <<speech plr>>
+        I just learned how to use the Meditation skill! This will allow me to renew and recharge myself at the cost of just a few minutes of my time. I think this will prove to be much more efficient than just laying down and hoping to fall asleep. And as the Instructor stated, I should get better at it over time.
+    <</speech>>
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Leave | University_Hall_Classes]]>>
+            <</button>>
+        </div>
+    <</nobr>>
+
+:: Spell_Success
+    <<set $unlockVar.userInterface.spells = false>>
+    <<speech plr>>My <i>$spellCastVar.spellEffect</i> spell was cast successfully on the present room.<</speech>>\
+
+    <<button [[Continue | previous()]]>>
+        <<set $unlockVar.userInterface.spells = true>>
+    <</button>>
+
+:: Event_Unlock_Spell
+    <<if visited() < 2>>
+        <div class="achievebg">
+            <h1 class='achieve text-center'>Huge Advancement!</h1>
+        </div>
+        <<speech plr>>I think I just learned my first Word!!! It came from the tome <i>$eventVar.spell.book</i> and has taught me the Word, <i>$eventVar.spell.name</i>!<</speech>>
+        <<speech plr>> The book described <i>$eventVar.spell.name</i> as <i>"$eventVar.spell.description"</i><</speech>>
+        <<speech plr>>Much of what I read has to do with what $npcs.janessa.name.firstName told me about <span class='emphasis cyan'><em>Stamina</em></span>. It also talked about how different Words have differing levels of difficulty and energy cost. Using Words of increasing difficulty helps me learn faster, but also drains my energy very quickly. While at the same time allowing me to strengthen myself, allowing me to cast spells much more efficiently in the future.<</speech>>
+        <<speech plr>>The book also described the basic syntax for every castable spell. And the dire consequences of not following its guidence... something about tears in space and time coupled with temporal paradoxes, demon incursions, etc. Anyways, I need at least four words for each, which I interpreted as a target, an effect, a duration, and an enhancement.<</speech>>
+        <<speech plr>>After finishing <i>$eventVar.spell.book</i>, I should try to cast my first spell!<</speech>>\
+
+        <<elseif hasVisited('Event_Unlock_Spell')>>
+            <<speech plr>>I learned the Word <i>$eventVar.spell.name</i> from the tome, <i>$eventVar.spell.book</i>! I have read $eventVar.spell.pagesCur out of $eventVar.spell.pagesMax chapters.<</speech>>
+            <<speech plr>>The book describes <i>$eventVar.spell.name</i> as <i>"$eventVar.spell.description"</i><</speech>>
+    <</if>>\
+    <<button [[Continue | previous()]]>>
+    <</button>>
+
+:: Event_Unlock_Location
+
+    <<speech plr>>
+        After reading <i>$eventVar.location.book</i>, I learned how to find the <i>$eventVar.location.name</i>! I have read $eventVar.location.pagesCur out of $eventVar.location.pagesMax chapters.
+    <</speech>>\
+
+    <<button [[Continue | previous()]]>>
+
+    <</button>>
+
+:: Spell_Combat
+    <<nobr>>
+        <<set $unlockVar.userInterface.spells = false>>
+            <<if $spellCastVar.availableTargets.npcs[0]>>
+                <<set _target = $spellCastVar.availableTargets.npcs[0]>>
+                <<set _targetObj = $npcs[_target]>>
+
+            <<elseif $spellCastVar.availableTargets.critters[0]>>
+                <<set _target = $spellCastVar.availableTargets.critters[0]>>
+                <<set _targetObj = $critters[_target]>>
+
+            <</if>>
+
+            <<set _targetStam = _targetObj.stats.stamina.cur>>
+            
+            <<if _targetStam >= 1>>
+                <<set _critterAttack = _targetObj.stats.attack * -1>>
+                <<setStats plr life _critterAttack>>
+                <<set _targetObj.stats.stamina.cur = _targetStam - 1>>
+
+                <<else>>
+                    <<set _targetObj.stats.stamina.cur = _targetStam + 0.5>>
+            <</if>>
+
+            <<set _effectCmt = $spellCastVar.spellEffect>>
+            <<set _targetCmt = _targetObj.name.firstName>>
+
+    <</nobr>>\
+    <<nobr>>
+        <<if _effectCmt == 'Damnum'>>
+            <<speech plr>>I successfully cast my <i>_effectCmt</i> spell at the _targetCmt and did $spellCastVar.damageDone damage to it.<</speech>><br>
+        <</if>>
+
+        <<if _effectCmt == 'Vulnus'>>
+            <<speech plr>> I successfully cast my <i>_effectCmt</i> spell at myself and healed for $spellCastVar.healDone.<</speech>><br>
+        <</if>>
+
+        <<if _targetStam >= 1>>
+            <<speech plr>>The _targetCmt caused _targetObj.stats.attack damage to me.<</speech>><br>
+        <<else>>
+            <<speech plr>>The _targetCmt looks tired and is trying to recouperate some stamina.<</speech>><br>
+        <</if>>
+    <</nobr>>\
+    <<nobr>>
+        <div class='passage-links-grid-1'>
+            <<button [[Continue | previous()]]>>
+                <<set $unlockVar.userInterface.spells = true>>
+                <<set $spellCastVar.damageDone = 0>>
+                <<set $spellCastVar.healDone = 0>>
+                <<CombatEnd>>
+            <</button>>
+        </div>
+    <</nobr>>
